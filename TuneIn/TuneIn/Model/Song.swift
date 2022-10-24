@@ -18,6 +18,7 @@ struct Song: Codable {
   var spotifyLink: ExternalURL?
   var artists:     [Artist]?
   var albumURL:    [AlbumImage]? //picture of the album
+  var previewUrl: String?
 
   enum CodingKeys : String, CodingKey {
     case songId      = "id"
@@ -25,6 +26,7 @@ struct Song: Codable {
     case songName    = "name"
     case spotifyLink = "external_urls"
     case artists
+    case previewUrl  = "prevview_url"
   }
 }
 
@@ -52,4 +54,14 @@ struct Artist: Codable {
     case spotifyLink = "external_urls"
     case name
   }
+}
+
+//https://developer.spotify.com/documentation/web-api/reference/#/operations/search
+struct SearchResponse: Codable {
+  var tracks: Track?
+}
+
+struct Track: Codable {
+  var items: [Song]? // I think will work unsure about alumn image though
+  var next: String?
 }
