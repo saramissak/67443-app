@@ -7,33 +7,37 @@
 
 import Foundation
 
-//curl --request GET \
-//  --url https://api.spotify.com/v1/albums/id \
-//  --header 'Authorization: ' \
-//  --header 'Content-Type: application/json'
-// information from: https://developer.spotify.com/documentation/web-api/reference/#/operations/get-an-album
+// API for getting a track: https://developer.spotify.com/documentation/web-api/reference/#/operations/get-track
 struct Song: Codable {
   var songId:      String?
   var songName:    String?
   var spotifyLink: ExternalURL?
   var artists:     [Artist]?
-  var albumURL:    [AlbumImage]? //picture of the album
+  var albumURL:    AlbumImage? //picture of the album
   var previewUrl: String?
 
   enum CodingKeys : String, CodingKey {
     case songId      = "id"
-    case albumURL    = "images"
+    case albumURL    = "album"
     case songName    = "name"
     case spotifyLink = "external_urls"
     case artists
-    case previewUrl  = "prevview_url"
+    case previewUrl  = "preview_url"
   }
 }
 
 struct AlbumImage: Codable {
-  var url: String
+  var images: [Images]?
   
   enum CodingKeys : String, CodingKey {
+    case images
+  }
+}
+
+struct Images: Codable {
+  var url: String?
+  
+  enum CodingKeys: String, CodingKey {
     case url
   }
 }
@@ -47,7 +51,7 @@ struct ExternalURL: Codable {
 }
 
 struct Artist: Codable {
-  var name: String
+  var name: String?
   var spotifyLink: ExternalURL? // gets the link to the artist's spotify URL
   
   enum CodingKeys : String, CodingKey {
@@ -56,12 +60,12 @@ struct Artist: Codable {
   }
 }
 
-//https://developer.spotify.com/documentation/web-api/reference/#/operations/search
+// https://developer.spotify.com/documentation/web-api/reference/#/operations/search
 struct SearchResponse: Codable {
   var tracks: Track?
 }
 
 struct Track: Codable {
-  var items: [Song]? // I think will work unsure about alumn image though
+  var items: [Song]?
   var next: String?
 }
