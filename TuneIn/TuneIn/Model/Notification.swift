@@ -29,5 +29,3 @@ struct CommentNotification: Codable { // ask about this
   var notificationID: UUID
   var commentID: UUID
 }
-
-

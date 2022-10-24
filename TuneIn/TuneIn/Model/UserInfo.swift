@@ -15,7 +15,14 @@ struct UserInfo: Codable, Identifiable {
 //  var password:         String
   var spotifyID:        String 
   var profileImage:     String // assuming a URL to their image
-  var sentRequests:     [UUID]
-  var listOfFriends:    [UUID]
-  var receivedRequests: [UUID]
+}
+
+struct Friends: Codable {
+  var friend1: UUID
+  var friend2: UUID
+}
+
+struct FriendRequests {
+  var requestSender: UUID
+  var requestReceiver: UUID
 }
