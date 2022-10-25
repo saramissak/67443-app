@@ -65,7 +65,7 @@ struct Track: Codable {
 }
 
 // to get bearer token: https://developer.spotify.com/console/get-search-item/?q=stitches&type=track&market=&limit=&offset=&include_external=
-let bearerToken = ""
+let bearerToken = "BQDThZv3Uz9i2iVmw9ItwZ3bOHoC2bOXHxieTxUFqtAMmEjhP-04NgSIv6VjCFJQQ0W5Eo2oAdu2Pisz_D3-R2j4vbrTQcYSWnOEG4A_uZcUikFm5sw00nsZ2i8BaKBECla-jDdL9cjbF7h90ggT30MT7HztDqun9S7pwXpNASJHXCJTjb8"
 
 var sessionConfiguration = URLSessionConfiguration.default
 sessionConfiguration.httpAdditionalHeaders = [
@@ -78,56 +78,47 @@ let session = URLSession(configuration: sessionConfiguration)
 // developer console: https://developer.spotify.com/console/get-search-item/
 // API documentation: https://developer.spotify.com/documentation/web-api/reference/#/operations/search
 let songToSearchFor = "stitches"
-let SpotifySearchURL = URL(string: "https://api.spotify.com/v1/search?q=\(songToSearchFor)&type=track")!
-var SpotifySearchRequest = URLRequest(url: SpotifySearchURL)
-// gets and parses the data for a search
-var callable = session
-    .dataTaskPublisher(for: SpotifySearchRequest)
-    .sink(receiveCompletion: { completion in
-        switch completion {
-        case let .failure(reason):
-            print(reason)
-        case .finished:
-            print("")
-        }
-    }) { receivedValue in
-        let decoder  = JSONDecoder()
-        let resultString = String(data: receivedValue.data, encoding: .utf8) ?? "Unknown"
-        let jsonData = Data(resultString.utf8)
-      
-        do {
-          var searchResponse = try decoder.decode(SearchResponse.self, from: jsonData)
-          print(searchResponse)
-        } catch {
-          print(String(describing: error))
-        }
-    }
+let SpotifySearchURL = "https://api.spotify.com/v1/search?q=\(songToSearchFor)&type=track"
+
+let searchTask = session.dataTask(with: URL(string: SpotifySearchURL)!) { (data, response, error) in
+  guard let data = data else {
+    print("Error: No data to decode")
+    return
+  }
+  
+  // Decode the JSON here
+  guard let response = try? JSONDecoder().decode(SearchResponse.self, from: data) else {
+    print("Error: Couldn't decode data into a result")
+    return
+  }
+  
+  
+  // Output if everything is working right
+  print("\(response)")
+}
+
+searchTask.resume()
 
 // gets and parses the data for getting a track
 // developer console: https://developer.spotify.com/console/get-track/
 // documentation: https://developer.spotify.com/documentation/web-api/reference/#/operations/get-track
 let id = "5jsw9uXEGuKyJzs0boZ1bT"
-let SpotifyGetTrackURL = URL(string: "https://api.spotify.com/v1/tracks/\(id)")!
-var SpotifyGetTrackRequest = URLRequest(url: SpotifyGetTrackURL)
-// gets and parses the data for a search
-var callable2 = session
-    .dataTaskPublisher(for: SpotifyGetTrackRequest)
-    .sink(receiveCompletion: { completion in
-        switch completion {
-        case let .failure(reason):
-            print(reason)
-        case .finished:
-            print("")
-        }
-    }) { receivedValue in
-        let decoder  = JSONDecoder()
-        let resultString = String(data: receivedValue.data, encoding: .utf8) ?? "Unknown"
-        let jsonData = Data(resultString.utf8)
-      
-        do {
-          var song = try decoder.decode(Song.self, from: jsonData)
-          print(song)
-        } catch {
-          print(String(describing: error))
-        }
-    }
+let SpotifyGetTrackURL = "https://api.spotify.com/v1/tracks/\(id)"
+
+let getTrackTask = session.dataTask(with: URL(string: SpotifyGetTrackURL)!) { (data, response, error) in
+  guard let data = data else {
+    print("Error: No data to decode")
+    return
+  }
+  
+  // Decode the JSON here
+  guard let response = try? JSONDecoder().decode(Song.self, from: data) else {
+    print("Error: Couldn't decode data into a result")
+    return
+  }
+  
+  // Output if everything is working right
+  print("\(response)")
+}
+
+getTrackTask.resume()
