@@ -6,9 +6,11 @@
 //
 
 import Foundation
+import FirebaseFirestoreSwift
+
 
 struct UserInfo: Codable, Identifiable {
-  var id:               String
+  @DocumentID var id: String?
   var username:         String
   var name:             String
   var spotifyID:        String
