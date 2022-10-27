@@ -102,7 +102,7 @@ func searchForSong(_ songToSearchFor: String) {
   searchTask.resume()
 }
 
-// gets and parses the data for getting a song. This will be used for retrieving previous song of the day
+// gets and parses the data for getting a song. This will be used for retrieving previous song of the day by the songID
 // developer console: https://developer.spotify.com/console/get-track/
 // documentation on get track API endpoint: https://developer.spotify.com/documentation/web-api/reference/#/operations/get-track
 func getSongById(_ id: String) {
