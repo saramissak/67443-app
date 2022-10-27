@@ -7,25 +7,46 @@
 
 import Foundation
 
-enum NotificationType: String {
+enum NotificationTypes: String, Codable {
    case like = "Like"
    case comment = "Comment"
    case friendRequest = "Friend Request"
 }
 
-struct Notification: Codable, Identifiable {
-  var id:        UUID
-  var userID:    UUID
-  var otherUser: UUID // who liked, commented, or sent the request
-  var type:      NotificationType
+protocol NotificationProtocol: Codable, Identifiable {
+  var id:        UUID { get set }
+  var userID:    UUID { get set }
+  var otherUser: UUID { get set }// who liked, commented, or sent the request
+  var type:      NotificationTypes { get set }
 }
 
-struct LikeNotification: Codable { // ask about this
-  var notificationID: UUID
+protocol LikeNotificationProtocol: NotificationProtocol, Codable {
+  var postID: UUID { get set }
+}
+
+protocol CommentNotificationProtocol: NotificationProtocol, Codable {
+  var commentID: UUID { get set }
+}
+
+struct LikeNotification: LikeNotificationProtocol, Codable {
   var postID: UUID
+  var id: UUID
+  var userID: UUID
+  var otherUser: UUID
+  var type: NotificationTypes = NotificationTypes.like
 }
 
-struct CommentNotification: Codable { // ask about this
-  var notificationID: UUID
+struct CommentNotification: CommentNotificationProtocol, Codable {
+  var id: UUID
+  var userID: UUID
+  var otherUser: UUID
   var commentID: UUID
+  var type: NotificationTypes = NotificationTypes.comment
+}
+
+struct FriendRequestNotification: NotificationProtocol, Codable {
+  var id: UUID
+  var userID: UUID
+  var otherUser: UUID
+  var type: NotificationTypes = NotificationTypes.friendRequest
 }
