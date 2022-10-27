@@ -65,7 +65,7 @@ struct Track: Codable {
 }
 
 // to get bearer token: https://developer.spotify.com/console/get-search-item/?q=stitches&type=track&market=&limit=&offset=&include_external=
-let bearerToken = "BQATC1Any-PphmZgNDMHg44HWNWe9GR_69yu0usZQklbz0XbnisKhDofA0xZQR0iyxibGOfcdfid4Ncdh7xswcGjhdtaiilgbjnVGKkJkYGXzZ4CNO37Q6I6xyxGepaCoQkcVbb7y4HJyOBq2V7OgGAnOaWlU_ZvuMLrG3xjaammu4J-IGw"
+let bearerToken = ""
 
 func createSession() -> URLSession {
   var sessionConfiguration = URLSessionConfiguration.default
