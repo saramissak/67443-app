@@ -9,6 +9,8 @@
 /* Begin PBXBuildFile section */
 		B149D109291347350056509D /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = B149D108291347350056509D /* AppDelegate.swift */; };
 		B149D11529134C2A0056509D /* SpotifyiOS.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = B149D11429134C2A0056509D /* SpotifyiOS.framework */; };
+		B1C0CA2A29141C7B00445D87 /* GoogleService-Info.plist in Resources */ = {isa = PBXBuildFile; fileRef = B1C0CA2929141C7B00445D87 /* GoogleService-Info.plist */; };
+		B1C0CA2C2914208700445D87 /* SceneDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = B1C0CA2B2914208700445D87 /* SceneDelegate.swift */; };
 		D34D47B728F9DB6E00224758 /* TuneInApp.swift in Sources */ = {isa = PBXBuildFile; fileRef = D34D47B628F9DB6E00224758 /* TuneInApp.swift */; };
 		D34D47B928F9DB6E00224758 /* ContentView.swift in Sources */ = {isa = PBXBuildFile; fileRef = D34D47B828F9DB6E00224758 /* ContentView.swift */; };
 		D34D47BB28F9DB7000224758 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = D34D47BA28F9DB7000224758 /* Assets.xcassets */; };
@@ -23,6 +25,8 @@
 		B149D108291347350056509D /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		B149D11429134C2A0056509D /* SpotifyiOS.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = SpotifyiOS.framework; path = "ios-sdk-1.2.2/SpotifyiOS.framework"; sourceTree = SOURCE_ROOT; };
 		B149D11629134DDC0056509D /* TuneIn-Bridging-Header.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = "TuneIn-Bridging-Header.h"; sourceTree = "<group>"; };
+		B1C0CA2929141C7B00445D87 /* GoogleService-Info.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; name = "GoogleService-Info.plist"; path = "../../../../../Library/Messages/Attachments/1d/13/B7F2C2F2-E2DB-449B-9BB7-0A80F2ABD9B0/GoogleService-Info.plist"; sourceTree = "<group>"; };
+		B1C0CA2B2914208700445D87 /* SceneDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SceneDelegate.swift; sourceTree = "<group>"; };
 		B1EA827B29135D2200FAF2C2 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		D34D47B328F9DB6E00224758 /* TuneIn.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = TuneIn.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		D34D47B628F9DB6E00224758 /* TuneInApp.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TuneInApp.swift; sourceTree = "<group>"; };
@@ -50,6 +54,7 @@
 		D34D47AA28F9DB6E00224758 = {
 			isa = PBXGroup;
 			children = (
+				B1C0CA2B2914208700445D87 /* SceneDelegate.swift */,
 				B1EA827B29135D2200FAF2C2 /* Info.plist */,
 				B149D11629134DDC0056509D /* TuneIn-Bridging-Header.h */,
 				D34D47B528F9DB6E00224758 /* TuneIn */,
@@ -77,6 +82,7 @@
 				D34D47BC28F9DB7000224758 /* Preview Content */,
 				B149D108291347350056509D /* AppDelegate.swift */,
 				B149D11429134C2A0056509D /* SpotifyiOS.framework */,
+				B1C0CA2929141C7B00445D87 /* GoogleService-Info.plist */,
 			);
 			path = TuneIn;
 			sourceTree = "<group>";
@@ -174,6 +180,7 @@
 			files = (
 				D34D47BE28F9DB7000224758 /* Preview Assets.xcassets in Resources */,
 				D34D47BB28F9DB7000224758 /* Assets.xcassets in Resources */,
+				B1C0CA2A29141C7B00445D87 /* GoogleService-Info.plist in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -191,6 +198,7 @@
 				B149D109291347350056509D /* AppDelegate.swift in Sources */,
 				D34D47D028F9E8BF00224758 /* UserInfo.swift in Sources */,
 				D34D47B728F9DB6E00224758 /* TuneInApp.swift in Sources */,
+				B1C0CA2C2914208700445D87 /* SceneDelegate.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -247,7 +255,7 @@
 				GCC_WARN_UNINITIALIZED_AUTOS = YES_AGGRESSIVE;
 				GCC_WARN_UNUSED_FUNCTION = YES;
 				GCC_WARN_UNUSED_VARIABLE = YES;
-				IPHONEOS_DEPLOYMENT_TARGET = 16.0;
+				IPHONEOS_DEPLOYMENT_TARGET = 15.4;
 				MTL_ENABLE_DEBUG_INFO = INCLUDE_SOURCE;
 				MTL_FAST_MATH = YES;
 				ONLY_ACTIVE_ARCH = YES;
@@ -301,7 +309,7 @@
 				GCC_WARN_UNINITIALIZED_AUTOS = YES_AGGRESSIVE;
 				GCC_WARN_UNUSED_FUNCTION = YES;
 				GCC_WARN_UNUSED_VARIABLE = YES;
-				IPHONEOS_DEPLOYMENT_TARGET = 16.0;
+				IPHONEOS_DEPLOYMENT_TARGET = 15.4;
 				MTL_ENABLE_DEBUG_INFO = NO;
 				MTL_FAST_MATH = YES;
 				SDKROOT = iphoneos;
@@ -319,7 +327,7 @@
 				CODE_SIGN_STYLE = Automatic;
 				CURRENT_PROJECT_VERSION = 1;
 				DEVELOPMENT_ASSET_PATHS = "\"TuneIn/Preview Content\"";
-				DEVELOPMENT_TEAM = XB2X2SZTFC;
+				DEVELOPMENT_TEAM = 2VHAH62T69;
 				ENABLE_PREVIEWS = YES;
 				EXCLUDED_ARCHS = "";
 				"EXCLUDED_ARCHS[sdk=iphonesimulator*]" = arm64;
@@ -357,7 +365,7 @@
 				CODE_SIGN_STYLE = Automatic;
 				CURRENT_PROJECT_VERSION = 1;
 				DEVELOPMENT_ASSET_PATHS = "\"TuneIn/Preview Content\"";
-				DEVELOPMENT_TEAM = XB2X2SZTFC;
+				DEVELOPMENT_TEAM = 2VHAH62T69;
 				ENABLE_PREVIEWS = YES;
 				EXCLUDED_ARCHS = "";
 				FRAMEWORK_SEARCH_PATHS = (
