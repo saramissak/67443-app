@@ -7,7 +7,7 @@
 
 import SwiftUI
 
-@main
+//@main
 struct TuneInApp: App {
     var body: some Scene {
         WindowGroup {
