@@ -7,8 +7,11 @@
 
 
 import UIKit
+import SwiftUI
+import Firebase
 
-@UIApplicationMain
+
+//@UIApplicationMain
 class AppDelegate: UIResponder, UIApplicationDelegate, SPTSessionManagerDelegate, SPTAppRemoteDelegate, SPTAppRemotePlayerStateDelegate {
     var window: UIWindow?
     
@@ -42,7 +45,7 @@ class AppDelegate: UIResponder, UIApplicationDelegate, SPTSessionManagerDelegate
 
         let requestedScopes: SPTScope = [.appRemoteControl]
         self.sessionManager.initiateSession(with: requestedScopes, options: .default)
-        // FirebaseApp.configure()
+        FirebaseApp.configure()
 
         return true
     }
@@ -135,75 +138,13 @@ class AppDelegate: UIResponder, UIApplicationDelegate, SPTSessionManagerDelegate
         // Called when the application is about to terminate. Save data if appropriate. See also applicationDidEnterBackground:.
     }
 }
+@main
+struct TuneIn_FirebaseApp: App {
+  @UIApplicationDelegateAdaptor(AppDelegate.self) var delegate
 
-//@UIApplicationMain
-//
-//class AppDelegate: UIResponder, UIApplicationDelegate, SPTAppRemoteDelegate, SPTAppRemotePlayerStateDelegate{
-//  let SpotifyClientID = "0a18a96ea53440fcba43fb9c51c9ed24"
-//  let SpotifyRedirectURL = URL(string: "spotify-ios-quick-start://spotify-login-callback")!
-//
-//
-//  var accessToken: String = ""
-//
-//  lazy var configuration = SPTConfiguration(
-//    clientID: SpotifyClientID,
-//    redirectURL: SpotifyRedirectURL
-//  )
-//  // initialize App Remote
-//
-//  lazy var appRemote: SPTAppRemote = {
-//    let appRemote = SPTAppRemote(configuration: self.configuration, logLevel: .debug)
-//    appRemote.connectionParameters.accessToken = self.accessToken
-//    appRemote.delegate = self
-//    return appRemote
-//  }()
-//  var playURI: String = ""
-//
-//  // retrieve access token from callback
-//  func application(_ app: UIApplication, open url: URL, options: [UIApplication.OpenURLOptionsKey : Any] = [:]) -> Bool {
-//    let parameters = appRemote.authorizationParameters(from: url);
-//
-//          if let access_token = parameters?[SPTAppRemoteAccessTokenKey] {
-//              appRemote.connectionParameters.accessToken = access_token
-//              self.accessToken = access_token
-//          } else if let error_description = parameters?[SPTAppRemoteErrorDescriptionKey] {
-//              // Show the error
-//          }
-//    return true
-//  }
-//
-//  func appRemote(_ appRemote: SPTAppRemote, didDisconnectWithError error: Error?) {
-//    print("disconnected")
-//  }
-//  func appRemote(_ appRemote: SPTAppRemote, didFailConnectionAttemptWithError error: Error?) {
-//    print("failed")
-//  }
-//  func playerStateDidChange(_ playerState: SPTAppRemotePlayerState) {
-//    print("player state changed")
-//    debugPrint("Track name: %@", playerState.track.name)
-//  }
-//
-//  func appRemoteDidEstablishConnection(_ appRemote: SPTAppRemote) {
-//    // Connection was successful, you can begin issuing commands
-//    self.appRemote.playerAPI?.delegate = self
-//    self.appRemote.playerAPI?.subscribe(toPlayerState: { (result, error) in
-//      if let error = error {
-//        debugPrint(error.localizedDescription)
-//      }
-//    })
-//  }
-//  func applicationWillResignActive(_ application: UIApplication) {
-//    if self.appRemote.isConnected {
-//      self.appRemote.disconnect()
-//    }
-//  }
-//  func applicationDidBecomeActive(_ application: UIApplication) {
-//    if let _ = self.appRemote.connectionParameters.accessToken {
-//      self.appRemote.connect()
-//    }
-//  }
-//
-//}
-//
-//
-//
+    var body: some Scene {
+        WindowGroup {
+            ContentView()
+        }
+    }
+}
