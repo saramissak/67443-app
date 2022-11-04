@@ -33,7 +33,7 @@ class Test{
   }
   func add(_ user: UserInfo) {
     do {
-      let newUser = user
+      let newUser = userf
       _ = try store.collection("UserInfo").addDocument(from: newUser)
     } catch {
       fatalError("Unable to add book: \(error.localizedDescription).")

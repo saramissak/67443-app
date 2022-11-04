@@ -26,6 +26,8 @@
 		B1C0CA4B29142C6700445D87 /* FirebaseStorage in Frameworks */ = {isa = PBXBuildFile; productRef = B1C0CA4A29142C6700445D87 /* FirebaseStorage */; };
 		B1C0CA4D29142C6700445D87 /* FirebaseStorageCombine-Community in Frameworks */ = {isa = PBXBuildFile; productRef = B1C0CA4C29142C6700445D87 /* FirebaseStorageCombine-Community */; };
 		B1C0CA5129142FA900445D87 /* GoogleService-Info.plist in Resources */ = {isa = PBXBuildFile; fileRef = B1C0CA5029142FA900445D87 /* GoogleService-Info.plist */; };
+		B1C0CA532914AD3500445D87 /* HomeFeed.swift in Sources */ = {isa = PBXBuildFile; fileRef = B1C0CA522914AD3500445D87 /* HomeFeed.swift */; };
+		B1C0CA552914AE9700445D87 /* ViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = B1C0CA542914AE9700445D87 /* ViewModel.swift */; };
 		D34D47B728F9DB6E00224758 /* TuneInApp.swift in Sources */ = {isa = PBXBuildFile; fileRef = D34D47B628F9DB6E00224758 /* TuneInApp.swift */; };
 		D34D47B928F9DB6E00224758 /* ContentView.swift in Sources */ = {isa = PBXBuildFile; fileRef = D34D47B828F9DB6E00224758 /* ContentView.swift */; };
 		D34D47BB28F9DB7000224758 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = D34D47BA28F9DB7000224758 /* Assets.xcassets */; };
@@ -41,6 +43,8 @@
 		B149D11429134C2A0056509D /* SpotifyiOS.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = SpotifyiOS.framework; path = "ios-sdk-1.2.2/SpotifyiOS.framework"; sourceTree = SOURCE_ROOT; };
 		B149D11629134DDC0056509D /* TuneIn-Bridging-Header.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = "TuneIn-Bridging-Header.h"; sourceTree = "<group>"; };
 		B1C0CA5029142FA900445D87 /* GoogleService-Info.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; name = "GoogleService-Info.plist"; path = "../../../../../Downloads/GoogleService-Info.plist"; sourceTree = "<group>"; };
+		B1C0CA522914AD3500445D87 /* HomeFeed.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HomeFeed.swift; sourceTree = SOURCE_ROOT; };
+		B1C0CA542914AE9700445D87 /* ViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ViewModel.swift; sourceTree = SOURCE_ROOT; };
 		B1EA827B29135D2200FAF2C2 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		D34D47B328F9DB6E00224758 /* TuneIn.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = TuneIn.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		D34D47B628F9DB6E00224758 /* TuneInApp.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TuneInApp.swift; sourceTree = "<group>"; };
@@ -127,6 +131,7 @@
 		D34D47C428F9DBDE00224758 /* Views */ = {
 			isa = PBXGroup;
 			children = (
+				B1C0CA522914AD3500445D87 /* HomeFeed.swift */,
 			);
 			path = Views;
 			sourceTree = "<group>";
@@ -145,6 +150,7 @@
 		D34D47C628F9DC0B00224758 /* VIewModel */ = {
 			isa = PBXGroup;
 			children = (
+				B1C0CA542914AE9700445D87 /* ViewModel.swift */,
 			);
 			path = VIewModel;
 			sourceTree = "<group>";
@@ -242,11 +248,13 @@
 			buildActionMask = 2147483647;
 			files = (
 				D34D47CA28F9E1FF00224758 /* Song.swift in Sources */,
+				B1C0CA552914AE9700445D87 /* ViewModel.swift in Sources */,
 				D34D47C828F9DC3600224758 /* Post.swift in Sources */,
 				D34D47D228F9E8FA00224758 /* Notification.swift in Sources */,
 				D34D47B928F9DB6E00224758 /* ContentView.swift in Sources */,
 				B149D109291347350056509D /* AppDelegate.swift in Sources */,
 				D34D47D028F9E8BF00224758 /* UserInfo.swift in Sources */,
+				B1C0CA532914AD3500445D87 /* HomeFeed.swift in Sources */,
 				D34D47B728F9DB6E00224758 /* TuneInApp.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
