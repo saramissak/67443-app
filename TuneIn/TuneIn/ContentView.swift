@@ -9,16 +9,18 @@ import SwiftUI
 
 struct ContentView: View {
   var viewModel: ViewModel = ViewModel()
+    
     var body: some View {
         VStack {
             Image(systemName: "globe")
                 .imageScale(.large)
                 .foregroundColor(.accentColor)
             Text("Hello, world!")
-          var temp = viewModel.getPosts()
-
+          var _ = viewModel.getPosts()
+          Text("\(viewModel.posts.count)")
         }
         .padding()
+                    
     }
 }
 

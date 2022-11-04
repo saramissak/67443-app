@@ -10,7 +10,7 @@ import SwiftUI
 struct HomeFeed: View {
   var viewModel: ViewModel = ViewModel()
     var body: some View {
-//        Text(/*@START_MENU_TOKEN@*/"Hello, World!"/*@END_MENU_TOKEN@*/)
+        Text(/*@START_MENU_TOKEN@*/"Hello, World!"/*@END_MENU_TOKEN@*/)
 //        for post in viewModel.getPosts(){
 //          var song = viewModel.songMap.get(post.songID)
 //        

@@ -8,13 +8,23 @@
 import Foundation
 
 struct Post: Codable, Identifiable {
-  var id:        UUID
-  var userID:    UUID
+  var id:        String
+  var userID:    String
   var songID:    String
   var caption:   String
   var createdAt: Date
-  var likes:     [UUID]
+  var likes:     [String]
   var moods:     [String]
+  
+  init() {
+    id = ""
+    userID = ""
+    songID = ""
+    caption = ""
+    createdAt = Date()
+    likes = []
+    moods = []
+  }
 }
 
 struct Comment: Codable, Identifiable {
