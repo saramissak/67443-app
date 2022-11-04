@@ -36,6 +36,7 @@
 		D34D47D028F9E8BF00224758 /* UserInfo.swift in Sources */ = {isa = PBXBuildFile; fileRef = D34D47CF28F9E8BF00224758 /* UserInfo.swift */; };
 		D34D47D228F9E8FA00224758 /* Notification.swift in Sources */ = {isa = PBXBuildFile; fileRef = D34D47D128F9E8FA00224758 /* Notification.swift */; };
 		D374CE222914BA0C00FFB97C /* GoogleService-Info.plist in Resources */ = {isa = PBXBuildFile; fileRef = D374CE212914BA0C00FFB97C /* GoogleService-Info.plist */; };
+		D39673F929159B090073716E /* PostCard.swift in Sources */ = {isa = PBXBuildFile; fileRef = D39673F829159B090073716E /* PostCard.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -55,6 +56,7 @@
 		D34D47CF28F9E8BF00224758 /* UserInfo.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UserInfo.swift; sourceTree = "<group>"; };
 		D34D47D128F9E8FA00224758 /* Notification.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Notification.swift; sourceTree = "<group>"; };
 		D374CE212914BA0C00FFB97C /* GoogleService-Info.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = "GoogleService-Info.plist"; sourceTree = "<group>"; };
+		D39673F829159B090073716E /* PostCard.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PostCard.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -132,6 +134,7 @@
 			isa = PBXGroup;
 			children = (
 				B1C0CA522914AD3500445D87 /* HomeFeed.swift */,
+				D39673F829159B090073716E /* PostCard.swift */,
 			);
 			path = Views;
 			sourceTree = "<group>";
@@ -256,6 +259,7 @@
 				D34D47D028F9E8BF00224758 /* UserInfo.swift in Sources */,
 				B1C0CA532914AD3500445D87 /* HomeFeed.swift in Sources */,
 				D34D47B728F9DB6E00224758 /* TuneInApp.swift in Sources */,
+				D39673F929159B090073716E /* PostCard.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

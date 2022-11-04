@@ -16,35 +16,51 @@ class ViewModel: ObservableObject{
   var songMap: [String:Song] = [String:Song]() // map of song objects
   private let ref = Database.database().reference()
   private let store = Firestore.firestore()
-  var posts: [Post] = []
+  @Published var posts: [Post] = []
 //  var user: UserInfo = UserInfo()
   
   func getPosts() {
+    Task {
+      await getPostsAsync()
+    }
+  }
+  
+  func getPostsAsync() async {
     // retrieve posts from database
     // return list of all posts
     // filter posts by friend IDs
 
-//    var posts: [Post] = []
-    store.collection("Posts").getDocuments() { (querySnapshot, err) in
-      if let err = err {
-        print("Error getting documents: \(err)")
-      } else {
-        for document in querySnapshot!.documents {
-          let data = document.data()
-          var post: Post = Post()
-          post.id = document.documentID
-          post.caption = data["caption"] as! String
-          post.userID = data["userID"] as! String
-          post.songID = data["songID"] as! String
-          post.createdAt = (data["createdAt"] as! Timestamp).dateValue()
-          post.likes = data["likes"] as? [String] ?? []
-          post.moods = data["moods"] as? [String] ?? []
-          self.posts.append(post)
-          print("HERE IS A NEW POST \(post)")
+    
+    let posts = Task {
+      let _ = store.collection("Posts").getDocuments() { (querySnapshot, err) in
+        if let err = err {
+          print("Error getting documents: \(err)")
+        } else {
+          for document in querySnapshot!.documents {
+            let data = document.data()
+            var post: Post = Post()
+            post.id = document.documentID
+            post.caption = data["caption"] as! String
+            post.userID = data["userID"] as! String
+            post.songID = data["songID"] as! String
+            post.createdAt = (data["createdAt"] as! Timestamp).dateValue()
+            post.likes = data["likes"] as? [String] ?? []
+            post.moods = data["moods"] as? [String] ?? []
+            self.posts.append(post)
+            print("HERE IS A NEW POST \(post)")
+          }
         }
       }
+      return self.posts
     }
-
+    
+    do {
+      self.posts = try await posts.result.get()
+      print("i hate this with a passion")
+    } catch {
+      self.posts = []
+    }
+      
 
     print("PRINTING POSTS ON LINE 45 \(self.posts)")
 

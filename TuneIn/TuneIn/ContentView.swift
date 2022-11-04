@@ -11,15 +11,12 @@ struct ContentView: View {
   var viewModel: ViewModel = ViewModel()
     
     var body: some View {
-        VStack {
-            Image(systemName: "globe")
-                .imageScale(.large)
-                .foregroundColor(.accentColor)
-            Text("Hello, world!")
-          var _ = viewModel.getPosts()
-          Text("\(viewModel.posts.count)")
-        }
-        .padding()
+//      DispatchQueue.main.async {
+//        viewModel.getPosts()
+//      }
+      viewModel.getPosts()
+        
+      return HomeFeed(viewModel: viewModel)
                     
     }
 }
