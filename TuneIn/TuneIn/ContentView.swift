@@ -11,16 +11,36 @@ struct ContentView: View {
   @ObservedObject var viewModel = ViewModel()
   @State var received = false
     var body: some View {
+      TabView {
+        HomeFeed(viewModel: viewModel)
+        .tabItem {
+          Image(systemName: "")
+          Text("Home")
+        }
+        FriendsView()
+          .tabItem {
+            Image(systemName: "")
+            Text("Friends")
+          }
+        NotificationsView()
+          .tabItem {
+            Image(systemName: "")
+            Text("Notifications")
+          }
+        ProfileView()
+          .tabItem {
+            Image(systemName: "")
+            Text("Profile")
+          }
+      }
+      
 //      DispatchQueue.main.async {
 //        viewModel.getPosts()
 //      }
-        if received == false {
-        viewModel.getPosts()
-        received = true
-      }
-
-        
-      return HomeFeed(viewModel: viewModel)
+//        if received == false {
+//        viewModel.getPosts()
+//        received = true
+//      }
                     
     }
 }
