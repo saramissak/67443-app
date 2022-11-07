@@ -90,9 +90,12 @@ struct ProfileSongOfDay : View {
   }
 }
 
-struct PastSongsOfTheDay : View {
-  
-}
+//struct PastSongsOfTheDay : View {
+//  var body: some View {
+//    
+//  }
+//  
+//}
 
 struct roundedRectangleText : View {
   @EnvironmentObject var viewModel: ViewModel
