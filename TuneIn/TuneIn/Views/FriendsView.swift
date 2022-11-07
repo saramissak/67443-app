@@ -8,14 +8,44 @@
 import SwiftUI
 
 struct FriendsView: View {
-  @EnvironmentObject var viewModel: ViewModel
-    var body: some View {
-        Text(/*@START_MENU_TOKEN@*/"Hello, World!"/*@END_MENU_TOKEN@*/)
+  @ObservedObject var viewModel: ViewModel
+  @State private var findTab: Bool = true
+  
+  var body: some View {
+    VStack {
+      Text("Tune In").font(.title)
+      HStack {
+        Spacer()
+        Button("find", action:{
+          self.findTab = true
+        }).background( Color.black )
+          .foregroundColor(.white)
+          .cornerRadius(6)
+          
+        
+        Spacer()
+        
+        Button("friends", action:{
+          self.findTab = false
+        }).background( Color.black )
+          .foregroundColor(.white)
+          .cornerRadius(6)
+        Spacer()
+      }
+      Spacer()
+      if self.findTab {
+        SearchBar(viewModel: viewModel) // finds people
+      } else {
+        SearchFriends(viewModel: viewModel)
+      }
     }
+    
+    
+  }
 }
 
 struct FriendsView_Previews: PreviewProvider {
     static var previews: some View {
-        FriendsView()
+      FriendsView(viewModel: ViewModel())
     }
 }

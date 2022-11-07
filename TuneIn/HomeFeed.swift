@@ -13,6 +13,7 @@ struct HomeFeed: View {
     VStack {
       ForEach(viewModel.posts) { post in
         PostCard(post: post)
+        
       }
     }
     

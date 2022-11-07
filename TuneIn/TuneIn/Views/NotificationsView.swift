@@ -8,14 +8,15 @@
 import SwiftUI
 
 struct NotificationsView: View {
-  @EnvironmentObject var viewModel: ViewModel
-    var body: some View {
-        Text(/*@START_MENU_TOKEN@*/"Hello, World!"/*@END_MENU_TOKEN@*/)
-    }
+  @ObservedObject var viewModel: ViewModel
+  
+  var body: some View {
+      Text(/*@START_MENU_TOKEN@*/"Hello, World!"/*@END_MENU_TOKEN@*/)
+  }
 }
 
-struct NotificationsView_Previews: PreviewProvider {
-    static var previews: some View {
-        NotificationsView()
-    }
-}
+//struct NotificationsView_Previews: PreviewProvider {
+//    static var previews: some View {
+//        NotificationsView()
+//    }
+//}

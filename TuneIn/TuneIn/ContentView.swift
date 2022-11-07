@@ -9,27 +9,28 @@ import SwiftUI
 
 struct ContentView: View {
   @ObservedObject var viewModel = ViewModel()
-  @State var received = false
+//  @State var received = false
+  
     var body: some View {
       TabView {
         HomeFeed()
         .tabItem {
-          Image(systemName: "")
+          Image(systemName: "music.note")
           Text("Home")
         }
-        FriendsView()
+        FriendsView(viewModel: viewModel)
           .tabItem {
-            Image(systemName: "")
+            Image(systemName: "person.2.fill")
             Text("Friends")
           }
-        NotificationsView()
+        NotificationsView(viewModel: viewModel)
           .tabItem {
-            Image(systemName: "")
+            Image(systemName: "bell.fill")
             Text("Notifications")
           }
         ProfileView()
           .tabItem {
-            Image(systemName: "")
+            Image(systemName: "person.circle.fill")
             Text("Profile")
           }
       }
@@ -43,6 +44,10 @@ struct ContentView: View {
 //        received = true
 //      }
                     
+      Button("Get Posts", action:{
+        viewModel.getPosts()
+      })
+//      return HomeFeed(viewModel: viewModel)
     }
 }
 

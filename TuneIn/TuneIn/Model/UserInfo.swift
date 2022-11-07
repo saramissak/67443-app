@@ -8,13 +8,21 @@
 import Foundation
 
 struct UserInfo: Codable, Identifiable {
-  var id:               UUID
+  var id:               String
   var username:         String
   var name:             String
 //  var email:            String
 //  var password:         String
   var spotifyID:        String 
   var profileImage:     String // assuming a URL to their image
+  
+  init() {
+    id = ""
+    username = ""
+    name = ""
+    spotifyID = ""
+    profileImage = ""
+  }
 }
 
 struct Friends: Codable {
