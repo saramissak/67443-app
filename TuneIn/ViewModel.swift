@@ -18,13 +18,18 @@ class ViewModel: ObservableObject{
   private let store = Firestore.firestore()
   @Published var posts: [Post] = []
 //  var user: UserInfo = UserInfo()
-  
   func getPosts() {
     let getMe = Spartan.getMe(success: { (user) in
       print("HERE IS USER: \(user.id as! String)")
     }, failure: { (err) in
       print("err instead: ", err)
       
+    })
+    _ = Spartan.getTrack(id: "1V2ZooMGQNlBoHPIvNxAik", market: .us, success: { (track) in
+      print("HERE IS SONG: \(track)")
+      // Do something with the track
+    }, failure: { (error) in
+      print(error)
     })
     
     let _ = store.collection("Posts").getDocuments() { (querySnapshot, err) in
@@ -46,74 +51,8 @@ class ViewModel: ObservableObject{
         }
       }
     }
-//    print("PRINTING POSTS ON LINE 45 \(self.posts)")
-
-//    Task {
-//      await getPostsAsync()
-//    }
-//  }
-//
-//  func getPostsAsync() async {
-//    // retrieve posts from database
-//    // return list of all posts
-//    // filter posts by friend IDs
-//
-//
-//    let posts = Task {
-//      let _ = store.collection("Posts").getDocuments() { (querySnapshot, err) in
-//        if let err = err {
-//          print("Error getting documents: \(err)")
-//        } else {
-//          for document in querySnapshot!.documents {
-//            let data = document.data()
-//            var post: Post = Post()
-//            post.id = document.documentID
-//            post.caption = data["caption"] as! String
-//            post.userID = data["userID"] as! String
-//            post.songID = data["songID"] as! String
-//            post.createdAt = (data["createdAt"] as! Timestamp).dateValue()
-//            post.likes = data["likes"] as? [String] ?? []
-//            post.moods = data["moods"] as? [String] ?? []
-//            self.posts.append(post)
-//            print("HERE IS A NEW POST \(post)")
-//          }
-//        }
-//      }
-//      return self.posts
-//    }
-//
-//    do {
-//      self.posts = try await posts.result.get()
-//      print("i hate this with a passion")
-//    } catch {
-//      self.posts = []
-//    }
-//
-//    print("PRINTING POSTS ON LINE 45 \(self.posts)")
-//
-//    // make one request with a list of song IDs
-//    // iterate through song ids
-//    //  put each song into a song object
-//    //  store map (key: songID, value: song Object)
-//
 
   }
-//  func getPosts() {
-//      store.collection("Posts")
-//        .addSnapshotListener { querySnapshot, error in
-//          if let error = error {
-//            print("Error getting posts: \(error.localizedDescription)")
-//            return
-//          }
-//
-//          self.posts = querySnapshot?.documents.compactMap { document in
-//            var x = try? document.data(as: Post.self)
-//            print("POST \(x)")
-//            return x
-//          } ?? []
-//          print("BRUH \(self.posts)")
-//        }
-//    print("AYO \(self.posts)")
-//    }
+
 }
 

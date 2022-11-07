@@ -9,7 +9,7 @@ import SwiftUI
 
 struct ContentView: View {
   @ObservedObject var viewModel = ViewModel()
-  @State var received = false
+//  @State var received = false
     var body: some View {
       TabView {
         HomeFeed(viewModel: viewModel)
@@ -37,10 +37,14 @@ struct ContentView: View {
 //      DispatchQueue.main.async {
 //        viewModel.getPosts()
 //      }
-//        if received == false {
-//        viewModel.getPosts()
-//        received = true
-//      }
+
+      Button("here", action:{
+        viewModel.getPosts()
+          })
+      
+
+        
+//      return HomeFeed(viewModel: viewModel)
                     
     }
 }
