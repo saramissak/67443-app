@@ -8,8 +8,7 @@
 import SwiftUI
 
 struct HomeFeed: View {
-  @ObservedObject var viewModel: ViewModel
-  
+  @EnvironmentObject var viewModel: ViewModel
   var body: some View {
     VStack {
       ForEach(viewModel.posts) { post in

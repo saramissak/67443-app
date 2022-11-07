@@ -8,6 +8,7 @@
 import SwiftUI
 
 struct NotificationsView: View {
+  @EnvironmentObject var viewModel: ViewModel
     var body: some View {
         Text(/*@START_MENU_TOKEN@*/"Hello, World!"/*@END_MENU_TOKEN@*/)
     }

@@ -6,15 +6,18 @@
 //
 
 import SwiftUI
+import Spartan
 
 struct ProfileView: View {
+  @EnvironmentObject var viewModel: ViewModel
     var body: some View {
-        Text(/*@START_MENU_TOKEN@*/"Hello, World!"/*@END_MENU_TOKEN@*/)
+      
+      Text(viewModel.username)
     }
 }
 
-struct ProfileView_Previews: PreviewProvider {
-    static var previews: some View {
-        ProfileView()
-    }
-}
+//struct ProfileView_Previews: PreviewProvider {
+//    static var previews: some View {
+//        ProfileView()
+//    }
+//}
