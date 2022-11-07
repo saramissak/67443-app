@@ -8,21 +8,25 @@
 import SwiftUI
 
 struct ContentView: View {
-  var viewModel: ViewModel = ViewModel()
-    
+  @ObservedObject var viewModel = ViewModel()
+  @State var received = false
     var body: some View {
 //      DispatchQueue.main.async {
 //        viewModel.getPosts()
 //      }
-      viewModel.getPosts()
+        if received == false {
+        viewModel.getPosts()
+        received = true
+      }
+
         
       return HomeFeed(viewModel: viewModel)
                     
     }
 }
 
-struct ContentView_Previews: PreviewProvider {
-    static var previews: some View {
-        ContentView()
-    }
-}
+//struct ContentView_Previews: PreviewProvider {
+//    static var previews: some View {
+//        ContentView()
+//    }
+//}

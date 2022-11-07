@@ -9,12 +9,15 @@
 import UIKit
 import SwiftUI
 import Firebase
+import Spartan
 
 
 //@UIApplicationMain
 class AppDelegate: UIResponder, UIApplicationDelegate, SPTSessionManagerDelegate, SPTAppRemoteDelegate, SPTAppRemotePlayerStateDelegate {
     var window: UIWindow?
-    
+    public static var authorizationToken: String?
+    public static var loggingEnabled: Bool = true
+
     let SpotifyClientID = "0a18a96ea53440fcba43fb9c51c9ed24"
     let SpotifyRedirectURL = URL(string: "spotify-ios-quick-start://spotify-login-callback")!
     
@@ -58,6 +61,8 @@ class AppDelegate: UIResponder, UIApplicationDelegate, SPTSessionManagerDelegate
     
     func sessionManager(manager: SPTSessionManager, didInitiate session: SPTSession) {
         self.appRemote.connectionParameters.accessToken = session.accessToken
+        Spartan.authorizationToken = session.accessToken
+      print("spartan auth token \(Spartan.authorizationToken)")
         self.appRemote.connect()
     }
     
