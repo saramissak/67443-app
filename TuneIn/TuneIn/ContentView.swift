@@ -13,7 +13,7 @@ struct ContentView: View {
   
     var body: some View {
       TabView {
-        HomeFeed(viewModel: viewModel)
+        HomeFeed()
         .tabItem {
           Image(systemName: "music.note")
           Text("Home")
@@ -34,6 +34,16 @@ struct ContentView: View {
             Text("Profile")
           }
       }
+      .environmentObject(viewModel)
+      
+//      DispatchQueue.main.async {
+//        viewModel.getPosts()
+//      }
+//        if received == false {
+//        viewModel.getPosts()
+//        received = true
+//      }
+                    
       Button("Get Posts", action:{
         viewModel.getPosts()
       })
