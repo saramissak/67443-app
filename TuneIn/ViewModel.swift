@@ -20,11 +20,22 @@ class ViewModel: ObservableObject{
   @Published var posts: [Post] = []
   @Published var searchedUsers: [String:UserInfo] = [:]
   @Published var friends: [String:UserInfo] = [:]
+  @Published var username: String = ""
   
 //  var user: UserInfo = UserInfo()
+  func getSelf() {
+    let getMe = Spartan.getMe(success: { (user) in
+      print("HERE IS USER: \(user.id as! String)")
+      self.username = user.id as! String
+    }, failure: { (err) in
+      print("err instead: ", err)
+      
+    })
+  }
   func getPosts() {
     let getMe = Spartan.getMe(success: { (user) in
       print("HERE IS USER: \(user.id as! String)")
+      self.username = user.id as! String
     }, failure: { (err) in
       print("err instead: ", err)
       

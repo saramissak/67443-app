@@ -18,7 +18,10 @@ struct ProfileView: View {
             ProfileSongOfDay()
             Spacer()
               .environmentObject(viewModel)
-            //Text("username: \(viewModel.username)")
+            Text("username: \(viewModel.username)")
+              .task {
+                viewModel.getSelf()
+              }
           }
         }
       }
@@ -92,9 +95,9 @@ struct ProfileSongOfDay : View {
 
 //struct PastSongsOfTheDay : View {
 //  var body: some View {
-//    
+//
 //  }
-//  
+//
 //}
 
 struct roundedRectangleText : View {
