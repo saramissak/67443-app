@@ -34,16 +34,17 @@ struct SearchBar: View {
           }
           
           List (displayedUsers) { user in
+            HStack {
+              Text("\(user.username)")
+              Spacer()
               HStack {
-                Text("\(user.username)")
-                Spacer()
-                
                 Button("add", action:{
                   print("add is clicked")
                 }).background( Color.black )
                   .foregroundColor(.white)
                   .cornerRadius(6)
               }
+            }
               
             }
           }

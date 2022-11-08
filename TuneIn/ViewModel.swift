@@ -28,12 +28,7 @@ class ViewModel: ObservableObject{
       print("err instead: ", err)
       
     })
-    _ = Spartan.getTrack(id: "1V2ZooMGQNlBoHPIvNxAik", market: .us, success: { (track) in
-      print("HERE IS SONG: \(track)")
-      // Do something with the track
-    }, failure: { (error) in
-      print(error)
-    })
+    
     
     let _ = store.collection("Posts").getDocuments() { (querySnapshot, err) in
       if let err = err {
@@ -50,7 +45,17 @@ class ViewModel: ObservableObject{
           post.likes = data["likes"] as? [String] ?? []
           post.moods = data["moods"] as? [String] ?? []
           self.posts.append(post)
-          //          print("HERE IS A NEW POST \(post)")
+          
+          _ = Spartan.getTrack(id: post.songID, market: .us, success: { (track) in
+            print("HERE IS SONG: \(track.id)")
+            print("HERE IS SONG: \(track.name)")
+            print("HERE IS SONG: \(track.previewUrl)")
+            print("HERE IS SONG: \(track.href)")
+            print("HERE IS SONG: \(track.artists)")
+            // Do something with the track
+          }, failure: { (error) in
+            print(error)
+          })
         }
       }
     }
@@ -117,6 +122,5 @@ class ViewModel: ObservableObject{
       }
     }
   }
-
 }
 
