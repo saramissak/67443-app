@@ -10,13 +10,16 @@ import SwiftUI
 struct ContentView: View {
   @ObservedObject var viewModel = ViewModel()
 //  @State var received = false
-  
+  var authorized = true
     var body: some View {
+      Button("get posts", action: viewModel.getPosts)
+
       TabView {
         HomeFeed()
         .tabItem {
           Image(systemName: "music.note")
           Text("Home")
+          
         }
         FriendsView(viewModel: viewModel)
           .tabItem {
@@ -44,9 +47,9 @@ struct ContentView: View {
 //        received = true
 //      }
                     
-      Button("Get Posts", action:{
-        viewModel.getPosts()
-      })
+//      Button("Get Posts", action:{
+//        viewModel.getPosts()
+//      })
 //      return HomeFeed(viewModel: viewModel)
     }
 }

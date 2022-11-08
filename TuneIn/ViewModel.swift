@@ -21,7 +21,7 @@ class ViewModel: ObservableObject{
   @Published var searchedUsers: [String:UserInfo] = [:]
   @Published var friends: [String:UserInfo] = [:]
   @Published var username: String = ""
-  
+  @Published var songIDs:[String] = []
 //  var user: UserInfo = UserInfo()
   func getSelf() {
     let getMe = Spartan.getMe(success: { (user) in
@@ -57,67 +57,58 @@ class ViewModel: ObservableObject{
           post.id = document.documentID
           post.caption = data["caption"] as! String
           post.userID = data["userID"] as! String
-          post.songID = data["songID"] as! String
+//          post.songID = data["songID"] as! String
+//          self.songIDs.append(post.songID)
+          post.song = self.getSong(data["songID"] as! String)
+          
           post.createdAt = (data["createdAt"] as! Timestamp).dateValue()
           post.likes = data["likes"] as? [String] ?? []
           post.moods = data["moods"] as? [String] ?? []
           self.posts.append(post)
-          //          print("HERE IS A NEW POST \(post)")
+          print("post now: ", post)
         }
       }
     }
-//    print("PRINTING POSTS ON LINE 45 \(self.posts)")
-
-//    Task {
-//      await getPostsAsync()
-//    }
-//  }
-//
-//  func getPostsAsync() async {
-//    // retrieve posts from database
-//    // return list of all posts
-//    // filter posts by friend IDs
-//
-//
-//    let posts = Task {
-//      let _ = store.collection("Posts").getDocuments() { (querySnapshot, err) in
-//        if let err = err {
-//          print("Error getting documents: \(err)")
-//        } else {
-//          for document in querySnapshot!.documents {
-//            let data = document.data()
-//            var post: Post = Post()
-//            post.id = document.documentID
-//            post.caption = data["caption"] as! String
-//            post.userID = data["userID"] as! String
-//            post.songID = data["songID"] as! String
-//            post.createdAt = (data["createdAt"] as! Timestamp).dateValue()
-//            post.likes = data["likes"] as? [String] ?? []
-//            post.moods = data["moods"] as? [String] ?? []
-//            self.posts.append(post)
-//            print("HERE IS A NEW POST \(post)")
-//          }
-//        }
-//      }
-//      return self.posts
-//    }
-//
-//    do {
-//      self.posts = try await posts.result.get()
-//      print("i hate this with a passion")
-//    } catch {
-//      self.posts = []
-//    }
-//
-//    print("PRINTING POSTS ON LINE 45 \(self.posts)")
-//
-//    // make one request with a list of song IDs
-//    // iterate through song ids
-//    //  put each song into a song object
-//    //  store map (key: songID, value: song Object)
-//
 
   } // END OF GET POST
+  
+  // creates a song object from a songID
+  func getSong(_ songID: String) -> Song {
+    var songObj: Song = Song()
+    _ = Spartan.getTrack(id: songID, market: .us, success: { (track) in
+      songObj.songID = songID
+      songObj.songName = track.name
+      songObj.spotifyLink = track.href
+      songObj.artists = track.artists[0].name
+//      songObj.albumURL = track.album.images[0].url ?? "No Artist Found"
+      if track.album == nil{
+        songObj.albumURL = "no image found"
+      } else{
+        songObj.albumURL = track.album.images[0].url 
+      }
+      print("track album ", track.album)
+      print("track song ", track.name)
+      print("song obj", songObj)
+
+    }, failure: { (error) in
+      print("couldn't get song: ", error)
+    })
+    return songObj
+  }
+  
+  func getAllFeedSongs(){
+    print("song ids \(self.songIDs)")
+    _ = Spartan.getTracks(ids: self.songIDs, market: .us, success: { (tracks) in
+      for obj in tracks{
+        print("HERE", obj)
+      }
+      // Do something with the tracks
+    }, failure: { (error) in
+      print(error)
+    })
+  }
+  
+  
   func hexStringToUIColor (hex:String) -> Color {
       var cString:String = hex.trimmingCharacters(in: .whitespacesAndNewlines).uppercased()
 
@@ -200,6 +191,5 @@ class ViewModel: ObservableObject{
       }
     }
   }
-
 }
 
