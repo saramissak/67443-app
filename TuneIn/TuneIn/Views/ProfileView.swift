@@ -9,19 +9,25 @@ import SwiftUI
 import Spartan
 struct ProfileView: View {
   @EnvironmentObject var viewModel: ViewModel
+  var spotifyID : String {
+    get {
+      return "\(viewModel.username)"
+    }
+  }
+  var user: UserInfo {
+      get {
+        return viewModel.getUser(searchString: "\(viewModel.username)")
+      }
+    }
     var body: some View {
       VStack{
         Header()
         ScrollView{
           VStack(alignment: .leading){
-            ProfileBlock()
+            ProfileBlock(spotifyID: spotifyID, user: user)
             ProfileSongOfDay()
             Spacer()
               .environmentObject(viewModel)
-            Text("username: \(viewModel.username)")
-              .task {
-                viewModel.getSelf()
-              }
           }
         }
       }
@@ -32,7 +38,7 @@ struct ProfileView: View {
 
 struct Header : View {
   var body : some View {
-    Text("TuneIn")
+    Text("Tune-in")
       .font(.title2)
       .bold()
   }
@@ -40,6 +46,8 @@ struct Header : View {
 
 struct ProfileBlock : View {
   @EnvironmentObject var viewModel: ViewModel
+  var spotifyID: String
+  var user: UserInfo
   var body: some View {
     HStack{
       Image("John_Smith")
@@ -50,8 +58,12 @@ struct ProfileBlock : View {
         .clipped()
         .padding()
       VStack(alignment: .leading){
-        Text("John Smith")
+        Text("\(user.name)")
+        Text("\(spotifyID)")
           .bold()
+          .task {
+            viewModel.getSelf()
+          }
         ZStack{
           roundedRectangleText(bodyText: "Genre", TextHex: "#000000", BackgroundHex: "#B9C0FF")
         }

@@ -19,7 +19,6 @@ struct ContentView: View {
         .tabItem {
           Image(systemName: "music.note")
           Text("Home")
-          
         }
         FriendsView(viewModel: viewModel)
           .tabItem {

@@ -22,7 +22,7 @@ class ViewModel: ObservableObject{
   @Published var friends: [String:UserInfo] = [:]
   @Published var username: String = ""
   @Published var songIDs:[String] = []
-//  var user: UserInfo = UserInfo()
+  @Published var user: UserInfo = UserInfo()
   func getSelf() {
     let getMe = Spartan.getMe(success: { (user) in
       print("HERE IS USER: \(user.id as! String)")
@@ -129,10 +129,36 @@ class ViewModel: ObservableObject{
           blue: CGFloat(rgbValue & 0x0000FF) / 255.0
       )
   }
+  func getUser(searchString: String) -> UserInfo {
+    print("Search String: \(searchString)")
+    if searchString == "" {
+      print("[ALERT] not doing request since search string is just \(searchString)")
+    }
+    let _ = store.collection("UserInfo")
+      .whereField("username", isEqualTo: searchString)
+      .getDocuments() { (querySnapshot, err) in
+      if let err = err {
+        print("Error getting documents: \(err)")
+      } else {
+        for document in querySnapshot!.documents {
+          let data = document.data()
+
+          self.user.id = document.documentID
+          self.user.name = data["name"] as? String ?? ""
+          self.user.profileImage = data["profileImage"] as? String ?? ""
+          self.user.username = data["username"] as? String ?? ""
+          self.user.spotifyID = data["spotifyID"] as? String ?? ""
+          
+          print("user.username from db request: \(self.user.username)")
+        }
+      }
+    }
+    return self.user
+  }
   
   func getUsers(_ searchString: String) {
     if searchString == "" || searchString.count < 1 {
-      print("not doing request since search string is just \(searchString)")
+      print("[ALERT] not doing request since search string is just \(searchString)")
       return
     }
     let _ = store.collection("UserInfo")
