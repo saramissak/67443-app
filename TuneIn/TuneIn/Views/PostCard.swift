@@ -9,13 +9,20 @@ import SwiftUI
 
 struct PostCard: View {
   var post: Post
+  @EnvironmentObject var viewModel: ViewModel
+  
+//  @EnvironmentObject var viewModel: ViewModel
     var body: some View {
-      Text("\(post.song.songName ?? "no song")")
+//      Text("\(post.song.songName ?? "no song")")
+      Text("song is : \(post.song.songName)")
+      Text("artist  is : \(post.song.artist)")
       Text("\(post.caption)")
       Text("\(post.userID)")
 //      Text("\(post.moods)")
+//      Text("song name is \(song.songName)")
+
       ForEach(post.moods, id:\.self){ mood in
-        roundedRectangleText(bodyText: mood, TextHex: "#000000", BackgroundHex: "#B9C0FF")
+        roundedRectangleText(bodyText: mood, TextHex: "#000000", BackgroundHex: "#FFED95")
       }
     }
 }

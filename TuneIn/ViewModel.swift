@@ -21,8 +21,10 @@ class ViewModel: ObservableObject{
   @Published var searchedUsers: [String:UserInfo] = [:]
   @Published var friends: [String:UserInfo] = [:]
   @Published var username: String = ""
-  @Published var songIDs:[String] = []
+  @Published var songIDsForPosts:[String] = []
   @Published var user: UserInfo = UserInfo()
+  typealias Completion = (_ success:Bool) -> Void
+
   func getSelf() {
     let getMe = Spartan.getMe(success: { (user) in
       print("HERE IS USER: \(user.id as! String)")
@@ -32,80 +34,86 @@ class ViewModel: ObservableObject{
       
     })
   }
-  func getPosts() {
-    let getMe = Spartan.getMe(success: { (user) in
-      print("HERE IS USER: \(user.id as! String)")
-      self.username = user.id as! String
-    }, failure: { (err) in
-      print("err instead: ", err)
-      
-    })
-    _ = Spartan.getTrack(id: "1V2ZooMGQNlBoHPIvNxAik", market: .us, success: { (track) in
-      print("HERE IS SONG: \(track)")
-      // Do something with the track
-    }, failure: { (error) in
-      print(error)
-    })
+  
+  
+  @Published var loggedIn: Bool = false
+
+  
+  func login(){
+    getPosts()
+    self.loggedIn = true
+
+//    loggedIn = true
     
-    let _ = store.collection("Posts").getDocuments() { (querySnapshot, err) in
-      if let err = err {
-        print("Error getting documents: \(err)")
-      } else {
-        for document in querySnapshot!.documents {
-          let data = document.data()
-          var post: Post = Post()
-          post.id = document.documentID
-          post.caption = data["caption"] as! String
-          post.userID = data["userID"] as! String
-//          post.songID = data["songID"] as! String
-//          self.songIDs.append(post.songID)
-          post.song = self.getSong(data["songID"] as! String)
-          
-          post.createdAt = (data["createdAt"] as! Timestamp).dateValue()
-          post.likes = data["likes"] as? [String] ?? []
-          post.moods = data["moods"] as? [String] ?? []
-          self.posts.append(post)
-          print("post now: ", post)
+    
+  }
+  
+  
+//  var user: UserInfo = UserInfo()
+  func getPosts() {
+
+      let _ =  store.collection("Posts").getDocuments() { (querySnapshot, err) in
+        if let err = err {
+          print("Error getting documents: \(err)")
+        } else {
+            
+            for document in querySnapshot!.documents {
+                let data = document.data()
+                var post: Post = Post()
+                post.id = document.documentID
+                post.caption = data["caption"] as! String
+                post.userID = data["userID"] as! String
+                //              post.songID = data["songID"] as! String
+                //              self.songIDsForPosts.append(post.songID)
+                //            post.song = await getSong(data["songID"] as! String)
+                self.getSong(data["songID"] as! String, completionHandler:{song -> Void in
+                  post.song = song
+                  print("GOT THE SONG",post.song)
+                  post.createdAt = (data["createdAt"] as! Timestamp).dateValue()
+                  post.likes = data["likes"] as? [String] ?? []
+                  post.moods = data["moods"] as? [String] ?? []
+                  self.posts.append(post)
+                  print("post now: ", post)
+//                  completionHandler()
+                })
+
+
+          }
         }
       }
-    }
-  } // END OF GET POST
+      
+//      print("SONGS IDS: ", songIDsForPosts)
+
+  }
+    
   
   // creates a song object from a songID
-  func getSong(_ songID: String) -> Song {
+  func getSong(_ songID: String, completionHandler:@escaping (Song)->()) {
     var songObj: Song = Song()
+    
+    
     _ = Spartan.getTrack(id: songID, market: .us, success: { (track) in
+//      print(track)
       songObj.songID = songID
       songObj.songName = track.name
-      songObj.spotifyLink = track.href
-      songObj.artists = track.artists[0].name
-//      songObj.albumURL = track.album.images[0].url ?? "No Artist Found"
-      if track.album == nil{
-        songObj.albumURL = "no image found"
+      songObj.spotifyLink = track.href ?? ""
+      songObj.artist = track.artists[0].name
+      if track.album == nil {
+        songObj.albumURL = ""
       } else{
-        songObj.albumURL = track.album.images[0].url 
+        songObj.albumURL = track.album.images[0].url ?? ""
       }
-      print("track album ", track.album)
-      print("track song ", track.name)
-      print("song obj", songObj)
+      songObj.previewURL = track.previewUrl ?? ""
 
+      print("song obj", songObj)
+      DispatchQueue.main.async(){
+        completionHandler(songObj)
+      }
     }, failure: { (error) in
       print("couldn't get song: ", error)
     })
-    return songObj
   }
   
-  func getAllFeedSongs(){
-    print("song ids \(self.songIDs)")
-    _ = Spartan.getTracks(ids: self.songIDs, market: .us, success: { (tracks) in
-      for obj in tracks{
-        print("HERE", obj)
-      }
-      // Do something with the tracks
-    }, failure: { (error) in
-      print(error)
-    })
-  }
   
   
   func getUser(searchString: String) -> UserInfo {

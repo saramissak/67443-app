@@ -14,31 +14,41 @@ struct ContentView: View {
 //  @State var received = false
   var authorized = true
     var body: some View {
-      Button("get posts", action: viewModel.getPosts)
+      if viewModel.loggedIn{
+          TabView {
+            HomeFeed()
+            .tabItem {
+              Image(systemName: "music.note")
+              Text("Home")
+              
+            }
+            FriendsView(viewModel: viewModel, friendsViewModel: friendsViewModel)
+              .tabItem {
+                Image(systemName: "person.2.fill")
+                Text("Friends")
+              }
+            NotificationsView(viewModel: viewModel)
+              .tabItem {
+                Image(systemName: "bell.fill")
+                Text("Notifications")
+              }
+            ProfileView()
+              .tabItem {
+                Image(systemName: "person.circle.fill")
+                Text("Profile")
+              }
+          }
+          .environmentObject(viewModel)
+        
 
-      TabView {
-        HomeFeed()
-        .tabItem {
-          Image(systemName: "music.note")
-          Text("Home")
-        }
-        FriendsView(viewModel: viewModel, friendsViewModel: friendsViewModel)
-          .tabItem {
-            Image(systemName: "person.2.fill")
-            Text("Friends")
-          }
-        NotificationsView(viewModel: viewModel)
-          .tabItem {
-            Image(systemName: "bell.fill")
-            Text("Notifications")
-          }
-        ProfileView()
-          .tabItem {
-            Image(systemName: "person.circle.fill")
-            Text("Profile")
-          }
+      } else{
+        Button("login",
+               action:{
+              viewModel.login()
+
+        })
       }
-      .environmentObject(viewModel)
+
       
 //      DispatchQueue.main.async {
 //        viewModel.getPosts()

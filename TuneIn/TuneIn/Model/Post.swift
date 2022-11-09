@@ -38,7 +38,7 @@ import Foundation
 struct Post: Codable, Identifiable {
   var id:        String
   var userID:    String
-  var song:     Song
+  var song:    Song
   var caption:   String
   var createdAt: Date
   var likes:     [String]

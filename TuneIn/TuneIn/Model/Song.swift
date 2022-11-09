@@ -10,22 +10,30 @@ import Spartan
 
 // API for getting a track: https://developer.spotify.com/documentation/web-api/reference/#/operations/get-track
 struct Song: Codable {
-  var songID:      String?
-  var songName:    String?
-  var spotifyLink: String?
-  var artists:     String?
+  var songID:      String
+  var songName:    String
+  var spotifyLink: String
+  var artist:     String
 //  var albumURL:    AlbumImage? //picture of the album
-  var albumURL:    String? //picture of the album
-  var previewUrl: String?
+  var albumURL:    String //picture of the album
+  var previewURL: String
 
-  enum CodingKeys : String, CodingKey {
-    case songID      = "id"
-    case albumURL    = "album"
-    case songName    = "name"
-    case spotifyLink = "external_urls"
-    case artists
-    case previewUrl  = "preview_url"
+  init(){
+    songID = ""
+    songName = ""
+    spotifyLink = ""
+    artist = ""
+    albumURL = ""
+    previewURL = ""
   }
+//  enum CodingKeys : String, CodingKey {
+//    case songID      = "id"
+//    case albumURL    = "album"
+//    case songName    = "name"
+//    case spotifyLink = "external_urls"
+//    case artists
+//    case previewUrl  = "preview_url"
+//  }
 }
 
 struct AlbumImage: Codable {
