@@ -9,6 +9,7 @@ import SwiftUI
 
 struct SearchFriends: View {
   @ObservedObject var viewModel: ViewModel
+  @ObservedObject var friendsViewModel: FriendsViewModel
   @State var searchField: String = ""
   @State var displayedUsers  = [UserInfo]()
   
@@ -16,8 +17,7 @@ struct SearchFriends: View {
     let binding = Binding<String>(get: {self.searchField},
       set: {
       self.searchField = $0
-      self.viewModel.getFriends(self.searchField)
-      self.displayFriends()
+      self.displayedUsers = Array(self.friendsViewModel.searchedUsers.values)
       print("self.searchField \(self.searchField)")
     })
     
@@ -33,32 +33,33 @@ struct SearchFriends: View {
         }
         
         List (displayedUsers) { user in
-            HStack {
-              Text("\(user.username)")
-              Spacer()
-              
-              Button("add", action:{
-                print("add is clicked")
-              }).background( Color.black )
-                .foregroundColor(.white)
-                .cornerRadius(6)
+          if self.friendsViewModel.friends[user.spotifyID] != nil {
+            if user.username.contains(self.searchField) || self.searchField == "" {
+              HStack {
+                Text("\(user.username)")
+                Spacer()
+                
+                Button("add", action:{
+                  print("add is clicked")
+                }).background( Color.black )
+                  .foregroundColor(.white)
+                  .cornerRadius(6)
+              }
             }
-            
           }
         }
       }
-  }
-  
-  func displayFriends() {
-    if searchField == "" {
-      displayedUsers = []
-      viewModel.friends = [:]
-      print("viewModel.searchedUsers is now \(viewModel.friends)")
-    } else {
-      displayedUsers = Array(viewModel.friends.values)
     }
   }
   
+//  func displayFriends() {
+//    if searchField == "" {
+//      displayedUsers = Array(friendsViewModel.searchedUsers.values)
+//      print("viewModel.searchedUsers is now \(friendsViewModel.friends)")
+//    } else {
+//      displayedUsers = Array(friendsViewModel.searchedUsers.values)
+//    }
+//  }
 }
 
 //struct SearchFriends_Previews: PreviewProvider {

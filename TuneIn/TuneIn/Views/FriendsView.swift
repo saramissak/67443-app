@@ -9,43 +9,40 @@ import SwiftUI
 
 struct FriendsView: View {
   @ObservedObject var viewModel: ViewModel
+  @ObservedObject var friendsViewModel: FriendsViewModel
   @State private var findTab: Bool = true
   
   var body: some View {
-    VStack {
+    return VStack {
       Text("Tune In").font(.title)
       HStack {
         Spacer()
         Button("find", action:{
-          self.findTab = true
-        }).background( Color.black )
-          .foregroundColor(.white)
-          .cornerRadius(6)
+          friendsViewModel.getFriendRequests()
+          friendsViewModel.getFriends()
+          self.findTab = false
+        })
           
-        
         Spacer()
         
         Button("friends", action:{
-          self.findTab = false
-        }).background( Color.black )
-          .foregroundColor(.white)
-          .cornerRadius(6)
+          friendsViewModel.getFriends()
+          self.findTab = true
+        })
         Spacer()
       }
-      Spacer()
+      
       if self.findTab {
-        SearchBar(viewModel: viewModel) // finds people
+        SearchFriends(viewModel: viewModel, friendsViewModel: friendsViewModel)
       } else {
-        SearchFriends(viewModel: viewModel)
+        SearchBar(viewModel: viewModel, friendsViewModel: friendsViewModel) // finds people
       }
     }
-    
-    
   }
 }
 
-struct FriendsView_Previews: PreviewProvider {
-    static var previews: some View {
-      FriendsView(viewModel: ViewModel())
-    }
-}
+//struct FriendsView_Previews: PreviewProvider {
+//    static var previews: some View {
+//      FriendsView(viewModel: ViewModel())
+//    }
+//}

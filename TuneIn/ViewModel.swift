@@ -69,7 +69,6 @@ class ViewModel: ObservableObject{
         }
       }
     }
-
   } // END OF GET POST
   
   // creates a song object from a songID
@@ -109,26 +108,6 @@ class ViewModel: ObservableObject{
   }
   
   
-  func hexStringToUIColor (hex:String) -> Color {
-      var cString:String = hex.trimmingCharacters(in: .whitespacesAndNewlines).uppercased()
-
-      if (cString.hasPrefix("#")) {
-          cString.remove(at: cString.startIndex)
-      }
-
-      if ((cString.count) != 6) {
-          return Color.gray
-      }
-
-      var rgbValue:UInt64 = 0
-      Scanner(string: cString).scanHexInt64(&rgbValue)
-
-      return Color(
-          red: CGFloat((rgbValue & 0xFF0000) >> 16) / 255.0,
-          green: CGFloat((rgbValue & 0x00FF00) >> 8) / 255.0,
-          blue: CGFloat(rgbValue & 0x0000FF) / 255.0
-      )
-  }
   func getUser(searchString: String) -> UserInfo {
     print("Search String: \(searchString)")
     if searchString == "" {
@@ -199,7 +178,7 @@ class ViewModel: ObservableObject{
         print("Error getting documents: \(err)")
       } else {
         for document in querySnapshot!.documents {
-          var data = document.data()
+          let data = document.data()
           
           if data["type"] != nil {
             switch data["type"] as? String ?? "" {
@@ -216,6 +195,27 @@ class ViewModel: ObservableObject{
         }
       }
     }
+  }
+    
+  func hexStringToUIColor (hex:String) -> Color {
+      var cString:String = hex.trimmingCharacters(in: .whitespacesAndNewlines).uppercased()
+
+      if (cString.hasPrefix("#")) {
+          cString.remove(at: cString.startIndex)
+      }
+
+      if ((cString.count) != 6) {
+          return Color.gray
+      }
+
+      var rgbValue:UInt64 = 0
+      Scanner(string: cString).scanHexInt64(&rgbValue)
+
+      return Color(
+          red: CGFloat((rgbValue & 0xFF0000) >> 16) / 255.0,
+          green: CGFloat((rgbValue & 0x00FF00) >> 8) / 255.0,
+          blue: CGFloat(rgbValue & 0x0000FF) / 255.0
+      )
   }
 }
 

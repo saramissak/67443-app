@@ -9,6 +9,8 @@ import SwiftUI
 
 struct SearchBar: View {
   @ObservedObject var viewModel: ViewModel
+  @ObservedObject var friendsViewModel: FriendsViewModel
+
   @State var searchField: String = ""
   @State var displayedUsers  = [UserInfo]()
   
@@ -17,14 +19,13 @@ struct SearchBar: View {
       let binding = Binding<String>(get: {self.searchField},
         set: {
         self.searchField = $0
-        self.viewModel.getUsers(self.searchField)
+        self.friendsViewModel.getUsers(self.searchField)
         self.displayUsers()
         print("self.searchField \(self.searchField)")
       })
       
       return NavigationView{
         VStack {
-          Spacer()
           HStack {
             Image(systemName: "magnifyingglass")
                 .font(.system(size: 14.0, weight: .bold))
@@ -33,39 +34,85 @@ struct SearchBar: View {
               .disableAutocorrection(true)
           }
           
-          List (displayedUsers) { user in
-            HStack {
-              Text("\(user.username)")
-              Spacer()
+          ForEach (displayedUsers) { user in
+            if user.username.contains(searchField) {
               HStack {
-                Button("add", action:{
-                  print("add is clicked")
-                }).background( Color.black )
-                  .foregroundColor(.white)
-                  .cornerRadius(6)
-              }
-            }
-              
-            }
+                Text("\(user.username)")
+                
+                Spacer()
+                if friendsViewModel.receivedFriendRequest[user.spotifyID] != nil { // have received a friend request from them
+                  roundedRectangleButton(ButtonText: "accept", Username: user.username, TextHex: "FFFFFF", BackgroundHex: "373547")
+                    .environmentObject(viewModel)
+                    .environmentObject(friendsViewModel)
+                  roundedRectangleButton(ButtonText: "decline", Username: user.username, TextHex: "FFFFFF", BackgroundHex: "373547")
+                    .environmentObject(viewModel)
+                    .environmentObject(friendsViewModel)
+                } else if friendsViewModel.sentFriendRequest[user.spotifyID] != nil {
+                  roundedRectangleButton(ButtonText: "requested", Username: user.username, TextHex: "FFFFFF", BackgroundHex: "373547")
+                    .environmentObject(viewModel)
+                    .environmentObject(friendsViewModel)
+                } else if friendsViewModel.friends[user.spotifyID] != nil {
+                  roundedRectangleButton(ButtonText: "remove", Username: user.username, TextHex: "FFFFFF", BackgroundHex: "373547")
+                    .environmentObject(viewModel)
+                    .environmentObject(friendsViewModel)
+                } else {
+                  roundedRectangleButton(ButtonText: "add", Username: user.username, TextHex: "FFFFFF", BackgroundHex: "373547")
+                    .environmentObject(viewModel)
+                    .environmentObject(friendsViewModel)
+                }
+              }.frame(alignment: .top)
+             } // if condition end
+            } // end foreach
+          Spacer()
           }
         }
-       
     }
       
   func displayUsers() {
     if searchField == "" {
       displayedUsers = []
-      viewModel.searchedUsers = [:]
-      print("viewModel.searchedUsers is now \(viewModel.searchedUsers)")
+      print("viewModel.searchedUsers is now \(friendsViewModel.searchedUsers)")
     } else {
-      displayedUsers = Array(viewModel.searchedUsers.values)
+      displayedUsers = Array(friendsViewModel.searchedUsers.values)
+      print(displayedUsers)
     }
   }
 }
 
-//struct SearchBar_Previews:
-//  PreviewProvider {
-//    static var previews: some View {
-//        SearchBar()
-//    }
-//}
+
+struct roundedRectangleButton : View {
+  @EnvironmentObject var friendsViewModel: FriendsViewModel
+  @EnvironmentObject var viewModel: ViewModel
+  var ButtonText: String
+  var Username: String
+  var TextHex: String
+  var BackgroundHex: String
+  var alignment: TextAlignment? = .center
+  var topBottomPadding: CGFloat? = 5
+  var leftRightPadding: CGFloat? = 20
+  var body: some View {
+    Button(ButtonText, action:{
+      switch ButtonText {
+      case "add":
+        friendsViewModel.addFriend(Username)
+      case "accept":
+        friendsViewModel.acceptFriend(Username)
+      case "decline":
+        friendsViewModel.removeFriendRequest(Username)
+      case "requested":
+        print("already sent a friend requst")
+      case "remove":
+        friendsViewModel.removeFriend(Username)
+      default:
+        print("\(ButtonText) is not a valid Buttontext")
+      }
+    })
+        .fixedSize(horizontal: false, vertical: true)
+        .multilineTextAlignment(alignment ?? .center)
+        .padding([.top, .bottom], topBottomPadding)
+        .padding([.trailing, .leading], leftRightPadding)
+        .foregroundColor(viewModel.hexStringToUIColor(hex: TextHex))
+        .background(viewModel.hexStringToUIColor(hex: BackgroundHex))
+        .cornerRadius(8)
+  }
+}

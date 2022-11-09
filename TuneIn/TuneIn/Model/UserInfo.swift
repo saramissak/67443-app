@@ -26,11 +26,11 @@ struct UserInfo: Codable, Identifiable {
 }
 
 struct Friends: Codable {
-  var friend1: UUID
-  var friend2: UUID
+  var friend1: String
+  var friend2: String
 }
 
-struct FriendRequests {
-  var requestSender: UUID
-  var requestReceiver: UUID
+struct FriendRequests: Codable {
+  var requestSender: String
+  var requestReceiver: String
 }
