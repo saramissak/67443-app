@@ -24,6 +24,7 @@ class ViewModel: ObservableObject{
   @Published var songIDsForPosts:[String] = []
   @Published var user: UserInfo = UserInfo()
   typealias Completion = (_ success:Bool) -> Void
+  @Published var searchedSongs:  [Song] = []
 
   func getSelf() {
     let getMe = Spartan.getMe(success: { (user) in
@@ -81,11 +82,44 @@ class ViewModel: ObservableObject{
           }
         }
       }
-      
-//      print("SONGS IDS: ", songIDsForPosts)
-
   }
-    
+  
+  func searchSong(_ songName: String) {
+    var songs:[Song] = []
+    _ = Spartan.search(query: songName, type: .track, success: { (pagingObject: PagingObject<SimplifiedTrack>) in
+      for obj in pagingObject.items{
+        var currSong = Song()
+        currSong.id = obj.id as! String
+        currSong.songName = obj.name
+        currSong.previewURL = obj.previewUrl
+        currSong.artist = obj.artists[0].name
+//        currSong.albumURL = obj.
+        songs.append(currSong)
+      }
+      self.searchedSongs = songs
+
+    }, failure: { (error) in
+      print(error)
+    })
+  }
+  func makePost(song: Song, caption: String){
+    var newPost = Post()
+    let newPostRef = self.store.collection("Posts").document()
+    newPost.userID = self.username
+    newPost.song = song
+    newPost.caption = caption
+    newPost.createdAt = NSDate() as Date
+    newPost.likes = []
+    newPost.moods = []
+
+    do {
+      _ = try newPostRef.setData(from: newPost)
+      
+    } catch let error {
+        print("Error writing city to Firestore: \(error)")
+    }
+  }
+  
   
   // creates a song object from a songID
   func getSong(_ songID: String, completionHandler:@escaping (Song)->()) {
@@ -94,7 +128,7 @@ class ViewModel: ObservableObject{
     
     _ = Spartan.getTrack(id: songID, market: .us, success: { (track) in
 //      print(track)
-      songObj.songID = songID
+      songObj.id = songID
       songObj.songName = track.name
       songObj.spotifyLink = track.href ?? ""
       songObj.artist = track.artists[0].name

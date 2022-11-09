@@ -9,8 +9,8 @@ import Foundation
 import Spartan
 
 // API for getting a track: https://developer.spotify.com/documentation/web-api/reference/#/operations/get-track
-struct Song: Codable {
-  var songID:      String
+struct Song: Codable, Identifiable {
+  var id:      String
   var songName:    String
   var spotifyLink: String
   var artist:     String
@@ -19,7 +19,7 @@ struct Song: Codable {
   var previewURL: String
 
   init(){
-    songID = ""
+    id = ""
     songName = ""
     spotifyLink = ""
     artist = ""

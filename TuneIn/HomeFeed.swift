@@ -8,27 +8,27 @@
 import SwiftUI
 
 struct HomeFeed: View {
+
   @EnvironmentObject var viewModel: ViewModel
+
   var body: some View {
-    //    VStack {
-    //      ForEach(viewModel.posts) { post in
-    //        DispatchQueue.main.async {
-    //          let songObj = viewModel.getSong(post.songID)
-    //          PostCard(post: post, song: songObj)
-    //        }
-    //        }
-    //
-    //
-    //
-    //
-    ////        viewModel.getSong(post.songID)
-    //      }
-    VStack{
-      ForEach(viewModel.posts){ post in
-          PostCard(post:post)
-        
+    NavigationView{
+      VStack{
+        Header()
+        NavigationLink(destination: SearchSong(), label: {
+          Text("Post a Song of the Day")
+            // need to add conditional
+            .fontWeight(.bold)
+            .font(.body)
+        })
+        Spacer()
+          ForEach(viewModel.posts){ post in
+              PostCard(post:post)
+            
+          }
       }
     }
+
 
   }
     
