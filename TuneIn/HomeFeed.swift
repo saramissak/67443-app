@@ -10,7 +10,6 @@ import SwiftUI
 struct HomeFeed: View {
 
   @EnvironmentObject var viewModel: ViewModel
-
   var body: some View {
     NavigationView{
       VStack{

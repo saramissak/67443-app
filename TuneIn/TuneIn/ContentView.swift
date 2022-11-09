@@ -11,6 +11,7 @@ struct ContentView: View {
   @ObservedObject var viewModel = ViewModel()
   @ObservedObject var friendsViewModel: FriendsViewModel = FriendsViewModel()
 
+  
 //  @State var received = false
   var authorized = true
     var body: some View {
@@ -20,7 +21,6 @@ struct ContentView: View {
             .tabItem {
               Image(systemName: "music.note")
               Text("Home")
-              
             }
             FriendsView(viewModel: viewModel, friendsViewModel: friendsViewModel)
               .tabItem {

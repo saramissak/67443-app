@@ -52,37 +52,57 @@ class ViewModel: ObservableObject{
   
 //  var user: UserInfo = UserInfo()
   func getPosts() {
-
-      let _ =  store.collection("Posts").getDocuments() { (querySnapshot, err) in
-        if let err = err {
-          print("Error getting documents: \(err)")
-        } else {
-            
-            for document in querySnapshot!.documents {
-                let data = document.data()
-                var post: Post = Post()
-                post.id = document.documentID
-                post.caption = data["caption"] as! String
-                post.userID = data["userID"] as! String
-                //              post.songID = data["songID"] as! String
-                //              self.songIDsForPosts.append(post.songID)
-                //            post.song = await getSong(data["songID"] as! String)
-                self.getSong(data["songID"] as! String, completionHandler:{song -> Void in
-                  post.song = song
-                  print("GOT THE SONG",post.song)
-                  post.createdAt = (data["createdAt"] as! Timestamp).dateValue()
-                  post.likes = data["likes"] as? [String] ?? []
-                  post.moods = data["moods"] as? [String] ?? []
-                  self.posts.append(post)
-                  print("post now: ", post)
-//                  completionHandler()
-                })
-
-
-          }
+    
+    store.collection("Posts")
+      .addSnapshotListener { querySnapshot, error in
+        if let error = error {
+          print("Error getting posts: \(error.localizedDescription)")
+          return
         }
+        self.posts = querySnapshot?.documents.compactMap { document in
+          try? document.data(as: Post.self)
+        } ?? []
       }
-  }
+    print("print posts", self.posts)
+//      let _ =  store.collection("Posts").getDocuments() { (querySnapshot, err) in
+//        if let err = err {
+//          print("Error getting documents: \(err)")
+//        } else {
+//
+//          for document in querySnapshot!.documents {
+//            let data = document.data()
+//            var post: Post = Post()
+//            post.id = document.documentID
+//            post.caption = data["caption"] as! String
+//            post.userID = data["userID"] as! String
+//
+//            post.song = data["song"]. querySnapshot?.documents.compactMap { document in
+//              try? document.data(as: Song.self)
+//            } ?? Song()
+//
+//
+//            print("GOT THE SONG",post.song)
+//            post.createdAt = (data["createdAt"] as! Timestamp).dateValue()
+//            post.likes = data["likes"] as? [String] ?? []
+//            post.moods = data["moods"] as? [String] ?? []
+//            self.posts.append(post)
+//            print("post now: ", post)
+            
+            
+            
+            
+            //                self.getSong(data["songID"] as! String, completionHandler:{song -> Void in
+            //                  post.song = data["song"] (as: Song.self)
+            //                  print("GOT THE SONG",post.song)
+            //                  post.createdAt = (data["createdAt"] as! Timestamp).dateValue()
+            //                  post.likes = data["likes"] as? [String] ?? []
+            //                  post.moods = data["moods"] as? [String] ?? []
+            //                  self.posts.append(post)
+            //                  print("post now: ", post)
+            ////                  completionHandler()
+            //                })
+
+      }
   
   func searchSong(_ songName: String) {
     var songs:[Song] = []
