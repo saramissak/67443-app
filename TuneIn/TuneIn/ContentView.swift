@@ -9,6 +9,8 @@ import SwiftUI
 
 struct ContentView: View {
   @ObservedObject var viewModel = ViewModel()
+  @ObservedObject var friendsViewModel: FriendsViewModel = FriendsViewModel()
+
 //  @State var received = false
   
     var body: some View {
@@ -18,7 +20,7 @@ struct ContentView: View {
           Image(systemName: "music.note")
           Text("Home")
         }
-        FriendsView(viewModel: viewModel)
+        FriendsView(viewModel: viewModel, friendsViewModel: friendsViewModel)
           .tabItem {
             Image(systemName: "person.2.fill")
             Text("Friends")

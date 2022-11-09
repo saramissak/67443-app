@@ -44,6 +44,7 @@
 		D3F0F03429197B83004DA45B /* Views in Resources */ = {isa = PBXBuildFile; fileRef = D3F0F03329197B83004DA45B /* Views */; };
 		D3F0F036291980CA004DA45B /* SearchBar.swift in Sources */ = {isa = PBXBuildFile; fileRef = D3F0F035291980CA004DA45B /* SearchBar.swift */; };
 		D3F0F03829199CBB004DA45B /* SearchFriends.swift in Sources */ = {isa = PBXBuildFile; fileRef = D3F0F03729199CBB004DA45B /* SearchFriends.swift */; };
+		D3F0F03A291A1AA1004DA45B /* FriendsViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = D3F0F039291A1AA1004DA45B /* FriendsViewModel.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -71,6 +72,7 @@
 		D3F0F03329197B83004DA45B /* Views */ = {isa = PBXFileReference; lastKnownFileType = folder; name = Views; sourceTree = "<group>"; };
 		D3F0F035291980CA004DA45B /* SearchBar.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SearchBar.swift; sourceTree = "<group>"; };
 		D3F0F03729199CBB004DA45B /* SearchFriends.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SearchFriends.swift; sourceTree = "<group>"; };
+		D3F0F039291A1AA1004DA45B /* FriendsViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FriendsViewModel.swift; sourceTree = "<group>"; };
 		D46AFB2E038D952AE10D4D4C /* Pods-TuneIn.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-TuneIn.release.xcconfig"; path = "Target Support Files/Pods-TuneIn/Pods-TuneIn.release.xcconfig"; sourceTree = "<group>"; };
 		E19B065CDAFCD8B6D368B8FF /* Pods_TuneIn.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_TuneIn.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 /* End PBXFileReference section */
@@ -196,6 +198,7 @@
 			isa = PBXGroup;
 			children = (
 				B1C0CA542914AE9700445D87 /* ViewModel.swift */,
+				D3F0F039291A1AA1004DA45B /* FriendsViewModel.swift */,
 			);
 			path = VIewModel;
 			sourceTree = "<group>";
@@ -345,6 +348,7 @@
 				D34D47B928F9DB6E00224758 /* ContentView.swift in Sources */,
 				B10E3CB1291976FC0090F9C7 /* FriendsView.swift in Sources */,
 				B149D109291347350056509D /* AppDelegate.swift in Sources */,
+				D3F0F03A291A1AA1004DA45B /* FriendsViewModel.swift in Sources */,
 				D3F0F036291980CA004DA45B /* SearchBar.swift in Sources */,
 				D34D47D028F9E8BF00224758 /* UserInfo.swift in Sources */,
 				B1C0CA532914AD3500445D87 /* HomeFeed.swift in Sources */,
