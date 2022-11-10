@@ -69,20 +69,41 @@ class ViewModel: ObservableObject{
   
   func searchSong(_ songName: String) {
     var songs:[Song] = []
-    _ = Spartan.search(query: songName, type: .track, success: { (pagingObject: PagingObject<SimplifiedTrack>) in
-      for obj in pagingObject.items{
-        var currSong = Song()
-        currSong.id = obj.id as! String
-        currSong.songName = obj.name
-        if obj.previewUrl != nil {
-          currSong.previewURL = obj.previewUrl
+    if songName != "" {
+      _ = Spartan.search(query: songName, type: .track, success: { (pagingObject: PagingObject<SimplifiedTrack>) in
+        for obj in pagingObject.items{
+          var currSong = Song()
+          currSong.id = obj.id as! String
+          currSong.songName = obj.name
+          currSong.artist = obj.artists[0].name
+          
+//          self.getAlbumImage(obj.externalUrls["spotify"])
+//          currSong.albumURL = obj.externalUrls
+          if obj.previewUrl != nil {
+            currSong.previewURL = obj.previewUrl
+          }
+          songs.append(currSong)
         }
-        currSong.artist = obj.artists[0].name
-//        currSong.albumURL = obj.
-        songs.append(currSong)
+        
+        self.searchedSongs = songs
+      }, failure: { (error) in
+        print(error)
+      })
+    }
+  }
+  
+  func getAlbumImage(_ albumLink: Optional<String>, completionHandler:@escaping (String)->()) {
+    var albumID = ""
+    if albumLink != nil {
+      if albumLink?.split(separator: "/").last != nil {
+        albumID = String(albumLink!.split(separator: "/").last!)
       }
-      self.searchedSongs = songs
-
+    }
+    var albumUrl = ""
+    _ = Spartan.getAlbum(id: albumID, market: .us, success: { (album) in
+      DispatchQueue.main.async(){
+        completionHandler(albumUrl)
+      }
     }, failure: { (error) in
       print(error)
     })
@@ -102,7 +123,6 @@ class ViewModel: ObservableObject{
 
     do {
       _ = try newPostRef.setData(from: newPost)
-      
     } catch let error {
         print("Error writing city to Firestore: \(error)")
     }
@@ -110,31 +130,28 @@ class ViewModel: ObservableObject{
   
   
   // creates a song object from a songID
-  func getSong(_ songID: String, completionHandler:@escaping (Song)->()) {
-    var songObj: Song = Song()
-    
-    
-    _ = Spartan.getTrack(id: songID, market: .us, success: { (track) in
-//      print(track)
-      songObj.id = songID
-      songObj.songName = track.name
-      songObj.spotifyLink = track.href ?? ""
-      songObj.artist = track.artists[0].name
-      if track.album == nil {
-        songObj.albumURL = ""
-      } else{
-        songObj.albumURL = track.album.images[0].url ?? ""
-      }
-      songObj.previewURL = track.previewUrl ?? ""
-
-      print("song obj", songObj)
-      DispatchQueue.main.async(){
-        completionHandler(songObj)
-      }
-    }, failure: { (error) in
-      print("couldn't get song: ", error)
-    })
-  }
+//  func getSong(_ songID: String, completionHandler:@escaping (Song)->()) {
+//    var songObj: Song = Song()
+//    _ = Spartan.getTrack(id: songID, market: .us, success: { (track) in
+//      songObj.id = songID
+//      songObj.songName = track.name
+//      songObj.spotifyLink = track.href ?? ""
+//      songObj.artist = track.artists[0].name
+//      if track.album == nil {
+//        songObj.albumURL = ""
+//      } else{
+//        songObj.albumURL = track.album.images[0].url ?? ""
+//      }
+//      songObj.previewURL = track.previewUrl ?? ""
+//
+//      print("song obj", songObj)
+//      DispatchQueue.main.async(){
+//        completionHandler(songObj)
+//      }
+//    }, failure: { (error) in
+//      print("couldn't get song: ", error)
+//    })
+//  }
   
   
   

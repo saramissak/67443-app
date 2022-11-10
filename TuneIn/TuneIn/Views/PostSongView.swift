@@ -16,22 +16,30 @@ struct PostSongView: View {
   
   var song: Song
   var body: some View {
-    VStack{
+    return VStack{
       Text("\(song.songName)")
       Text("\(song.artist)")
       TextField("caption", text: $caption)
       Text("Moods")
       // entering moods
-      Button("Post", action: {
-        viewModel.makePost(song:song, caption:caption)
-        self.madePost = true
+      NavigationLink(destination: HomeFeed().environmentObject(viewModel), isActive: $madePost, label: {
+        Text("Post")
+        // need to add conditional
+          .fontWeight(.bold)
+          .font(.body)
       })
-      .alert(isPresented: $madePost) {
-        Alert(title: Text("You've posted"), dismissButton: .default(Text("")))
-      }
-      if madePost {
+      .onChange(of: madePost) { (newValue) in
+        viewModel.makePost(song:song, caption:caption)
         HomeFeed().environmentObject(viewModel)
       }
+//      .alert(isPresented: $madePost) {
+//        Alert(title: Text("You've posted"), dismissButton: .default(Text("")))
+//      }
+      
+      //      Button("Post", action: {
+      //        viewModel.makePost(song:song, caption:caption)
+      //        self.madePost = true
+      //      })
     }
   }
   

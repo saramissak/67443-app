@@ -11,7 +11,11 @@ struct SongRow: View {
   var song:Song
     var body: some View {
       VStack{
-        Text(song.songName).font(.headline)
+        HStack{
+          Text(song.songName).font(.headline)
+          Spacer()
+          Text(song.artist)
+        }
       }
       
     }
