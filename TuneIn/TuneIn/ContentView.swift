@@ -15,6 +15,7 @@ struct ContentView: View {
 //  @State var received = false
   var authorized = true
     var body: some View {
+      
       if viewModel.loggedIn{
           TabView {
             HomeFeed()
@@ -42,10 +43,8 @@ struct ContentView: View {
         
 
       } else{
-        Button("login",
-               action:{
+        Button("login", action:{
               viewModel.login()
-
         })
       }
 

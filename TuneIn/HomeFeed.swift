@@ -11,20 +11,21 @@ struct HomeFeed: View {
   @EnvironmentObject var viewModel: ViewModel
   
   var body: some View {
-//    print("line 14", viewModel.posts)
     
     return NavigationView{
-      VStack{
-        Header()
-        NavigationLink(destination: SearchSong(), label: {
-          Text("Post a Song of the Day")
+      ScrollView{
+        VStack{
+          Header()
+          NavigationLink(destination: SearchSong(), label: {
+            Text("Post a Song of the Day")
             // need to add conditional
-            .fontWeight(.bold)
-            .font(.body)
-        })
-        Spacer()
-        ForEach(viewModel.posts) { post in
-          PostCard(post: post)
+              .fontWeight(.bold)
+              .font(.body)
+          })
+          Spacer()
+          ForEach(viewModel.posts) { post in
+            PostCard(post: post)
+          }
         }
       }
     }

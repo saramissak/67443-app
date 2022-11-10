@@ -41,6 +41,7 @@ class ViewModel: ObservableObject{
 
   
   func login(){
+    getSelf()
     getPosts()
     self.loggedIn = true
 
@@ -52,7 +53,7 @@ class ViewModel: ObservableObject{
   
 //  var user: UserInfo = UserInfo()
   func getPosts() {
-    store.collection("Posts")
+    store.collection("Posts").order(by: "createdAt", descending: true)
       .addSnapshotListener { querySnapshot, error in
         if let error = error {
           print("Error getting posts: \(error.localizedDescription)")
@@ -73,7 +74,9 @@ class ViewModel: ObservableObject{
         var currSong = Song()
         currSong.id = obj.id as! String
         currSong.songName = obj.name
-        currSong.previewURL = obj.previewUrl
+        if obj.previewUrl != nil {
+          currSong.previewURL = obj.previewUrl
+        }
         currSong.artist = obj.artists[0].name
 //        currSong.albumURL = obj.
         songs.append(currSong)
@@ -84,17 +87,18 @@ class ViewModel: ObservableObject{
       print(error)
     })
   }
+  
   func makePost(song: Song, caption: String){
     var newPost = Post()
     let newPostRef = self.store.collection("Posts").document()
     newPost.userID = self.username
+    print("here is the username ", self.username)
     newPost.song = song
     newPost.caption = caption
     newPost.createdAt = NSDate() as Date
     newPost.likes = []
     newPost.moods = []
     newPost.id = UUID().uuidString
-    print("here is the id for the new post: ", newPost.id)
 
     do {
       _ = try newPostRef.setData(from: newPost)

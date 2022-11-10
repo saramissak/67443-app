@@ -25,10 +25,13 @@ struct PostSongView: View {
       Button("Post", action: {
         viewModel.makePost(song:song, caption:caption)
         self.madePost = true
-        
       })
       .alert(isPresented: $madePost) {
-        Alert(title: Text("You've posted"), dismissButton: .default(Text("")))      }
+        Alert(title: Text("You've posted"), dismissButton: .default(Text("")))
+      }
+      if madePost {
+        HomeFeed().environmentObject(viewModel)
+      }
     }
   }
   
