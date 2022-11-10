@@ -52,7 +52,6 @@ class ViewModel: ObservableObject{
   
 //  var user: UserInfo = UserInfo()
   func getPosts() {
-    
     store.collection("Posts")
       .addSnapshotListener { querySnapshot, error in
         if let error = error {
@@ -62,47 +61,10 @@ class ViewModel: ObservableObject{
         self.posts = querySnapshot?.documents.compactMap { document in
           try? document.data(as: Post.self)
         } ?? []
+        print("print posts", self.posts)
       }
-    print("print posts", self.posts)
-//      let _ =  store.collection("Posts").getDocuments() { (querySnapshot, err) in
-//        if let err = err {
-//          print("Error getting documents: \(err)")
-//        } else {
-//
-//          for document in querySnapshot!.documents {
-//            let data = document.data()
-//            var post: Post = Post()
-//            post.id = document.documentID
-//            post.caption = data["caption"] as! String
-//            post.userID = data["userID"] as! String
-//
-//            post.song = data["song"]. querySnapshot?.documents.compactMap { document in
-//              try? document.data(as: Song.self)
-//            } ?? Song()
-//
-//
-//            print("GOT THE SONG",post.song)
-//            post.createdAt = (data["createdAt"] as! Timestamp).dateValue()
-//            post.likes = data["likes"] as? [String] ?? []
-//            post.moods = data["moods"] as? [String] ?? []
-//            self.posts.append(post)
-//            print("post now: ", post)
-            
-            
-            
-            
-            //                self.getSong(data["songID"] as! String, completionHandler:{song -> Void in
-            //                  post.song = data["song"] (as: Song.self)
-            //                  print("GOT THE SONG",post.song)
-            //                  post.createdAt = (data["createdAt"] as! Timestamp).dateValue()
-            //                  post.likes = data["likes"] as? [String] ?? []
-            //                  post.moods = data["moods"] as? [String] ?? []
-            //                  self.posts.append(post)
-            //                  print("post now: ", post)
-            ////                  completionHandler()
-            //                })
-
-      }
+//      print("print posts", self.posts)
+  }
   
   func searchSong(_ songName: String) {
     var songs:[Song] = []
@@ -131,6 +93,8 @@ class ViewModel: ObservableObject{
     newPost.createdAt = NSDate() as Date
     newPost.likes = []
     newPost.moods = []
+    newPost.id = UUID().uuidString
+    print("here is the id for the new post: ", newPost.id)
 
     do {
       _ = try newPostRef.setData(from: newPost)

@@ -8,10 +8,12 @@
 import SwiftUI
 
 struct HomeFeed: View {
-
   @EnvironmentObject var viewModel: ViewModel
+  
   var body: some View {
-    NavigationView{
+//    print("line 14", viewModel.posts)
+    
+    return NavigationView{
       VStack{
         Header()
         NavigationLink(destination: SearchSong(), label: {
@@ -21,10 +23,9 @@ struct HomeFeed: View {
             .font(.body)
         })
         Spacer()
-          ForEach(viewModel.posts){ post in
-              PostCard(post:post)
-            
-          }
+        ForEach(viewModel.posts) { post in
+          PostCard(post: post)
+        }
       }
     }
 
