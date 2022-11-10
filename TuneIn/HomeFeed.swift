@@ -24,8 +24,8 @@ struct HomeFeed: View {
           }).navigationBarBackButtonHidden(true)
 
           Spacer()
-          ForEach(viewModel.posts) { post in
-            PostCard(post: post)
+          ForEach(Array(viewModel.posts.keys), id: \.self) { key in
+            PostCard(post: viewModel.posts[key]!, docID: key)
           }
         }
       }

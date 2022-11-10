@@ -17,7 +17,7 @@ class ViewModel: ObservableObject{
   var songMap: [String:Song] = [String:Song]() // map of song objects
   private let ref = Database.database().reference()
   private let store = Firestore.firestore()
-  @Published var posts: [Post] = []
+  @Published var posts: [String:Post] = [:]
   @Published var searchedUsers: [String:UserInfo] = [:]
   @Published var friends: [String:UserInfo] = [:]
   @Published var username: String = ""
@@ -28,12 +28,15 @@ class ViewModel: ObservableObject{
 
   func getSelf() {
     let getMe = Spartan.getMe(success: { (user) in
+//      let data = user.document().documentID
       print("HERE IS USER: \(user.id as! String)")
       self.username = user.id as! String
+      self.getUser(searchString: self.username)
     }, failure: { (err) in
       print("err instead: ", err)
       
     })
+    
   }
   
   
@@ -44,12 +47,7 @@ class ViewModel: ObservableObject{
     getSelf()
     getPosts()
     self.loggedIn = true
-
-//    loggedIn = true
-    
-    
   }
-  
   
 //  var user: UserInfo = UserInfo()
   func getPosts() {
@@ -59,12 +57,14 @@ class ViewModel: ObservableObject{
           print("Error getting posts: \(error.localizedDescription)")
           return
         }
-        self.posts = querySnapshot?.documents.compactMap { document in
-          try? document.data(as: Post.self)
-        } ?? []
-        print("print posts", self.posts)
+        
+        self.posts = querySnapshot?.documents.reduce(into: [String: Post]()) { (dict, document) in
+          var key = ""
+          key = document.documentID
+          dict[key] = try? document.data(as: Post.self)
+//          print(dict[key]!.likes)
+        } ?? [:] as! [String : Post]
       }
-//      print("print posts", self.posts)
   }
   
   func searchSong(_ songName: String) {
@@ -77,11 +77,10 @@ class ViewModel: ObservableObject{
           currSong.songName = obj.name
           currSong.artist = obj.artists[0].name
           
-//          self.getAlbumImage(obj.externalUrls["spotify"])
-//          currSong.albumURL = obj.externalUrls
           if obj.previewUrl != nil {
             currSong.previewURL = obj.previewUrl
           }
+          print("got the album image \(currSong.albumURL)")
           songs.append(currSong)
         }
         
@@ -90,23 +89,6 @@ class ViewModel: ObservableObject{
         print(error)
       })
     }
-  }
-  
-  func getAlbumImage(_ albumLink: Optional<String>, completionHandler:@escaping (String)->()) {
-    var albumID = ""
-    if albumLink != nil {
-      if albumLink?.split(separator: "/").last != nil {
-        albumID = String(albumLink!.split(separator: "/").last!)
-      }
-    }
-    var albumUrl = ""
-    _ = Spartan.getAlbum(id: albumID, market: .us, success: { (album) in
-      DispatchQueue.main.async(){
-        completionHandler(albumUrl)
-      }
-    }, failure: { (error) in
-      print(error)
-    })
   }
   
   func makePost(song: Song, caption: String){
@@ -154,7 +136,6 @@ class ViewModel: ObservableObject{
 //  }
   
   
-  
   func getUser(searchString: String) -> UserInfo {
     print("Search String: \(searchString)")
     if searchString == "" {
@@ -166,6 +147,15 @@ class ViewModel: ObservableObject{
       if let err = err {
         print("Error getting documents: \(err)")
       } else {
+//        if querySnapshot!.documents.count == 0 {
+//          self.user.id = //idk how to get a document id
+//          self.user.name = ""
+//          self.user.profileImage =  ""
+//          self.user.username = self.username
+//          self.user.spotifyID = data["spotifyID"] as? String ?? ""
+//
+//          print("user.username from db request: \(self.user.username)")
+//        }
         for document in querySnapshot!.documents {
           let data = document.data()
 
@@ -214,11 +204,6 @@ class ViewModel: ObservableObject{
     }
   }
   
-  func getFriends(_ searchString: String) {
-    // want to query firestore and filter by friends list
-    // .whereField("username", arrayContainsAny: ["west_coast", "east_coast"])
-  }
-  
   func getNotifications() {
     let _ = store.collection("Notifications").getDocuments() { (querySnapshot, err) in
       if let err = err {
@@ -242,6 +227,40 @@ class ViewModel: ObservableObject{
         }
       }
     }
+  }
+  
+  func setBio(_ bio: String) {
+    store.collection("UserInfo").document(user.id).setData([
+        "bio": bio
+    ]) { err in
+        if let err = err {
+            print("Error writing document: \(err)")
+        } else {
+            print("Document successfully written!")
+        }
+    }
+  }
+  
+  func likePost(_ id:String, _ likes: [String]) {
+    var mutableLikes = likes
+    print(likes)
+    mutableLikes.append(user.id)
+    var postInfo = self.posts[id]!
+    postInfo.likes = mutableLikes
+    
+    do {
+      _ = try store.collection("Posts").document(id).setData(from: postInfo)
+      print("updated document \(id)")
+    } catch let error {
+        print("Error writing city to Firestore: \(error)")
+    }
+//    try store.collection("Posts").document(id).setData(from: postInfo) { err in
+//        if let err = err {
+//            print("Error writing document: \(err)")
+//        } else {
+//            print("Document successfully written!")
+//        }
+//    }
   }
     
   func hexStringToUIColor (hex:String) -> Color {

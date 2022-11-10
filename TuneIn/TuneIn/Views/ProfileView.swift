@@ -24,7 +24,7 @@ struct ProfileView: View {
         Header()
         ScrollView{
           VStack(alignment: .leading){
-            ProfileBlock(spotifyID: spotifyID, user: user)
+            ProfileBlock(spotifyID: spotifyID, user: user, madePost: false)
             ProfileSongOfDay()
             Spacer()
               .environmentObject(viewModel)
@@ -48,6 +48,7 @@ struct ProfileBlock : View {
   @EnvironmentObject var viewModel: ViewModel
   var spotifyID: String
   var user: UserInfo
+  var madePost: Bool
   var body: some View {
     HStack{
       Image("John_Smith")
@@ -70,14 +71,27 @@ struct ProfileBlock : View {
       }
       Spacer()
     }
-    roundedRectangleText(
-      bodyText: "Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Sem integer vitae justo eget magna fermentum",
-      TextHex: "#ECECEC",
-      BackgroundHex: "#373547",
-      alignment: .leading,
-      topBottomPadding: 5,
-      leftRightPadding: 5
-    )
+    
+    // need to allow to edit bio
+    if user.bio != "" {
+      roundedRectangleText(
+        bodyText: user.bio,
+        TextHex: "#ECECEC",
+        BackgroundHex: "#373547",
+        alignment: .leading,
+        topBottomPadding: 5,
+        leftRightPadding: 5
+      )
+    }
+    
+//    Button(destination: SetBioView().environmentObject(viewModel), label: {
+//        Text("Change Bio")
+//          .fontWeight(.bold)
+//      }).onChange(of: madePost) { (newValue) in
+//        print("change bio has been clicked")
+//        SetBioView().environmentObject(viewModel)
+//      }
+    
   }
 }
 
