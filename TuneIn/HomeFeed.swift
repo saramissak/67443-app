@@ -21,7 +21,8 @@ struct HomeFeed: View {
             // need to add conditional
               .fontWeight(.bold)
               .font(.body)
-          })
+          }).navigationBarBackButtonHidden(true)
+
           Spacer()
           ForEach(viewModel.posts) { post in
             PostCard(post: post)

@@ -32,6 +32,8 @@ struct PostSongView: View {
         viewModel.makePost(song:song, caption:caption)
         HomeFeed().environmentObject(viewModel)
       }
+      .navigationBarBackButtonHidden(true)
+
 //      .alert(isPresented: $madePost) {
 //        Alert(title: Text("You've posted"), dismissButton: .default(Text("")))
 //      }
