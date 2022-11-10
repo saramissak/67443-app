@@ -13,22 +13,20 @@ struct PostCard: View {
   
 //  @EnvironmentObject var viewModel: ViewModel
     var body: some View {
-//      Text("\(post.song.songName ?? "no song")")
-      Text("song is : \(post.song.songName)")
-      Text("artist  is : \(post.song.artist)")
-      Text("\(post.caption)")
       Text("\(post.userID)")
-//      Text("\(post.moods)")
-//      Text("song name is \(song.songName)")
-
-      ForEach(post.moods, id:\.self){ mood in
-        roundedRectangleText(bodyText: mood, TextHex: "#000000", BackgroundHex: "#FFED95")
-      }
+      VStack {
+        Text("song is : \(post.song.songName)").font(.title)
+        Text("artist  is : \(post.song.artist)")
+        Text("\(post.caption)")
+        ForEach(post.moods, id:\.self){ mood in
+          roundedRectangleText(bodyText: mood, TextHex: "#000000", BackgroundHex: "#FFFFFF")
+        }
+      }.fixedSize(horizontal: false, vertical: false)
+        .multilineTextAlignment(.center)
+        .padding([.top, .bottom], 5)
+        .padding([.trailing, .leading], 5)
+        .foregroundColor(viewModel.hexStringToUIColor(hex: "#FFFFFF"))
+        .background(viewModel.hexStringToUIColor(hex: "#373547"))
+        .cornerRadius(8)
     }
 }
-
-//struct PostCard_Previews: PreviewProvider {
-//    static var previews: some View {
-//        PostCard()
-//    }
-//}
