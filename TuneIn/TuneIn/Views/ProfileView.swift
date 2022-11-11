@@ -98,32 +98,34 @@ struct ProfileSongOfDay : View {
   @State var latestPost = Post()
   @State var albumImage = UIImage()
   var body: some View {
-    VStack(alignment: .leading){
-      Text("What I am feeling today:")
-        .bold()
-      HStack(alignment: .top){
-        Image(uiImage: albumImage)
-          .aspectRatio(contentMode: .fit)
-          .frame(width: 100, height: 100)
-          .clipped()
-        VStack(alignment: .leading){
-          Text("\(latestPost.song.songName)")
-            .bold()
-          Text("\(latestPost.song.artist)")
-          roundedRectangleText(bodyText: "Sad", TextHex: "#000000", BackgroundHex: "#B9C0FF")
+    if viewModel.getLatestUserPostID(userID: viewModel.user.spotifyID) != ""{
+      VStack(alignment: .leading){
+        Text("What I am feeling today:")
+          .bold()
+        HStack(alignment: .top){
+          Image(uiImage: albumImage)
+            .aspectRatio(contentMode: .fit)
+            .frame(width: 100, height: 100)
+            .clipped()
+          VStack(alignment: .leading){
+            Text("\(latestPost.song.songName)")
+              .bold()
+            Text("\(latestPost.song.artist)")
+            roundedRectangleText(bodyText: "Sad", TextHex: "#000000", BackgroundHex: "#B9C0FF")
+          }
         }
-      }
-      .task {
-        latestPost = viewModel.posts[viewModel.getLatestUserPostID(userID: viewModel.user.spotifyID)]!
-        let url = URL(string: latestPost.song.albumURL)
-        let data = try? Data(contentsOf:url ?? URL(fileURLWithPath: ""))
-        if let imageData = data {
-          self.albumImage = UIImage(data: imageData)!
+        .task {
+          latestPost = viewModel.posts[viewModel.getLatestUserPostID(userID: viewModel.user.spotifyID)]!
+          let url = URL(string: latestPost.song.albumURL)
+          let data = try? Data(contentsOf:url ?? URL(fileURLWithPath: ""))
+          if let imageData = data {
+            self.albumImage = UIImage(data: imageData)!
+          }
         }
+        
       }
-      
+      .padding()
     }
-    .padding()
   }
 }
 

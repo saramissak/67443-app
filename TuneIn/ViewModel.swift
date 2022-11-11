@@ -104,7 +104,12 @@ class ViewModel: ObservableObject{
       }
       .map { (key, value) -> String in key}
     print("keys: \(keys)")
-    return keys[0]
+    if (keys.count > 0) {
+      return keys[0]
+    } else {
+      return ""
+    }
+    
     
     
     
