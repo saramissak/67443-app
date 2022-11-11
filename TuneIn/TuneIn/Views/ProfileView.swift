@@ -115,9 +115,8 @@ struct ProfileSongOfDay : View {
       }
       .task {
         latestPost = viewModel.posts[viewModel.getLatestUserPostID(userID: viewModel.user.spotifyID)]!
-        print("AlbumURL: \(latestPost.song.albumURL) ")
         let url = URL(string: latestPost.song.albumURL)
-        let data = try? Data(contentsOf:url!)
+        let data = try? Data(contentsOf:url ?? URL(fileURLWithPath: ""))
         if let imageData = data {
           self.albumImage = UIImage(data: imageData)!
         }

@@ -13,6 +13,7 @@ struct PostCard: View {
   var displayCommentButton: Bool
   @EnvironmentObject var viewModel: ViewModel
   @State var viewComment: Bool = false
+  @State var albumImage = UIImage()
   
   var body: some View {
     HStack{
@@ -20,6 +21,17 @@ struct PostCard: View {
       Spacer()
     }
       VStack {
+        Image(uiImage: albumImage)
+          .aspectRatio(contentMode: .fit)
+          .frame(width: 100, height: 100)
+          .clipped()
+          .task {
+            let url = URL(string: post.song.albumURL)
+            let data = try? Data(contentsOf:url ?? URL(fileURLWithPath: ""))
+            if let imageData = data {
+              self.albumImage = UIImage(data: imageData)!
+            }
+          }
         HStack {
           Text("\(post.song.songName)").font(.title).aspectRatio(contentMode: .fit)
           Spacer()
