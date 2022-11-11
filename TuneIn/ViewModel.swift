@@ -29,18 +29,19 @@ class ViewModel: ObservableObject{
   @Published var users: [String:UserInfo] = [:]
   typealias Completion = (_ success:Bool) -> Void
   @Published var searchedSongs:  [Song] = []
+  @Published var spotifyID: String = ""
+  @Published var userExisting = false
 
   func getSelf() {
+    
     let getMe = Spartan.getMe(success: { (user) in
-//      let data = user.document().documentID
-      print("HERE IS USER: \(user.id as! String)")
-      self.username = user.id as! String
-      self.getUser(searchString: self.username)
+          // Do something with the user object
+        self.spotifyID = user.id as! String
+        self.user = self.getUser(searchString: self.spotifyID)
     }, failure: { (err) in
-      print("err instead: ", err)
+      print("cant find spotify ID in spartn", err)
       
     })
-    
   }
   
   func getProfilePic() {
@@ -175,7 +176,7 @@ class ViewModel: ObservableObject{
   func makePost(song: Song, caption: String){
     var newPost = Post()
     let newPostRef = self.store.collection("Posts").document()
-    newPost.userID = self.username
+    newPost.userID = self.user.username
     print("here is the username ", self.username)
     newPost.song = song
     newPost.caption = caption
@@ -260,39 +261,71 @@ class ViewModel: ObservableObject{
 //    })
 //  }
   
+//  func createUser(_ id:String) -> UserInfo{
+//    var user = makeDefaultUser(id)
+//    let newUserRef = self.store.collection("UserInfo").document()
+//
+//    do {
+//      _ = try newUserRef.setData(from: user)
+//    } catch let error {
+//        print("Error writing user to Firestore: \(error)")
+//    }
+//    return user
+//  }
+//
+  func createDefaultUser(_ spotifyID: String) -> UserInfo{
+    // creates a fake user with stella's spotify ID
+    var newUser = UserInfo()
+      let _ = Spartan.getMe(success: { (user) in
+        newUser.username = user.id as! String
+        newUser.spotifyID = spotifyID
+        newUser.profileImage = ""
+        newUser.name = user.displayName ?? ""
+        newUser.bio = ""
+        
+        let newUserRef = self.store.collection("UserInfo").document()
+        do {
+          _ = try newUserRef.setData(from: newUser)
+        } catch let error {
+          print("Error writing city to Firestore: \(error)")
+        }
+      }, failure: { (err) in
+        print("err instead of getting user: ", err)
+        
+      })
+  
+  return newUser
+}
+  
   
   func getUser(searchString: String) -> UserInfo {
     print("Search String: \(searchString)")
     if searchString == "" {
       print("[ALERT] not doing request since search string is just \(searchString)")
+//      createUser(searchString)
     }
     let _ = store.collection("UserInfo")
-      .whereField("username", isEqualTo: searchString)
+      .whereField("spotifyID", isEqualTo: searchString)
       .getDocuments() { (querySnapshot, err) in
       if let err = err {
         print("Error getting documents: \(err)")
       } else {
-//        if querySnapshot!.documents.count == 0 {
-//          self.user.id = //idk how to get a document id
-//          self.user.name = ""
-//          self.user.profileImage =  ""
-//          self.user.username = self.username
-//          self.user.spotifyID = data["spotifyID"] as? String ?? ""
-//
-//          print("user.username from db request: \(self.user.username)")
-//        }
-        for document in querySnapshot!.documents {
-          let data = document.data()
+        if querySnapshot!.documents.count == 0{
+          print("CREATING NEW USER")
+          self.user = self.createDefaultUser(searchString)
+        } else{
+          for document in querySnapshot!.documents {
+            let data = document.data()
+            self.user.id = document.documentID
+            self.user.name = data["name"] as? String ?? ""
+            self.user.profileImage = data["profileImage"] as? String ?? ""
+            self.user.username = data["username"] as? String ?? ""
+            self.user.spotifyID = data["spotifyID"] as? String ?? ""
+            print("user.username from db request: \(self.user.username)")
+          }
 
-          self.user.id = document.documentID
-          self.user.name = data["name"] as? String ?? ""
-          self.user.profileImage = data["profileImage"] as? String ?? ""
-          self.user.username = data["username"] as? String ?? ""
-          self.user.spotifyID = data["spotifyID"] as? String ?? ""
-          self.user.bio = data["bio"] as? String ?? ""
-          
-          print("user.username from db request: \(self.user.username)")
         }
+
       }
     }
     return self.user
@@ -398,7 +431,7 @@ class ViewModel: ObservableObject{
     newComment.id = UUID().uuidString
     newComment.date = NSDate() as Date
     newComment.postID = post.id
-    newComment.userID = self.user.id
+    newComment.userID = self.user.username
     newComment.text = comment
     
     do {

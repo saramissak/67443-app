@@ -72,6 +72,7 @@ struct PostCard: View {
         .foregroundColor(viewModel.hexStringToUIColor(hex: "#FFFFFF"))
         .background(viewModel.hexStringToUIColor(hex: "#373547"))
         .cornerRadius(8)
+
     }
   
 }
