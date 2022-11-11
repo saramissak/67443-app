@@ -12,6 +12,7 @@ import FirebaseDatabase
 import FirebaseFirestoreSwift
 import Spartan
 import SwiftUI
+//import XCTest
 
 class ViewModel: ObservableObject{
   var songMap: [String:Song] = [String:Song]() // map of song objects
@@ -23,6 +24,8 @@ class ViewModel: ObservableObject{
   @Published var username: String = ""
   @Published var songIDsForPosts:[String] = []
   @Published var user: UserInfo = UserInfo()
+  @Published var comments: [Comment] = []
+  @Published var users: [String:UserInfo] = [:]
   typealias Completion = (_ success:Bool) -> Void
   @Published var searchedSongs:  [Song] = []
 
@@ -49,7 +52,6 @@ class ViewModel: ObservableObject{
     self.loggedIn = true
   }
   
-//  var user: UserInfo = UserInfo()
   func getPosts() {
     store.collection("Posts").order(by: "createdAt", descending: true)
       .addSnapshotListener { querySnapshot, error in
@@ -62,9 +64,59 @@ class ViewModel: ObservableObject{
           var key = ""
           key = document.documentID
           dict[key] = try? document.data(as: Post.self)
-//          print(dict[key]!.likes)
         } ?? [:] as! [String : Post]
       }
+  }
+  
+  func getComments(post: Post) {
+    self.comments = []
+    
+    store.collection("Comments").whereField("postID", isEqualTo: post.id)
+      .order(by: "date")
+      .addSnapshotListener { querySnapshot, error in
+        if let error = error {
+          print("Error getting posts: \(error.localizedDescription)")
+          return
+        }
+        self.comments = querySnapshot?.documents.compactMap { document in
+          let comment = try? document.data(as: Comment.self)
+          if self.users[comment!.userID] == nil {
+            self.getUserById(comment!.userID, completionHandler: { (eventList) in
+              print("completion handler is done")
+            })
+          }
+        
+          return comment
+        } ?? []
+        print("here are some commetns", self.comments)
+      }
+  }
+  
+  func getUserById(_ id:String, completionHandler:@escaping (UserInfo)->()) {
+    let _ = store.collection("UserInfo")
+      .whereField("id", isEqualTo: id)
+      .getDocuments() { (querySnapshot, err) in
+      if let err = err {
+        print("Error getting documents: \(err)")
+      } else {
+        for document in querySnapshot!.documents {
+          let data = document.data()
+          var user = UserInfo()
+
+          user.id = document.documentID
+          user.name = data["name"] as? String ?? ""
+          user.profileImage = data["profileImage"] as? String ?? ""
+          user.username = data["username"] as? String ?? ""
+          user.spotifyID = data["spotifyID"] as? String ?? ""
+          
+          self.users[user.id] = user
+          print("in view model on line 113 the user id is: ", user.id)
+          DispatchQueue.main.async(){
+            completionHandler(user)
+          }
+        }
+      }
+    }
   }
   
   func searchSong(_ songName: String) {
@@ -261,6 +313,27 @@ class ViewModel: ObservableObject{
 //            print("Document successfully written!")
 //        }
 //    }
+  }
+  
+  func postComment(docID: String, comment: String, post: Post) {
+    if comment == "" {
+      return
+    }
+    
+    var newComment = Comment()
+    newComment.id = UUID().uuidString
+    newComment.date = NSDate() as Date
+    newComment.postID = post.id
+    newComment.userID = self.user.id
+    newComment.text = comment
+    
+    do {
+      _ = try store.collection("Comments").document(newComment.id).setData(from: newComment)
+      print("updated document \(docID)")
+      self.comments.append(newComment)
+    } catch let error {
+        print("Error writing city to Firestore: \(error)")
+    }
   }
     
   func hexStringToUIColor (hex:String) -> Color {
