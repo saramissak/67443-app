@@ -14,17 +14,12 @@ struct ProfileView: View {
       return "\(viewModel.username)"
     }
   }
-  var user: UserInfo {
-      get {
-        return viewModel.getUser(searchString: "\(viewModel.username)")
-      }
-    }
     var body: some View {
       VStack{
         Header()
         ScrollView{
           VStack(alignment: .leading){
-            ProfileBlock(spotifyID: spotifyID, user: user, madePost: false)
+            ProfileBlock(spotifyID: spotifyID, user: viewModel.user, madePost: false)
             ProfileSongOfDay()
             Spacer()
               .environmentObject(viewModel)
@@ -62,9 +57,6 @@ struct ProfileBlock : View {
         Text("\(user.name)")
         Text("\(spotifyID)")
           .bold()
-          .task {
-            viewModel.getSelf()
-          }
         ZStack{
           roundedRectangleText(bodyText: "Genre", TextHex: "#000000", BackgroundHex: "#B9C0FF")
         }

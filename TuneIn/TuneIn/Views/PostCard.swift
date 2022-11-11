@@ -64,7 +64,20 @@ struct PostCard: View {
         .foregroundColor(viewModel.hexStringToUIColor(hex: "#FFFFFF"))
         .background(viewModel.hexStringToUIColor(hex: "#373547"))
         .cornerRadius(8)
-      
+      if post.likes.contains(viewModel.user.username) {
+        Button {
+//          viewModel.unlikePost(post.id, post.likes)
+        } label: {
+          Image(systemName: "heart.fill")
+        }
+        
+      } else {
+        Button {
+          viewModel.likePost(docID, post.likes)
+        } label: {
+          Image(systemName: "heart")
+        }
+      }
     }
   
 }
