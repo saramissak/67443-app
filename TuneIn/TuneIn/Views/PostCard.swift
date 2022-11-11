@@ -25,6 +25,7 @@ struct PostCard: View {
           .aspectRatio(contentMode: .fit)
           .frame(width: 100, height: 100)
           .clipped()
+          .contentShape(Rectangle()) 
           .task {
             let url = URL(string: post.song.albumURL)
             let data = try? Data(contentsOf:url ?? URL(fileURLWithPath: ""))
