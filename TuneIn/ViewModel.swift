@@ -164,6 +164,7 @@ class ViewModel: ObservableObject{
           self.user.profileImage = data["profileImage"] as? String ?? ""
           self.user.username = data["username"] as? String ?? ""
           self.user.spotifyID = data["spotifyID"] as? String ?? ""
+          self.user.bio = data["bio"] as? String ?? ""
           
           print("user.username from db request: \(self.user.username)")
         }
