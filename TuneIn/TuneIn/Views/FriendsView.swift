@@ -8,7 +8,7 @@
 import SwiftUI
 
 struct FriendsView: View {
-  @ObservedObject var viewModel: ViewModel
+  @EnvironmentObject var viewModel: ViewModel
   @ObservedObject var friendsViewModel: FriendsViewModel
   @State private var findTab: Bool = true
   

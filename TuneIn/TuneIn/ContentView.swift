@@ -23,7 +23,7 @@ struct ContentView: View {
               Image(systemName: "music.note")
               Text("Home")
             }
-            FriendsView(viewModel: viewModel, friendsViewModel: friendsViewModel)
+            FriendsView(friendsViewModel: friendsViewModel)
               .tabItem {
                 Image(systemName: "person.2.fill")
                 Text("Friends")
