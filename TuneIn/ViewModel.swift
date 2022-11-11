@@ -132,7 +132,7 @@ class ViewModel: ObservableObject{
           if obj.previewUrl != nil {
             currSong.previewURL = obj.previewUrl
           }
-          print("got the album image \(currSong.albumURL)")
+
           songs.append(currSong)
         }
         
@@ -154,12 +154,56 @@ class ViewModel: ObservableObject{
     newPost.likes = []
     newPost.moods = []
     newPost.id = UUID().uuidString
+    
+    print("calling getsong by id")
+    self.getSongById(song.id, newPost, newPostRef)
+    print("finished calling getsong by id")
+  }
+  
+  // documentation on get track API endpoint: https://developer.spotify.com/documentation/web-api/reference/#/operations/get-track
+  func getSongById(_ id: String, _ newPost: Post, _ newPostRef: DocumentReference) {
+    var post = newPost
+    var sessionConfiguration = URLSessionConfiguration.default
+    sessionConfiguration.httpAdditionalHeaders = [
+      "Authorization": "Bearer \(Spartan.authorizationToken!)"
+    ]
+    
+    let session = URLSession(configuration: sessionConfiguration)
+    let SpotifyGetTrackURL = "https://api.spotify.com/v1/tracks/\(id)"
+    
+    let getTrackTask = session.dataTask(with: URL(string: SpotifyGetTrackURL)!) { (data, response, error) in
+      guard let data = data else {
+        print("Error: No data to decode")
+        return
+      }
+      
+      // Decode the JSON here
+//      let json = try JSONSerialization.jsonObject(with: data as Data, options: .allowFragments) as! [String:AnyObject]
 
-    do {
-      _ = try newPostRef.setData(from: newPost)
-    } catch let error {
-        print("Error writing city to Firestore: \(error)")
+      guard let json = try? JSONSerialization.jsonObject(with: data as Data, options: .allowFragments) as! [String:AnyObject] else {
+        print("Error: Couldn't decode data into a result")
+        return
+      }
+          
+      if let album = json["album"] as? NSDictionary {
+        if let images = album["images"] as? [NSDictionary] {
+          if let firstImage = images[0] as? NSDictionary {
+            post.song.albumURL = firstImage["url"] as? String ?? ""
+          }
+        }
+      }
+      
+      // Output if everything is working right
+      print("\(post.song.albumURL)")
+      
+      do {
+        _ = try newPostRef.setData(from: post)
+      } catch let error {
+          print("Error writing city to Firestore: \(error)")
+      }
     }
+    
+    getTrackTask.resume()
   }
   
   
