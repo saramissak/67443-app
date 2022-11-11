@@ -15,7 +15,7 @@ struct UserInfo: Codable, Identifiable {
 //  var password:         String
   var spotifyID:        String 
   var profileImage:     String // assuming a URL to their image
-  var bio: String
+  var bio:              String
   
   init() {
     id = ""

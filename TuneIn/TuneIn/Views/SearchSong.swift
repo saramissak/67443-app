@@ -29,18 +29,9 @@ struct SearchSong: View {
           NavigationLink(destination: PostSongView(song:song)){
             SongRow(song:song)
           }
-          
         }
-        
       }
-      
-      //      ForEach(displayedSongs, id: \.self) {
-      
-      
     }
-    
-    
-    
   }
 }
   

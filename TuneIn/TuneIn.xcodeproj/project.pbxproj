@@ -50,6 +50,7 @@
 		D3F0F03A291A1AA1004DA45B /* FriendsViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = D3F0F039291A1AA1004DA45B /* FriendsViewModel.swift */; };
 		D3F0F077291CB80C004DA45B /* SetBioView.swift in Sources */ = {isa = PBXBuildFile; fileRef = D3F0F076291CB80C004DA45B /* SetBioView.swift */; };
 		D3F0F093291DB905004DA45B /* CommentScreen.swift in Sources */ = {isa = PBXBuildFile; fileRef = D3F0F092291DB905004DA45B /* CommentScreen.swift */; };
+		D3F0F095291DC13B004DA45B /* DisplayComment.swift in Sources */ = {isa = PBXBuildFile; fileRef = D3F0F094291DC13B004DA45B /* DisplayComment.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -83,6 +84,7 @@
 		D3F0F039291A1AA1004DA45B /* FriendsViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FriendsViewModel.swift; sourceTree = "<group>"; };
 		D3F0F076291CB80C004DA45B /* SetBioView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SetBioView.swift; sourceTree = "<group>"; };
 		D3F0F092291DB905004DA45B /* CommentScreen.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CommentScreen.swift; sourceTree = "<group>"; };
+		D3F0F094291DC13B004DA45B /* DisplayComment.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DisplayComment.swift; sourceTree = "<group>"; };
 		D46AFB2E038D952AE10D4D4C /* Pods-TuneIn.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-TuneIn.release.xcconfig"; path = "Target Support Files/Pods-TuneIn/Pods-TuneIn.release.xcconfig"; sourceTree = "<group>"; };
 		E19B065CDAFCD8B6D368B8FF /* Pods_TuneIn.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_TuneIn.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 /* End PBXFileReference section */
@@ -189,6 +191,7 @@
 				B1C0CA522914AD3500445D87 /* HomeFeed.swift */,
 				D3F0F076291CB80C004DA45B /* SetBioView.swift */,
 				D3F0F092291DB905004DA45B /* CommentScreen.swift */,
+				D3F0F094291DC13B004DA45B /* DisplayComment.swift */,
 				D39673F829159B090073716E /* PostCard.swift */,
 				B1AC67B5291C33F500477A0D /* SearchSong.swift */,
 				B1AC67B9291C42A300477A0D /* PostSongView.swift */,
@@ -363,6 +366,7 @@
 				D34D47D228F9E8FA00224758 /* Notification.swift in Sources */,
 				D34D47B928F9DB6E00224758 /* ContentView.swift in Sources */,
 				B10E3CB1291976FC0090F9C7 /* FriendsView.swift in Sources */,
+				D3F0F095291DC13B004DA45B /* DisplayComment.swift in Sources */,
 				B149D109291347350056509D /* AppDelegate.swift in Sources */,
 				D3F0F03A291A1AA1004DA45B /* FriendsViewModel.swift in Sources */,
 				D3F0F093291DB905004DA45B /* CommentScreen.swift in Sources */,

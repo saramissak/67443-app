@@ -23,7 +23,7 @@ struct ContentView: View {
             Image(systemName: "music.note")
             Text("Home")
           }
-        FriendsView(viewModel: viewModel, friendsViewModel: friendsViewModel)
+        FriendsView(friendsViewModel: friendsViewModel)
           .tabItem {
             Image(systemName: "person.2.fill")
             Text("Friends")
@@ -72,23 +72,3 @@ struct ContentView: View {
   
 
 
-  
-  //      DispatchQueue.main.async {
-  //        viewModel.getPosts()
-  //      }
-  //        if received == false {
-  //        viewModel.getPosts()
-  //        received = true
-  //      }
-  
-  //      Button("Get Posts", action:{
-  //        viewModel.getPosts()
-  //      })
-  //      return HomeFeed(viewModel: viewModel)
-  
-  //struct ContentView_Previews: PreviewProvider {
-  //    static var previews: some View {
-  //        ContentView()
-  //    }
-  //}
-}

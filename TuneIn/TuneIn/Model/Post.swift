@@ -57,9 +57,17 @@ struct Post: Codable, Identifiable {
 }
 
 struct Comment: Codable, Identifiable {
-  var id:     UUID
-  var postID: UUID
-  var userID: UUID
+  var id:     String
+  var postID: String
+  var userID: String
   var text:   String
   var date:   Date
+  
+  init() {
+    id = ""
+    userID = ""
+    date = Date()
+    postID = ""
+    text = ""
+  }
 }

@@ -10,7 +10,9 @@ import SwiftUI
 struct PostCard: View {
   var post: Post
   var docID: String
+  var displayCommentButton: Bool
   @EnvironmentObject var viewModel: ViewModel
+  @State var viewComment: Bool = false
   
   var body: some View {
     HStack{
@@ -35,9 +37,15 @@ struct PostCard: View {
         }
         HStack {
           Spacer()
-          NavigationLink(destination: CommentScreen(post: post).environmentObject(viewModel), label: {
-            Image(systemName: "captions.bubble.fill")
-          }).navigationBarBackButtonHidden(true)
+          if displayCommentButton {
+            NavigationLink(destination: CommentScreen(post: post, docID: docID).environmentObject(viewModel), isActive: $viewComment, label: {
+              Image(systemName: "captions.bubble.fill")
+            })
+            .onChange(of: viewComment) { (newValue) in
+              viewModel.getComments(post:post)
+            }
+            .navigationBarBackButtonHidden(true)
+          }
           
           if post.likes.contains(viewModel.user.id) {
             Button {
@@ -64,20 +72,7 @@ struct PostCard: View {
         .foregroundColor(viewModel.hexStringToUIColor(hex: "#FFFFFF"))
         .background(viewModel.hexStringToUIColor(hex: "#373547"))
         .cornerRadius(8)
-      if post.likes.contains(viewModel.user.username) {
-        Button {
-//          viewModel.unlikePost(post.id, post.likes)
-        } label: {
-          Image(systemName: "heart.fill")
-        }
-        
-      } else {
-        Button {
-          viewModel.likePost(docID, post.likes)
-        } label: {
-          Image(systemName: "heart")
-        }
-      }
+
     }
   
 }

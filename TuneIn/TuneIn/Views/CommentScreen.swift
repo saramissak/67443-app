@@ -9,15 +9,32 @@ import SwiftUI
 
 struct CommentScreen: View {
   var post: Post
+  var docID: String
+  @State var commentString: String = ""
   @EnvironmentObject var viewModel: ViewModel
   
   var body: some View {
-      Text(/*@START_MENU_TOKEN@*/"Hello, World!"/*@END_MENU_TOKEN@*/)
+    let binding = Binding<String>(get: {
+      self.commentString
+    }, set: {
+      self.commentString = $0
+    })
+    
+    VStack{
+      PostCard(post: post, docID: docID, displayCommentButton: false).environmentObject(viewModel)
+      Spacer()
+      ForEach(viewModel.comments) { comment in
+        DisplayComment(post: post, comment: comment).environmentObject(viewModel)
+      }
+      Spacer()
+      
+      HStack{
+        TextField("Comment here", text:binding)
+        Button("Post", action: {
+          viewModel.postComment(docID: docID, comment: self.commentString, post: post)
+          self.commentString = ""
+         })
+      }
+    }
   }
 }
-
-//struct CommentScreen_Previews: PreviewProvider {
-//    static var previews: some View {
-//        CommentScreen()
-//    }
-//}
