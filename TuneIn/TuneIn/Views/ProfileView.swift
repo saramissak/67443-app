@@ -20,14 +20,16 @@ struct ProfileView: View {
       }
     }
     var body: some View {
-      VStack{
-        Header()
-        ScrollView{
-          VStack(alignment: .leading){
-            ProfileBlock(spotifyID: spotifyID, user: user, madePost: false)
-            ProfileSongOfDay()
-            Spacer()
-              .environmentObject(viewModel)
+      NavigationView{
+        VStack{
+          Header()
+          ScrollView{
+            VStack(alignment: .leading){
+              ProfileBlock(spotifyID: spotifyID, user: user, madePost: false)
+              ProfileSongOfDay()
+              Spacer()
+                .environmentObject(viewModel)
+            }
           }
         }
       }
@@ -46,6 +48,7 @@ struct Header : View {
 
 struct ProfileBlock : View {
   @EnvironmentObject var viewModel: ViewModel
+  @State private var showEditBioView: Bool = false
   var spotifyID: String
   var user: UserInfo
   var madePost: Bool
@@ -71,27 +74,24 @@ struct ProfileBlock : View {
       }
       Spacer()
     }
-    
-    // need to allow to edit bio
-    if user.bio != "" {
-      roundedRectangleText(
-        bodyText: user.bio,
-        TextHex: "#ECECEC",
-        BackgroundHex: "#373547",
-        alignment: .leading,
-        topBottomPadding: 5,
-        leftRightPadding: 5
-      )
+      // need to allow to edit bio
+      if user.bio != "" {
+        roundedRectangleText(
+          bodyText: user.bio,
+          TextHex: "#ECECEC",
+          BackgroundHex: "#373547",
+          alignment: .leading,
+          topBottomPadding: 5,
+          leftRightPadding: 5
+        )
+      }
+    VStack{
+      NavigationLink(destination: SetBioView(user: user).environmentObject(viewModel), isActive: $showEditBioView){
+        Button(action: {showEditBioView = true}){
+          Text("Change Bio")
+        }
+      }
     }
-    
-//    Button(destination: SetBioView().environmentObject(viewModel), label: {
-//        Text("Change Bio")
-//          .fontWeight(.bold)
-//      }).onChange(of: madePost) { (newValue) in
-//        print("change bio has been clicked")
-//        SetBioView().environmentObject(viewModel)
-//      }
-    
   }
 }
 
