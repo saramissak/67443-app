@@ -109,10 +109,6 @@ class ViewModel: ObservableObject{
     } else {
       return ""
     }
-    
-    
-    
-    
   }
   
   func getComments(post: Post) {

@@ -23,7 +23,6 @@ struct SearchFriends: View {
     
     return NavigationView{
       VStack {
-        Spacer()
         HStack {
           Image(systemName: "magnifyingglass")
               .font(.system(size: 14.0, weight: .bold))
@@ -31,39 +30,29 @@ struct SearchFriends: View {
             .autocapitalization(.none)
             .disableAutocorrection(true)
         }
+        Spacer()
         
-        List (displayedUsers) { user in
-          if self.friendsViewModel.friends[user.spotifyID] != nil {
-            if user.username.contains(self.searchField) || self.searchField == "" {
-              HStack {
-                Text("\(user.username)")
-                Spacer()
-                
-                Button("add", action:{
-                  print("add is clicked")
-                }).background( Color.black )
-                  .foregroundColor(.white)
-                  .cornerRadius(6)
-              }
-            }
-          }
-        }
+        Text("Click on find instead for now!")
+        Spacer()
+        
+//        List (displayedUsers) { user in
+//          print(user)
+//          if self.friendsViewModel.friends[user.spotifyID] != nil {
+//            if user.username.contains(self.searchField) || self.searchField == "" {
+//              HStack {
+//                Text("\(user.username)")
+//                Spacer()
+//
+//                Button("add", action:{
+//                  print("add is clicked")
+//                }).background( Color.black )
+//                  .foregroundColor(.white)
+//                  .cornerRadius(6)
+//              }
+//            }
+//          }
+//        }
       }
     }
   }
-  
-//  func displayFriends() {
-//    if searchField == "" {
-//      displayedUsers = Array(friendsViewModel.searchedUsers.values)
-//      print("viewModel.searchedUsers is now \(friendsViewModel.friends)")
-//    } else {
-//      displayedUsers = Array(friendsViewModel.searchedUsers.values)
-//    }
-//  }
 }
-
-//struct SearchFriends_Previews: PreviewProvider {
-//    static var previews: some View {
-//        SearchFriends()
-//    }
-//}

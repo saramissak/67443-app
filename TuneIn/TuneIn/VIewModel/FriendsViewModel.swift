@@ -197,6 +197,7 @@ class FriendsViewModel: ObservableObject{
             self.friends[friend1] = document.documentID
           }
         }
+        print("your friends are: ", self.friends)
       }
     }
   } // END OF getFriends

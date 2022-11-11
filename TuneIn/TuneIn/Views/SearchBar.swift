@@ -35,7 +35,7 @@ struct SearchBar: View {
           }
           
           ForEach (displayedUsers) { user in
-            if user.username.contains(searchField) {
+            if user.username.contains(searchField) && user.spotifyID != viewModel.spotifyID {
               HStack {
                 Text("\(user.username)")
                 

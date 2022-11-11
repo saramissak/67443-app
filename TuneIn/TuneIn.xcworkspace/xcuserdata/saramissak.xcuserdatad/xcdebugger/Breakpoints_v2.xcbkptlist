@@ -14,9 +14,9 @@
             filePath = "ViewModel.swift"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "343"
-            endingLineNumber = "343"
-            landmarkName = "likePost(_:_:)"
+            startingLineNumber = "339"
+            endingLineNumber = "339"
+            landmarkName = "getUser(searchString:)"
             landmarkType = "7">
          </BreakpointContent>
       </BreakpointProxy>
@@ -30,10 +30,42 @@
             filePath = "ViewModel.swift"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "127"
-            endingLineNumber = "127"
-            landmarkName = "searchSong(_:)"
+            startingLineNumber = "123"
+            endingLineNumber = "123"
+            landmarkName = "getComments(post:)"
             landmarkType = "7">
+            <Locations>
+               <Location
+                  uuid = "DCB05896-3972-41EF-A579-E7DD5A1D8508 - e511dbc278d4f6a5"
+                  shouldBeEnabled = "No"
+                  ignoreCount = "0"
+                  continueAfterRunningActions = "No"
+                  symbolName = "TuneIn.ViewModel.getComments(post: TuneIn.Post) -&gt; ()"
+                  moduleName = "TuneIn"
+                  usesParentBreakpointCondition = "Yes"
+                  urlString = "file:///Users/saramissak/Desktop/67443/67443-app/TuneIn/ViewModel.swift"
+                  startingColumnNumber = "9223372036854775807"
+                  endingColumnNumber = "9223372036854775807"
+                  startingLineNumber = "123"
+                  endingLineNumber = "123"
+                  offsetFromSymbolStart = "496">
+               </Location>
+               <Location
+                  uuid = "DCB05896-3972-41EF-A579-E7DD5A1D8508 - 87ab64c4ba9f5a2a"
+                  shouldBeEnabled = "No"
+                  ignoreCount = "0"
+                  continueAfterRunningActions = "No"
+                  symbolName = "closure #1 (Swift.Optional&lt;__C.FIRQuerySnapshot&gt;, Swift.Optional&lt;Swift.Error&gt;) -&gt; () in TuneIn.ViewModel.getComments(post: TuneIn.Post) -&gt; ()"
+                  moduleName = "TuneIn"
+                  usesParentBreakpointCondition = "Yes"
+                  urlString = "file:///Users/saramissak/Desktop/67443/67443-app/TuneIn/ViewModel.swift"
+                  startingColumnNumber = "9223372036854775807"
+                  endingColumnNumber = "9223372036854775807"
+                  startingLineNumber = "124"
+                  endingLineNumber = "124"
+                  offsetFromSymbolStart = "112">
+               </Location>
+            </Locations>
          </BreakpointContent>
       </BreakpointProxy>
       <BreakpointProxy
@@ -46,42 +78,10 @@
             filePath = "ViewModel.swift"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "160"
-            endingLineNumber = "160"
-            landmarkName = "makePost(song:caption:)"
+            startingLineNumber = "156"
+            endingLineNumber = "156"
+            landmarkName = "getUserById(_:completionHandler:)"
             landmarkType = "7">
-            <Locations>
-               <Location
-                  uuid = "A380CA9C-D80C-4FF5-916E-233B8E0B87B0 - 21a3d8e81a7aa66"
-                  shouldBeEnabled = "Yes"
-                  ignoreCount = "0"
-                  continueAfterRunningActions = "No"
-                  symbolName = "TuneIn.ViewModel.makePost(song: TuneIn.Song, caption: Swift.String) -&gt; ()"
-                  moduleName = "TuneIn"
-                  usesParentBreakpointCondition = "Yes"
-                  urlString = "file:///Users/saramissak/Desktop/67443/67443-app/TuneIn/ViewModel.swift"
-                  startingColumnNumber = "9223372036854775807"
-                  endingColumnNumber = "9223372036854775807"
-                  startingLineNumber = "160"
-                  endingLineNumber = "160"
-                  offsetFromSymbolStart = "1676">
-               </Location>
-               <Location
-                  uuid = "A380CA9C-D80C-4FF5-916E-233B8E0B87B0 - 21a3d8e81a7aa66"
-                  shouldBeEnabled = "Yes"
-                  ignoreCount = "0"
-                  continueAfterRunningActions = "No"
-                  symbolName = "TuneIn.ViewModel.makePost(song: TuneIn.Song, caption: Swift.String) -&gt; ()"
-                  moduleName = "TuneIn"
-                  usesParentBreakpointCondition = "Yes"
-                  urlString = "file:///Users/saramissak/Desktop/67443/67443-app/TuneIn/ViewModel.swift"
-                  startingColumnNumber = "9223372036854775807"
-                  endingColumnNumber = "9223372036854775807"
-                  startingLineNumber = "160"
-                  endingLineNumber = "160"
-                  offsetFromSymbolStart = "2240">
-               </Location>
-            </Locations>
          </BreakpointContent>
       </BreakpointProxy>
       <BreakpointProxy
@@ -94,9 +94,9 @@
             filePath = "ViewModel.swift"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "204"
-            endingLineNumber = "204"
-            landmarkName = "getSongById(_:_:_:)"
+            startingLineNumber = "200"
+            endingLineNumber = "200"
+            landmarkName = "makePost(song:caption:)"
             landmarkType = "7">
          </BreakpointContent>
       </BreakpointProxy>
@@ -110,9 +110,9 @@
             filePath = "ViewModel.swift"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "197"
-            endingLineNumber = "197"
-            landmarkName = "getSongById(_:_:_:)"
+            startingLineNumber = "193"
+            endingLineNumber = "193"
+            landmarkName = "makePost(song:caption:)"
             landmarkType = "7">
          </BreakpointContent>
       </BreakpointProxy>
@@ -126,9 +126,9 @@
             filePath = "ViewModel.swift"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "169"
-            endingLineNumber = "169"
-            landmarkName = "getSongById(_:_:_:)"
+            startingLineNumber = "165"
+            endingLineNumber = "165"
+            landmarkName = "searchSong(_:)"
             landmarkType = "7">
          </BreakpointContent>
       </BreakpointProxy>
@@ -142,9 +142,9 @@
             filePath = "ViewModel.swift"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "179"
-            endingLineNumber = "179"
-            landmarkName = "getSongById(_:_:_:)"
+            startingLineNumber = "175"
+            endingLineNumber = "175"
+            landmarkName = "searchSong(_:)"
             landmarkType = "7">
          </BreakpointContent>
       </BreakpointProxy>
@@ -158,10 +158,10 @@
             filePath = "ViewModel.swift"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "168"
-            endingLineNumber = "168"
-            landmarkName = "getSongById(_:_:_:)"
-            landmarkType = "7">
+            startingLineNumber = "164"
+            endingLineNumber = "164"
+            landmarkName = "ViewModel"
+            landmarkType = "3">
          </BreakpointContent>
       </BreakpointProxy>
    </Breakpoints>
