@@ -402,7 +402,7 @@ class ViewModel: ObservableObject{
     newComment.id = UUID().uuidString
     newComment.date = NSDate() as Date
     newComment.postID = post.id
-    newComment.userID = self.user.id
+    newComment.userID = self.user.username
     newComment.text = comment
     
     do {
