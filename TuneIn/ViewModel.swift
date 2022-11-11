@@ -97,6 +97,18 @@ class ViewModel: ObservableObject{
         } ?? [:] as! [String : Post]
       }
   }
+  func getLatestUserPostID(userID: String) -> String{
+    let keys = posts
+      .filter{ (key, value) -> Bool in
+        value.userID == userID
+      }
+      .map { (key, value) -> String in key}
+    print("keys: \(keys)")
+    return keys[0]
+    
+    
+    
+  }
   
   func getComments(post: Post) {
     self.comments = []
@@ -162,7 +174,6 @@ class ViewModel: ObservableObject{
           if obj.previewUrl != nil {
             currSong.previewURL = obj.previewUrl
           }
-
           songs.append(currSong)
         }
         

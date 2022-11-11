@@ -95,20 +95,31 @@ struct ProfileBlock : View {
 
 struct ProfileSongOfDay : View {
   @EnvironmentObject var viewModel: ViewModel
+  @State var latestPost = Post()
+  @State var albumImage = UIImage()
   var body: some View {
     VStack(alignment: .leading){
       Text("What I am feeling today:")
         .bold()
       HStack(alignment: .top){
-        Image("drake_album-S")
+        Image(uiImage: albumImage)
           .aspectRatio(contentMode: .fit)
           .frame(width: 100, height: 100)
           .clipped()
         VStack(alignment: .leading){
-          Text("Song Name")
+          Text("\(latestPost.song.songName)")
             .bold()
-          Text("Drake")
+          Text("\(latestPost.song.artist)")
           roundedRectangleText(bodyText: "Sad", TextHex: "#000000", BackgroundHex: "#B9C0FF")
+        }
+      }
+      .task {
+        latestPost = viewModel.posts[viewModel.getLatestUserPostID(userID: viewModel.user.spotifyID)]!
+        print("AlbumURL: \(latestPost.song.albumURL) ")
+        let url = URL(string: latestPost.song.albumURL)
+        let data = try? Data(contentsOf:url!)
+        if let imageData = data {
+          self.albumImage = UIImage(data: imageData)!
         }
       }
       
