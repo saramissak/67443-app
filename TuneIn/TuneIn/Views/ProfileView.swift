@@ -85,7 +85,9 @@ struct ProfileBlock : View {
       }
     VStack{
       NavigationLink(destination: SetBioView(user: user).environmentObject(viewModel), isActive: $showEditBioView){
-        Button(action: {showEditBioView = true}){
+        Button(action: {
+          showEditBioView = true
+        }){
           Text("Change Bio")
         }
       }
@@ -107,6 +109,7 @@ struct ProfileSongOfDay : View {
             .aspectRatio(contentMode: .fit)
             .frame(width: 100, height: 100)
             .clipped()
+            .contentShape(Rectangle()) 
           VStack(alignment: .leading){
             Text("\(latestPost.song.songName)")
               .bold()
