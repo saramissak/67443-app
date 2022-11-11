@@ -12,6 +12,7 @@ import FirebaseDatabase
 import FirebaseFirestoreSwift
 import Spartan
 import SwiftUI
+//import XCTest
 
 class ViewModel: ObservableObject{
   var songMap: [String:Song] = [String:Song]() // map of song objects
@@ -23,6 +24,8 @@ class ViewModel: ObservableObject{
   @Published var username: String = ""
   @Published var songIDsForPosts:[String] = []
   @Published var user: UserInfo = UserInfo()
+  @Published var comments: [Comment] = []
+  @Published var users: [String:UserInfo] = [:]
   typealias Completion = (_ success:Bool) -> Void
   @Published var searchedSongs:  [Song] = []
 
@@ -49,7 +52,6 @@ class ViewModel: ObservableObject{
     self.loggedIn = true
   }
   
-//  var user: UserInfo = UserInfo()
   func getPosts() {
     store.collection("Posts").order(by: "createdAt", descending: true)
       .addSnapshotListener { querySnapshot, error in
@@ -62,9 +64,59 @@ class ViewModel: ObservableObject{
           var key = ""
           key = document.documentID
           dict[key] = try? document.data(as: Post.self)
-//          print(dict[key]!.likes)
         } ?? [:] as! [String : Post]
       }
+  }
+  
+  func getComments(post: Post) {
+    self.comments = []
+    
+    store.collection("Comments").whereField("postID", isEqualTo: post.id)
+      .order(by: "date")
+      .addSnapshotListener { querySnapshot, error in
+        if let error = error {
+          print("Error getting posts: \(error.localizedDescription)")
+          return
+        }
+        self.comments = querySnapshot?.documents.compactMap { document in
+          let comment = try? document.data(as: Comment.self)
+          if self.users[comment!.userID] == nil {
+            self.getUserById(comment!.userID, completionHandler: { (eventList) in
+              print("completion handler is done")
+            })
+          }
+        
+          return comment
+        } ?? []
+        print("here are some commetns", self.comments)
+      }
+  }
+  
+  func getUserById(_ id:String, completionHandler:@escaping (UserInfo)->()) {
+    let _ = store.collection("UserInfo")
+      .whereField("id", isEqualTo: id)
+      .getDocuments() { (querySnapshot, err) in
+      if let err = err {
+        print("Error getting documents: \(err)")
+      } else {
+        for document in querySnapshot!.documents {
+          let data = document.data()
+          var user = UserInfo()
+
+          user.id = document.documentID
+          user.name = data["name"] as? String ?? ""
+          user.profileImage = data["profileImage"] as? String ?? ""
+          user.username = data["username"] as? String ?? ""
+          user.spotifyID = data["spotifyID"] as? String ?? ""
+          
+          self.users[user.id] = user
+          print("in view model on line 113 the user id is: ", user.id)
+          DispatchQueue.main.async(){
+            completionHandler(user)
+          }
+        }
+      }
+    }
   }
   
   func searchSong(_ songName: String) {
@@ -80,7 +132,7 @@ class ViewModel: ObservableObject{
           if obj.previewUrl != nil {
             currSong.previewURL = obj.previewUrl
           }
-          print("got the album image \(currSong.albumURL)")
+
           songs.append(currSong)
         }
         
@@ -102,12 +154,56 @@ class ViewModel: ObservableObject{
     newPost.likes = []
     newPost.moods = []
     newPost.id = UUID().uuidString
+    
+    print("calling getsong by id")
+    self.getSongById(song.id, newPost, newPostRef)
+    print("finished calling getsong by id")
+  }
+  
+  // documentation on get track API endpoint: https://developer.spotify.com/documentation/web-api/reference/#/operations/get-track
+  func getSongById(_ id: String, _ newPost: Post, _ newPostRef: DocumentReference) {
+    var post = newPost
+    var sessionConfiguration = URLSessionConfiguration.default
+    sessionConfiguration.httpAdditionalHeaders = [
+      "Authorization": "Bearer \(Spartan.authorizationToken!)"
+    ]
+    
+    let session = URLSession(configuration: sessionConfiguration)
+    let SpotifyGetTrackURL = "https://api.spotify.com/v1/tracks/\(id)"
+    
+    let getTrackTask = session.dataTask(with: URL(string: SpotifyGetTrackURL)!) { (data, response, error) in
+      guard let data = data else {
+        print("Error: No data to decode")
+        return
+      }
+      
+      // Decode the JSON here
+//      let json = try JSONSerialization.jsonObject(with: data as Data, options: .allowFragments) as! [String:AnyObject]
 
-    do {
-      _ = try newPostRef.setData(from: newPost)
-    } catch let error {
-        print("Error writing city to Firestore: \(error)")
+      guard let json = try? JSONSerialization.jsonObject(with: data as Data, options: .allowFragments) as! [String:AnyObject] else {
+        print("Error: Couldn't decode data into a result")
+        return
+      }
+          
+      if let album = json["album"] as? NSDictionary {
+        if let images = album["images"] as? [NSDictionary] {
+          if let firstImage = images[0] as? NSDictionary {
+            post.song.albumURL = firstImage["url"] as? String ?? ""
+          }
+        }
+      }
+      
+      // Output if everything is working right
+      print("\(post.song.albumURL)")
+      
+      do {
+        _ = try newPostRef.setData(from: post)
+      } catch let error {
+          print("Error writing city to Firestore: \(error)")
+      }
     }
+    
+    getTrackTask.resume()
   }
   
   
@@ -262,6 +358,27 @@ class ViewModel: ObservableObject{
 //            print("Document successfully written!")
 //        }
 //    }
+  }
+  
+  func postComment(docID: String, comment: String, post: Post) {
+    if comment == "" {
+      return
+    }
+    
+    var newComment = Comment()
+    newComment.id = UUID().uuidString
+    newComment.date = NSDate() as Date
+    newComment.postID = post.id
+    newComment.userID = self.user.id
+    newComment.text = comment
+    
+    do {
+      _ = try store.collection("Comments").document(newComment.id).setData(from: newComment)
+      print("updated document \(docID)")
+      self.comments.append(newComment)
+    } catch let error {
+        print("Error writing city to Firestore: \(error)")
+    }
   }
     
   func hexStringToUIColor (hex:String) -> Color {

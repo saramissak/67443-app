@@ -25,13 +25,11 @@ struct HomeFeed: View {
 
           Spacer()
           ForEach(Array(viewModel.posts.keys), id: \.self) { key in
-            PostCard(post: viewModel.posts[key]!, docID: key)
+            PostCard(post: viewModel.posts[key]!, docID: key, displayCommentButton: true)
           }
         }
       }
-    }
-
-
+    }.navigationBarBackButtonHidden(true)
   }
     
     
