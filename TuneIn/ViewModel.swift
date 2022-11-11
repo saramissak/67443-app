@@ -30,14 +30,13 @@ class ViewModel: ObservableObject{
   typealias Completion = (_ success:Bool) -> Void
   @Published var searchedSongs:  [Song] = []
   @Published var spotifyID: String = ""
-  @Published var userExisting = false
 
   func getSelf() {
     
     let getMe = Spartan.getMe(success: { (user) in
           // Do something with the user object
         self.spotifyID = user.id as! String
-        self.user = self.getUser(searchString: self.spotifyID)
+        self.getUser(searchString: self.spotifyID)
     }, failure: { (err) in
       print("cant find spotify ID in spartn", err)
       
@@ -80,6 +79,7 @@ class ViewModel: ObservableObject{
     getSelf()
     getPosts()
     self.loggedIn = true
+    print("USER NOWW:", self.user)
   }
   
   func getPosts() {
@@ -177,7 +177,7 @@ class ViewModel: ObservableObject{
     var newPost = Post()
     let newPostRef = self.store.collection("Posts").document()
     newPost.userID = self.user.username
-    print("here is the username ", self.username)
+    print("here is the username ", self.user.username)
     newPost.song = song
     newPost.caption = caption
     newPost.createdAt = NSDate() as Date
@@ -273,19 +273,21 @@ class ViewModel: ObservableObject{
 //    return user
 //  }
 //
-  func createDefaultUser(_ spotifyID: String) -> UserInfo{
+  func createDefaultUser(_ spotifyID: String){
     // creates a fake user with stella's spotify ID
-    var newUser = UserInfo()
+    self.user = UserInfo()
       let _ = Spartan.getMe(success: { (user) in
-        newUser.username = user.id as! String
-        newUser.spotifyID = spotifyID
-        newUser.profileImage = ""
-        newUser.name = user.displayName ?? ""
-        newUser.bio = ""
+        self.user.username = user.id as! String
+        self.user.spotifyID = spotifyID
+        self.user.profileImage = ""
+        self.user.name = user.displayName ?? ""
+        self.user.bio = ""
         
         let newUserRef = self.store.collection("UserInfo").document()
         do {
-          _ = try newUserRef.setData(from: newUser)
+          _ = try newUserRef.setData(from: self.user)
+          
+          
         } catch let error {
           print("Error writing city to Firestore: \(error)")
         }
@@ -293,12 +295,10 @@ class ViewModel: ObservableObject{
         print("err instead of getting user: ", err)
         
       })
-  
-  return newUser
 }
   
   
-  func getUser(searchString: String) -> UserInfo {
+  func getUser(searchString: String){
     print("Search String: \(searchString)")
     if searchString == "" {
       print("[ALERT] not doing request since search string is just \(searchString)")
@@ -312,7 +312,8 @@ class ViewModel: ObservableObject{
       } else {
         if querySnapshot!.documents.count == 0{
           print("CREATING NEW USER")
-          self.user = self.createDefaultUser(searchString)
+          self.createDefaultUser(searchString)
+          
         } else{
           for document in querySnapshot!.documents {
             let data = document.data()
@@ -321,6 +322,7 @@ class ViewModel: ObservableObject{
             self.user.profileImage = data["profileImage"] as? String ?? ""
             self.user.username = data["username"] as? String ?? ""
             self.user.spotifyID = data["spotifyID"] as? String ?? ""
+            self.user.bio = data["bio"] as? String ?? ""
             print("user.username from db request: \(self.user.username)")
           }
 
@@ -328,7 +330,6 @@ class ViewModel: ObservableObject{
 
       }
     }
-    return self.user
   }
   
   func getUsers(_ searchString: String) {
