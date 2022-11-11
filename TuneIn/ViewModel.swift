@@ -22,6 +22,7 @@ class ViewModel: ObservableObject{
   @Published var searchedUsers: [String:UserInfo] = [:]
   @Published var friends: [String:UserInfo] = [:]
   @Published var username: String = ""
+  @Published var pfp: UIImage = UIImage(imageLiteralResourceName: "John_Smith")
   @Published var songIDsForPosts:[String] = []
   @Published var user: UserInfo = UserInfo()
   @Published var comments: [Comment] = []
@@ -41,6 +42,34 @@ class ViewModel: ObservableObject{
     })
     
   }
+  
+  func getProfilePic() {
+    let getMe = Spartan.getMe(success: { (user) in
+          // Do something with the user object
+        self.username = user.id as! String
+      print("user!!!!! \(user)")
+//        let path2 = "/UserInfo/" + self.username + "/uid"
+////            let path2 = String(format:"/users/%s/uid",username as! String)
+//      print("path2: \(path2)")
+//      let userRef = Database.database().reference().child(path2)
+////          let path = "/users/cdu2620/personal_info/profile_pic"
+//        let path = "/users/" + self.username + "/personal_info/profile_pic"
+//      let pfpRef = Database.database().reference().child(path)
+      let pfp = user.images![0].url!
+//          pfpRef.setValue(pfp)
+//        userRef.setValue(self.username)
+      
+      let url = URL(string: pfp)
+      let data = try? Data(contentsOf:url!)
+      if let imageData = data {
+        self.pfp = UIImage(data: imageData)!
+      }
+      }, failure: { (error) in
+          print(error)
+      })
+  }
+                              
+  
   
   
   @Published var loggedIn: Bool = false

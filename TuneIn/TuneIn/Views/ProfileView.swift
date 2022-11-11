@@ -54,13 +54,16 @@ struct ProfileBlock : View {
   var madePost: Bool
   var body: some View {
     HStack{
-      Image("John_Smith")
+      Image(uiImage: viewModel.pfp)
         .resizable()
         .aspectRatio(contentMode: .fill)
         .frame(width: 150, height: 150)
         .clipShape(Circle())
         .clipped()
         .padding()
+        .task {
+          viewModel.getProfilePic()
+        }
       VStack(alignment: .leading){
         Text("\(user.name)")
         Text("\(spotifyID)")
