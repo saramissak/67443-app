@@ -296,9 +296,9 @@ class ViewModel: ObservableObject{
         self.user.bio = ""
         
         let newUserRef = self.store.collection("UserInfo").document()
+        self.user.id = newUserRef.documentID
         do {
           _ = try newUserRef.setData(from: self.user)
-          
           
         } catch let error {
           print("Error writing city to Firestore: \(error)")
@@ -402,15 +402,8 @@ class ViewModel: ObservableObject{
   }
   
   func setBio(_ bio: String) {
-    store.collection("UserInfo").document(user.id).setData([
-        "bio": bio
-    ]) { err in
-        if let err = err {
-            print("Error writing document: \(err)")
-        } else {
-            print("Document successfully written!")
-        }
-    }
+    print("HERE:  " + user.id)
+    store.collection("UserInfo").document(user.id).updateData(["bio": bio]) 
   }
   
   func likePost(_ id:String, _ likes: [String]) {
@@ -476,5 +469,9 @@ class ViewModel: ObservableObject{
           blue: CGFloat(rgbValue & 0x0000FF) / 255.0
       )
   }
+//  func updateUserName(withUid: String, toNewName: String) {
+//      self.db.collection("users").document(withUid).setData( ["name": toNewName], merge: true)
+//  }
+  
 }
 

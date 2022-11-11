@@ -44,7 +44,12 @@ struct SetBioView: View {
         Section(){
           TextField("Favorite Genre", text: $genres)
         }
-        
+        Button("Save Changes", action: {}
+        )
+        .onTapGesture {
+          print("Button tapped, \(self.bio)")
+          viewModel.setBio(self.bio)
+        }
       }
     }
     .navigationTitle("Edit Account")
