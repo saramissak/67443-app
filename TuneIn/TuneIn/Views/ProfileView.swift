@@ -61,6 +61,9 @@ struct ProfileBlock : View {
         }
       VStack(alignment: .leading){
         Text("\(user.name)")
+          .task {
+            viewModel.getSelf()
+          }
         Text("\(spotifyID)")
           .bold()
         ZStack{
