@@ -13,10 +13,31 @@ struct PostSongView: View {
   @State private var mood: String = ""
   @State var searchField: String = ""
   @State var madePost : Bool = false
-  
+  @State var albumImage = UIImage()
+
   var song: Song
+  var response: String = ""
   var body: some View {
-    return VStack{
+    
+    VStack{
+      Image(uiImage: albumImage)
+        .aspectRatio(contentMode: .fit)
+        .frame(width: 100, height: 100)
+        .clipped()
+        .contentShape(Rectangle())
+        .task {
+          do{
+            let response = try await viewModel.getAlbumURLById(for: song.id)
+            let url = URL(string: response)
+            let data = try? Data(contentsOf:url ?? URL(fileURLWithPath: ""))
+            if let imageData = data {
+              self.albumImage = UIImage(data: imageData)!
+            }
+          } catch{
+            Text("error")
+          }
+
+        }
       Text("\(song.songName)")
       Text("\(song.artist)")
       TextField("caption", text: $caption)
@@ -32,22 +53,10 @@ struct PostSongView: View {
         viewModel.makePost(song:song, caption:caption)
         HomeFeed().environmentObject(viewModel)
       }
-      .navigationBarBackButtonHidden(true)
+      .navigationBarBackButtonHidden(false)
 
-//      .alert(isPresented: $madePost) {
-//        Alert(title: Text("You've posted"), dismissButton: .default(Text("")))
-//      }
-      
-      //      Button("Post", action: {
-      //        viewModel.makePost(song:song, caption:caption)
-      //        self.madePost = true
-      //      })
-    }
+    }.navigationBarTitle("")
+     .navigationBarHidden(true)
   }
   
-  //struct PostSongView_Previews: PreviewProvider {
-  //    static var previews: some View {
-  //        PostSongView()
-  //    }
-  //}
 }

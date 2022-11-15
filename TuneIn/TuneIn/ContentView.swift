@@ -15,7 +15,7 @@ struct ContentView: View {
   //  @State var received = false
   var authorized = true
   var body: some View {
-    
+    Header()
     if viewModel.loggedIn{
       TabView {
         HomeFeed()

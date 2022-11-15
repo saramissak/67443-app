@@ -14,7 +14,6 @@ struct FriendsView: View {
   
   var body: some View {
     return VStack {
-      Text("Tune In").font(.title)
       HStack {
         Spacer()
         Button("find", action:{

@@ -17,7 +17,6 @@ struct ProfileView: View {
     var body: some View {
       NavigationView{
         VStack{
-          Header()
           ScrollView{
             VStack(alignment: .leading){
               ProfileBlock(spotifyID: spotifyID, user: viewModel.user, madePost: false)
@@ -26,8 +25,10 @@ struct ProfileView: View {
                 .environmentObject(viewModel)
             }
           }
-        }
+        } .navigationBarTitle("")
+          .navigationBarHidden(true)
       }
+
       
       
     }
@@ -35,7 +36,7 @@ struct ProfileView: View {
 
 struct Header : View {
   var body : some View {
-    Text("Tune-in")
+    Text("TuneIn")
       .font(.title2)
       .bold()
   }

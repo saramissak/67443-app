@@ -203,6 +203,43 @@ class ViewModel: ObservableObject{
   }
   
   // documentation on get track API endpoint: https://developer.spotify.com/documentation/web-api/reference/#/operations/get-track
+  
+  func getAlbumURLById(for id: String) async throws-> String{
+      
+      var albumURL = ""
+      
+    var sessionConfiguration = URLSessionConfiguration.default
+    sessionConfiguration.httpAdditionalHeaders = [
+      "Authorization": "Bearer \(Spartan.authorizationToken!)"
+    ]
+    
+    let session = URLSession(configuration: sessionConfiguration)
+      
+
+    let SpotifyGetTrackURL = URL(string: "https://api.spotify.com/v1/tracks/\(id)")
+      
+    let (data, response) = try await session.data(for: URLRequest(url: SpotifyGetTrackURL!))
+    let json = try? (JSONSerialization.jsonObject(with: data as Data, options: .allowFragments) as? [String:AnyObject])
+    print("data: ", data)
+    print("json: ", json)
+    if let album = json?["album"] as? NSDictionary {
+      if let images = album["images"] as? [NSDictionary] {
+        if let firstImage = images[0] as? NSDictionary {
+          albumURL = firstImage["url"] as? String ?? ""
+        }
+      }
+    }
+    
+      print("album url now ", albumURL)
+      return albumURL
+    
+  }
+    
+  
+  
+  
+  
+  
   func getSongById(_ id: String, _ newPost: Post, _ newPostRef: DocumentReference) {
     var post = newPost
     var sessionConfiguration = URLSessionConfiguration.default
@@ -218,6 +255,8 @@ class ViewModel: ObservableObject{
         print("Error: No data to decode")
         return
       }
+      
+      
       
       // Decode the JSON here
 //      let json = try JSONSerialization.jsonObject(with: data as Data, options: .allowFragments) as! [String:AnyObject]
