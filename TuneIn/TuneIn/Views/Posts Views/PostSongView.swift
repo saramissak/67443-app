@@ -22,7 +22,7 @@ struct PostSongView: View {
     VStack{
       Image(uiImage: albumImage)
         .aspectRatio(contentMode: .fit)
-        .frame(width: 100, height: 100)
+        .frame(width: 200, height: 200)
         .clipped()
         .contentShape(Rectangle())
         .task {
@@ -53,10 +53,10 @@ struct PostSongView: View {
         viewModel.makePost(song:song, caption:caption)
         HomeFeed().environmentObject(viewModel)
       }
-      .navigationBarBackButtonHidden(false)
 
-    }.navigationBarTitle("")
-     .navigationBarHidden(true)
+
+    }
+     .navigationBarBackButtonHidden(false)
   }
   
 }

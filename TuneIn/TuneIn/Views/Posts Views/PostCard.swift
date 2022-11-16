@@ -16,34 +16,33 @@ struct PostCard: View {
   @State var albumImage = UIImage()
   
   var body: some View {
-    HStack{
-      Text("\(post.userID)")
-      Spacer()
-    }
-      VStack {
-        Image(uiImage: albumImage)
-          .resizable()
-          .aspectRatio(contentMode: .fit)
-          .frame(width: 100, height: 100)
-          .clipped()
-          .contentShape(Rectangle()) 
-          .task {
-            let url = URL(string: post.song.albumURL)
-            let data = try? Data(contentsOf:url ?? URL(fileURLWithPath: ""))
-            if let imageData = data {
-              self.albumImage = UIImage(data: imageData)!
+    VStack{
+      HStack{
+        miniUserInfo(userID:post.userID).environmentObject(viewModel)
+      }
+      VStack(){
+        HStack{
+          Image(uiImage: albumImage)
+            .resizable()
+            .aspectRatio(contentMode: .fit)
+            .frame(width: 150, height: 150)
+            .clipped()
+            .contentShape(Rectangle())
+            .task {
+              let url = URL(string: post.song.albumURL)
+              let data = try? Data(contentsOf:url ?? URL(fileURLWithPath: ""))
+              if let imageData = data {
+                self.albumImage = UIImage(data: imageData)!
+              }
             }
+          VStack{
+            Text("\(post.song.songName)").font(.title2).aspectRatio(contentMode: .fit)
+            Text("By: \(post.song.artist)").font(.body).aspectRatio(contentMode: .fit)
           }
-        HStack {
-          Text("\(post.song.songName)").font(.title).aspectRatio(contentMode: .fit)
-          Spacer()
+          
         }
+        Text("\(post.caption)").font(.caption).aspectRatio(contentMode: .fit)
         HStack {
-          Text("By: \(post.song.artist)")
-          Spacer()
-        }
-        HStack {
-          Text("\(post.caption)")
           Spacer()
           ForEach(post.moods, id:\.self){ mood in
             roundedRectangleText(bodyText: mood, TextHex: "#000000", BackgroundHex: "#FFFFFF")
@@ -80,13 +79,13 @@ struct PostCard: View {
         
         
       }.fixedSize(horizontal: false, vertical: false)
-        .multilineTextAlignment(.center)
-        .padding([.top, .bottom], 5)
-        .padding([.trailing, .leading], 5)
+        .padding([.top, .bottom], 10)
+        .padding([.trailing, .leading], 10)
         .foregroundColor(viewModel.hexStringToUIColor(hex: "#FFFFFF"))
         .background(viewModel.hexStringToUIColor(hex: "#373547"))
         .cornerRadius(8)
-
-    }
+      
+    }.padding([.trailing, .leading], 20)
+  }
   
 }

@@ -37,6 +37,8 @@ class ViewModel: ObservableObject{
           // Do something with the user object
         self.spotifyID = user.id as! String
         self.getUser(searchString: self.spotifyID)
+        self.allUsersToDict()
+      print(self.users)
     }, failure: { (err) in
       print("cant find spotify ID in spartn", err)
       
@@ -330,7 +332,7 @@ class ViewModel: ObservableObject{
       let _ = Spartan.getMe(success: { (user) in
         self.user.username = user.id as! String
         self.user.spotifyID = spotifyID
-        self.user.profileImage = ""
+        self.user.profileImage = user.images![0].url!
         self.user.name = user.displayName ?? ""
         self.user.bio = ""
         
@@ -364,8 +366,8 @@ class ViewModel: ObservableObject{
         if querySnapshot!.documents.count == 0{
           print("CREATING NEW USER")
           self.createDefaultUser(searchString)
-          
-        } else{
+        }
+        else{
           for document in querySnapshot!.documents {
             let data = document.data()
             self.user.id = document.documentID
@@ -405,7 +407,7 @@ class ViewModel: ObservableObject{
           user.spotifyID = data["spotifyID"] as? String ?? ""
           
           print("user.username from db request: \(user.username)")
-          
+          self.users[user.id] = user
           if self.searchedUsers[user.username] == nil {
             self.searchedUsers[user.username] = user
           }
@@ -414,6 +416,31 @@ class ViewModel: ObservableObject{
       }
     }
   }
+  
+  func allUsersToDict() {
+    let _ = store.collection("UserInfo")
+      .getDocuments() { (querySnapshot, err) in
+      if let err = err {
+        print("Error getting documents: \(err)")
+      } else {
+        for document in querySnapshot!.documents {
+          let data = document.data()
+          
+          var user = UserInfo()
+          user.id = document.documentID
+          user.name = data["Name"] as? String ?? ""
+          user.profileImage = data["profileImage"] as? String ?? ""
+          user.username = data["username"] as? String ?? ""
+          user.spotifyID = data["spotifyID"] as? String ?? ""
+
+          self.users[user.username] = user
+          print("just put in user", self.users[user.id])
+        }
+      }
+    }
+  }
+  
+  
   
   func getNotifications() {
     let _ = store.collection("Notifications").getDocuments() { (querySnapshot, err) in
