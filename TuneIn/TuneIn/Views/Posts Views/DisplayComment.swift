@@ -13,19 +13,18 @@ struct DisplayComment: View {
   
   @EnvironmentObject var viewModel: ViewModel
   var body: some View {
-    if viewModel.users[comment.userID] != nil {
-      print("usercid in displaycomment is: ", comment.userID)
-      return HStack{
-        Text("\(viewModel.users[comment.userID]!.username): \(comment.text)")
+    VStack{
+      HStack{
+        miniUserInfo(userID:comment.userID).environmentObject(viewModel)
+      }
+      HStack {
+        Text("\(comment.text)")
         Spacer()
       }
-    } else {
-      print("usercid in displaycomment is line 23: ", comment.userID)
-      return HStack {
-        Text("UserID is: \(comment.userID): \(comment.text)")
-        Spacer()
-      }
-    }
+    }.padding(10)
+      .border(.white,width:0.3)
+      .padding([.trailing,.leading],10)
+
   }
 }
 

@@ -47,26 +47,7 @@ struct ContentView: View {
       Button("Login with Spotify Credentials", action:{
         viewModel.login()
       })
-      //      Button("Login",action:{
-      //        clickedLogin = true
-      //        viewModel.userExists()
-      //        DispatchQueue.main.asyncAfter(deadline: .now()+30){
-      //          if clickedLogin{
-      //            if viewModel.userExisting{
-      //              Button("Login with Spotify Credentials",action:{
-      //                viewModel.login()
-      //              })
-      //            } else{
-      //              NavigationLink(destination: createUserView(), label:{
-      //                Text("Create Account with Spotify Credentials")
-      //              })
-      //            }
-      //          }
-      //        }
-      //      })
-      
-      
-      
+
     }
   }
   

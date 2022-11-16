@@ -15,7 +15,7 @@ struct miniUserInfo: View {
       AsyncImage(url: URL(string: viewModel.users[userID]?.profileImage ?? "")) { image in
           image.resizable()
       } placeholder: {
-        Image(systemName: "person.circle.fill") 
+        Image(systemName: "person.circle.fill") .font(.system(size: 35))
 
       }
       .frame(width: 35, height: 35)

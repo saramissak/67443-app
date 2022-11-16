@@ -11,6 +11,7 @@ struct PostCard: View {
   var post: Post
   var docID: String
   var displayCommentButton: Bool
+  var iconSize = CGFloat(35)
   @EnvironmentObject var viewModel: ViewModel
   @State var viewComment: Bool = false
   @State var albumImage = UIImage()
@@ -36,45 +37,50 @@ struct PostCard: View {
               }
             }
           VStack{
-            Text("\(post.song.songName)").font(.title2).aspectRatio(contentMode: .fit)
-            Text("By: \(post.song.artist)").font(.body).aspectRatio(contentMode: .fit)
-          }
+            VStack{
+              Text("\(post.song.songName)").font(.body).fontWeight(.bold).fixedSize(horizontal: false, vertical: true).frame(maxWidth: .infinity, alignment: .leading)
+              Text("By: \(post.song.artist)").font(.body).fixedSize(horizontal: false, vertical: true).frame(maxWidth: .infinity, alignment: .leading)
+            }.padding([.top,.bottom],10)
+
+            Spacer()
+            HStack {
+              if displayCommentButton {
+                NavigationLink(destination: CommentScreen(post: post, docID: docID).environmentObject(viewModel), isActive: $viewComment, label: {
+                  Image(systemName: "captions.bubble.fill").font(.system(size: iconSize))
+                })
+                .onChange(of: viewComment) { (newValue) in
+                  viewModel.getComments(post:post)
+                }
+                .navigationBarBackButtonHidden(true)
+              }
+              
+              if post.likes.contains(viewModel.user.id) {
+                Button {
+                  //          viewModel.unlikePost(post.id, post.likes)
+                } label: {
+                  Image(systemName: "heart.fill").font(.system(size: iconSize))
+                }
+                
+              } else {
+                Button {
+                  viewModel.likePost(docID, post.likes)
+                } label: {
+                  Image(systemName: "heart").font(.system(size: iconSize))
+                }
+              }
+            }.frame(alignment: .center)
+          }.padding([.leading],10)
           
-        }
-        Text("\(post.caption)").font(.caption).aspectRatio(contentMode: .fit)
+        }.frame(maxWidth: .infinity, alignment: .leading)
+        Spacer()
+        Text("\(post.caption)").font(.system(size:15)).fontWeight(.light).aspectRatio(contentMode: .fit).frame(maxWidth: .infinity, alignment: .leading)
         HStack {
           Spacer()
           ForEach(post.moods, id:\.self){ mood in
             roundedRectangleText(bodyText: mood, TextHex: "#000000", BackgroundHex: "#FFFFFF")
           }
         }
-        HStack {
-          Spacer()
-          if displayCommentButton {
-            NavigationLink(destination: CommentScreen(post: post, docID: docID).environmentObject(viewModel), isActive: $viewComment, label: {
-              Image(systemName: "captions.bubble.fill")
-            })
-            .onChange(of: viewComment) { (newValue) in
-              viewModel.getComments(post:post)
-            }
-            .navigationBarBackButtonHidden(true)
-          }
-          
-          if post.likes.contains(viewModel.user.id) {
-            Button {
-              //          viewModel.unlikePost(post.id, post.likes)
-            } label: {
-              Image(systemName: "heart.fill")
-            }
-            
-          } else {
-            Button {
-              viewModel.likePost(docID, post.likes)
-            } label: {
-              Image(systemName: "heart")
-            }
-          }
-        }
+
         
         
         

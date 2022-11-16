@@ -21,7 +21,7 @@ struct CommentScreen: View {
     })
     
     VStack{
-      PostCard(post: post, docID: docID, displayCommentButton: false).environmentObject(viewModel)
+      PostCard(post: post, docID: docID, displayCommentButton: false).environmentObject(viewModel)//      FullPostView(post:post, docID:docID)
       Spacer()
       ForEach(viewModel.comments) { comment in
         DisplayComment(post: post, comment: comment).environmentObject(viewModel)
@@ -34,7 +34,8 @@ struct CommentScreen: View {
           viewModel.postComment(docID: docID, comment: self.commentString, post: post)
           self.commentString = ""
          })
-      }
+      }.padding([.top,.bottom],10)
+        .padding([.trailing,.leading],10)
     }
   }
 }
