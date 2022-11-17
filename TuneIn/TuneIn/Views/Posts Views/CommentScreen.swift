@@ -12,6 +12,14 @@ struct CommentScreen: View {
   var docID: String
   @State var commentString: String = ""
   @EnvironmentObject var viewModel: ViewModel
+  public var screenWidth: CGFloat {
+      return UIScreen.main.bounds.width
+  }
+
+  // Screen height.
+  public var screenHeight: CGFloat {
+      return UIScreen.main.bounds.height
+  }
   
   var body: some View {
     let binding = Binding<String>(get: {
@@ -21,11 +29,14 @@ struct CommentScreen: View {
     })
     
     VStack{
-      PostCard(post: post, docID: docID, displayCommentButton: false).environmentObject(viewModel)//      FullPostView(post:post, docID:docID)
+      PostCard(post: post, docID: docID, displayCommentButton: false, width: CGFloat(screenWidth - 10), height: CGFloat(screenHeight/4)).environmentObject(viewModel)//      FullPostView(post:post, docID:docID)
       Spacer()
-      ForEach(viewModel.comments) { comment in
-        DisplayComment(post: post, comment: comment).environmentObject(viewModel)
+      ScrollView{
+        ForEach(viewModel.comments) { comment in
+          DisplayComment(post: post, comment: comment).environmentObject(viewModel)
+        }
       }
+      
       Spacer()
       
       HStack{

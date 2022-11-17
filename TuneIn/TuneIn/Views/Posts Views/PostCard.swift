@@ -12,6 +12,8 @@ struct PostCard: View {
   var docID: String
   var displayCommentButton: Bool
   var iconSize = CGFloat(35)
+  var width: CGFloat?
+  var height: CGFloat?
   @EnvironmentObject var viewModel: ViewModel
   @State var viewComment: Bool = false
   @State var albumImage = UIImage()
@@ -90,6 +92,7 @@ struct PostCard: View {
         .foregroundColor(viewModel.hexStringToUIColor(hex: "#FFFFFF"))
         .background(viewModel.hexStringToUIColor(hex: "#373547"))
         .cornerRadius(8)
+        .frame(width: width,height: height)
       
     }.padding([.trailing, .leading], 20)
   }
