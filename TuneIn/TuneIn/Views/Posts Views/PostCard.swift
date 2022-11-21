@@ -58,7 +58,7 @@ struct PostCard: View {
               
               if post.likes.contains(viewModel.user.id) {
                 Button {
-                  //          viewModel.unlikePost(post.id, post.likes)
+                  //viewModel.unlikePost(id: viewModel.user.id, post: post , likes: post.likes)
                 } label: {
                   Image(systemName: "heart.fill").font(.system(size: iconSize))
                 }

@@ -472,6 +472,17 @@ class ViewModel: ObservableObject{
     store.collection("UserInfo").document(user.id).updateData(["bio": bio]) 
   }
   
+  func unlikePost(id: String, post: Post, likes: [String]){
+    // find the post id then navigate to the like
+    print("\(id), \(likes)")
+    var userIds: Set<String> = Set(likes)
+//    let newUserIds = Array( userIds.remove(id))
+//    print("NEW ARRAY \(Array(userIds.remove(id)))")
+    store.collection("Posts").document(post.id).updateData([
+      "likes": Array(arrayLiteral: userIds.remove(id))
+  ])
+  }
+  
   func likePost(_ id:String, _ likes: [String]) {
     var mutableLikes = likes
     print(likes)
