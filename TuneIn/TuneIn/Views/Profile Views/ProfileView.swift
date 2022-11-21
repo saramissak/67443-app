@@ -63,7 +63,7 @@ struct ProfileBlock : View {
       VStack(alignment: .leading){
         Text("\(user.name)")
           .task {
-            viewModel.getSelf()
+            viewModel.getSelf(completionHandler: { (eventList) in })
           }
         Text("\(spotifyID)")
           .bold()

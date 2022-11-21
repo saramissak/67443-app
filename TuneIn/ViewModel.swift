@@ -33,14 +33,16 @@ class ViewModel: ObservableObject{
   @Published var spotifyID: String = ""
   @Published var loggedIn: Bool = false
 
-  func getSelf() {
-    
+  func getSelf(completionHandler:@escaping (String)->()) {
     let getMe = Spartan.getMe(success: { (user) in
-          // Do something with the user object
-        self.spotifyID = user.id as! String
-        self.getUser(searchString: self.spotifyID)
-        self.allUsersToDict()
+      // Do something with the user object
+      self.spotifyID = user.id as! String
+      self.getUser(searchString: self.spotifyID)
+      self.allUsersToDict()
       print(self.users)
+      DispatchQueue.main.async(){
+        completionHandler(user.id as! String)
+      }
     }, failure: { (err) in
       print("cant find spotify ID in spartn", err)
       
@@ -65,15 +67,16 @@ class ViewModel: ObservableObject{
   }
   
   func login(){
-    getSelf()
-    getPosts()
+    getSelf(completionHandler: { (eventList) in
+      self.getPosts()
+    })
     self.loggedIn = true
     print("USER NOWW:", self.user)
   }
   
   func getPosts() {
+    // get my friends posts
     friendsViewModel.getFriends(completionHandler: { (eventList) in
-      print("line 97 completionHandler done", eventList)
       self.store.collection("Posts")
         .whereField("userID", isEqualTo: eventList)
         .addSnapshotListener { querySnapshot, error in
@@ -89,9 +92,27 @@ class ViewModel: ObservableObject{
           } ?? [:] as! [String : Post]
           
           self.posts.merge(friendsPosts) {(_, new)  in new}
-          print("line 106", self.posts)
         }
     })
+    
+    // get my own posts
+    print("my spotify id is:", self.spotifyID)
+    self.store.collection("Posts")
+    .whereField("userID", isEqualTo: self.spotifyID)
+    .addSnapshotListener { querySnapshot, error in
+      if let error = error {
+        print("Error getting posts: \(error.localizedDescription)")
+        return
+      }
+      
+      let friendsPosts = querySnapshot?.documents.reduce(into: [String: Post]()) { (dict, document) in
+        var key = ""
+        key = document.documentID
+        dict[key] = try? document.data(as: Post.self)
+      } ?? [:] as! [String : Post]
+      
+      self.posts.merge(friendsPosts) {(_, new)  in new}
+    }
   }
   
   func getLatestUserPostID(userID: String) -> String{
