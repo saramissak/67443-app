@@ -12,6 +12,10 @@ struct ContentView: View {
   @ObservedObject var friendsViewModel: FriendsViewModel = FriendsViewModel()
   @State var clickedLogin = false
   
+  init() {
+    UITabBar.appearance().backgroundColor = UIColor.black
+  }
+  
   //  @State var received = false
   var authorized = true
   var body: some View {
@@ -40,8 +44,6 @@ struct ContentView: View {
           }
       }
       .environmentObject(viewModel)
-      
-      
     } else{
       //      Text("Welcome to TuneIn")
       Button("Login with Spotify Credentials", action:{

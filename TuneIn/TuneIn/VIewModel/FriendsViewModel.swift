@@ -52,7 +52,6 @@ class FriendsViewModel: ObservableObject{
   } // END OF getUsers
   
   func addFriend(_ username: String) {
-    
     if self.myUserId == ""{
       let _ = Spartan.getMe(success: { (user) in
         self.myUserId = user.id as? String ?? ""
@@ -181,7 +180,21 @@ class FriendsViewModel: ObservableObject{
   } // END OF getFriendRequestFromFireStore
   
   
-  func getFriends() {
+  func getFriends(completionHandler:@escaping (String)->()) -> [String:String] {
+    if self.myUserId == ""{
+      let _ = Spartan.getMe(success: { (user) in
+        self.myUserId = user.id as? String ?? ""
+        self.getFriendsFireStoreCall(completionHandler: completionHandler)
+      }, failure: { (err) in
+        print("err instead: ", err)
+      })
+    } else {
+      self.getFriendsFireStoreCall(completionHandler: completionHandler)
+    }
+    return self.friends
+  } // END OF getFriends
+  
+  func getFriendsFireStoreCall(completionHandler:@escaping (String)->()) {
     let _ = store.collection("Friends").getDocuments() { (querySnapshot, err) in
       if let err = err {
         print("Error getting documents: \(err)")
@@ -191,16 +204,23 @@ class FriendsViewModel: ObservableObject{
           let friend1 = data["friend1"] as? String ?? ""
           let friend2 = data["friend2"] as? String ?? ""
           
-          if friend1 == self.myUserId {
+          if friend1 == self.myUserId && self.friends[friend2] == nil {
             self.friends[friend2] = document.documentID
-          } else if friend2 == self.myUserId {
+            DispatchQueue.main.async(){
+              completionHandler(friend2)
+            }
+          } else if friend2 == self.myUserId && self.friends[friend1] == nil{
             self.friends[friend1] = document.documentID
+            DispatchQueue.main.async(){
+              completionHandler(friend1)
+            }
           }
+          
         }
         print("your friends are: ", self.friends)
       }
     }
-  } // END OF getFriends
+  } // END OF getFriendsFireStoreCall
   
   func removeFriend(_ username:String) {
     let friendUserObj = self.searchedUsers[username]!

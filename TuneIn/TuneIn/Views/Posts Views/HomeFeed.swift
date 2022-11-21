@@ -28,10 +28,11 @@ struct HomeFeed: View {
             }
               
           }
+        let sortedByDate = Array(viewModel.posts.keys).sorted{ return viewModel.posts[$0]!.createdAt > viewModel.posts[$1]!.createdAt}
           ScrollView{
             VStack{
               Spacer()
-              ForEach(Array(viewModel.posts.keys), id: \.self) { key in
+              ForEach(sortedByDate, id: \.self) { key in
                 PostCard(post: viewModel.posts[key]!, docID: key, displayCommentButton: true)
               }
             }
