@@ -18,6 +18,7 @@ class ViewModel: ObservableObject{
   var songMap: [String:Song] = [String:Song]() // map of song objects
   private let ref = Database.database().reference()
   private let store = Firestore.firestore()
+  private let friendsViewModel = FriendsViewModel()
   @Published var posts: [String:Post] = [:]
   @Published var searchedUsers: [String:UserInfo] = [:]
   @Published var friends: [String:UserInfo] = [:]
@@ -30,6 +31,7 @@ class ViewModel: ObservableObject{
   typealias Completion = (_ success:Bool) -> Void
   @Published var searchedSongs:  [Song] = []
   @Published var spotifyID: String = ""
+  @Published var loggedIn: Bool = false
 
   func getSelf() {
     
@@ -47,19 +49,10 @@ class ViewModel: ObservableObject{
   
   func getProfilePic() {
     let getMe = Spartan.getMe(success: { (user) in
-          // Do something with the user object
-        self.username = user.id as! String
+      // Do something with the user object
+      self.username = user.id as! String
       print("user!!!!! \(user)")
-//        let path2 = "/UserInfo/" + self.username + "/uid"
-////            let path2 = String(format:"/users/%s/uid",username as! String)
-//      print("path2: \(path2)")
-//      let userRef = Database.database().reference().child(path2)
-////          let path = "/users/cdu2620/personal_info/profile_pic"
-//        let path = "/users/" + self.username + "/personal_info/profile_pic"
-//      let pfpRef = Database.database().reference().child(path)
       let pfp = user.images![0].url!
-//          pfpRef.setValue(pfp)
-//        userRef.setValue(self.username)
       
       let url = URL(string: pfp)
       let data = try? Data(contentsOf:url!)
@@ -70,12 +63,6 @@ class ViewModel: ObservableObject{
           print(error)
       })
   }
-                              
-  
-  
-  
-  @Published var loggedIn: Bool = false
-
   
   func login(){
     getSelf()
@@ -85,20 +72,28 @@ class ViewModel: ObservableObject{
   }
   
   func getPosts() {
-    store.collection("Posts").order(by: "createdAt", descending: true)
-      .addSnapshotListener { querySnapshot, error in
-        if let error = error {
-          print("Error getting posts: \(error.localizedDescription)")
-          return
+    friendsViewModel.getFriends(completionHandler: { (eventList) in
+      print("line 97 completionHandler done", eventList)
+      self.store.collection("Posts")
+        .whereField("userID", isEqualTo: eventList)
+        .addSnapshotListener { querySnapshot, error in
+          if let error = error {
+            print("Error getting posts: \(error.localizedDescription)")
+            return
+          }
+          
+          let friendsPosts = querySnapshot?.documents.reduce(into: [String: Post]()) { (dict, document) in
+            var key = ""
+            key = document.documentID
+            dict[key] = try? document.data(as: Post.self)
+          } ?? [:] as! [String : Post]
+          
+          self.posts.merge(friendsPosts) {(_, new)  in new}
+          print("line 106", self.posts)
         }
-        
-        self.posts = querySnapshot?.documents.reduce(into: [String: Post]()) { (dict, document) in
-          var key = ""
-          key = document.documentID
-          dict[key] = try? document.data(as: Post.self)
-        } ?? [:] as! [String : Post]
-      }
+    })
   }
+  
   func getLatestUserPostID(userID: String) -> String{
     let keys = posts
       .filter{ (key, value) -> Bool in
@@ -115,7 +110,6 @@ class ViewModel: ObservableObject{
   
   func getComments(post: Post) {
     self.comments = []
-    
     store.collection("Comments").whereField("postID", isEqualTo: post.id)
       .order(by: "date")
       .addSnapshotListener { querySnapshot, error in
@@ -130,7 +124,6 @@ class ViewModel: ObservableObject{
               print("completion handler is done")
             })
           }
-        
           return comment
         } ?? []
         print("here are some commetns", self.comments)
@@ -207,8 +200,7 @@ class ViewModel: ObservableObject{
   // documentation on get track API endpoint: https://developer.spotify.com/documentation/web-api/reference/#/operations/get-track
   
   func getAlbumURLById(for id: String) async throws-> String{
-      
-      var albumURL = ""
+    var albumURL = ""
       
     var sessionConfiguration = URLSessionConfiguration.default
     sessionConfiguration.httpAdditionalHeaders = [
@@ -216,8 +208,6 @@ class ViewModel: ObservableObject{
     ]
     
     let session = URLSession(configuration: sessionConfiguration)
-      
-
     let SpotifyGetTrackURL = URL(string: "https://api.spotify.com/v1/tracks/\(id)")
       
     let (data, response) = try await session.data(for: URLRequest(url: SpotifyGetTrackURL!))
@@ -236,11 +226,6 @@ class ViewModel: ObservableObject{
       return albumURL
     
   }
-    
-  
-  
-  
-  
   
   func getSongById(_ id: String, _ newPost: Post, _ newPostRef: DocumentReference) {
     var post = newPost
@@ -258,11 +243,6 @@ class ViewModel: ObservableObject{
         return
       }
       
-      
-      
-      // Decode the JSON here
-//      let json = try JSONSerialization.jsonObject(with: data as Data, options: .allowFragments) as! [String:AnyObject]
-
       guard let json = try? JSONSerialization.jsonObject(with: data as Data, options: .allowFragments) as! [String:AnyObject] else {
         print("Error: Couldn't decode data into a result")
         return
@@ -440,8 +420,6 @@ class ViewModel: ObservableObject{
     }
   }
   
-  
-  
   func getNotifications() {
     let _ = store.collection("Notifications").getDocuments() { (querySnapshot, err) in
       if let err = err {
@@ -474,24 +452,19 @@ class ViewModel: ObservableObject{
   
   func likePost(_ id:String, _ likes: [String]) {
     var mutableLikes = likes
-    print(likes)
     mutableLikes.append(user.id)
+    
     var postInfo = self.posts[id]!
     postInfo.likes = mutableLikes
     
     do {
       _ = try store.collection("Posts").document(id).setData(from: postInfo)
       print("updated document \(id)")
+      getPosts()
     } catch let error {
         print("Error writing city to Firestore: \(error)")
     }
-//    try store.collection("Posts").document(id).setData(from: postInfo) { err in
-//        if let err = err {
-//            print("Error writing document: \(err)")
-//        } else {
-//            print("Document successfully written!")
-//        }
-//    }
+    
   }
   
   func postComment(docID: String, comment: String, post: Post) {

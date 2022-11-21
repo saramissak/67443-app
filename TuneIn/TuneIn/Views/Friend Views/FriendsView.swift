@@ -18,14 +18,18 @@ struct FriendsView: View {
         Spacer()
         Button("find", action:{
           friendsViewModel.getFriendRequests()
-          friendsViewModel.getFriends()
+          friendsViewModel.getFriends(completionHandler: { (eventList) in
+            print("line 22 completionHandler done")
+          })
           self.findTab = false
         })
           
         Spacer()
         
         Button("friends", action:{
-          friendsViewModel.getFriends()
+          friendsViewModel.getFriends(completionHandler: { (eventList) in
+            print("line 31 completionHandler done")
+          })
           self.findTab = true
         })
         Spacer()
