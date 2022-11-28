@@ -17,6 +17,7 @@ struct SetBioView: View {
   @State private var username: String = ""
   @State private var bio: String = ""
   @State private var genres: String = ""
+  @State private var showingAlert = false
   
   private func editButton(action: @escaping () -> Void) -> some View {
     Button(action: { action() }){
@@ -46,8 +47,11 @@ struct SetBioView: View {
         }
         Button("Save Changes", action: {}
         )
+        .alert("Saved Changes", isPresented: $showingAlert) {
+              Button("OK", role: .cancel) { }
+        }
         .onTapGesture {
-          print("Button tapped, \(self.bio)")
+          showingAlert = true
           viewModel.setBio(self.bio)
         }
       }

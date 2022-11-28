@@ -20,6 +20,7 @@ struct SearchSong: View {
       self.viewModel.searchSong( self.searchField)
       //         viewModel.displayDefaultSongs()
     })
+    
 //    NavigationView{
 //      VStack{
 //        Text("select a song")
@@ -33,6 +34,7 @@ struct SearchSong: View {
 //        .navigationBarHidden(true)
 //        .navigationBarBackButtonHidden(true)
 //    }
+    
     VStack{
       Text("select a song")
       TextField("Search", text:binding)

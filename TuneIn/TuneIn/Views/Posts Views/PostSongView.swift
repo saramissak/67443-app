@@ -14,11 +14,10 @@ struct PostSongView: View {
   @State var searchField: String = ""
   @State var madePost : Bool = false
   @State var albumImage = UIImage()
-
+  
   var song: Song
   var response: String = ""
   var body: some View {
-    
     VStack{
       HStack{
         Image(uiImage: albumImage)
@@ -38,14 +37,17 @@ struct PostSongView: View {
             } catch{
               Text("error")
             }
-
           }
         VStack{
           Text("\(song.songName)").font(.body).fontWeight(.bold).fixedSize(horizontal: false, vertical: true).frame(maxWidth: .infinity, alignment: .leading)
           Text("By: \(song.artist)").font(.body).fixedSize(horizontal: false, vertical: true).frame(maxWidth: .infinity, alignment: .leading)
         }.padding([.top,.bottom],10)
       }
-      TextField("caption", text:$caption).frame(height:200).border(.white,width: 1)
+      
+      TextField("caption", text:$caption)
+        .frame(height:200)
+        .border(.white, width: 1)
+      
       Text("Moods").font(.title2).fontWeight(.bold)
         .fixedSize(horizontal: false, vertical: true)
       // entering moods
