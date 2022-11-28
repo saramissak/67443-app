@@ -75,7 +75,8 @@ struct PostCard: View {
           
         }.frame(maxWidth: .infinity, alignment: .leading)
         Spacer()
-        Text("\(post.caption)").font(.system(size:15)).fontWeight(.light).aspectRatio(contentMode: .fit).frame(maxWidth: .infinity, alignment: .leading)
+        Text("\(post.caption)").font(.system(size:15)).fontWeight(.light)
+          .fixedSize(horizontal: false, vertical: true).lineLimit(nil).aspectRatio(contentMode: .fit).frame(maxWidth: .infinity, alignment: .leading)
         HStack {
           Spacer()
           ForEach(post.moods, id:\.self){ mood in
