@@ -37,8 +37,8 @@ struct SearchBar: View {
           ForEach (displayedUsers) { user in
             if user.username.contains(searchField) && user.spotifyID != viewModel.spotifyID {
               HStack {
-                Text("\(user.username)")
-                
+//                Text("\(user.username)")
+                miniUserInfo(userID:user.username).environmentObject(viewModel)
                 Spacer()
                 if friendsViewModel.receivedFriendRequest[user.spotifyID] != nil { // have received a friend request from them
                   roundedRectangleButton(ButtonText: "accept", Username: user.username, TextHex: "FFFFFF", BackgroundHex: "373547")

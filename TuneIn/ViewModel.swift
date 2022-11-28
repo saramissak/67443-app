@@ -201,7 +201,7 @@ class ViewModel: ObservableObject{
     }
   }
   
-  func makePost(song: Song, caption: String){
+  func makePost(song: Song, caption: String, moods: [String]){
     var newPost = Post()
     let newPostRef = self.store.collection("Posts").document()
     newPost.userID = self.user.username
@@ -210,7 +210,7 @@ class ViewModel: ObservableObject{
     newPost.caption = caption
     newPost.createdAt = NSDate() as Date
     newPost.likes = []
-    newPost.moods = []
+    newPost.moods = moods
     newPost.id = UUID().uuidString
     
     print("calling getsong by id")
@@ -519,6 +519,10 @@ class ViewModel: ObservableObject{
         print("Error writing city to Firestore: \(error)")
     }
   }
+  
+  
+  func addMoodToPost( moodInput: String, postID: String){
+  }
     
   func hexStringToUIColor (hex:String) -> Color {
       var cString:String = hex.trimmingCharacters(in: .whitespacesAndNewlines).uppercased()
@@ -540,6 +544,7 @@ class ViewModel: ObservableObject{
           blue: CGFloat(rgbValue & 0x0000FF) / 255.0
       )
   }
+  
 //  func updateUserName(withUid: String, toNewName: String) {
 //      self.db.collection("users").document(withUid).setData( ["name": toNewName], merge: true)
 //  }
