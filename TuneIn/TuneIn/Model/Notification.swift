@@ -13,18 +13,16 @@ enum NotificationTypes: String, Codable {
    case friendRequest = "Friend Request"
 }
 
-struct Notification: Codable, Identifiable {
-  var id:        String
+struct Notification: Codable {
   var userID:    String
   var otherUser: String // who liked, commented, or sent the request
-  //  var type:      NotificationTypes
-    var type:      String
+//  var type:      NotificationTypes
+  var type:      String
 
   var postID: String // used for a like
   var commentID: String // used for a comment
   
   init() {
-    id = ""
     userID = ""
     otherUser = ""
 //    type = NotificationTypes.like

@@ -513,6 +513,16 @@ class ViewModel: ObservableObject{
     getPosts()
     
     // remove like from notification
+    let dict: [String:Any] = [
+      "userID":  post.userID,
+      "otherUser": user.id,
+      "type": "like",
+      "postID": post.id
+    ]
+    let userRef = store.collection("UserInfo").document(post.userID)
+    userRef.updateData([
+      "notifications": FieldValue.arrayRemove([dict])
+    ])
   }
   
   func likePost(_ post:Post) {
@@ -520,25 +530,15 @@ class ViewModel: ObservableObject{
     postRef.updateData([
       "likes": FieldValue.arrayUnion([user.id])
     ])
-    
-    var likeNotification = Notification()
-    likeNotification.id = UUID().uuidString
-    likeNotification.userID = post.userID
-    likeNotification.otherUser = user.id
-//    likeNotification.type = NotificationTypes.like
-    likeNotification.type = "like"
-    likeNotification.postID = post.id
-//    print("LIKE NOTIF:!!!!! \(likeNotification)")
-    var dict: [String:Any] = [
-      "id": likeNotification.id,
-      "userID": likeNotification.userID,
-      "otherUser":likeNotification.otherUser,
-      "type": likeNotification.type,
-      "postID": likeNotification.postID
+
+    let dict: [String:Any] = [
+      "userID":  post.userID,
+      "otherUser": user.id,
+      "type": "like",
+      "postID": post.id
     ]
     let userRef = store.collection("UserInfo").document(post.userID)
     userRef.updateData([
-      //"notifications": FieldValue.arrayUnion([likeNotification])
       "notifications": FieldValue.arrayUnion([dict])
     ])
     getPosts()
