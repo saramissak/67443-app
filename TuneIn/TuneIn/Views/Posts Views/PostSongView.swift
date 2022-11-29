@@ -6,18 +6,29 @@
 //
 
 import SwiftUI
+import WrappingStack
 
 struct PostSongView: View {
   @EnvironmentObject var viewModel: ViewModel
   @State private var caption: String = ""
   @State private var mood: String = ""
-  @State var searchField: String = ""
+  @State var moodInput: String = ""
   @State var madePost : Bool = false
   @State var albumImage = UIImage()
+  @State var moodList = [String]()
   
   var song: Song
   var response: String = ""
   var body: some View {
+  
+  let binding = Binding<String>(get: {
+    self.moodInput
+  }, set: {
+    self.moodInput = $0
+  })
+    ScrollView{
+      
+
     VStack{
       HStack{
         Image(uiImage: albumImage)
@@ -50,6 +61,22 @@ struct PostSongView: View {
       
       Text("Moods").font(.title2).fontWeight(.bold)
         .fixedSize(horizontal: false, vertical: true)
+      WrappingHStack(id: \.self, alignment: .leading){
+        ForEach(self.moodList, id: \.self) { mood in
+          roundedRectangleText(bodyText: mood, TextHex: "#000000", BackgroundHex: "#FFED95")    .padding(2)
+        }
+      }
+
+      
+      HStack{
+        TextField("Mood", text: $moodInput)
+        Button("Add", action:{
+          self.moodList.append(self.moodInput)
+          self.moodInput = ""
+        })
+      }
+
+      
       // entering moods
       NavigationLink(destination: HomeFeed().environmentObject(viewModel), isActive: $madePost, label: {
         Text("Post")
@@ -61,13 +88,14 @@ struct PostSongView: View {
           .padding()
       })
       .onChange(of: madePost) { (newValue) in
-        viewModel.makePost(song:song, caption:caption)
+        viewModel.makePost(song:song, caption:caption, moods: self.moodList)
         HomeFeed().environmentObject(viewModel)
       }
 
 
     }
      .navigationBarBackButtonHidden(false)
+    }
   }
   
 }

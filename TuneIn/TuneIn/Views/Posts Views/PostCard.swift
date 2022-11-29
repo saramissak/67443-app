@@ -6,6 +6,8 @@
 //
 
 import SwiftUI
+import WrappingStack
+
 
 struct PostCard: View {
   var post: Post
@@ -75,14 +77,14 @@ struct PostCard: View {
           
         }.frame(maxWidth: .infinity, alignment: .leading)
         Spacer()
-        Text("\(post.caption)").font(.system(size:15)).fontWeight(.light)
-          .fixedSize(horizontal: false, vertical: true).lineLimit(nil).aspectRatio(contentMode: .fit).frame(maxWidth: .infinity, alignment: .leading)
-        HStack {
-          Spacer()
-          ForEach(post.moods, id:\.self){ mood in
-            roundedRectangleText(bodyText: mood, TextHex: "#000000", BackgroundHex: "#FFFFFF")
+        WrappingHStack(id: \.self, alignment: .leading){
+          ForEach(post.moods, id: \.self) { mood in
+            roundedRectangleText(bodyText: mood, TextHex: "#000000", BackgroundHex: "#FFED95")    .padding(2)
           }
         }
+        Text("\(post.caption)").font(.system(size:15)).fontWeight(.light)
+          .fixedSize(horizontal: false, vertical: true).lineLimit(nil).aspectRatio(contentMode: .fit).frame(maxWidth: .infinity, alignment: .leading)
+
 
         
         

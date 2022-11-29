@@ -115,6 +115,28 @@ class ViewModel: ObservableObject{
     }
   }
   
+  func hasPostedSongOfDay() -> Bool{
+    let date = Date()
+    let dateFormatter = DateFormatter()
+     
+    dateFormatter.dateFormat = "dd.MM.yyyy"
+    let currDate = dateFormatter.string(from: date)
+    print(currDate)
+    
+    var filtered = posts
+      .filter{ (key, value) -> Bool in
+        value.userID == self.user.username
+      }
+    
+    filtered = filtered.filter{ (key, value) -> Bool in
+        dateFormatter.string(from: value.createdAt) == currDate
+    }
+    print("filtered: \(filtered)")
+    
+    return filtered.count > 0
+
+  }
+  
   func getLatestUserPostID(userID: String) -> String{
     let keys = posts
       .filter{ (key, value) -> Bool in
@@ -201,7 +223,7 @@ class ViewModel: ObservableObject{
     }
   }
   
-  func makePost(song: Song, caption: String){
+  func makePost(song: Song, caption: String, moods: [String]){
     var newPost = Post()
     let newPostRef = self.store.collection("Posts").document()
     newPost.userID = self.user.username
@@ -210,7 +232,7 @@ class ViewModel: ObservableObject{
     newPost.caption = caption
     newPost.createdAt = NSDate() as Date
     newPost.likes = []
-    newPost.moods = []
+    newPost.moods = moods
     newPost.id = newPostRef.documentID
     
     print("calling getsong by id")
@@ -539,6 +561,10 @@ class ViewModel: ObservableObject{
         print("Error writing city to Firestore: \(error)")
     }
   }
+  
+  
+  func addMoodToPost( moodInput: String, postID: String){
+  }
     
   func hexStringToUIColor (hex:String) -> Color {
       var cString:String = hex.trimmingCharacters(in: .whitespacesAndNewlines).uppercased()
@@ -560,6 +586,7 @@ class ViewModel: ObservableObject{
           blue: CGFloat(rgbValue & 0x0000FF) / 255.0
       )
   }
+  
 //  func updateUserName(withUid: String, toNewName: String) {
 //      self.db.collection("users").document(withUid).setData( ["name": toNewName], merge: true)
 //  }

@@ -21,19 +21,6 @@ struct SearchSong: View {
       //         viewModel.displayDefaultSongs()
     })
     
-//    NavigationView{
-//      VStack{
-//        Text("select a song")
-//        TextField("Search", text:binding)
-//        List(viewModel.searchedSongs){ song in
-//          NavigationLink(destination: PostSongView(song:song)){
-//            SongRow(song:song)
-//          }
-//        }
-//      } .navigationBarTitle("")
-//        .navigationBarHidden(true)
-//        .navigationBarBackButtonHidden(true)
-//    }
     
     VStack{
       Text("select a song")
