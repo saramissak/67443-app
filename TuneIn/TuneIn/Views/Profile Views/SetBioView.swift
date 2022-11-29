@@ -53,7 +53,7 @@ struct SetBioView: View {
         }
         .onTapGesture {
           showingAlert = true
-          viewModel.editAccount(self.bio)
+          viewModel.editAccount(bio:self.bio, name: self.name)
         }
       }
     }

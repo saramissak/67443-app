@@ -488,7 +488,7 @@ class ViewModel: ObservableObject{
     }
   }
   
-  func editAccount(_ bio: String? = nil, name: String? = nil, username: String? = nil) {
+  func editAccount(bio: String? = nil, name: String? = nil, username: String? = nil) {
     print("HERE:  " + user.id)
     if bio != nil {
       store.collection("UserInfo").document(user.id).updateData(["bio": bio!])
