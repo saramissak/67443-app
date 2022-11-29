@@ -37,7 +37,6 @@
 		B1C0CA4D29142C6700445D87 /* FirebaseStorageCombine-Community in Frameworks */ = {isa = PBXBuildFile; productRef = B1C0CA4C29142C6700445D87 /* FirebaseStorageCombine-Community */; };
 		B1C0CA532914AD3500445D87 /* HomeFeed.swift in Sources */ = {isa = PBXBuildFile; fileRef = B1C0CA522914AD3500445D87 /* HomeFeed.swift */; };
 		B1C0CA552914AE9700445D87 /* ViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = B1C0CA542914AE9700445D87 /* ViewModel.swift */; };
-		B1EEBB55292C048F0048AC46 /* GoogleService-Info.plist in Resources */ = {isa = PBXBuildFile; fileRef = B1EEBB54292C048F0048AC46 /* GoogleService-Info.plist */; };
 		D34D47B728F9DB6E00224758 /* TuneInApp.swift in Sources */ = {isa = PBXBuildFile; fileRef = D34D47B628F9DB6E00224758 /* TuneInApp.swift */; };
 		D34D47B928F9DB6E00224758 /* ContentView.swift in Sources */ = {isa = PBXBuildFile; fileRef = D34D47B828F9DB6E00224758 /* ContentView.swift */; };
 		D34D47BB28F9DB7000224758 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = D34D47BA28F9DB7000224758 /* Assets.xcassets */; };
@@ -47,8 +46,9 @@
 		D34D47D028F9E8BF00224758 /* UserInfo.swift in Sources */ = {isa = PBXBuildFile; fileRef = D34D47CF28F9E8BF00224758 /* UserInfo.swift */; };
 		D34D47D228F9E8FA00224758 /* Notification.swift in Sources */ = {isa = PBXBuildFile; fileRef = D34D47D128F9E8FA00224758 /* Notification.swift */; };
 		D39673F929159B090073716E /* PostCard.swift in Sources */ = {isa = PBXBuildFile; fileRef = D39673F829159B090073716E /* PostCard.swift */; };
-		D3F0F036291980CA004DA45B /* SearchBar.swift in Sources */ = {isa = PBXBuildFile; fileRef = D3F0F035291980CA004DA45B /* SearchBar.swift */; };
-		D3F0F03829199CBB004DA45B /* SearchFriends.swift in Sources */ = {isa = PBXBuildFile; fileRef = D3F0F03729199CBB004DA45B /* SearchFriends.swift */; };
+		D39B8BF32936589C006C62A4 /* GoogleService-Info.plist in Resources */ = {isa = PBXBuildFile; fileRef = D39B8BF22936589C006C62A4 /* GoogleService-Info.plist */; };
+		D39B8BF529365BEE006C62A4 /* FindTab.swift in Sources */ = {isa = PBXBuildFile; fileRef = D39B8BF429365BEE006C62A4 /* FindTab.swift */; };
+		D39B8BF729365C14006C62A4 /* FriendsTab.swift in Sources */ = {isa = PBXBuildFile; fileRef = D39B8BF629365C14006C62A4 /* FriendsTab.swift */; };
 		D3F0F03A291A1AA1004DA45B /* FriendsViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = D3F0F039291A1AA1004DA45B /* FriendsViewModel.swift */; };
 		D3F0F077291CB80C004DA45B /* SetBioView.swift in Sources */ = {isa = PBXBuildFile; fileRef = D3F0F076291CB80C004DA45B /* SetBioView.swift */; };
 		D3F0F093291DB905004DA45B /* CommentScreen.swift in Sources */ = {isa = PBXBuildFile; fileRef = D3F0F092291DB905004DA45B /* CommentScreen.swift */; };
@@ -71,7 +71,6 @@
 		B1C0CA522914AD3500445D87 /* HomeFeed.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; name = HomeFeed.swift; path = "TuneIn/Views/Posts Views/HomeFeed.swift"; sourceTree = SOURCE_ROOT; };
 		B1C0CA542914AE9700445D87 /* ViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ViewModel.swift; sourceTree = SOURCE_ROOT; };
 		B1EA827B29135D2200FAF2C2 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
-		B1EEBB54292C048F0048AC46 /* GoogleService-Info.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; name = "GoogleService-Info.plist"; path = "../../../../../Downloads/GoogleService-Info.plist"; sourceTree = "<group>"; };
 		D34D47B328F9DB6E00224758 /* TuneIn.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = TuneIn.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		D34D47B628F9DB6E00224758 /* TuneInApp.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TuneInApp.swift; sourceTree = "<group>"; };
 		D34D47B828F9DB6E00224758 /* ContentView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ContentView.swift; sourceTree = "<group>"; };
@@ -82,8 +81,9 @@
 		D34D47CF28F9E8BF00224758 /* UserInfo.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UserInfo.swift; sourceTree = "<group>"; };
 		D34D47D128F9E8FA00224758 /* Notification.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Notification.swift; sourceTree = "<group>"; };
 		D39673F829159B090073716E /* PostCard.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PostCard.swift; sourceTree = "<group>"; };
-		D3F0F035291980CA004DA45B /* SearchBar.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SearchBar.swift; sourceTree = "<group>"; };
-		D3F0F03729199CBB004DA45B /* SearchFriends.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SearchFriends.swift; sourceTree = "<group>"; };
+		D39B8BF22936589C006C62A4 /* GoogleService-Info.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; name = "GoogleService-Info.plist"; path = "../../../GoogleService-Info.plist"; sourceTree = "<group>"; };
+		D39B8BF429365BEE006C62A4 /* FindTab.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FindTab.swift; sourceTree = "<group>"; };
+		D39B8BF629365C14006C62A4 /* FriendsTab.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FriendsTab.swift; sourceTree = "<group>"; };
 		D3F0F039291A1AA1004DA45B /* FriendsViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FriendsViewModel.swift; sourceTree = "<group>"; };
 		D3F0F076291CB80C004DA45B /* SetBioView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SetBioView.swift; sourceTree = "<group>"; };
 		D3F0F092291DB905004DA45B /* CommentScreen.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CommentScreen.swift; sourceTree = "<group>"; };
@@ -166,9 +166,9 @@
 		B17D75DC29236A4F00A14EF7 /* Friend Views */ = {
 			isa = PBXGroup;
 			children = (
-				D3F0F03729199CBB004DA45B /* SearchFriends.swift */,
+				D39B8BF629365C14006C62A4 /* FriendsTab.swift */,
 				B10E3CAD291976FC0090F9C7 /* FriendsView.swift */,
-				D3F0F035291980CA004DA45B /* SearchBar.swift */,
+				D39B8BF429365BEE006C62A4 /* FindTab.swift */,
 			);
 			path = "Friend Views";
 			sourceTree = "<group>";
@@ -204,7 +204,7 @@
 				D34D47BC28F9DB7000224758 /* Preview Content */,
 				B149D108291347350056509D /* AppDelegate.swift */,
 				B149D11429134C2A0056509D /* SpotifyiOS.framework */,
-				B1EEBB54292C048F0048AC46 /* GoogleService-Info.plist */,
+				D39B8BF22936589C006C62A4 /* GoogleService-Info.plist */,
 				B1EA827B29135D2200FAF2C2 /* Info.plist */,
 			);
 			path = TuneIn;
@@ -224,8 +224,8 @@
 				B17D75DC29236A4F00A14EF7 /* Friend Views */,
 				B17D75DB2923691500A14EF7 /* Profile Views */,
 				B17D75DA292368A000A14EF7 /* Posts Views */,
-				B10E3CAE291976FC0090F9C7 /* NotificationsView.swift */,
 				B1432027291DEADC0011FF22 /* createUserView.swift */,
+				D39B8BF929369DB7006C62A4 /* Notifications Views */,
 			);
 			path = Views;
 			sourceTree = "<group>";
@@ -248,6 +248,14 @@
 				D3F0F039291A1AA1004DA45B /* FriendsViewModel.swift */,
 			);
 			path = VIewModel;
+			sourceTree = "<group>";
+		};
+		D39B8BF929369DB7006C62A4 /* Notifications Views */ = {
+			isa = PBXGroup;
+			children = (
+				B10E3CAE291976FC0090F9C7 /* NotificationsView.swift */,
+			);
+			path = "Notifications Views";
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -334,8 +342,8 @@
 			buildActionMask = 2147483647;
 			files = (
 				D34D47BE28F9DB7000224758 /* Preview Assets.xcassets in Resources */,
+				D39B8BF32936589C006C62A4 /* GoogleService-Info.plist in Resources */,
 				D34D47BB28F9DB7000224758 /* Assets.xcassets in Resources */,
-				B1EEBB55292C048F0048AC46 /* GoogleService-Info.plist in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -392,7 +400,6 @@
 				B1432028291DEADC0011FF22 /* createUserView.swift in Sources */,
 				B1AC67BA291C42A300477A0D /* PostSongView.swift in Sources */,
 				B1C0CA552914AE9700445D87 /* ViewModel.swift in Sources */,
-				D3F0F03829199CBB004DA45B /* SearchFriends.swift in Sources */,
 				D34D47C828F9DC3600224758 /* Post.swift in Sources */,
 				D34D47D228F9E8FA00224758 /* Notification.swift in Sources */,
 				D34D47B928F9DB6E00224758 /* ContentView.swift in Sources */,
@@ -401,8 +408,8 @@
 				B149D109291347350056509D /* AppDelegate.swift in Sources */,
 				D3F0F03A291A1AA1004DA45B /* FriendsViewModel.swift in Sources */,
 				D3F0F093291DB905004DA45B /* CommentScreen.swift in Sources */,
-				D3F0F036291980CA004DA45B /* SearchBar.swift in Sources */,
 				D34D47D028F9E8BF00224758 /* UserInfo.swift in Sources */,
+				D39B8BF729365C14006C62A4 /* FriendsTab.swift in Sources */,
 				D3F0F077291CB80C004DA45B /* SetBioView.swift in Sources */,
 				B1C0CA532914AD3500445D87 /* HomeFeed.swift in Sources */,
 				B10E3CB2291976FC0090F9C7 /* NotificationsView.swift in Sources */,
@@ -411,6 +418,7 @@
 				B1AC67B6291C33F500477A0D /* SearchSong.swift in Sources */,
 				B100EE8C2924540E001EAF1C /* miniUserInfo.swift in Sources */,
 				B10E3CB3291976FC0090F9C7 /* ProfileView.swift in Sources */,
+				D39B8BF529365BEE006C62A4 /* FindTab.swift in Sources */,
 				D39673F929159B090073716E /* PostCard.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -542,7 +550,7 @@
 				CODE_SIGN_STYLE = Automatic;
 				CURRENT_PROJECT_VERSION = 1;
 				DEVELOPMENT_ASSET_PATHS = "\"TuneIn/Preview Content\"";
-				DEVELOPMENT_TEAM = 2VHAH62T69;
+				DEVELOPMENT_TEAM = XB2X2SZTFC;
 				ENABLE_PREVIEWS = YES;
 				EXCLUDED_ARCHS = "";
 				"EXCLUDED_ARCHS[sdk=iphonesimulator*]" = arm64;
@@ -565,7 +573,7 @@
 				);
 				MARKETING_VERSION = 1.0;
 				OTHER_LDFLAGS = "-ObjC";
-				PRODUCT_BUNDLE_IDENTIFIER = "-43-TuneIn";
+				PRODUCT_BUNDLE_IDENTIFIER = "TuneIn-sm";
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				PROVISIONING_PROFILE_SPECIFIER = "";
 				SWIFT_EMIT_LOC_STRINGS = YES;
@@ -608,7 +616,7 @@
 				MARKETING_VERSION = 1.0;
 				ONLY_ACTIVE_ARCH = NO;
 				OTHER_LDFLAGS = "-ObjC";
-				PRODUCT_BUNDLE_IDENTIFIER = "TuneIn-sm2";
+				PRODUCT_BUNDLE_IDENTIFIER = "TuneIn-sm";
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				PROVISIONING_PROFILE_SPECIFIER = "";
 				SWIFT_EMIT_LOC_STRINGS = YES;
