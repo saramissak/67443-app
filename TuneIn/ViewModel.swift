@@ -359,7 +359,7 @@ class ViewModel: ObservableObject{
         self.user.name = user.displayName ?? ""
         self.user.bio = ""
         
-        let newUserRef = self.store.collection("UserInfo").document()
+        let newUserRef = self.store.collection("UserInfo").document(spotifyID)
         self.user.id = newUserRef.documentID
         do {
           _ = try newUserRef.setData(from: self.user)
