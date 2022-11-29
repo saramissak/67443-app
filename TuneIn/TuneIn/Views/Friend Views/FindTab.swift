@@ -37,26 +37,25 @@ struct FindTab: View {
           ForEach (displayedUsers) { user in
             if user.username.contains(searchField) && user.spotifyID != viewModel.spotifyID {
               HStack {
-//                Text("\(user.username)")
                 miniUserInfo(userID:user.username).environmentObject(viewModel)
                 Spacer()
                 if friendsViewModel.receivedFriendRequest[user.spotifyID] != nil { // have received a friend request from them
-                  roundedRectangleButton(ButtonText: "accept", Username: user.username, TextHex: "FFFFFF", BackgroundHex: "373547")
+                  roundedRectangleButton(ButtonText: "accept", UserID: user.id, TextHex: "FFFFFF", BackgroundHex: "373547")
                     .environmentObject(viewModel)
                     .environmentObject(friendsViewModel)
-                  roundedRectangleButton(ButtonText: "decline", Username: user.username, TextHex: "FFFFFF", BackgroundHex: "373547")
+                  roundedRectangleButton(ButtonText: "decline", UserID: user.id, TextHex: "FFFFFF", BackgroundHex: "373547")
                     .environmentObject(viewModel)
                     .environmentObject(friendsViewModel)
                 } else if friendsViewModel.sentFriendRequest[user.spotifyID] != nil {
-                  roundedRectangleButton(ButtonText: "requested", Username: user.username, TextHex: "FFFFFF", BackgroundHex: "373547")
+                  roundedRectangleButton(ButtonText: "requested", UserID: user.id, TextHex: "FFFFFF", BackgroundHex: "373547")
                     .environmentObject(viewModel)
                     .environmentObject(friendsViewModel)
                 } else if friendsViewModel.friends[user.spotifyID] != nil {
-                  roundedRectangleButton(ButtonText: "remove", Username: user.username, TextHex: "FFFFFF", BackgroundHex: "373547")
+                  roundedRectangleButton(ButtonText: "remove", UserID: user.id, TextHex: "FFFFFF", BackgroundHex: "373547")
                     .environmentObject(viewModel)
                     .environmentObject(friendsViewModel)
                 } else {
-                  roundedRectangleButton(ButtonText: "add", Username: user.username, TextHex: "FFFFFF", BackgroundHex: "373547")
+                  roundedRectangleButton(ButtonText: "add",  UserID: user.id, TextHex: "FFFFFF", BackgroundHex: "373547")
                     .environmentObject(viewModel)
                     .environmentObject(friendsViewModel)
                 }
@@ -84,7 +83,7 @@ struct roundedRectangleButton : View {
   @EnvironmentObject var friendsViewModel: FriendsViewModel
   @EnvironmentObject var viewModel: ViewModel
   var ButtonText: String
-  var Username: String
+  var UserID: String
   var TextHex: String
   var BackgroundHex: String
   var alignment: TextAlignment? = .center
@@ -94,15 +93,15 @@ struct roundedRectangleButton : View {
     Button(ButtonText, action:{
       switch ButtonText {
       case "add":
-        friendsViewModel.addFriend(Username)
+        friendsViewModel.addFriend(UserID)
       case "accept":
-        friendsViewModel.acceptFriend(Username)
+        friendsViewModel.acceptFriend(UserID)
       case "decline":
-        friendsViewModel.removeFriendRequest(Username)
+        friendsViewModel.removeFriendRequest(UserID)
       case "requested":
         print("already sent a friend requst")
       case "remove":
-        friendsViewModel.removeFriend(Username)
+        friendsViewModel.removeFriend(UserID)
       default:
         print("\(ButtonText) is not a valid Buttontext")
       }

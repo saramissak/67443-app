@@ -35,15 +35,9 @@ struct FriendsTab: View {
           miniUserInfo(userID: userID).environmentObject(viewModel)
           Spacer()
           
-          Button("remove", action:{
-            friendsViewModel.removeFriendById(userID)
-          })
-          .fixedSize(horizontal: false, vertical: true)
-          .padding([.top, .bottom], 5)
-          .padding([.trailing, .leading], 20)
-          .foregroundColor(viewModel.hexStringToUIColor(hex: "FFFFFF"))
-          .background(viewModel.hexStringToUIColor(hex: "373547"))
-          .cornerRadius(8)
+          roundedRectangleButton(ButtonText: "remove", UserID: userID, TextHex: "FFFFFF", BackgroundHex: "373547")
+            .environmentObject(viewModel)
+            .environmentObject(friendsViewModel)
         }
       }
       Spacer()

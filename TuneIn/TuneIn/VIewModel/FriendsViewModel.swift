@@ -43,32 +43,31 @@ class FriendsViewModel: ObservableObject{
           user.username = data["username"] as? String ?? ""
           user.spotifyID = data["spotifyID"] as? String ?? ""
                     
-          if self.searchedUsers[user.username] == nil {
-            self.searchedUsers[user.username] = user
+          if self.searchedUsers[user.id] == nil {
+            self.searchedUsers[user.id] = user
           }
         }
       }
     }
   } // END OF getUsers
   
-  func addFriend(_ username: String) {
+  func addFriend(_ userID: String) {
     if self.myUserId == ""{
       let _ = Spartan.getMe(success: { (user) in
         self.myUserId = user.id as? String ?? ""
-        self.addFriendInFirestore(username)
+        self.addFriendInFirestore(userID)
       }, failure: { (err) in
         print("err instead: ", err)
       })
     } else {
-      self.addFriendInFirestore(username)
+      self.addFriendInFirestore(userID)
     }
     self.getFriendRequestFromFireStore()
   }  // END OF addFriend
   
-  func addFriendInFirestore(_ username:String) {
+  func addFriendInFirestore(_ userID:String) {
     let senderUserId = self.myUserId
-    let receiverUserObj = self.searchedUsers[username] ?? UserInfo()
-    let receiverUserId = receiverUserObj.spotifyID
+    let receiverUserId = userID
     
     if self.sentFriendRequest[receiverUserId] != nil {
       return
@@ -93,30 +92,29 @@ class FriendsViewModel: ObservableObject{
     }
   } // END OF addFriendInFirestore
   
-  func acceptFriend(_ username: String) {
+  func acceptFriend(_ userID: String) {
     if self.myUserId == "" {
       let _ = Spartan.getMe(success: { (user) in
         self.myUserId = user.id as? String ?? ""
-        self.acceptFriendInFireStore(username)
+        self.acceptFriendInFireStore(userID)
       }, failure: { (err) in
         print("err instead: ", err)
       })
     } else {
-      self.acceptFriendInFireStore(username)
+      self.acceptFriendInFireStore(userID)
     }
   } // END OF acceptFriend
   
-  func acceptFriendInFireStore(_ username:String) {
+  func acceptFriendInFireStore(_ userID:String) {
     let friend1 = self.myUserId
-    let friend2UserObj = self.searchedUsers[username]!
-    let friend2 = friend2UserObj.spotifyID
+    let friend2 = userID
     
     if friend1 != "" && friend2 != "" {
       do {
         let friends = Friends(friend1: friend1, friend2: friend2)
         _ = try self.store.collection("Friends").addDocument(from: friends)
         self.friends[friend2] = ""
-        self.removeFriendRequest(username)
+        self.removeFriendRequest(userID)
       } catch {
         print("Unable to accept a friend \(error.localizedDescription)")
       }
@@ -124,9 +122,8 @@ class FriendsViewModel: ObservableObject{
 //    self.removeFriendRequest(username)
   } // END OF acceptFriendInFireStore
   
-  func removeFriendRequest(_ username:String) {
-    let friend2UserObj = self.searchedUsers[username]!
-    let user = friend2UserObj.spotifyID
+  func removeFriendRequest(_ userID:String) {
+    let user = userID
     
     if user != "" {
       let friendRequestDocId = self.receivedFriendRequest[user]!
@@ -139,6 +136,15 @@ class FriendsViewModel: ObservableObject{
       }
     }
     self.receivedFriendRequest.removeValue(forKey: user)
+    let dict: [String:Any] = [
+      "otherUser": user,
+      "userID": self.myUserId,
+      "type": "friend request",
+    ]
+    let userRef = store.collection("UserInfo").document(self.myUserId)
+    userRef.updateData([
+      "notifications": FieldValue.arrayRemove([dict])
+    ])
   } // END OF removeFriendRequest
   
   func getFriendRequests() {
@@ -164,7 +170,6 @@ class FriendsViewModel: ObservableObject{
           for document in querySnapshot!.documents {
             let data = document.data()
             let sender = data["requestSender"] as? String ?? ""
-//            let receiver = data["requestReceiver"] as? String ?? ""
             
             self.receivedFriendRequest[sender] = document.documentID
           }
@@ -178,9 +183,7 @@ class FriendsViewModel: ObservableObject{
         } else {
           for document in querySnapshot!.documents {
             let data = document.data()
-//            let sender = data["requestSender"] as? String ?? ""
             let receiver = data["requestReceiver"] as? String ?? ""
-            
 
             self.sentFriendRequest[receiver] = document.documentID
           }
@@ -231,9 +234,8 @@ class FriendsViewModel: ObservableObject{
     }
   } // END OF getFriendsFireStoreCall
   
-  func removeFriend(_ username:String) {
-    let friendUserObj = self.searchedUsers[username]!
-    let friend = friendUserObj.spotifyID
+  func removeFriend(_ userID:String) {
+    let friend = userID
     
     if self.friends[friend] != "" {
       store.collection("Friends").document(self.friends[friend]!).delete { error in
@@ -250,7 +252,6 @@ class FriendsViewModel: ObservableObject{
           print("Error getting documents: \(err)")
         } else {
           for document in querySnapshot!.documents {
-            let data = document.data()
             self.store.collection("Friends").document(document.documentID).delete { error in
               if let error = error {
                 print("Unable to remove friendRequets: \(error.localizedDescription)")
@@ -262,35 +263,5 @@ class FriendsViewModel: ObservableObject{
     }
     self.friends.removeValue(forKey: friend)
   } // END OF removeFriend
-  
-  func removeFriendById(_ friend:String) {
-    if self.friends[friend] != "" {
-      store.collection("Friends").document(self.friends[friend]!).delete { error in
-        if let error = error {
-          print("Unable to remove friendRequets: \(error.localizedDescription)")
-        }
-      }
-    } else {
-      let _ = store.collection("Friends")
-        .whereField("requestSender", in: [friend, self.myUserId])
-        .whereField("requestReceiver", in: [friend, self.myUserId])
-        .getDocuments() { (querySnapshot, err) in
-        if let err = err {
-          print("Error getting documents: \(err)")
-        } else {
-          for document in querySnapshot!.documents {
-            let data = document.data()
-            self.store.collection("Friends").document(document.documentID).delete { error in
-              if let error = error {
-                print("Unable to remove friendRequets: \(error.localizedDescription)")
-              }
-            }
-          }
-        }
-      }
-    }
-    self.friends.removeValue(forKey: friend)
-  } // END OF removeFriendById
-  
 }
 
