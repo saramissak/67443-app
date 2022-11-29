@@ -17,10 +17,21 @@ struct Notification: Codable, Identifiable {
   var id:        String
   var userID:    String
   var otherUser: String // who liked, commented, or sent the request
-  var type:      NotificationTypes
-  
+  //  var type:      NotificationTypes
+    var type:      String
+
   var postID: String // used for a like
   var commentID: String // used for a comment
+  
+  init() {
+    id = ""
+    userID = ""
+    otherUser = ""
+//    type = NotificationTypes.like
+    type = ""
+    commentID = ""
+    postID = ""
+  }
 }
 
 //protocol LikeNotificationProtocol: NotificationProtocol, Codable {

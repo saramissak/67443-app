@@ -358,6 +358,7 @@ class ViewModel: ObservableObject{
         self.user.profileImage = user.images![0].url!
         self.user.name = user.displayName ?? ""
         self.user.bio = ""
+        self.user.notifications = []
         
         let newUserRef = self.store.collection("UserInfo").document(spotifyID)
         self.user.id = newUserRef.documentID
@@ -503,20 +504,34 @@ class ViewModel: ObservableObject{
   }
   
   func unlikePost(post: Post){
-    var postRef = store.collection("Posts").document(post.id)
+    let postRef = store.collection("Posts").document(post.id)
     postRef.updateData([
       "likes": FieldValue.arrayRemove([user.id])
     ])
     getPosts()
+    
+    // remove like from notification
   }
   
-  func likePost(_ id:String) {
-      var postRef = store.collection("Posts").document(id)
-      postRef.updateData([
-        "likes": FieldValue.arrayUnion([user.id])
-      ])
-      print("updated document \(id)")
-      getPosts()
+  func likePost(_ post:Post) {
+    let postRef = store.collection("Posts").document(post.id)
+    postRef.updateData([
+      "likes": FieldValue.arrayUnion([user.id])
+    ])
+    
+//    var likeNotification = Notification()
+//    likeNotification.id = UUID().uuidString
+//    likeNotification.userID = post.userID
+//    likeNotification.otherUser = user.id
+////    likeNotification.type = NotificationTypes.like
+//    likeNotification.type = "like"
+//    likeNotification.postID = post.id
+//
+//    let userRef = store.collection("UserInfo").document(post.userID)
+//    userRef.updateData([
+//      "notifications": FieldValue.arrayUnion([likeNotification])
+//    ])
+    getPosts()
   }
   
   func postComment(docID: String, comment: String, post: Post) {

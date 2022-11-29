@@ -67,7 +67,7 @@ struct PostCard: View {
                 
               } else {
                 Button {
-                  viewModel.likePost(docID)
+                  viewModel.likePost(post)
                 } label: {
                   Image(systemName: "heart").font(.system(size: iconSize))
                 }
@@ -84,11 +84,6 @@ struct PostCard: View {
         }
         Text("\(post.caption)").font(.system(size:15)).fontWeight(.light)
           .fixedSize(horizontal: false, vertical: true).lineLimit(nil).aspectRatio(contentMode: .fit).frame(maxWidth: .infinity, alignment: .leading)
-
-
-        
-        
-        
       }.fixedSize(horizontal: false, vertical: false)
         .padding([.top, .bottom], 10)
         .padding([.trailing, .leading], 10)
