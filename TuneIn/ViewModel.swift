@@ -528,11 +528,11 @@ class ViewModel: ObservableObject{
 //    likeNotification.type = NotificationTypes.like
     likeNotification.type = "like"
     likeNotification.postID = post.id
-    print("LIKE NOTIF:!!!!! \(likeNotification)")
+//    print("LIKE NOTIF:!!!!! \(likeNotification)")
     var dict: [String:Any] = [
       "id": likeNotification.id,
       "userID": likeNotification.userID,
-      "OtherUser":likeNotification.otherUser,
+      "otherUser":likeNotification.otherUser,
       "type": likeNotification.type,
       "postID": likeNotification.postID
     ]
