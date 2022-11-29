@@ -10,24 +10,48 @@ import SwiftUI
 struct HomeFeed: View {
   @EnvironmentObject var viewModel: ViewModel
   @State var isNavBarHidden = true
+  @State var ignoredBanner = false
   var body: some View {
     
     NavigationView{
       VStack{
-        HStack{
-          Spacer()
-          NavigationLink(destination: SearchSong(), label: {
-            Text("Post a Song of the Day")
-            // need to add conditional
-              .fontWeight(.bold)
-              .font(.body)
-          }).navigationBarTitle("")
-            .navigationBarHidden(self.isNavBarHidden)
-            .onAppear {
-              self.isNavBarHidden = true
-            }
+        if viewModel.hasPostedSongOfDay() == false && ignoredBanner == false{
+          VStack{
+            Text("You haven’t posted your song of the day. Would you like to upload now? ")
+            HStack{
+              NavigationLink(destination: SearchSong(), label: {
+                roundedRectangleText(bodyText: "Add Song", TextHex: "#000000", BackgroundHex: "#DECFE4")
+              }).navigationBarTitle("")
+                .navigationBarHidden(self.isNavBarHidden)
+                .onAppear {
+                  self.isNavBarHidden = true
+                }
               
-          }
+              Button("ignore", action:{
+                ignoredBanner = true
+              })
+            }
+
+          }.background(viewModel.hexStringToUIColor(hex: "373547"))
+        }
+        if viewModel.hasPostedSongOfDay() == false && ignoredBanner == true{
+          HStack{
+            Spacer()
+            NavigationLink(destination: SearchSong(), label: {
+              roundedRectangleText(bodyText: "Post Song of the Day", TextHex: "#000000", BackgroundHex: "#DECFE4")
+              // need to add conditional
+                .fontWeight(.bold)
+                .font(.body)
+                .padding([.trailing,.leading], 20)
+            }).navigationBarTitle("")
+              .navigationBarHidden(self.isNavBarHidden)
+              .onAppear {
+                self.isNavBarHidden = true
+              }
+                
+            }
+        }
+
         let sortedByDate = Array(viewModel.posts.keys).sorted{ return viewModel.posts[$0]!.createdAt > viewModel.posts[$1]!.createdAt}
           ScrollView{
             VStack{

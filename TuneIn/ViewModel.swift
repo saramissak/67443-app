@@ -115,6 +115,28 @@ class ViewModel: ObservableObject{
     }
   }
   
+  func hasPostedSongOfDay() -> Bool{
+    let date = Date()
+    let dateFormatter = DateFormatter()
+     
+    dateFormatter.dateFormat = "dd.MM.yyyy"
+    let currDate = dateFormatter.string(from: date)
+    print(currDate)
+    
+    var filtered = posts
+      .filter{ (key, value) -> Bool in
+        value.userID == self.user.username
+      }
+    
+    filtered = filtered.filter{ (key, value) -> Bool in
+        dateFormatter.string(from: value.createdAt) == currDate
+    }
+    print("filtered: \(filtered)")
+    
+    return filtered.count > 0
+
+  }
+  
   func getLatestUserPostID(userID: String) -> String{
     let keys = posts
       .filter{ (key, value) -> Bool in
