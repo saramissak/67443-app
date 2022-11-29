@@ -21,22 +21,6 @@ struct FriendsTab: View {
       print("self.searchField \(self.searchField)")
     })
     
-//    return NavigationView{
-//      VStack {
-//        HStack {
-//          Image(systemName: "magnifyingglass")
-//              .font(.system(size: 14.0, weight: .bold))
-//          TextField("Search Friends", text: binding)
-//            .autocapitalization(.none)
-//            .disableAutocorrection(true)
-//        }
-//        Spacer()
-//
-//        Text("Click on find instead for now!")
-//        Spacer()
-//
-//      }
-//    }
     VStack {
       HStack {
         Image(systemName: "magnifyingglass")
@@ -47,7 +31,7 @@ struct FriendsTab: View {
       }
       Spacer()
       
-      Text("Click on find instead for now!")
+      Text("\(friendsViewModel.friends.count)")
       Spacer()
       
     }
