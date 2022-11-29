@@ -502,43 +502,21 @@ class ViewModel: ObservableObject{
      
   }
   
-  func unlikePost(userId: String, post: Post, likes: [String], postId: String){
-    // find the post id then navigate to the like
-    print("\(userId), \(likes),Post:!!!!!! \(post)")
-    var mutableLikes = likes
-    if let index = mutableLikes.firstIndex(of: userId) {
-      mutableLikes.remove(at: index)
-    }
-    
-    var postInfo = self.posts[post.id]
-    postInfo?.likes = mutableLikes
-    
-    print("mutableLikes:!!!!!! \(mutableLikes), \(post.id)")
-    do {
-      store.collection("Posts").document(postId).updateData([
-        "likes": mutableLikes,
-        "id": postId
+  func unlikePost(post: Post){
+    var postRef = store.collection("Posts").document(post.id)
+    postRef.updateData([
+      "likes": FieldValue.arrayRemove([user.id])
     ])
-      getPosts()
-    }
-    
+    getPosts()
   }
   
-  func likePost(_ id:String, _ likes: [String]) {
-    var mutableLikes = likes
-    mutableLikes.append(user.id)
-    
-    var postInfo = self.posts[id]!
-    postInfo.likes = mutableLikes
-    
-    do {
-      _ = try store.collection("Posts").document(id).setData(from: postInfo)
+  func likePost(_ id:String) {
+      var postRef = store.collection("Posts").document(id)
+      postRef.updateData([
+        "likes": FieldValue.arrayUnion([user.id])
+      ])
       print("updated document \(id)")
       getPosts()
-    } catch let error {
-        print("Error writing city to Firestore: \(error)")
-    }
-    
   }
   
   func postComment(docID: String, comment: String, post: Post) {
