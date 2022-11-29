@@ -125,7 +125,7 @@ class ViewModel: ObservableObject{
     
     var filtered = posts
       .filter{ (key, value) -> Bool in
-        //[TO CHANGE] If this is changed to ID would something happen?
+        //[TO CHANGE] If this is changed to ID would something happen? Do we want the userID for post to be the username
         value.userID == self.user.username
       }
     
@@ -457,7 +457,7 @@ class ViewModel: ObservableObject{
           user.username = data["username"] as? String ?? ""
           user.spotifyID = data["spotifyID"] as? String ?? ""
 
-          //[TO CHANGE] is user.username being as an ID?
+          //[TO CHANGE] is user.username being used as an ID?
           self.users[user.username] = user
           print("just put in user", self.users[user.id])
         }
