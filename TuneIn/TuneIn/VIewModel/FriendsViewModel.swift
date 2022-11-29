@@ -77,6 +77,15 @@ class FriendsViewModel: ObservableObject{
       if receiverUserId != "" && senderUserId != "" {
         let friendRequest = FriendRequests(requestSender: senderUserId, requestReceiver: receiverUserId)
         let doc = try self.store.collection("FriendRequest").addDocument(from: friendRequest)
+        let dict: [String:Any] = [
+          "userID": receiverUserId,
+          "otherUser": senderUserId,
+          "type": "friend request",
+        ]
+        let userRef = store.collection("UserInfo").document(receiverUserId)
+        userRef.updateData([
+          "notifications": FieldValue.arrayUnion([dict])
+        ])
         self.sentFriendRequest[receiverUserId] = doc.documentID
       }
     } catch {
