@@ -36,9 +36,9 @@ struct FriendsView: View {
       }
       
       if self.findTab {
-        SearchFriends(viewModel: viewModel, friendsViewModel: friendsViewModel)
+        FriendsTab(viewModel: viewModel, friendsViewModel: friendsViewModel)
       } else {
-        SearchBar(viewModel: viewModel, friendsViewModel: friendsViewModel) // finds people
+        FindTab(viewModel: viewModel, friendsViewModel: friendsViewModel) // finds people
       }
     }
   }

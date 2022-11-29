@@ -89,10 +89,8 @@ struct PostSongView: View {
       })
       .onChange(of: madePost) { (newValue) in
         viewModel.makePost(song:song, caption:caption, moods: self.moodList)
-        HomeFeed().environmentObject(viewModel)
+        HomeFeed().environmentObject(viewModel).navigationBarBackButtonHidden(true)
       }
-
-
     }
      .navigationBarBackButtonHidden(false)
     }

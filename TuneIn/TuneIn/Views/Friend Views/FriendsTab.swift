@@ -1,5 +1,5 @@
 //
-//  SearchFriends.swift
+//  FriendsTab.swift
 //  TuneIn
 //
 //  Created by Sara Missak on 11/7/22.
@@ -7,7 +7,7 @@
 
 import SwiftUI
 
-struct SearchFriends: View {
+struct FriendsTab: View {
   @ObservedObject var viewModel: ViewModel
   @ObservedObject var friendsViewModel: FriendsViewModel
   @State var searchField: String = ""
@@ -31,10 +31,10 @@ struct SearchFriends: View {
 //            .disableAutocorrection(true)
 //        }
 //        Spacer()
-//        
+//
 //        Text("Click on find instead for now!")
 //        Spacer()
-//        
+//
 //      }
 //    }
     VStack {

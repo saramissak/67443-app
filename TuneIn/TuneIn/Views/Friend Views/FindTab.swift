@@ -1,5 +1,5 @@
 //
-//  SearchBar.swift
+//  FindTab.swift
 //  TuneIn
 //
 //  Created by Sara Missak on 11/7/22.
@@ -7,7 +7,7 @@
 
 import SwiftUI
 
-struct SearchBar: View {
+struct FindTab: View {
   @ObservedObject var viewModel: ViewModel
   @ObservedObject var friendsViewModel: FriendsViewModel
 
