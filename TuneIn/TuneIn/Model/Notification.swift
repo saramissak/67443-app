@@ -13,14 +13,14 @@ enum NotificationTypes: String, Codable {
    case friendRequest = "Friend Request"
 }
 
-protocol Notification: Codable, Identifiable {
-  var id:        String { get set }
-  var userID:    String { get set }
-  var otherUser: String { get set } // who liked, commented, or sent the request
-  var type:      NotificationTypes { get set }
+struct Notification: Codable, Identifiable {
+  var id:        String
+  var userID:    String
+  var otherUser: String // who liked, commented, or sent the request
+  var type:      NotificationTypes
   
-  var postID: String { get set } // used for a like
-  var commentID: String { get set } // used for a comment
+  var postID: String // used for a like
+  var commentID: String // used for a comment
 }
 
 //protocol LikeNotificationProtocol: NotificationProtocol, Codable {
