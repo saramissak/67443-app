@@ -50,7 +50,7 @@ struct ContentView: View {
       }
       .environmentObject(viewModel)
       .onChange(of: selectedTab) { newValue in
-        if selectedTab == 1 {
+        if selectedTab == 1 && friendsViewModel.friends.count == 0 {
           friendsViewModel.getFriends(completionHandler: { (eventList) in
             print("line 31 completionHandler done")
           })
