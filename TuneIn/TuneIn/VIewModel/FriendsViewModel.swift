@@ -253,5 +253,35 @@ class FriendsViewModel: ObservableObject{
     }
     self.friends.removeValue(forKey: friend)
   } // END OF removeFriend
+  
+  func removeFriendById(_ friend:String) {
+    if self.friends[friend] != "" {
+      store.collection("Friends").document(self.friends[friend]!).delete { error in
+        if let error = error {
+          print("Unable to remove friendRequets: \(error.localizedDescription)")
+        }
+      }
+    } else {
+      let _ = store.collection("Friends")
+        .whereField("requestSender", in: [friend, self.myUserId])
+        .whereField("requestReceiver", in: [friend, self.myUserId])
+        .getDocuments() { (querySnapshot, err) in
+        if let err = err {
+          print("Error getting documents: \(err)")
+        } else {
+          for document in querySnapshot!.documents {
+            let data = document.data()
+            self.store.collection("Friends").document(document.documentID).delete { error in
+              if let error = error {
+                print("Unable to remove friendRequets: \(error.localizedDescription)")
+              }
+            }
+          }
+        }
+      }
+    }
+    self.friends.removeValue(forKey: friend)
+  } // END OF removeFriendById
+  
 }
 

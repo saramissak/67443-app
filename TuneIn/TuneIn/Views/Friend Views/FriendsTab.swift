@@ -15,7 +15,7 @@ struct FriendsTab: View {
   
   var body: some View {
     let binding = Binding<String>(get: {self.searchField},
-      set: {
+                                  set: {
       self.searchField = $0
       self.displayedUsers = Array(self.friendsViewModel.searchedUsers.values)
       print("self.searchField \(self.searchField)")
@@ -24,16 +24,29 @@ struct FriendsTab: View {
     VStack {
       HStack {
         Image(systemName: "magnifyingglass")
-            .font(.system(size: 14.0, weight: .bold))
+          .font(.system(size: 14.0, weight: .bold))
         TextField("Search Friends", text: binding)
           .autocapitalization(.none)
           .disableAutocorrection(true)
       }
-      Spacer()
       
-      Text("\(friendsViewModel.friends.count)")
+      ForEach(friendsViewModel.friends.sorted(by: >), id: \.key) { userID, _ in
+        HStack{
+          miniUserInfo(userID: userID).environmentObject(viewModel)
+          Spacer()
+          
+          Button("remove", action:{
+            friendsViewModel.removeFriendById(userID)
+          })
+          .fixedSize(horizontal: false, vertical: true)
+          .padding([.top, .bottom], 5)
+          .padding([.trailing, .leading], 20)
+          .foregroundColor(viewModel.hexStringToUIColor(hex: "FFFFFF"))
+          .background(viewModel.hexStringToUIColor(hex: "373547"))
+          .cornerRadius(8)
+        }
+      }
       Spacer()
-      
     }
   }
 }

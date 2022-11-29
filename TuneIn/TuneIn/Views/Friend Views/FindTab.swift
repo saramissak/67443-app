@@ -24,7 +24,7 @@ struct FindTab: View {
         print("self.searchField \(self.searchField)")
       })
       
-      return NavigationView{
+      return NavigationView {
         VStack {
           HStack {
             Image(systemName: "magnifyingglass")
