@@ -211,7 +211,7 @@ class ViewModel: ObservableObject{
     newPost.createdAt = NSDate() as Date
     newPost.likes = []
     newPost.moods = []
-    newPost.id = UUID().uuidString
+    newPost.id = newPostRef.documentID
     
     print("calling getsong by id")
     self.getSongById(song.id, newPost, newPostRef)
@@ -471,15 +471,26 @@ class ViewModel: ObservableObject{
     store.collection("UserInfo").document(user.id).updateData(["bio": bio]) 
   }
   
-  func unlikePost(id: String, post: Post, likes: [String]){
+  func unlikePost(userId: String, post: Post, likes: [String], postId: String){
     // find the post id then navigate to the like
-    print("\(id), \(likes)")
-    var userIds: Set<String> = Set(likes)
-//    let newUserIds = Array( userIds.remove(id))
-//    print("NEW ARRAY \(Array(userIds.remove(id)))")
-    store.collection("Posts").document(post.id).updateData([
-      "likes": Array(arrayLiteral: userIds.remove(id))
-  ])
+    print("\(userId), \(likes),Post:!!!!!! \(post)")
+    var mutableLikes = likes
+    if let index = mutableLikes.firstIndex(of: userId) {
+      mutableLikes.remove(at: index)
+    }
+    
+    var postInfo = self.posts[post.id]
+    postInfo?.likes = mutableLikes
+    
+    print("mutableLikes:!!!!!! \(mutableLikes), \(post.id)")
+    do {
+      store.collection("Posts").document(postId).updateData([
+        "likes": mutableLikes,
+        "id": postId
+    ])
+      getPosts()
+    }
+    
   }
   
   func likePost(_ id:String, _ likes: [String]) {
