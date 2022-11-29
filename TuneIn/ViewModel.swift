@@ -359,7 +359,7 @@ class ViewModel: ObservableObject{
         self.user.name = user.displayName ?? ""
         self.user.bio = ""
         
-        let newUserRef = self.store.collection("UserInfo").document()
+        let newUserRef = self.store.collection("UserInfo").document(spotifyID)
         self.user.id = newUserRef.documentID
         do {
           _ = try newUserRef.setData(from: self.user)
@@ -488,7 +488,7 @@ class ViewModel: ObservableObject{
     }
   }
   
-  func editAccount(_ bio: String? = nil, name: String? = nil, username: String? = nil) {
+  func editAccount(bio: String? = nil, name: String? = nil, username: String? = nil) {
     print("HERE:  " + user.id)
     if bio != nil {
       store.collection("UserInfo").document(user.id).updateData(["bio": bio!])
