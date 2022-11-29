@@ -10,6 +10,7 @@ import UIKit
 
 struct SetBioView: View {
   @EnvironmentObject var viewModel: ViewModel
+  @Environment(\.presentationMode) var presentationMode: Binding<PresentationMode>
   var user: UserInfo
   @State var changeBio : Bool = false
   @State var searchField: String = ""
@@ -35,7 +36,7 @@ struct SetBioView: View {
     
     //TextField("Search", text: binding)
       Form {
-        Section(header: Text("Peronal")){
+        Section(header: Text("Personal")){
           TextField("Name", text: $name)
           TextField("Username", text: $username)
         }
@@ -48,11 +49,11 @@ struct SetBioView: View {
         Button("Save Changes", action: {}
         )
         .alert("Saved Changes", isPresented: $showingAlert) {
-              Button("OK", role: .cancel) { }
+          Button("OK", role: .cancel, action: {self.presentationMode.wrappedValue.dismiss()})
         }
         .onTapGesture {
           showingAlert = true
-          viewModel.setBio(self.bio)
+          viewModel.editAccount(self.bio)
         }
       }
     }
@@ -60,7 +61,7 @@ struct SetBioView: View {
     .onTapGesture {
       hideKeyboard()
     }
-    }
+  }
 }
 #if canImport(UIKit)
 extension View {

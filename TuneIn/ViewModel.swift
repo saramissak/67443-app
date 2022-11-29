@@ -466,9 +466,18 @@ class ViewModel: ObservableObject{
     }
   }
   
-  func setBio(_ bio: String) {
+  func editAccount(_ bio: String? = nil, name: String? = nil, username: String? = nil) {
     print("HERE:  " + user.id)
-    store.collection("UserInfo").document(user.id).updateData(["bio": bio]) 
+    if bio != nil {
+      store.collection("UserInfo").document(user.id).updateData(["bio": bio!])
+    }
+    if name != nil {
+      store.collection("UserInfo").document(user.id).updateData(["name": name!])
+    }
+    if username != nil {
+      store.collection("UserInfo").document(user.id).updateData(["username": username!])
+    }
+     
   }
   
   func unlikePost(userId: String, post: Post, likes: [String], postId: String){
