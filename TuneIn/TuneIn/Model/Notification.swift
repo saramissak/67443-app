@@ -13,40 +13,43 @@ enum NotificationTypes: String, Codable {
    case friendRequest = "Friend Request"
 }
 
-protocol NotificationProtocol: Codable, Identifiable {
-  var id:        UUID { get set }
-  var userID:    UUID { get set }
-  var otherUser: UUID { get set }// who liked, commented, or sent the request
+protocol Notification: Codable, Identifiable {
+  var id:        String { get set }
+  var userID:    String { get set }
+  var otherUser: String { get set } // who liked, commented, or sent the request
   var type:      NotificationTypes { get set }
+  
+  var postID: String { get set } // used for a like
+  var commentID: String { get set } // used for a comment
 }
 
-protocol LikeNotificationProtocol: NotificationProtocol, Codable {
-  var postID: UUID { get set }
-}
+//protocol LikeNotificationProtocol: NotificationProtocol, Codable {
+//  var postID: UUID { get set }
+//}
 
-protocol CommentNotificationProtocol: NotificationProtocol, Codable {
-  var commentID: UUID { get set }
-}
-
-struct LikeNotification: LikeNotificationProtocol, Codable {
-  var postID: UUID
-  var id: UUID
-  var userID: UUID
-  var otherUser: UUID
-  var type: NotificationTypes = NotificationTypes.like
-}
-
-struct CommentNotification: CommentNotificationProtocol, Codable {
-  var id: UUID
-  var userID: UUID
-  var otherUser: UUID
-  var commentID: UUID
-  var type: NotificationTypes = NotificationTypes.comment
-}
-
-struct FriendRequestNotification: NotificationProtocol, Codable {
-  var id: UUID
-  var userID: UUID
-  var otherUser: UUID
-  var type: NotificationTypes = NotificationTypes.friendRequest
-}
+//protocol CommentNotificationProtocol: NotificationProtocol, Codable {
+//  var commentID: UUID { get set }
+//}
+//
+//struct LikeNotification: LikeNotificationProtocol, Codable {
+//  var postID: UUID
+//  var id: UUID
+//  var userID: UUID
+//  var otherUser: UUID
+//  var type: NotificationTypes = NotificationTypes.like
+//}
+//
+//struct CommentNotification: CommentNotificationProtocol, Codable {
+//  var id: UUID
+//  var userID: UUID
+//  var otherUser: UUID
+//  var commentID: UUID
+//  var type: NotificationTypes = NotificationTypes.comment
+//}
+//
+//struct FriendRequestNotification: NotificationProtocol, Codable {
+//  var id: UUID
+//  var userID: UUID
+//  var otherUser: UUID
+//  var type: NotificationTypes = NotificationTypes.friendRequest
+//}
