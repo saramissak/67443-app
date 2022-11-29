@@ -125,6 +125,7 @@ class ViewModel: ObservableObject{
     
     var filtered = posts
       .filter{ (key, value) -> Bool in
+        //[TO CHANGE] If this is changed to ID would something happen? Do we want the userID for post to be the username
         value.userID == self.user.username
       }
     
@@ -226,7 +227,7 @@ class ViewModel: ObservableObject{
   func makePost(song: Song, caption: String, moods: [String]){
     var newPost = Post()
     let newPostRef = self.store.collection("Posts").document()
-    newPost.userID = self.user.username
+    newPost.userID = self.user.id
     print("here is the username ", self.user.username)
     newPost.song = song
     newPost.caption = caption
@@ -457,6 +458,7 @@ class ViewModel: ObservableObject{
           user.username = data["username"] as? String ?? ""
           user.spotifyID = data["spotifyID"] as? String ?? ""
 
+          //[TO CHANGE] is user.username being used as an ID?
           self.users[user.username] = user
           print("just put in user", self.users[user.id])
         }
@@ -543,7 +545,7 @@ class ViewModel: ObservableObject{
     newComment.id = UUID().uuidString
     newComment.date = NSDate() as Date
     newComment.postID = post.id
-    newComment.userID = self.user.username
+    newComment.userID = self.user.id
     newComment.text = comment
     
     do {
