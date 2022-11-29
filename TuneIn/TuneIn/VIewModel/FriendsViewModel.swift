@@ -218,16 +218,17 @@ class FriendsViewModel: ObservableObject{
           
           if friend1 == self.myUserId && self.friends[friend2] == nil {
             self.friends[friend2] = document.documentID
+            self.sentFriendRequest[friend2] = nil
             DispatchQueue.main.async(){
               completionHandler(friend2)
             }
           } else if friend2 == self.myUserId && self.friends[friend1] == nil{
             self.friends[friend1] = document.documentID
+            self.sentFriendRequest[friend1] = nil
             DispatchQueue.main.async(){
               completionHandler(friend1)
             }
           }
-          
         }
         print("your friends are: ", self.friends)
       }
