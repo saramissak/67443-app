@@ -17,7 +17,6 @@ struct SongRow: View {
           Text(song.artist)
         }
       }
-      
     }
 }
 

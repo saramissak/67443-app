@@ -24,7 +24,7 @@ struct FindTab: View {
         print("self.searchField \(self.searchField)")
       })
       
-      return NavigationView {
+      return
         VStack {
           HStack {
             Image(systemName: "magnifyingglass")
@@ -65,7 +65,7 @@ struct FindTab: View {
             } // end foreach
           Spacer()
           }
-        }
+        
     }
       
   func displayUsers() {

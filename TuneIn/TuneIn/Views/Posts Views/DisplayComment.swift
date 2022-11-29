@@ -24,7 +24,6 @@ struct DisplayComment: View {
     }.padding(10)
       .border(.white,width:0.3)
       .padding([.trailing,.leading],10)
-
   }
 }
 

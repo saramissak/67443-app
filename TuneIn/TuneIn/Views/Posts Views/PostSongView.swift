@@ -27,7 +27,6 @@ struct PostSongView: View {
     self.moodInput = $0
   })
     ScrollView{
-      
 
     VStack{
       HStack{

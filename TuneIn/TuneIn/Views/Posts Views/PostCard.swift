@@ -60,14 +60,14 @@ struct PostCard: View {
               
               if post.likes.contains(viewModel.user.id) {
                 Button {
-                  viewModel.unlikePost(userId: viewModel.user.id, post: post , likes: post.likes, postId: docID)
+                  viewModel.unlikePost(post: post)
                 } label: {
                   Image(systemName: "heart.fill").font(.system(size: iconSize))
                 }
                 
               } else {
                 Button {
-                  viewModel.likePost(docID, post.likes)
+                  viewModel.likePost(docID)
                 } label: {
                   Image(systemName: "heart").font(.system(size: iconSize))
                 }

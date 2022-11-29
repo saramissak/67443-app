@@ -21,7 +21,6 @@ struct SearchSong: View {
       //         viewModel.displayDefaultSongs()
     })
     
-    
     VStack{
       Text("select a song")
       TextField("Search", text:binding)
