@@ -115,6 +115,26 @@ class FriendsViewModel: ObservableObject{
         _ = try self.store.collection("Friends").addDocument(from: friends)
         self.friends[friend2] = ""
         self.removeFriendRequest(userID)
+        
+        let dict: [String:Any] = [
+          "otherUser": friend2,
+          "userID": friend1,
+          "type": "friend added",
+        ]
+        let dict2: [String:Any] = [
+          "userID": friend2,
+          "otherUser": friend1,
+          "type": "friend added",
+        ]
+        
+        let userRef = store.collection("UserInfo").document(friend2)
+        userRef.updateData([
+          "notifications": FieldValue.arrayUnion([dict])
+        ])
+        let userRef2 = store.collection("UserInfo").document(friend1)
+        userRef2.updateData([
+          "notifications": FieldValue.arrayUnion([dict2])
+        ])
       } catch {
         print("Unable to accept a friend \(error.localizedDescription)")
       }
@@ -246,16 +266,21 @@ class FriendsViewModel: ObservableObject{
       }
     } else {
       let _ = store.collection("Friends")
-        .whereField("requestSender", in: [friend, self.myUserId])
-        .whereField("requestReceiver", in: [friend, self.myUserId])
+        .whereField("friend1", in: [friend, self.myUserId])
+//        .whereField("requestReceiver", in: [friend, self.myUserId])
         .getDocuments() { (querySnapshot, err) in
         if let err = err {
           print("Error getting documents: \(err)")
         } else {
           for document in querySnapshot!.documents {
-            self.store.collection("Friends").document(document.documentID).delete { error in
-              if let error = error {
-                print("Unable to remove friendRequets: \(error.localizedDescription)")
+            let data = document.data()
+            let friend1 = data["friend1"] as? String ?? ""
+            
+            if friend1 == friend || friend1 == self.myUserId {
+              self.store.collection("Friends").document(document.documentID).delete { error in
+                if let error = error {
+                  print("Unable to remove friend: \(error.localizedDescription)")
+                }
               }
             }
           }
@@ -263,6 +288,26 @@ class FriendsViewModel: ObservableObject{
       }
     }
     self.friends.removeValue(forKey: friend)
+    
+    let dict: [String:Any] = [
+      "otherUser": self.myUserId,
+      "userID": friend,
+      "type": "friend added",
+    ]
+    let dict2: [String:Any] = [
+      "userID": self.myUserId,
+      "otherUser": friend,
+      "type": "friend added",
+    ]
+    
+    let userRef = store.collection("UserInfo").document(self.myUserId)
+    userRef.updateData([
+      "notifications": FieldValue.arrayRemove([dict])
+    ])
+    let userRef2 = store.collection("UserInfo").document(friend)
+    userRef2.updateData([
+      "notifications": FieldValue.arrayRemove([dict2])
+    ])
   } // END OF removeFriend
 }
 
