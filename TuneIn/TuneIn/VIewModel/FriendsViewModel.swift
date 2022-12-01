@@ -267,7 +267,6 @@ class FriendsViewModel: ObservableObject{
     } else {
       let _ = store.collection("Friends")
         .whereField("friend1", in: [friend, self.myUserId])
-//        .whereField("requestReceiver", in: [friend, self.myUserId])
         .getDocuments() { (querySnapshot, err) in
         if let err = err {
           print("Error getting documents: \(err)")

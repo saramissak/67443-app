@@ -28,6 +28,12 @@ struct FriendsTab: View {
         TextField("Search Friends", text: binding)
           .autocapitalization(.none)
           .disableAutocorrection(true)
+          .fixedSize(horizontal: false, vertical: false)
+          .padding([.top, .bottom], 10)
+          .padding([.trailing, .leading], 10)
+          .foregroundColor(viewModel.hexStringToUIColor(hex: "#FFFFFF"))
+          .background(viewModel.hexStringToUIColor(hex: "#373547"))
+          .cornerRadius(10)
       }
       
       ForEach(friendsViewModel.friends.sorted(by: >), id: \.key) { userID, _ in
