@@ -11,12 +11,15 @@ struct NotificationsView: View {
   @EnvironmentObject var viewModel: ViewModel
   
   var body: some View {
+    
     ScrollView{
-        ForEach(viewModel.user.notifications,  id: \.self) { notif in
-          NotificationCard(notification: notif)
-        }
-
+      ForEach(viewModel.user.notifications,  id: \.self) { notif in
+        NotificationCard(notification: notif)
+      }
+    
       
+    }.task{
+      viewModel.getNotifications()
     }
 
   }

@@ -71,7 +71,6 @@ class ViewModel: ObservableObject{
   func login(){
     getSelf(completionHandler: { (eventList) in
       self.getPosts()
-      self.getNotifications()
     })
     self.loggedIn = true
     print("USER NOWW:", self.user)
@@ -177,6 +176,22 @@ class ViewModel: ObservableObject{
       }
   }
   
+  func getCommentByCommentID(_ id: String, completionHandler:@escaping(String)->()){
+    store.collection("Comments").whereField("id", isEqualTo: id).getDocuments(){(querySnapshot, err) in
+      if let err = err {
+        print("Error getting documents: \(err)")
+      } else{
+        for document in querySnapshot!.documents {
+          let data = document.data()
+          DispatchQueue.main.async(){
+            completionHandler(data["text"] as? String ?? "")
+          }
+        }
+
+      }
+      
+    }
+  }
   func getUserById(_ id:String, completionHandler:@escaping (UserInfo)->()) {
     let _ = store.collection("UserInfo")
       .whereField("id", isEqualTo: id)
@@ -472,6 +487,7 @@ class ViewModel: ObservableObject{
   
   
   func getNotifications(){
+    self.user.notifications = []
     print("CALLED GETNOTIFICAITONS", self.spotifyID)
     let _ = store.collection("UserInfo")
       .whereField("spotifyID", isEqualTo: self.spotifyID)
@@ -604,8 +620,11 @@ class ViewModel: ObservableObject{
   }
   
   func makeCommentNotification(_ comment:Comment? = nil) {
+    print("comment is nil")
     if comment != nil{
       let comment = comment!
+      print("comment is ", comment)
+      print("post for the comment is ", self.posts[comment.postID])
       let notifiedUser = self.posts[comment.postID]?.userID ?? ""
       let dict: [String:Any] = [
         "userID":  notifiedUser,
@@ -613,6 +632,7 @@ class ViewModel: ObservableObject{
         "type": "comment",
         "commentID": comment.id
       ]
+      print("notified User: ", notifiedUser)
       let userRef = store.collection("UserInfo").document(notifiedUser)
       userRef.updateData([
         "notifications": FieldValue.arrayUnion([dict])

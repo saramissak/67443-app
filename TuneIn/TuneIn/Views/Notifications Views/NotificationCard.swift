@@ -8,10 +8,43 @@
 import SwiftUI
 
 struct NotificationCard: View {
+  
   var notification: Notification
+  @EnvironmentObject var viewModel: ViewModel
+  @State var notifText = ""
     var body: some View {
-      Text(notification.userID)
-      Text(notification.otherUser)
+      HStack{
+        
+        AsyncImage(url: URL(string: viewModel.user.profileImage)) { image in
+          image.resizable()
+        } placeholder: {
+          Image(systemName: "person.circle.fill") .font(.system(size: 35))
+          
+        }
+        .frame(width: 35, height: 35)
+        .clipShape(Circle())
+        
+        if notification.type == "like"{
+          Text("**\(notification.otherUser)** liked your post")
+        }
+        if notification.type == "comment"{
+          HStack{
+            Text("**\(notification.otherUser)** \(notifText)").fixedSize(horizontal: false, vertical: true)
+            
+
+          }.task{
+            viewModel.getCommentByCommentID(notification.commentID) { (comment) in
+              notifText = " commented: \(comment)"
+            }
+          }
+          
+        }
+        if notification.type == "friend request"{
+          Text("**\(notification.otherUser)** friend requested you")
+        }
+      
+        
+      }
     }
 }
 
