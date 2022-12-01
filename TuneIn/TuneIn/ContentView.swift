@@ -35,7 +35,7 @@ struct ContentView: View {
             Text("Friends")
           }
           .tag(1)
-        NotificationsView(viewModel: viewModel)
+        NotificationsView()
           .tabItem {
             Image(systemName: "bell.fill")
             Text("Notifications")

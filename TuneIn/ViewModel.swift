@@ -32,6 +32,8 @@ class ViewModel: ObservableObject{
   @Published var searchedSongs:  [Song] = []
   @Published var spotifyID: String = ""
   @Published var loggedIn: Bool = false
+  @Published var notifications: [[String:Any]] = []
+
 
   func getSelf(completionHandler:@escaping (String)->()) {
     let getMe = Spartan.getMe(success: { (user) in
@@ -69,6 +71,7 @@ class ViewModel: ObservableObject{
   func login(){
     getSelf(completionHandler: { (eventList) in
       self.getPosts()
+      self.getNotifications()
     })
     self.loggedIn = true
     print("USER NOWW:", self.user)
@@ -401,6 +404,7 @@ class ViewModel: ObservableObject{
             self.user.username = data["username"] as? String ?? ""
             self.user.spotifyID = data["spotifyID"] as? String ?? ""
             self.user.bio = data["bio"] as? String ?? ""
+
             print("user.username from db request: \(self.user.username)")
           }
 
@@ -466,30 +470,85 @@ class ViewModel: ObservableObject{
     }
   }
   
-  func getNotifications() {
-    let _ = store.collection("Notifications").getDocuments() { (querySnapshot, err) in
-      if let err = err {
-        print("Error getting documents: \(err)")
-      } else {
-        for document in querySnapshot!.documents {
-          let data = document.data()
-          
-          if data["type"] != nil {
-            switch data["type"] as? String ?? "" {
-            case "Like":
-              break
-            case "Comment":
-              break
-            case "Friend Request":
-              break
-            default:
-              print("Notification has been ignored with data \(data)")
+  
+  func getNotifications(){
+    print("CALLED GETNOTIFICAITONS", self.spotifyID)
+    let _ = store.collection("UserInfo")
+      .whereField("spotifyID", isEqualTo: self.spotifyID)
+      .getDocuments() { (querySnapshot, err) in
+        if let err = err {
+          print("Error getting documents: \(err)")
+        } else {
+          for document in querySnapshot!.documents {
+            let data = document.data()
+            print("NOTIFICAITON DATA", data)
+            for notif in data["notifications"] as? [[String:Any]] ?? []{
+              var newNotif = Notification()
+              newNotif.userID = notif["userID"] as? String ?? ""
+              newNotif.postID = notif["postID"] as? String ?? ""
+              newNotif.commentID = notif["commentID"] as? String ?? ""
+              newNotif.commentID = notif["commentID"] as? String ?? ""
+              newNotif.otherUser = notif["otherUser"] as? String ?? ""
+              newNotif.type = notif["type"] as? String ?? ""
+              self.user.notifications.append(newNotif)
+              print("this is notification object ", newNotif)
             }
           }
         }
       }
-    }
   }
+//
+//  func getNotifications() {
+//    let _ = store.collection("Notifications").getDocuments() { (querySnapshot, err) in
+//      if let err = err {
+//        print("Error getting documents: \(err)")
+//      } else {
+//        for document in querySnapshot!.documents {
+//          let data = document.data()
+//
+//          if data["type"] != nil {
+//            switch data["type"] as? String ?? "" {
+//            case "Like":
+//
+//              break
+//            case "Comment":
+//              break
+//            case "Friend Request":
+//              break
+//            default:
+//              print("Notification has been ignored with data \(data)")
+//            }
+//          }
+//        }
+//      }
+//    }
+//
+//    let _ = store.collection("UserInfo")
+//      .whereField("spotifyID", isEqualTo: )
+//      .getDocuments() { (querySnapshot, err) in
+//      if let err = err {
+//        print("Error getting documents: \(err)")
+//      } else {
+//
+//        else{
+//          for document in querySnapshot!.documents {
+//            let data = document.data()
+//            self.user.id = document.documentID
+//            self.user.name = data["name"] as? String ?? ""
+//            self.user.profileImage = data["profileImage"] as? String ?? ""
+//            self.user.username = data["username"] as? String ?? ""
+//            self.user.spotifyID = data["spotifyID"] as? String ?? ""
+//            self.user.bio = data["bio"] as? String ?? ""
+//            print("user.username from db request: \(self.user.username)")
+//          }
+//
+//        }
+//
+//      }
+//    }
+//
+//
+//  }
   
   func editAccount(bio: String? = nil, name: String? = nil, username: String? = nil) {
     print("HERE:  " + user.id)
@@ -544,9 +603,28 @@ class ViewModel: ObservableObject{
     getPosts()
   }
   
-  func postComment(docID: String, comment: String, post: Post) {
+  func makeCommentNotification(_ comment:Comment? = nil) {
+    if comment != nil{
+      let comment = comment!
+      let notifiedUser = self.posts[comment.postID]?.userID ?? ""
+      let dict: [String:Any] = [
+        "userID":  notifiedUser,
+        "otherUser": comment.userID,
+        "type": "comment",
+        "commentID": comment.id
+      ]
+      let userRef = store.collection("UserInfo").document(notifiedUser)
+      userRef.updateData([
+        "notifications": FieldValue.arrayUnion([dict])
+      ])
+    }
+
+  }
+  
+  
+  func postComment(docID: String, comment: String, post: Post) -> Comment? {
     if comment == "" {
-      return
+      return nil
     }
     
     var newComment = Comment()
@@ -563,11 +641,10 @@ class ViewModel: ObservableObject{
     } catch let error {
         print("Error writing city to Firestore: \(error)")
     }
+    return newComment
   }
   
-  
-  func addMoodToPost( moodInput: String, postID: String){
-  }
+
     
   func hexStringToUIColor (hex:String) -> Color {
       var cString:String = hex.trimmingCharacters(in: .whitespacesAndNewlines).uppercased()
