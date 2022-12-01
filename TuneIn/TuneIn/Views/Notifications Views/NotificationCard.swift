@@ -42,6 +42,10 @@ struct NotificationCard: View {
         if notification.type == "friend request"{
           Text("**\(notification.otherUser)** friend requested you")
         }
+        
+        if notification.type == "friend added" {
+          Text("**\(notification.otherUser)** is now your friend")
+        }
       
         
       }
