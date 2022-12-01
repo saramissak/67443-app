@@ -14,40 +14,31 @@ struct NotificationCard: View {
   @State var notifText = ""
     var body: some View {
       HStack{
-        
-        AsyncImage(url: URL(string: viewModel.user.profileImage)) { image in
+        AsyncImage(url: URL(string: viewModel.users[notification.otherUser]?.profileImage ?? "")) { image in
           image.resizable()
         } placeholder: {
           Image(systemName: "person.circle.fill") .font(.system(size: 35))
-          
         }
         .frame(width: 35, height: 35)
         .clipShape(Circle())
         
-        if notification.type == "like"{
+        if notification.type == "like" {
           Text("**\(notification.otherUser)** liked your post")
-        }
-        if notification.type == "comment"{
+        } else if notification.type == "comment"{
           HStack{
             Text("**\(notification.otherUser)** \(notifText)").fixedSize(horizontal: false, vertical: true)
-            
-
           }.task{
             viewModel.getCommentByCommentID(notification.commentID) { (comment) in
               notifText = " commented: \(comment)"
             }
           }
-          
-        }
-        if notification.type == "friend request"{
+        } else if notification.type == "friend request"{
           Text("**\(notification.otherUser)** friend requested you")
-        }
-        
-        if notification.type == "friend added" {
+        } else if notification.type == "friend added" {
           Text("**\(notification.otherUser)** is now your friend")
         }
       
-        
+        Spacer()
       }
     }
 }

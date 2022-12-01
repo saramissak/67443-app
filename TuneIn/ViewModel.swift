@@ -127,8 +127,7 @@ class ViewModel: ObservableObject{
     
     var filtered = posts
       .filter{ (key, value) -> Bool in
-        //[TO CHANGE] If this is changed to ID would something happen? Do we want the userID for post to be the username
-        value.userID == self.user.username
+        value.userID == self.user.id
       }
     
     filtered = filtered.filter{ (key, value) -> Bool in
@@ -477,14 +476,12 @@ class ViewModel: ObservableObject{
           user.username = data["username"] as? String ?? ""
           user.spotifyID = data["spotifyID"] as? String ?? ""
 
-          //[TO CHANGE] is user.username being used as an ID?
-          self.users[user.username] = user
+          self.users[user.id] = user
           print("just put in user", self.users[user.id])
         }
       }
     }
   }
-  
   
   func getNotifications(){
     self.user.notifications = []
@@ -513,58 +510,6 @@ class ViewModel: ObservableObject{
         }
       }
   }
-//
-//  func getNotifications() {
-//    let _ = store.collection("Notifications").getDocuments() { (querySnapshot, err) in
-//      if let err = err {
-//        print("Error getting documents: \(err)")
-//      } else {
-//        for document in querySnapshot!.documents {
-//          let data = document.data()
-//
-//          if data["type"] != nil {
-//            switch data["type"] as? String ?? "" {
-//            case "Like":
-//
-//              break
-//            case "Comment":
-//              break
-//            case "Friend Request":
-//              break
-//            default:
-//              print("Notification has been ignored with data \(data)")
-//            }
-//          }
-//        }
-//      }
-//    }
-//
-//    let _ = store.collection("UserInfo")
-//      .whereField("spotifyID", isEqualTo: )
-//      .getDocuments() { (querySnapshot, err) in
-//      if let err = err {
-//        print("Error getting documents: \(err)")
-//      } else {
-//
-//        else{
-//          for document in querySnapshot!.documents {
-//            let data = document.data()
-//            self.user.id = document.documentID
-//            self.user.name = data["name"] as? String ?? ""
-//            self.user.profileImage = data["profileImage"] as? String ?? ""
-//            self.user.username = data["username"] as? String ?? ""
-//            self.user.spotifyID = data["spotifyID"] as? String ?? ""
-//            self.user.bio = data["bio"] as? String ?? ""
-//            print("user.username from db request: \(self.user.username)")
-//          }
-//
-//        }
-//
-//      }
-//    }
-//
-//
-//  }
   
   func editAccount(bio: String? = nil, name: String? = nil, username: String? = nil) {
     print("HERE:  " + user.id)
