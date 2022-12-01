@@ -19,6 +19,7 @@ struct PostCard: View {
   @EnvironmentObject var viewModel: ViewModel
   @State var viewComment: Bool = false
   @State var albumImage = UIImage()
+  @State var shouldShowShareSheet: Bool = false
   
   var body: some View {
     VStack{
@@ -72,7 +73,22 @@ struct PostCard: View {
                   Image(systemName: "heart").font(.system(size: iconSize))
                 }
               }
+              
+              if post.song.spotifyLink != "" {
+                Button {
+                  self.shouldShowShareSheet = true
+                } label: {
+                  Image(systemName: "square.and.arrow.up").font(.system(size: iconSize))
+                }
+              }
+              
+                
             }.frame(alignment: .center)
+              .sheet(isPresented: self.$shouldShowShareSheet) {
+                if let url: URL = URL(string: post.song.spotifyLink) {
+                  ShareSheet(activityItems: [url])
+                }
+              }
           }.padding([.leading],10)
           
         }.frame(maxWidth: .infinity, alignment: .leading)

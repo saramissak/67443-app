@@ -34,7 +34,6 @@ class ViewModel: ObservableObject{
   @Published var loggedIn: Bool = false
   @Published var notifications: [[String:Any]] = []
 
-
   func getSelf(completionHandler:@escaping (String)->()) {
     let getMe = Spartan.getMe(success: { (user) in
       // Do something with the user object
@@ -227,6 +226,10 @@ class ViewModel: ObservableObject{
           currSong.id = obj.id as! String
           currSong.songName = obj.name
           currSong.artist = obj.artists[0].name
+          
+          if obj.externalUrls != nil {
+            currSong.spotifyLink = obj.externalUrls!["spotify"] ?? ""
+          }
           
           if obj.previewUrl != nil {
             currSong.previewURL = obj.previewUrl
