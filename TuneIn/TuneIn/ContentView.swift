@@ -6,12 +6,17 @@
 //
 
 import SwiftUI
+import Combine
+import SpotifyWebAPI
 
 struct ContentView: View {
+  @EnvironmentObject var spotify: Spotify
   @ObservedObject var viewModel = ViewModel()
   @ObservedObject var friendsViewModel: FriendsViewModel = FriendsViewModel()
   @State var clickedLogin = false
   @State var selectedTab = 0
+  @State private var alert: AlertItem? = nil
+  @State private var cancellables: Set<AnyCancellable> = []
   
   init() {
     UITabBar.appearance().backgroundColor = UIColor.black
@@ -58,12 +63,26 @@ struct ContentView: View {
       }
     } else{
       //      Text("Welcome to TuneIn")
+      modifier(LoginView())
       Button("Login with Spotify Credentials", action:{
         viewModel.login()
       })
-
+      
+    }
+    
+  }
+  
+  struct ContentView_Previews: PreviewProvider {
+    
+    static let spotify: Spotify = {
+      let spotify = Spotify()
+      spotify.isAuthorized = true
+      return spotify
+    }()
+    
+    static var previews: some View {
+      ContentView()
     }
   }
   
 }
-

@@ -210,7 +210,6 @@ class ViewModel: ObservableObject{
           currSong.id = obj.id as! String
           currSong.songName = obj.name
           currSong.artist = obj.artists[0].name
-          
           if obj.previewUrl != nil {
             currSong.previewURL = obj.previewUrl
           }
@@ -297,6 +296,9 @@ class ViewModel: ObservableObject{
           if let firstImage = images[0] as? NSDictionary {
             post.song.albumURL = firstImage["url"] as? String ?? ""
           }
+        }
+        if let uri = album["uri"] as? String {
+          post.song.albumURI = uri
         }
       }
       

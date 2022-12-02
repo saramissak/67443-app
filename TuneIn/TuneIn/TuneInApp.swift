@@ -6,12 +6,15 @@
 //
 
 import SwiftUI
+import Combine
+import SpotifyWebAPI
 
 //@main
 struct TuneInApp: App {
     var body: some Scene {
         WindowGroup {
             ContentView()
+            .environmentObject(Spotify())
         }
     }
-}
+  }

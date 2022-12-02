@@ -16,7 +16,8 @@ struct Song: Codable, Identifiable {
   var artist:     String
 //  var albumURL:    AlbumImage? //picture of the album
   var albumURL:    String //picture of the album
-  var previewURL: String
+  var albumURI: String?
+  var previewURL: String?
 
   init(){
     id = ""
@@ -24,7 +25,6 @@ struct Song: Codable, Identifiable {
     spotifyLink = ""
     artist = ""
     albumURL = ""
-    previewURL = ""
   }
 //  enum CodingKeys : String, CodingKey {
 //    case songID      = "id"
