@@ -149,15 +149,19 @@ class AppDelegate: UIResponder, UIApplicationDelegate, SPTSessionManagerDelegate
 struct TuneIn_FirebaseApp: App {
   @UIApplicationDelegateAdaptor(AppDelegate.self) var delegate
   @StateObject var spotify = Spotify()
-
+  @State private var alert: AlertItem? = nil
+  
+  @State private var cancellables: Set<AnyCancellable> = []
+  
   init() {
-      SpotifyAPILogHandler.bootstrap()
+    SpotifyAPILogHandler.bootstrap()
   }
-
-    var body: some Scene {
-        WindowGroup {
-            ContentView()
-            .environmentObject(spotify)
-        }
+  
+  var body: some Scene {
+    WindowGroup {
+      TuneInAppView()
+        .environmentObject(spotify)
     }
+  }
 }
+  
