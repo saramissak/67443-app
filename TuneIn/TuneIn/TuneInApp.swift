@@ -14,7 +14,6 @@ struct TuneInApp: App {
     var body: some Scene {
         WindowGroup {
             ContentView()
-            .environmentObject(Spotify())
         }
     }
   }

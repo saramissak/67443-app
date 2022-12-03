@@ -10,6 +10,8 @@ import UIKit
 import SwiftUI
 import Firebase
 import Spartan
+import Combine
+import SpotifyWebAPI
 
 
 //@UIApplicationMain
@@ -146,10 +148,16 @@ class AppDelegate: UIResponder, UIApplicationDelegate, SPTSessionManagerDelegate
 @main
 struct TuneIn_FirebaseApp: App {
   @UIApplicationDelegateAdaptor(AppDelegate.self) var delegate
+  @StateObject var spotify = Spotify()
+
+  init() {
+      SpotifyAPILogHandler.bootstrap()
+  }
 
     var body: some Scene {
         WindowGroup {
             ContentView()
+            .environmentObject(spotify)
         }
     }
 }

@@ -63,10 +63,11 @@ struct ContentView: View {
       }
     } else{
       //      Text("Welcome to TuneIn")
-      modifier(LoginView())
       Button("Login with Spotify Credentials", action:{
         viewModel.login()
       })
+      .disabled(!spotify.isAuthorized)
+      modifier(LoginView())
       
     }
     
