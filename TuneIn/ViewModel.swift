@@ -269,47 +269,52 @@ class ViewModel: ObservableObject{
       return albumURL
     
   }
-//  func updateSongPost(_ id: String, _ currPost: Post) {
+  
+//  func updateSongPost(currPost: Post) {
+//    var samePost = currPost
+//    print("CurrSONG!!!!: \(samePost.song)")
 //    var sessionConfiguration = URLSessionConfiguration.default
 //    sessionConfiguration.httpAdditionalHeaders = [
 //      "Authorization": "Bearer \(Spartan.authorizationToken!)"
 //    ]
-//    
+//
 //    let session = URLSession(configuration: sessionConfiguration)
-//    let SpotifyGetTrackURL = "https://api.spotify.com/v1/tracks/\(id)"
-//    
+//    let SpotifyGetTrackURL = "https://api.spotify.com/v1/tracks/\(samePost.id)"
+//
 //    let getTrackTask = session.dataTask(with: URL(string: SpotifyGetTrackURL)!) { (data, response, error) in
 //      guard let data = data else {
 //        print("Error: No data to decode")
 //        return
 //      }
-//      
+//
 //      guard let json = try? JSONSerialization.jsonObject(with: data as Data, options: .allowFragments) as! [String:AnyObject] else {
 //        print("Error: Couldn't decode data into a result")
 //        return
 //      }
-//          
+//
 //      if let album = json["album"] as? NSDictionary {
 //        if let albumURI = album["uri"] as? String {
-//          var songAlbumURI = albumURI
+//          samePost.song.albumURI = albumURI
 //        }
 //      }
 //      if let uri = json["uri"] as? String {
-//        var songPreviewURL = uri
+//        samePost.song.previewURL = uri
 //      }
-//      let postRef = store.collection("Posts").document(currPost.id).f
-//      postRef.updateData([
-//        "albumURL": FieldValue.arrayRemove([user.id])
-//      ])
+//      print("CurrSONG!!!!: \(samePost.song)")
 //      
-//      // Output if everything is working right
-//      print("previewURL:!!!! \(currPost.song.previewURL)")
-//    
+//      do {
+//        let postRef = self.store.collection("Posts").document(currPost.id)
+//        _ = try postRef.setData(from: samePost)
+//      } catch let error {
+//          print("Error writing city to Firestore: \(error)")
+//      }
+//
 //    }
-//    
+//
 //    getTrackTask.resume()
-//    
+//
 //  }
+  
   func getSongById(_ id: String, _ newPost: Post, _ newPostRef: DocumentReference) {
     var post = newPost
     var sessionConfiguration = URLSessionConfiguration.default

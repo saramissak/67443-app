@@ -129,6 +129,7 @@ struct PostCard: View {
   }
   
   func playTrack() {
+    //viewModel.updateSongPost(currPost: self.post)
     let track = self.post.song
     let alertTitle = "Couldn't play \(track.songName)"
 
