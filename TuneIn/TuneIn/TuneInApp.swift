@@ -16,9 +16,7 @@ struct TuneInAppView: View {
   @State private var cancellables: Set<AnyCancellable> = []
   
   var body: some View {
-    NavigationView {
-      ContentView()
-    }
+    ContentView()
     .environmentObject(spotify)
     .modifier(LoginView())
     // Presented if an error occurs during the process of authorizing with
