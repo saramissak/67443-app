@@ -226,13 +226,13 @@ class ViewModel: ObservableObject{
           currSong.id = obj.id as! String
           currSong.songName = obj.name
           currSong.artist = obj.artists[0].name
-          
+ 
           if obj.externalUrls != nil {
             currSong.spotifyLink = obj.externalUrls!["spotify"] ?? ""
           }
           
-          if obj.previewUrl != nil {
-            currSong.previewURL = obj.previewUrl
+          if obj.uri != nil {
+            currSong.previewURL = obj.uri
           }
           songs.append(currSong)
         }
@@ -291,6 +291,51 @@ class ViewModel: ObservableObject{
     
   }
   
+//  func updateSongPost(currPost: Post) {
+//    var samePost = currPost
+//    print("CurrSONG!!!!: \(samePost.song)")
+//    var sessionConfiguration = URLSessionConfiguration.default
+//    sessionConfiguration.httpAdditionalHeaders = [
+//      "Authorization": "Bearer \(Spartan.authorizationToken!)"
+//    ]
+//
+//    let session = URLSession(configuration: sessionConfiguration)
+//    let SpotifyGetTrackURL = "https://api.spotify.com/v1/tracks/\(samePost.id)"
+//
+//    let getTrackTask = session.dataTask(with: URL(string: SpotifyGetTrackURL)!) { (data, response, error) in
+//      guard let data = data else {
+//        print("Error: No data to decode")
+//        return
+//      }
+//
+//      guard let json = try? JSONSerialization.jsonObject(with: data as Data, options: .allowFragments) as! [String:AnyObject] else {
+//        print("Error: Couldn't decode data into a result")
+//        return
+//      }
+//
+//      if let album = json["album"] as? NSDictionary {
+//        if let albumURI = album["uri"] as? String {
+//          samePost.song.albumURI = albumURI
+//        }
+//      }
+//      if let uri = json["uri"] as? String {
+//        samePost.song.previewURL = uri
+//      }
+//      print("CurrSONG!!!!: \(samePost.song)")
+//      
+//      do {
+//        let postRef = self.store.collection("Posts").document(currPost.id)
+//        _ = try postRef.setData(from: samePost)
+//      } catch let error {
+//          print("Error writing city to Firestore: \(error)")
+//      }
+//
+//    }
+//
+//    getTrackTask.resume()
+//
+//  }
+  
   func getSongById(_ id: String, _ newPost: Post, _ newPostRef: DocumentReference) {
     var post = newPost
     var sessionConfiguration = URLSessionConfiguration.default
@@ -318,10 +363,16 @@ class ViewModel: ObservableObject{
             post.song.albumURL = firstImage["url"] as? String ?? ""
           }
         }
+        if let albumURI = album["uri"] as? String {
+          post.song.albumURI = albumURI
+        }
+      }
+      if let uri = json["uri"] as? String {
+        post.song.previewURL = uri
       }
       
       // Output if everything is working right
-      print("\(post.song.albumURL)")
+      print("previewURL:!!!! \(post.song.previewURL)")
       
       do {
         _ = try newPostRef.setData(from: post)
