@@ -600,6 +600,7 @@
 					"$(PROJECT_DIR)/ios-sdk-1.2.2",
 				);
 				GENERATE_INFOPLIST_FILE = YES;
+				INFOPLIST_FILE = TuneIn/Info.plist;
 				INFOPLIST_KEY_UIApplicationSceneManifest_Generation = YES;
 				INFOPLIST_KEY_UIApplicationSupportsIndirectInputEvents = YES;
 				INFOPLIST_KEY_UILaunchScreen_Generation = YES;
@@ -642,6 +643,7 @@
 					"$(PROJECT_DIR)/ios-sdk-1.2.2",
 				);
 				GENERATE_INFOPLIST_FILE = YES;
+				INFOPLIST_FILE = TuneIn/Info.plist;
 				INFOPLIST_KEY_UIApplicationSceneManifest_Generation = YES;
 				INFOPLIST_KEY_UIApplicationSupportsIndirectInputEvents = YES;
 				INFOPLIST_KEY_UILaunchScreen_Generation = YES;
