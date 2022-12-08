@@ -7,6 +7,8 @@
 
 import SwiftUI
 import Spartan
+import WrappingStack
+
 struct ProfileView: View {
   @EnvironmentObject var viewModel: ViewModel
   var spotifyID : String {
@@ -116,7 +118,11 @@ struct ProfileSongOfDay : View {
             Text("\(latestPost.song.songName)")
               .bold()
             Text("\(latestPost.song.artist)")
-            roundedRectangleText(bodyText: "Sad", TextHex: "#000000", BackgroundHex: "#B9C0FF")
+            WrappingHStack(id: \.self, alignment: .leading){
+              ForEach(latestPost.moods, id: \.self) { mood in
+                roundedRectangleText(bodyText: mood, TextHex: "#000000", BackgroundHex: "#FFED95")    .padding(2)
+              }
+            }
           }
         }
         .task {
