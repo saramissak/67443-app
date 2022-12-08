@@ -20,7 +20,7 @@ struct miniUserInfo: View {
       }
       .frame(width: 35, height: 35)
       .clipShape(Circle())
-      Text("\(userID)")
+      Text("\(viewModel.users[userID]?.username ?? userID)")
     }
     Spacer()
   }

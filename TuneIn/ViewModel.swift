@@ -574,7 +574,20 @@ class ViewModel: ObservableObject{
       store.collection("UserInfo").document(user.id).updateData(["name": name!])
     }
     if username != nil {
-      store.collection("UserInfo").document(user.id).updateData(["username": username!])
+      let sameUsernameUserQuery = store.collection("UserInfo")
+        .whereField("username", isEqualTo: username!)
+      sameUsernameUserQuery.getDocuments() { (querySnapshot, err) in
+        if let err = err {
+          print("Error getting documents: \(err)")
+        } else {
+          if querySnapshot!.documents.isEmpty{
+            self.store.collection("UserInfo").document(self.user.id).updateData(["username": username!])
+          } else {
+            print("You cannot use the username ")
+            
+          }
+        }
+      }
     }
      
   }

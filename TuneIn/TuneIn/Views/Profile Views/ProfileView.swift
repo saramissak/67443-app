@@ -67,7 +67,7 @@ struct ProfileBlock : View {
           .task {
             viewModel.getSelf(completionHandler: { (eventList) in })
           }
-        Text("\(spotifyID)")
+        Text("\(user.username)")
           .bold()
         ZStack{
           roundedRectangleText(bodyText: "Genre", TextHex: "#000000", BackgroundHex: "#B9C0FF")
