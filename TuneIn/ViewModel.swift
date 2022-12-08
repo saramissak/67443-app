@@ -430,6 +430,7 @@ class ViewModel: ObservableObject{
         self.user.profileImage = user.images![0].url!
         self.user.name = user.displayName ?? ""
         self.user.bio = ""
+        self.user.favoriteGenre = ""
         self.user.notifications = []
         
         let newUserRef = self.store.collection("UserInfo").document(spotifyID)
@@ -472,6 +473,7 @@ class ViewModel: ObservableObject{
             self.user.username = data["username"] as? String ?? ""
             self.user.spotifyID = data["spotifyID"] as? String ?? ""
             self.user.bio = data["bio"] as? String ?? ""
+            self.user.favoriteGenre = data["favoriteGenre"] as? String ?? ""
 
             print("user.username from db request: \(self.user.username)")
           }
@@ -565,13 +567,19 @@ class ViewModel: ObservableObject{
       }
   }
   
-  func editAccount(bio: String? = nil, name: String? = nil, username: String? = nil) {
+  func editAccount(bio: String? = nil,
+                   name: String? = nil,
+                   username: String? = nil,
+                   genre: String? = nil) {
     print("HERE:!!!  \(bio), \(name), \(username)")
     if bio != nil && bio!.isEmpty != true{
       store.collection("UserInfo").document(user.id).updateData(["bio": bio!])
     }
     if name != nil && name!.isEmpty != true {
       store.collection("UserInfo").document(user.id).updateData(["name": name!])
+    }
+    if genre != nil && genre!.isEmpty != true {
+      store.collection("UserInfo").document(user.id).updateData(["favoriteGenre": genre!])
     }
     if username != nil && username!.isEmpty != true {
       let sameUsernameUserQuery = store.collection("UserInfo")

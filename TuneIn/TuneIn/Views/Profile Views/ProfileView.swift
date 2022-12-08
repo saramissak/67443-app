@@ -69,9 +69,12 @@ struct ProfileBlock : View {
           }
         Text("\(user.username)")
           .bold()
-        ZStack{
-          roundedRectangleText(bodyText: "Genre", TextHex: "#000000", BackgroundHex: "#B9C0FF")
+        if !user.favoriteGenre.isEmpty{
+          roundedRectangleText(bodyText: "\(user.favoriteGenre)", TextHex: "#000000", BackgroundHex: "#B9C0FF")
+        } else {
+          roundedRectangleText(bodyText: "put fav genre here", TextHex: "#000000", BackgroundHex: "#B9C0FF")
         }
+        
       }
       Spacer()
     }

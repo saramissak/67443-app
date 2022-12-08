@@ -16,6 +16,7 @@ struct UserInfo: Codable, Identifiable {
   var spotifyID:        String 
   var profileImage:     String // assuming a URL to their image
   var bio:              String
+  var favoriteGenre:         String
   var notifications:    [Notification]
   
   init() {
@@ -25,6 +26,7 @@ struct UserInfo: Codable, Identifiable {
     spotifyID = ""
     profileImage = ""
     bio = ""
+    favoriteGenre = ""
     notifications = []
   }
 }
