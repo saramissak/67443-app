@@ -8,21 +8,35 @@
 import Foundation
 
 struct UserInfo: Codable, Identifiable {
-  var id:               UUID
+  var id:               String
   var username:         String
   var name:             String
 //  var email:            String
 //  var password:         String
   var spotifyID:        String 
   var profileImage:     String // assuming a URL to their image
+  var bio:              String
+  var favoriteGenre:         String
+  var notifications:    [Notification]
+  
+  init() {
+    id = ""
+    username = ""
+    name = ""
+    spotifyID = ""
+    profileImage = ""
+    bio = ""
+    favoriteGenre = ""
+    notifications = []
+  }
 }
 
 struct Friends: Codable {
-  var friend1: UUID
-  var friend2: UUID
+  var friend1: String
+  var friend2: String
 }
 
-struct FriendRequests {
-  var requestSender: UUID
-  var requestReceiver: UUID
+struct FriendRequests: Codable {
+  var requestSender: String
+  var requestReceiver: String
 }

@@ -21,9 +21,9 @@ class Test{
   
   init(){
     
-    let user1 = UserInfo(id:"1" ,username: "stella",name: "stella yan", spotifyID: "fakeID", profileImage: "")
+    var user1 = UserInfo(id:"1" ,username: "stella",name: "stella yan", spotifyID: "fakeID", profileImage: "")
     //    users.append(user1)
-        let user2 = UserInfo(id:"2" ,username: "sara", name: "sara missak", spotifyID: "fakeID2", profileImage: "")
+        var user2 = UserInfo(id:"2" ,username: "sara", name: "sara missak", spotifyID: "fakeID2", profileImage: "")
     //    users.append(user2)
     //    let user3 = UserInfo(id:"3",username: "luke", name: "luke arney", spotifyID: "fakeID3", profileImage: "")
     //    users.append(user3)
@@ -33,7 +33,7 @@ class Test{
   }
   func add(_ user: UserInfo) {
     do {
-      let newUser = user
+      let newUser = userf
       _ = try store.collection("UserInfo").addDocument(from: newUser)
     } catch {
       fatalError("Unable to add book: \(error.localizedDescription).")
