@@ -143,10 +143,11 @@ class ViewModel: ObservableObject{
       .filter{ (key, value) -> Bool in
         value.userID == userID
       }
+      .sorted(by: { $0.value.createdAt < $1.value.createdAt })
       .map { (key, value) -> String in key}
     print("keys: \(keys)")
     if (keys.count > 0) {
-      return keys[0]
+      return keys.last!
     } else {
       return ""
     }
