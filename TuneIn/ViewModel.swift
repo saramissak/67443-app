@@ -566,14 +566,14 @@ class ViewModel: ObservableObject{
   }
   
   func editAccount(bio: String? = nil, name: String? = nil, username: String? = nil) {
-    print("HERE:  " + user.id)
-    if bio != nil {
+    print("HERE:!!!  \(bio), \(name), \(username)")
+    if bio != nil && bio!.isEmpty != true{
       store.collection("UserInfo").document(user.id).updateData(["bio": bio!])
     }
-    if name != nil {
+    if name != nil && name!.isEmpty != true {
       store.collection("UserInfo").document(user.id).updateData(["name": name!])
     }
-    if username != nil {
+    if username != nil && username!.isEmpty != true {
       let sameUsernameUserQuery = store.collection("UserInfo")
         .whereField("username", isEqualTo: username!)
       sameUsernameUserQuery.getDocuments() { (querySnapshot, err) in
