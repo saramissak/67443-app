@@ -17,6 +17,7 @@ struct HomeFeed: View {
         if viewModel.hasPostedSongOfDay() == false && ignoredBanner == false {
           VStack{
             Text("You haven’t posted your song of the day. Would you like to upload now? ")
+              .padding()
             HStack{
               NavigationLink(destination: SearchSong(), label: {
                 roundedRectangleText(bodyText: "Add Song", TextHex: "#000000", BackgroundHex: "#DECFE4")
@@ -25,11 +26,11 @@ struct HomeFeed: View {
                 .onAppear {
                   self.isNavBarHidden = true
                 }
-              
               Button("ignore", action:{
                 ignoredBanner = true
-              })
-            }
+              }).foregroundColor(.white)
+                .padding(.leading)
+            }.padding(.bottom)
 
           }.background(viewModel.hexStringToUIColor(hex: "373547"))
         }
@@ -68,14 +69,6 @@ struct HomeFeed: View {
     }
     
     
-    
-    //    return Text("HELLO \(viewModel.posts.count)")
-  }
+      }
   
   
-  //struct HomeFeed_Previews: PreviewProvider {
-  //    static var previews: some View {
-  //        HomeFeed(ViewModel())
-  //    }
-  //}
-

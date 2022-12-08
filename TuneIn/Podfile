@@ -20,3 +20,10 @@ target 'TuneIn' do
   end
 
 end
+
+target 'TuneInTests' do
+  
+    pod 'Firebase/Storage'
+    inherit! :search_paths
+end
+

@@ -23,7 +23,10 @@ struct SearchSong: View {
     
     VStack{
       Text("select a song")
-      TextField("Search", text:binding)
+      SearchField(innerText: "search a song", binding: binding)
+    
+//      TextField("Search", text:binding)
+      
       List(viewModel.searchedSongs){ song in
         NavigationLink(destination: PostSongView(song:song)){
           SongRow(song:song)
@@ -33,10 +36,3 @@ struct SearchSong: View {
   }
 }
   
-
-
-//struct SearchSong_Previews: PreviewProvider {
-//    static var previews: some View {
-//        SearchSong()
-//    }
-//}

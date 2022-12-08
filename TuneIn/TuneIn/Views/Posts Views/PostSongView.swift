@@ -16,6 +16,7 @@ struct PostSongView: View {
   @State var madePost : Bool = false
   @State var albumImage = UIImage()
   @State var moodList = [String]()
+  @FocusState private var isFocused: Bool
   
   var song: Song
   var response: String = ""
@@ -54,15 +55,22 @@ struct PostSongView: View {
         }.padding([.top,.bottom],10)
       }
       
-      TextField("caption", text:$caption)
-        .frame(height:200)
-        .border(.white, width: 1)
+      TextField("caption...", text:$caption)
+        .frame( height: 50)
+        .padding(EdgeInsets(top: 0, leading: 6, bottom: 30, trailing: 6))
+        .border(.white, width: 0.5)
+        .focused($isFocused)
+        .onTapGesture {
+            isFocused = true
+        }
       
+      Spacer()
       Text("Moods").font(.title2).fontWeight(.bold)
         .fixedSize(horizontal: false, vertical: true)
       WrappingHStack(id: \.self, alignment: .leading){
         ForEach(self.moodList, id: \.self) { mood in
-          roundedRectangleText(bodyText: mood, TextHex: "#000000", BackgroundHex: "#FFED95")    .padding(2)
+          Button(action: {removeMoodFromList(mood)}, label: {EditableMoodButton(bodyText:  mood, TextHex: "#000000", BackgroundHex: "#FFED95")})
+
         }
       }
 
@@ -70,29 +78,43 @@ struct PostSongView: View {
       HStack{
         TextField("Mood", text: $moodInput)
         Button("Add", action:{
-          self.moodList.append(self.moodInput)
-          self.moodInput = ""
-        })
+          if self.moodInput.trimmingCharacters(in: .whitespacesAndNewlines) != ""{
+            self.moodList.append(self.moodInput)
+            self.moodInput = ""
+          }
+
+        }).foregroundColor(.white)
       }
 
       
       // entering moods
+      
       NavigationLink(destination: HomeFeed().environmentObject(viewModel), isActive: $madePost, label: {
         Text("Post")
-        // need to add conditional
           .fontWeight(.bold)
-          .font(.title).contentShape(Rectangle())        .background(viewModel.hexStringToUIColor(hex: "#FFED95"))
+          .font(.title).contentShape(Rectangle())
+          .background(viewModel.hexStringToUIColor(hex: "#FFED95"))
           .foregroundColor(viewModel.hexStringToUIColor(hex: "#000000"))
           .cornerRadius(8)
-          .padding()
+          .padding(40)
+//          .frame(width: 30, height: 30)
       })
       .onChange(of: madePost) { (newValue) in
         viewModel.makePost(song:song, caption:caption, moods: self.moodList)
-        HomeFeed().environmentObject(viewModel).navigationBarBackButtonHidden(true)
+        HomeFeed().environmentObject(viewModel)
+
       }
     }
      .navigationBarBackButtonHidden(false)
+     .padding([.trailing, .leading], 10)
+
     }
+  }
+  func removeMoodFromList( _ mood: String) -> Void{
+    let newList = self.moodList.filter{$0 != mood}
+    self.moodList = newList
   }
   
 }
+
+
