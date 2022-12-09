@@ -33,24 +33,11 @@ struct PostCard: View {
       }
       VStack(){
         HStack{
-//          Image(uiImage: albumImage)
-//            .resizable()
-//            .aspectRatio(contentMode: .fit)
-//            .frame(width: 150, height: 150)
-//            .clipped()
-//            .contentShape(Rectangle())
-//            .task {
-//              let url = URL(string: post.song.albumURL)
-//              let data = try? Data(contentsOf:url ?? URL(fileURLWithPath: ""))
-//              if let imageData = data {
-//                self.albumImage = UIImage(data: imageData)!
-//              }
-//            }
           albumImageWithPlayButton
           VStack{
             VStack{
               Text("\(post.song.songName)").font(.body).fontWeight(.bold).fixedSize(horizontal: false, vertical: true).frame(maxWidth: .infinity, alignment: .leading)
-              Text("By: \(post.song.artist)").font(.body).fixedSize(horizontal: false, vertical: true).frame(maxWidth: .infinity, alignment: .leading)
+              Text("\(post.song.artist)").fixedSize(horizontal: false, vertical: true).frame(maxWidth: .infinity, alignment: .leading).font(.system(size: 14))
             }.padding([.top,.bottom],10)
 
             Spacer()
