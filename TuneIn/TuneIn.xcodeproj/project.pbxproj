@@ -7,6 +7,45 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		1BBADA82276612442065CC94 /* Pods_TuneIn.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = E19B065CDAFCD8B6D368B8FF /* Pods_TuneIn.framework */; };
+		B100EE8C2924540E001EAF1C /* miniUserInfo.swift in Sources */ = {isa = PBXBuildFile; fileRef = B100EE8B2924540E001EAF1C /* miniUserInfo.swift */; };
+		B10E3CB1291976FC0090F9C7 /* FriendsView.swift in Sources */ = {isa = PBXBuildFile; fileRef = B10E3CAD291976FC0090F9C7 /* FriendsView.swift */; };
+		B10E3CB2291976FC0090F9C7 /* NotificationsView.swift in Sources */ = {isa = PBXBuildFile; fileRef = B10E3CAE291976FC0090F9C7 /* NotificationsView.swift */; };
+		B10E3CB3291976FC0090F9C7 /* ProfileView.swift in Sources */ = {isa = PBXBuildFile; fileRef = B10E3CAF291976FC0090F9C7 /* ProfileView.swift */; };
+		B1432028291DEADC0011FF22 /* createUserView.swift in Sources */ = {isa = PBXBuildFile; fileRef = B1432027291DEADC0011FF22 /* createUserView.swift */; };
+		B14917732941919600BE3537 /* HomeFeedTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = B14917722941919600BE3537 /* HomeFeedTests.swift */; };
+		B14917752941936200BE3537 /* LoginTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = B14917742941936200BE3537 /* LoginTests.swift */; };
+		B149177729419C1E00BE3537 /* FirebaseAuth in Frameworks */ = {isa = PBXBuildFile; productRef = B149177629419C1E00BE3537 /* FirebaseAuth */; };
+		B149177829419CB600BE3537 /* Pods_TuneIn.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = E19B065CDAFCD8B6D368B8FF /* Pods_TuneIn.framework */; };
+		B149177B2941BAAA00BE3537 /* MoodButtons.swift in Sources */ = {isa = PBXBuildFile; fileRef = B149177A2941BAAA00BE3537 /* MoodButtons.swift */; };
+		B149177D2941BAE500BE3537 /* GeneralButtons.swift in Sources */ = {isa = PBXBuildFile; fileRef = B149177C2941BAE500BE3537 /* GeneralButtons.swift */; };
+		B149177F2941C74100BE3537 /* SearchField.swift in Sources */ = {isa = PBXBuildFile; fileRef = B149177E2941C74100BE3537 /* SearchField.swift */; };
+		B149D109291347350056509D /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = B149D108291347350056509D /* AppDelegate.swift */; };
+		B149D11529134C2A0056509D /* SpotifyiOS.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = B149D11429134C2A0056509D /* SpotifyiOS.framework */; };
+		B176D2A029357DBE00FC6990 /* WrappingStack in Frameworks */ = {isa = PBXBuildFile; productRef = B176D29F29357DBE00FC6990 /* WrappingStack */; };
+		B18B95352939237F0081836C /* NotificationCard.swift in Sources */ = {isa = PBXBuildFile; fileRef = B18B95342939237F0081836C /* NotificationCard.swift */; };
+		B1AC67B6291C33F500477A0D /* SearchSong.swift in Sources */ = {isa = PBXBuildFile; fileRef = B1AC67B5291C33F500477A0D /* SearchSong.swift */; };
+		B1AC67BA291C42A300477A0D /* PostSongView.swift in Sources */ = {isa = PBXBuildFile; fileRef = B1AC67B9291C42A300477A0D /* PostSongView.swift */; };
+		B1AC67BC291C5B1300477A0D /* SongRow.swift in Sources */ = {isa = PBXBuildFile; fileRef = B1AC67BB291C5B1300477A0D /* SongRow.swift */; };
+		B1C0CA2F29142C6700445D87 /* FirebaseAnalytics in Frameworks */ = {isa = PBXBuildFile; productRef = B1C0CA2E29142C6700445D87 /* FirebaseAnalytics */; };
+		B1C0CA3129142C6700445D87 /* FirebaseAnalyticsOnDeviceConversion in Frameworks */ = {isa = PBXBuildFile; productRef = B1C0CA3029142C6700445D87 /* FirebaseAnalyticsOnDeviceConversion */; };
+		B1C0CA3329142C6700445D87 /* FirebaseAnalyticsSwift in Frameworks */ = {isa = PBXBuildFile; productRef = B1C0CA3229142C6700445D87 /* FirebaseAnalyticsSwift */; };
+		B1C0CA3529142C6700445D87 /* FirebaseAppCheck in Frameworks */ = {isa = PBXBuildFile; productRef = B1C0CA3429142C6700445D87 /* FirebaseAppCheck */; };
+		B1C0CA3729142C6700445D87 /* FirebaseAppDistribution-Beta in Frameworks */ = {isa = PBXBuildFile; productRef = B1C0CA3629142C6700445D87 /* FirebaseAppDistribution-Beta */; };
+		B1C0CA3929142C6700445D87 /* FirebaseAuth in Frameworks */ = {isa = PBXBuildFile; productRef = B1C0CA3829142C6700445D87 /* FirebaseAuth */; };
+		B1C0CA3B29142C6700445D87 /* FirebaseCrashlytics in Frameworks */ = {isa = PBXBuildFile; productRef = B1C0CA3A29142C6700445D87 /* FirebaseCrashlytics */; };
+		B1C0CA3D29142C6700445D87 /* FirebaseDatabase in Frameworks */ = {isa = PBXBuildFile; productRef = B1C0CA3C29142C6700445D87 /* FirebaseDatabase */; };
+		B1C0CA3F29142C6700445D87 /* FirebaseDatabaseSwift in Frameworks */ = {isa = PBXBuildFile; productRef = B1C0CA3E29142C6700445D87 /* FirebaseDatabaseSwift */; };
+		B1C0CA4129142C6700445D87 /* FirebaseDynamicLinks in Frameworks */ = {isa = PBXBuildFile; productRef = B1C0CA4029142C6700445D87 /* FirebaseDynamicLinks */; };
+		B1C0CA4329142C6700445D87 /* FirebaseFirestore in Frameworks */ = {isa = PBXBuildFile; productRef = B1C0CA4229142C6700445D87 /* FirebaseFirestore */; };
+		B1C0CA4529142C6700445D87 /* FirebaseFirestoreCombine-Community in Frameworks */ = {isa = PBXBuildFile; productRef = B1C0CA4429142C6700445D87 /* FirebaseFirestoreCombine-Community */; };
+		B1C0CA4729142C6700445D87 /* FirebaseFirestoreSwift in Frameworks */ = {isa = PBXBuildFile; productRef = B1C0CA4629142C6700445D87 /* FirebaseFirestoreSwift */; };
+		B1C0CA4929142C6700445D87 /* FirebaseFunctions in Frameworks */ = {isa = PBXBuildFile; productRef = B1C0CA4829142C6700445D87 /* FirebaseFunctions */; };
+		B1C0CA4B29142C6700445D87 /* FirebaseStorage in Frameworks */ = {isa = PBXBuildFile; productRef = B1C0CA4A29142C6700445D87 /* FirebaseStorage */; };
+		B1C0CA4D29142C6700445D87 /* FirebaseStorageCombine-Community in Frameworks */ = {isa = PBXBuildFile; productRef = B1C0CA4C29142C6700445D87 /* FirebaseStorageCombine-Community */; };
+		B1C0CA532914AD3500445D87 /* HomeFeed.swift in Sources */ = {isa = PBXBuildFile; fileRef = B1C0CA522914AD3500445D87 /* HomeFeed.swift */; };
+		B1C0CA552914AE9700445D87 /* ViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = B1C0CA542914AE9700445D87 /* ViewModel.swift */; };
+		B1DE6C18293D455200949744 /* GoogleService-Info.plist in Resources */ = {isa = PBXBuildFile; fileRef = B1DE6C17293D455200949744 /* GoogleService-Info.plist */; };
 		D34D47B728F9DB6E00224758 /* TuneInApp.swift in Sources */ = {isa = PBXBuildFile; fileRef = D34D47B628F9DB6E00224758 /* TuneInApp.swift */; };
 		D34D47B928F9DB6E00224758 /* ContentView.swift in Sources */ = {isa = PBXBuildFile; fileRef = D34D47B828F9DB6E00224758 /* ContentView.swift */; };
 		D34D47BB28F9DB7000224758 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = D34D47BA28F9DB7000224758 /* Assets.xcassets */; };
@@ -15,9 +54,58 @@
 		D34D47CA28F9E1FF00224758 /* Song.swift in Sources */ = {isa = PBXBuildFile; fileRef = D34D47C928F9E1FF00224758 /* Song.swift */; };
 		D34D47D028F9E8BF00224758 /* UserInfo.swift in Sources */ = {isa = PBXBuildFile; fileRef = D34D47CF28F9E8BF00224758 /* UserInfo.swift */; };
 		D34D47D228F9E8FA00224758 /* Notification.swift in Sources */ = {isa = PBXBuildFile; fileRef = D34D47D128F9E8FA00224758 /* Notification.swift */; };
+		D39673F929159B090073716E /* PostCard.swift in Sources */ = {isa = PBXBuildFile; fileRef = D39673F829159B090073716E /* PostCard.swift */; };
+		D39B8BF529365BEE006C62A4 /* FindTab.swift in Sources */ = {isa = PBXBuildFile; fileRef = D39B8BF429365BEE006C62A4 /* FindTab.swift */; };
+		D39B8BF729365C14006C62A4 /* FriendsTab.swift in Sources */ = {isa = PBXBuildFile; fileRef = D39B8BF629365C14006C62A4 /* FriendsTab.swift */; };
+		D39B8BFD29395CB0006C62A4 /* ShareSheet.swift in Sources */ = {isa = PBXBuildFile; fileRef = D39B8BFC29395CB0006C62A4 /* ShareSheet.swift */; };
+		D3F0F03A291A1AA1004DA45B /* FriendsViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = D3F0F039291A1AA1004DA45B /* FriendsViewModel.swift */; };
+		D3F0F077291CB80C004DA45B /* SetBioView.swift in Sources */ = {isa = PBXBuildFile; fileRef = D3F0F076291CB80C004DA45B /* SetBioView.swift */; };
+		D3F0F093291DB905004DA45B /* CommentScreen.swift in Sources */ = {isa = PBXBuildFile; fileRef = D3F0F092291DB905004DA45B /* CommentScreen.swift */; };
+		D3F0F095291DC13B004DA45B /* DisplayComment.swift in Sources */ = {isa = PBXBuildFile; fileRef = D3F0F094291DC13B004DA45B /* DisplayComment.swift */; };
+		FA9D05FA293C034700C50033 /* LoginView.swift in Sources */ = {isa = PBXBuildFile; fileRef = FA9D05F9293C034700C50033 /* LoginView.swift */; };
+		FA9D05FC293C036900C50033 /* Spotify.swift in Sources */ = {isa = PBXBuildFile; fileRef = FA9D05FB293C036900C50033 /* Spotify.swift */; };
+		FA9D0602293C038B00C50033 /* MiscellaneousUtilities.swift in Sources */ = {isa = PBXBuildFile; fileRef = FA9D05FE293C038B00C50033 /* MiscellaneousUtilities.swift */; };
+		FA9D0603293C038B00C50033 /* ImageNames.swift in Sources */ = {isa = PBXBuildFile; fileRef = FA9D05FF293C038B00C50033 /* ImageNames.swift */; };
+		FA9D0604293C038B00C50033 /* SpotifyAPIExtensions.swift in Sources */ = {isa = PBXBuildFile; fileRef = FA9D0600293C038B00C50033 /* SpotifyAPIExtensions.swift */; };
+		FA9D0605293C038B00C50033 /* AlertItem.swift in Sources */ = {isa = PBXBuildFile; fileRef = FA9D0601293C038B00C50033 /* AlertItem.swift */; };
+		FA9D0608293C03F500C50033 /* SpotifyAPI in Frameworks */ = {isa = PBXBuildFile; productRef = FA9D0607293C03F500C50033 /* SpotifyAPI */; };
+		FA9D060B293C047000C50033 /* KeychainAccess in Frameworks */ = {isa = PBXBuildFile; productRef = FA9D060A293C047000C50033 /* KeychainAccess */; };
 /* End PBXBuildFile section */
 
+/* Begin PBXContainerItemProxy section */
+		B149176929418F1600BE3537 /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = D34D47AB28F9DB6E00224758 /* Project object */;
+			proxyType = 1;
+			remoteGlobalIDString = D34D47B228F9DB6E00224758;
+			remoteInfo = TuneIn;
+		};
+/* End PBXContainerItemProxy section */
+
 /* Begin PBXFileReference section */
+		883613557C67C15A150AB868 /* Pods-TuneIn.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-TuneIn.debug.xcconfig"; path = "Target Support Files/Pods-TuneIn/Pods-TuneIn.debug.xcconfig"; sourceTree = "<group>"; };
+		B100EE8B2924540E001EAF1C /* miniUserInfo.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = miniUserInfo.swift; sourceTree = "<group>"; };
+		B10E3CAD291976FC0090F9C7 /* FriendsView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = FriendsView.swift; sourceTree = "<group>"; };
+		B10E3CAE291976FC0090F9C7 /* NotificationsView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = NotificationsView.swift; sourceTree = "<group>"; };
+		B10E3CAF291976FC0090F9C7 /* ProfileView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ProfileView.swift; sourceTree = "<group>"; };
+		B1432027291DEADC0011FF22 /* createUserView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = createUserView.swift; sourceTree = "<group>"; };
+		B149176529418F1600BE3537 /* TuneInTests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = TuneInTests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
+		B14917722941919600BE3537 /* HomeFeedTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HomeFeedTests.swift; sourceTree = "<group>"; };
+		B14917742941936200BE3537 /* LoginTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LoginTests.swift; sourceTree = "<group>"; };
+		B149177A2941BAAA00BE3537 /* MoodButtons.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MoodButtons.swift; sourceTree = "<group>"; };
+		B149177C2941BAE500BE3537 /* GeneralButtons.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GeneralButtons.swift; sourceTree = "<group>"; };
+		B149177E2941C74100BE3537 /* SearchField.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SearchField.swift; sourceTree = "<group>"; };
+		B149D108291347350056509D /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
+		B149D11429134C2A0056509D /* SpotifyiOS.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = SpotifyiOS.framework; path = "ios-sdk-1.2.2/SpotifyiOS.framework"; sourceTree = SOURCE_ROOT; };
+		B149D11629134DDC0056509D /* TuneIn-Bridging-Header.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = "TuneIn-Bridging-Header.h"; sourceTree = "<group>"; };
+		B18B95342939237F0081836C /* NotificationCard.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NotificationCard.swift; sourceTree = "<group>"; };
+		B1AC67B5291C33F500477A0D /* SearchSong.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SearchSong.swift; sourceTree = "<group>"; };
+		B1AC67B9291C42A300477A0D /* PostSongView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PostSongView.swift; sourceTree = "<group>"; };
+		B1AC67BB291C5B1300477A0D /* SongRow.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SongRow.swift; sourceTree = "<group>"; };
+		B1C0CA522914AD3500445D87 /* HomeFeed.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; name = HomeFeed.swift; path = "TuneIn/Views/Posts Views/HomeFeed.swift"; sourceTree = SOURCE_ROOT; };
+		B1C0CA542914AE9700445D87 /* ViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ViewModel.swift; sourceTree = SOURCE_ROOT; };
+		B1DE6C17293D455200949744 /* GoogleService-Info.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; name = "GoogleService-Info.plist"; path = "../../../../../Downloads/GoogleService-Info.plist"; sourceTree = "<group>"; };
+		B1EA827B29135D2200FAF2C2 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		D34D47B328F9DB6E00224758 /* TuneIn.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = TuneIn.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		D34D47B628F9DB6E00224758 /* TuneInApp.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TuneInApp.swift; sourceTree = "<group>"; };
 		D34D47B828F9DB6E00224758 /* ContentView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ContentView.swift; sourceTree = "<group>"; };
@@ -27,24 +115,145 @@
 		D34D47C928F9E1FF00224758 /* Song.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Song.swift; sourceTree = "<group>"; };
 		D34D47CF28F9E8BF00224758 /* UserInfo.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UserInfo.swift; sourceTree = "<group>"; };
 		D34D47D128F9E8FA00224758 /* Notification.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Notification.swift; sourceTree = "<group>"; };
+		D39673F829159B090073716E /* PostCard.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PostCard.swift; sourceTree = "<group>"; };
+		D39B8BF429365BEE006C62A4 /* FindTab.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FindTab.swift; sourceTree = "<group>"; };
+		D39B8BF629365C14006C62A4 /* FriendsTab.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FriendsTab.swift; sourceTree = "<group>"; };
+		D39B8BFC29395CB0006C62A4 /* ShareSheet.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ShareSheet.swift; sourceTree = "<group>"; };
+		D3F0F039291A1AA1004DA45B /* FriendsViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FriendsViewModel.swift; sourceTree = "<group>"; };
+		D3F0F076291CB80C004DA45B /* SetBioView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SetBioView.swift; sourceTree = "<group>"; };
+		D3F0F092291DB905004DA45B /* CommentScreen.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CommentScreen.swift; sourceTree = "<group>"; };
+		D3F0F094291DC13B004DA45B /* DisplayComment.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DisplayComment.swift; sourceTree = "<group>"; };
+		D46AFB2E038D952AE10D4D4C /* Pods-TuneIn.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-TuneIn.release.xcconfig"; path = "Target Support Files/Pods-TuneIn/Pods-TuneIn.release.xcconfig"; sourceTree = "<group>"; };
+		E19B065CDAFCD8B6D368B8FF /* Pods_TuneIn.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_TuneIn.framework; sourceTree = BUILT_PRODUCTS_DIR; };
+		FA9D05F9293C034700C50033 /* LoginView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = LoginView.swift; sourceTree = "<group>"; };
+		FA9D05FB293C036900C50033 /* Spotify.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Spotify.swift; sourceTree = "<group>"; };
+		FA9D05FE293C038B00C50033 /* MiscellaneousUtilities.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = MiscellaneousUtilities.swift; sourceTree = "<group>"; };
+		FA9D05FF293C038B00C50033 /* ImageNames.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ImageNames.swift; sourceTree = "<group>"; };
+		FA9D0600293C038B00C50033 /* SpotifyAPIExtensions.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SpotifyAPIExtensions.swift; sourceTree = "<group>"; };
+		FA9D0601293C038B00C50033 /* AlertItem.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = AlertItem.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
+		B149176229418F1600BE3537 /* Frameworks */ = {
+			isa = PBXFrameworksBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				B149177829419CB600BE3537 /* Pods_TuneIn.framework in Frameworks */,
+				B149177729419C1E00BE3537 /* FirebaseAuth in Frameworks */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
 		D34D47B028F9DB6E00224758 /* Frameworks */ = {
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				B1C0CA4529142C6700445D87 /* FirebaseFirestoreCombine-Community in Frameworks */,
+				B176D2A029357DBE00FC6990 /* WrappingStack in Frameworks */,
+				FA9D060B293C047000C50033 /* KeychainAccess in Frameworks */,
+				FA9D0608293C03F500C50033 /* SpotifyAPI in Frameworks */,
+				B1C0CA3F29142C6700445D87 /* FirebaseDatabaseSwift in Frameworks */,
+				B1C0CA4129142C6700445D87 /* FirebaseDynamicLinks in Frameworks */,
+				B1C0CA4729142C6700445D87 /* FirebaseFirestoreSwift in Frameworks */,
+				B1C0CA3329142C6700445D87 /* FirebaseAnalyticsSwift in Frameworks */,
+				B1C0CA4B29142C6700445D87 /* FirebaseStorage in Frameworks */,
+				B1C0CA4D29142C6700445D87 /* FirebaseStorageCombine-Community in Frameworks */,
+				B1C0CA2F29142C6700445D87 /* FirebaseAnalytics in Frameworks */,
+				B1C0CA3129142C6700445D87 /* FirebaseAnalyticsOnDeviceConversion in Frameworks */,
+				B1C0CA4329142C6700445D87 /* FirebaseFirestore in Frameworks */,
+				B1C0CA3529142C6700445D87 /* FirebaseAppCheck in Frameworks */,
+				B149D11529134C2A0056509D /* SpotifyiOS.framework in Frameworks */,
+				B1C0CA3B29142C6700445D87 /* FirebaseCrashlytics in Frameworks */,
+				B1C0CA3D29142C6700445D87 /* FirebaseDatabase in Frameworks */,
+				B1C0CA4929142C6700445D87 /* FirebaseFunctions in Frameworks */,
+				B1C0CA3929142C6700445D87 /* FirebaseAuth in Frameworks */,
+				B1C0CA3729142C6700445D87 /* FirebaseAppDistribution-Beta in Frameworks */,
+				1BBADA82276612442065CC94 /* Pods_TuneIn.framework in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
+		325FB501D977D67B11B9E7EF /* Frameworks */ = {
+			isa = PBXGroup;
+			children = (
+				E19B065CDAFCD8B6D368B8FF /* Pods_TuneIn.framework */,
+			);
+			name = Frameworks;
+			sourceTree = "<group>";
+		};
+		3CAFD9A4BACA90A10F923F96 /* Pods */ = {
+			isa = PBXGroup;
+			children = (
+				883613557C67C15A150AB868 /* Pods-TuneIn.debug.xcconfig */,
+				D46AFB2E038D952AE10D4D4C /* Pods-TuneIn.release.xcconfig */,
+			);
+			path = Pods;
+			sourceTree = "<group>";
+		};
+		B14917792941BA8B00BE3537 /* Buttons */ = {
+			isa = PBXGroup;
+			children = (
+				B149177A2941BAAA00BE3537 /* MoodButtons.swift */,
+				B149177C2941BAE500BE3537 /* GeneralButtons.swift */,
+				B149177E2941C74100BE3537 /* SearchField.swift */,
+			);
+			path = Buttons;
+			sourceTree = "<group>";
+		};
+		B17D75DA292368A000A14EF7 /* Posts Views */ = {
+			isa = PBXGroup;
+			children = (
+				B1C0CA522914AD3500445D87 /* HomeFeed.swift */,
+				B1AC67BB291C5B1300477A0D /* SongRow.swift */,
+				B1AC67B9291C42A300477A0D /* PostSongView.swift */,
+				D39673F829159B090073716E /* PostCard.swift */,
+				D39B8BFC29395CB0006C62A4 /* ShareSheet.swift */,
+				B1AC67B5291C33F500477A0D /* SearchSong.swift */,
+				D3F0F094291DC13B004DA45B /* DisplayComment.swift */,
+				D3F0F092291DB905004DA45B /* CommentScreen.swift */,
+				B100EE8B2924540E001EAF1C /* miniUserInfo.swift */,
+			);
+			path = "Posts Views";
+			sourceTree = "<group>";
+		};
+		B17D75DB2923691500A14EF7 /* Profile Views */ = {
+			isa = PBXGroup;
+			children = (
+				D3F0F076291CB80C004DA45B /* SetBioView.swift */,
+				B10E3CAF291976FC0090F9C7 /* ProfileView.swift */,
+			);
+			path = "Profile Views";
+			sourceTree = "<group>";
+		};
+		B17D75DC29236A4F00A14EF7 /* Friend Views */ = {
+			isa = PBXGroup;
+			children = (
+				D39B8BF629365C14006C62A4 /* FriendsTab.swift */,
+				B10E3CAD291976FC0090F9C7 /* FriendsView.swift */,
+				D39B8BF429365BEE006C62A4 /* FindTab.swift */,
+			);
+			path = "Friend Views";
+			sourceTree = "<group>";
+		};
+		B1A9BBD52941850C004A46AB /* TuneInTests */ = {
+			isa = PBXGroup;
+			children = (
+				B14917722941919600BE3537 /* HomeFeedTests.swift */,
+				B14917742941936200BE3537 /* LoginTests.swift */,
+			);
+			path = TuneInTests;
+			sourceTree = "<group>";
+		};
 		D34D47AA28F9DB6E00224758 = {
 			isa = PBXGroup;
 			children = (
+				B149D11629134DDC0056509D /* TuneIn-Bridging-Header.h */,
+				B1A9BBD52941850C004A46AB /* TuneInTests */,
 				D34D47B528F9DB6E00224758 /* TuneIn */,
 				D34D47B428F9DB6E00224758 /* Products */,
+				3CAFD9A4BACA90A10F923F96 /* Pods */,
+				325FB501D977D67B11B9E7EF /* Frameworks */,
 			);
 			sourceTree = "<group>";
 		};
@@ -52,6 +261,7 @@
 			isa = PBXGroup;
 			children = (
 				D34D47B328F9DB6E00224758 /* TuneIn.app */,
+				B149176529418F1600BE3537 /* TuneInTests.xctest */,
 			);
 			name = Products;
 			sourceTree = "<group>";
@@ -62,10 +272,16 @@
 				D34D47C628F9DC0B00224758 /* VIewModel */,
 				D34D47C528F9DBE700224758 /* Model */,
 				D34D47C428F9DBDE00224758 /* Views */,
+				FA9D05FD293C038B00C50033 /* Project Utilities */,
 				D34D47B628F9DB6E00224758 /* TuneInApp.swift */,
+				FA9D05F9293C034700C50033 /* LoginView.swift */,
 				D34D47B828F9DB6E00224758 /* ContentView.swift */,
+				B149D108291347350056509D /* AppDelegate.swift */,
 				D34D47BA28F9DB7000224758 /* Assets.xcassets */,
 				D34D47BC28F9DB7000224758 /* Preview Content */,
+				B149D11429134C2A0056509D /* SpotifyiOS.framework */,
+				B1EA827B29135D2200FAF2C2 /* Info.plist */,
+				B1DE6C17293D455200949744 /* GoogleService-Info.plist */,
 			);
 			path = TuneIn;
 			sourceTree = "<group>";
@@ -81,6 +297,12 @@
 		D34D47C428F9DBDE00224758 /* Views */ = {
 			isa = PBXGroup;
 			children = (
+				B14917792941BA8B00BE3537 /* Buttons */,
+				B17D75DC29236A4F00A14EF7 /* Friend Views */,
+				B17D75DB2923691500A14EF7 /* Profile Views */,
+				B17D75DA292368A000A14EF7 /* Posts Views */,
+				B1432027291DEADC0011FF22 /* createUserView.swift */,
+				D39B8BF929369DB7006C62A4 /* Notifications Views */,
 			);
 			path = Views;
 			sourceTree = "<group>";
@@ -99,26 +321,93 @@
 		D34D47C628F9DC0B00224758 /* VIewModel */ = {
 			isa = PBXGroup;
 			children = (
+				B1C0CA542914AE9700445D87 /* ViewModel.swift */,
+				D3F0F039291A1AA1004DA45B /* FriendsViewModel.swift */,
+				FA9D05FB293C036900C50033 /* Spotify.swift */,
 			);
 			path = VIewModel;
+			sourceTree = "<group>";
+		};
+		D39B8BF929369DB7006C62A4 /* Notifications Views */ = {
+			isa = PBXGroup;
+			children = (
+				B10E3CAE291976FC0090F9C7 /* NotificationsView.swift */,
+				B18B95342939237F0081836C /* NotificationCard.swift */,
+			);
+			path = "Notifications Views";
+			sourceTree = "<group>";
+		};
+		FA9D05FD293C038B00C50033 /* Project Utilities */ = {
+			isa = PBXGroup;
+			children = (
+				FA9D05FE293C038B00C50033 /* MiscellaneousUtilities.swift */,
+				FA9D05FF293C038B00C50033 /* ImageNames.swift */,
+				FA9D0600293C038B00C50033 /* SpotifyAPIExtensions.swift */,
+				FA9D0601293C038B00C50033 /* AlertItem.swift */,
+			);
+			path = "Project Utilities";
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
 
 /* Begin PBXNativeTarget section */
+		B149176429418F1600BE3537 /* TuneInTests */ = {
+			isa = PBXNativeTarget;
+			buildConfigurationList = B149176B29418F1700BE3537 /* Build configuration list for PBXNativeTarget "TuneInTests" */;
+			buildPhases = (
+				B149176129418F1600BE3537 /* Sources */,
+				B149176229418F1600BE3537 /* Frameworks */,
+				B149176329418F1600BE3537 /* Resources */,
+			);
+			buildRules = (
+			);
+			dependencies = (
+				B149176A29418F1600BE3537 /* PBXTargetDependency */,
+			);
+			name = TuneInTests;
+			packageProductDependencies = (
+				B149177629419C1E00BE3537 /* FirebaseAuth */,
+			);
+			productName = TuneInTests;
+			productReference = B149176529418F1600BE3537 /* TuneInTests.xctest */;
+			productType = "com.apple.product-type.bundle.unit-test";
+		};
 		D34D47B228F9DB6E00224758 /* TuneIn */ = {
 			isa = PBXNativeTarget;
 			buildConfigurationList = D34D47C128F9DB7000224758 /* Build configuration list for PBXNativeTarget "TuneIn" */;
 			buildPhases = (
+				D40D92ADA15514EAE1F49441 /* [CP] Check Pods Manifest.lock */,
 				D34D47AF28F9DB6E00224758 /* Sources */,
 				D34D47B028F9DB6E00224758 /* Frameworks */,
 				D34D47B128F9DB6E00224758 /* Resources */,
+				295DB2E427655C4C90CDFFE4 /* [CP] Embed Pods Frameworks */,
 			);
 			buildRules = (
 			);
 			dependencies = (
 			);
 			name = TuneIn;
+			packageProductDependencies = (
+				B1C0CA2E29142C6700445D87 /* FirebaseAnalytics */,
+				B1C0CA3029142C6700445D87 /* FirebaseAnalyticsOnDeviceConversion */,
+				B1C0CA3229142C6700445D87 /* FirebaseAnalyticsSwift */,
+				B1C0CA3429142C6700445D87 /* FirebaseAppCheck */,
+				B1C0CA3629142C6700445D87 /* FirebaseAppDistribution-Beta */,
+				B1C0CA3829142C6700445D87 /* FirebaseAuth */,
+				B1C0CA3A29142C6700445D87 /* FirebaseCrashlytics */,
+				B1C0CA3C29142C6700445D87 /* FirebaseDatabase */,
+				B1C0CA3E29142C6700445D87 /* FirebaseDatabaseSwift */,
+				B1C0CA4029142C6700445D87 /* FirebaseDynamicLinks */,
+				B1C0CA4229142C6700445D87 /* FirebaseFirestore */,
+				B1C0CA4429142C6700445D87 /* FirebaseFirestoreCombine-Community */,
+				B1C0CA4629142C6700445D87 /* FirebaseFirestoreSwift */,
+				B1C0CA4829142C6700445D87 /* FirebaseFunctions */,
+				B1C0CA4A29142C6700445D87 /* FirebaseStorage */,
+				B1C0CA4C29142C6700445D87 /* FirebaseStorageCombine-Community */,
+				B176D29F29357DBE00FC6990 /* WrappingStack */,
+				FA9D0607293C03F500C50033 /* SpotifyAPI */,
+				FA9D060A293C047000C50033 /* KeychainAccess */,
+			);
 			productName = TuneIn;
 			productReference = D34D47B328F9DB6E00224758 /* TuneIn.app */;
 			productType = "com.apple.product-type.application";
@@ -130,9 +419,13 @@
 			isa = PBXProject;
 			attributes = {
 				BuildIndependentTargetsInParallel = 1;
-				LastSwiftUpdateCheck = 1400;
+				LastSwiftUpdateCheck = 1410;
 				LastUpgradeCheck = 1400;
 				TargetAttributes = {
+					B149176429418F1600BE3537 = {
+						CreatedOnToolsVersion = 14.1;
+						TestTargetID = D34D47B228F9DB6E00224758;
+					};
 					D34D47B228F9DB6E00224758 = {
 						CreatedOnToolsVersion = 14.0;
 					};
@@ -147,44 +440,205 @@
 				Base,
 			);
 			mainGroup = D34D47AA28F9DB6E00224758;
+			packageReferences = (
+				B1C0CA2D29142C6700445D87 /* XCRemoteSwiftPackageReference "firebase-ios-sdk" */,
+				B176D29E29357DBE00FC6990 /* XCRemoteSwiftPackageReference "swiftui-wrapping-stack" */,
+				FA9D0606293C03F500C50033 /* XCRemoteSwiftPackageReference "SpotifyAPI" */,
+				FA9D0609293C047000C50033 /* XCRemoteSwiftPackageReference "KeychainAccess" */,
+			);
 			productRefGroup = D34D47B428F9DB6E00224758 /* Products */;
 			projectDirPath = "";
 			projectRoot = "";
 			targets = (
 				D34D47B228F9DB6E00224758 /* TuneIn */,
+				B149176429418F1600BE3537 /* TuneInTests */,
 			);
 		};
 /* End PBXProject section */
 
 /* Begin PBXResourcesBuildPhase section */
+		B149176329418F1600BE3537 /* Resources */ = {
+			isa = PBXResourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
 		D34D47B128F9DB6E00224758 /* Resources */ = {
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
 				D34D47BE28F9DB7000224758 /* Preview Assets.xcassets in Resources */,
 				D34D47BB28F9DB7000224758 /* Assets.xcassets in Resources */,
+				B1DE6C18293D455200949744 /* GoogleService-Info.plist in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
 /* End PBXResourcesBuildPhase section */
 
+/* Begin PBXShellScriptBuildPhase section */
+		295DB2E427655C4C90CDFFE4 /* [CP] Embed Pods Frameworks */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputFileListPaths = (
+				"${PODS_ROOT}/Target Support Files/Pods-TuneIn/Pods-TuneIn-frameworks-${CONFIGURATION}-input-files.xcfilelist",
+			);
+			name = "[CP] Embed Pods Frameworks";
+			outputFileListPaths = (
+				"${PODS_ROOT}/Target Support Files/Pods-TuneIn/Pods-TuneIn-frameworks-${CONFIGURATION}-output-files.xcfilelist",
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "\"${PODS_ROOT}/Target Support Files/Pods-TuneIn/Pods-TuneIn-frameworks.sh\"\n";
+			showEnvVarsInLog = 0;
+		};
+		D40D92ADA15514EAE1F49441 /* [CP] Check Pods Manifest.lock */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputFileListPaths = (
+			);
+			inputPaths = (
+				"${PODS_PODFILE_DIR_PATH}/Podfile.lock",
+				"${PODS_ROOT}/Manifest.lock",
+			);
+			name = "[CP] Check Pods Manifest.lock";
+			outputFileListPaths = (
+			);
+			outputPaths = (
+				"$(DERIVED_FILE_DIR)/Pods-TuneIn-checkManifestLockResult.txt",
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "diff \"${PODS_PODFILE_DIR_PATH}/Podfile.lock\" \"${PODS_ROOT}/Manifest.lock\" > /dev/null\nif [ $? != 0 ] ; then\n    # print error to STDERR\n    echo \"error: The sandbox is not in sync with the Podfile.lock. Run 'pod install' or update your CocoaPods installation.\" >&2\n    exit 1\nfi\n# This output is used by Xcode 'outputs' to avoid re-running this script phase.\necho \"SUCCESS\" > \"${SCRIPT_OUTPUT_FILE_0}\"\n";
+			showEnvVarsInLog = 0;
+		};
+/* End PBXShellScriptBuildPhase section */
+
 /* Begin PBXSourcesBuildPhase section */
+		B149176129418F1600BE3537 /* Sources */ = {
+			isa = PBXSourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				B14917752941936200BE3537 /* LoginTests.swift in Sources */,
+				B14917732941919600BE3537 /* HomeFeedTests.swift in Sources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
 		D34D47AF28F9DB6E00224758 /* Sources */ = {
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				FA9D0604293C038B00C50033 /* SpotifyAPIExtensions.swift in Sources */,
 				D34D47CA28F9E1FF00224758 /* Song.swift in Sources */,
+				B1432028291DEADC0011FF22 /* createUserView.swift in Sources */,
+				B1AC67BA291C42A300477A0D /* PostSongView.swift in Sources */,
+				B1C0CA552914AE9700445D87 /* ViewModel.swift in Sources */,
 				D34D47C828F9DC3600224758 /* Post.swift in Sources */,
+				D39B8BFD29395CB0006C62A4 /* ShareSheet.swift in Sources */,
 				D34D47D228F9E8FA00224758 /* Notification.swift in Sources */,
 				D34D47B928F9DB6E00224758 /* ContentView.swift in Sources */,
+				B18B95352939237F0081836C /* NotificationCard.swift in Sources */,
+				B149177D2941BAE500BE3537 /* GeneralButtons.swift in Sources */,
+				B149177F2941C74100BE3537 /* SearchField.swift in Sources */,
+				B10E3CB1291976FC0090F9C7 /* FriendsView.swift in Sources */,
+				D3F0F095291DC13B004DA45B /* DisplayComment.swift in Sources */,
+				B149D109291347350056509D /* AppDelegate.swift in Sources */,
+				D3F0F03A291A1AA1004DA45B /* FriendsViewModel.swift in Sources */,
+				B149177B2941BAAA00BE3537 /* MoodButtons.swift in Sources */,
+				D3F0F093291DB905004DA45B /* CommentScreen.swift in Sources */,
+				FA9D0605293C038B00C50033 /* AlertItem.swift in Sources */,
+				FA9D0602293C038B00C50033 /* MiscellaneousUtilities.swift in Sources */,
 				D34D47D028F9E8BF00224758 /* UserInfo.swift in Sources */,
+				FA9D05FA293C034700C50033 /* LoginView.swift in Sources */,
+				FA9D05FC293C036900C50033 /* Spotify.swift in Sources */,
+				D39B8BF729365C14006C62A4 /* FriendsTab.swift in Sources */,
+				D3F0F077291CB80C004DA45B /* SetBioView.swift in Sources */,
+				FA9D0603293C038B00C50033 /* ImageNames.swift in Sources */,
+				B1C0CA532914AD3500445D87 /* HomeFeed.swift in Sources */,
+				B10E3CB2291976FC0090F9C7 /* NotificationsView.swift in Sources */,
 				D34D47B728F9DB6E00224758 /* TuneInApp.swift in Sources */,
+				B1AC67BC291C5B1300477A0D /* SongRow.swift in Sources */,
+				B1AC67B6291C33F500477A0D /* SearchSong.swift in Sources */,
+				B100EE8C2924540E001EAF1C /* miniUserInfo.swift in Sources */,
+				B10E3CB3291976FC0090F9C7 /* ProfileView.swift in Sources */,
+				D39B8BF529365BEE006C62A4 /* FindTab.swift in Sources */,
+				D39673F929159B090073716E /* PostCard.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
 /* End PBXSourcesBuildPhase section */
 
+/* Begin PBXTargetDependency section */
+		B149176A29418F1600BE3537 /* PBXTargetDependency */ = {
+			isa = PBXTargetDependency;
+			target = D34D47B228F9DB6E00224758 /* TuneIn */;
+			targetProxy = B149176929418F1600BE3537 /* PBXContainerItemProxy */;
+		};
+/* End PBXTargetDependency section */
+
 /* Begin XCBuildConfiguration section */
+		B149176C29418F1700BE3537 /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				BUNDLE_LOADER = "$(TEST_HOST)";
+				CODE_SIGN_STYLE = Automatic;
+				CURRENT_PROJECT_VERSION = 1;
+				DEVELOPMENT_TEAM = 2VHAH62T69;
+				GENERATE_INFOPLIST_FILE = YES;
+				HEADER_SEARCH_PATHS = (
+					"$(inherited)",
+					"\"${PODS_ROOT}/Headers/Public\"",
+					"\"${PODS_ROOT}/Headers/Public/Firebase\"",
+					"\"${SRCROOT}/Pods/Firebase/CoreOnly/Sources\"",
+				);
+				IPHONEOS_DEPLOYMENT_TARGET = 16.1;
+				MACOSX_DEPLOYMENT_TARGET = 12.5;
+				MARKETING_VERSION = 1.0;
+				PRODUCT_BUNDLE_IDENTIFIER = org.TuneInTests;
+				"PRODUCT_BUNDLE_IDENTIFIER[sdk=iphoneos*]" = "-43-TuneIn";
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				SDKROOT = auto;
+				SUPPORTED_PLATFORMS = "iphoneos iphonesimulator macosx";
+				SWIFT_EMIT_LOC_STRINGS = NO;
+				SWIFT_VERSION = 5.0;
+				TARGETED_DEVICE_FAMILY = "1,2";
+				TEST_HOST = "$(BUILT_PRODUCTS_DIR)/TuneIn.app/$(BUNDLE_EXECUTABLE_FOLDER_PATH)/TuneIn";
+			};
+			name = Debug;
+		};
+		B149176D29418F1700BE3537 /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				BUNDLE_LOADER = "$(TEST_HOST)";
+				CODE_SIGN_STYLE = Automatic;
+				CURRENT_PROJECT_VERSION = 1;
+				DEVELOPMENT_TEAM = 2VHAH62T69;
+				GENERATE_INFOPLIST_FILE = YES;
+				HEADER_SEARCH_PATHS = (
+					"$(inherited)",
+					"\"${PODS_ROOT}/Headers/Public\"",
+					"\"${PODS_ROOT}/Headers/Public/Firebase\"",
+					"\"${SRCROOT}/Pods/Firebase/CoreOnly/Sources\"",
+				);
+				IPHONEOS_DEPLOYMENT_TARGET = 16.1;
+				MACOSX_DEPLOYMENT_TARGET = 12.5;
+				MARKETING_VERSION = 1.0;
+				PRODUCT_BUNDLE_IDENTIFIER = org.TuneInTests;
+				"PRODUCT_BUNDLE_IDENTIFIER[sdk=iphoneos*]" = "-43-TuneIn";
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				SDKROOT = auto;
+				SUPPORTED_PLATFORMS = "iphoneos iphonesimulator macosx";
+				SWIFT_EMIT_LOC_STRINGS = NO;
+				SWIFT_VERSION = 5.0;
+				TARGETED_DEVICE_FAMILY = "1,2";
+				TEST_HOST = "$(BUILT_PRODUCTS_DIR)/TuneIn.app/$(BUNDLE_EXECUTABLE_FOLDER_PATH)/TuneIn";
+			};
+			name = Release;
+		};
 		D34D47BF28F9DB7000224758 /* Debug */ = {
 			isa = XCBuildConfiguration;
 			buildSettings = {
@@ -235,7 +689,7 @@
 				GCC_WARN_UNINITIALIZED_AUTOS = YES_AGGRESSIVE;
 				GCC_WARN_UNUSED_FUNCTION = YES;
 				GCC_WARN_UNUSED_VARIABLE = YES;
-				IPHONEOS_DEPLOYMENT_TARGET = 16.0;
+				IPHONEOS_DEPLOYMENT_TARGET = 15.4;
 				MTL_ENABLE_DEBUG_INFO = INCLUDE_SOURCE;
 				MTL_FAST_MATH = YES;
 				ONLY_ACTIVE_ARCH = YES;
@@ -289,7 +743,7 @@
 				GCC_WARN_UNINITIALIZED_AUTOS = YES_AGGRESSIVE;
 				GCC_WARN_UNUSED_FUNCTION = YES;
 				GCC_WARN_UNUSED_VARIABLE = YES;
-				IPHONEOS_DEPLOYMENT_TARGET = 16.0;
+				IPHONEOS_DEPLOYMENT_TARGET = 15.4;
 				MTL_ENABLE_DEBUG_INFO = NO;
 				MTL_FAST_MATH = YES;
 				SDKROOT = iphoneos;
@@ -301,28 +755,43 @@
 		};
 		D34D47C228F9DB7000224758 /* Debug */ = {
 			isa = XCBuildConfiguration;
+			baseConfigurationReference = 883613557C67C15A150AB868 /* Pods-TuneIn.debug.xcconfig */;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				ASSETCATALOG_COMPILER_GLOBAL_ACCENT_COLOR_NAME = AccentColor;
+				CODE_SIGN_IDENTITY = "Apple Development";
 				CODE_SIGN_STYLE = Automatic;
 				CURRENT_PROJECT_VERSION = 1;
 				DEVELOPMENT_ASSET_PATHS = "\"TuneIn/Preview Content\"";
-				DEVELOPMENT_TEAM = XB2X2SZTFC;
+				DEVELOPMENT_TEAM = 2VHAH62T69;
 				ENABLE_PREVIEWS = YES;
+				EXCLUDED_ARCHS = "";
+				"EXCLUDED_ARCHS[sdk=iphonesimulator*]" = arm64;
+				FRAMEWORK_SEARCH_PATHS = (
+					"$(inherited)",
+					"$(PROJECT_DIR)",
+					"$(PROJECT_DIR)/ios-sdk-1.2.2",
+				);
 				GENERATE_INFOPLIST_FILE = YES;
+				INFOPLIST_FILE = TuneIn/Info.plist;
 				INFOPLIST_KEY_UIApplicationSceneManifest_Generation = YES;
 				INFOPLIST_KEY_UIApplicationSupportsIndirectInputEvents = YES;
 				INFOPLIST_KEY_UILaunchScreen_Generation = YES;
 				INFOPLIST_KEY_UISupportedInterfaceOrientations_iPad = "UIInterfaceOrientationPortrait UIInterfaceOrientationPortraitUpsideDown UIInterfaceOrientationLandscapeLeft UIInterfaceOrientationLandscapeRight";
 				INFOPLIST_KEY_UISupportedInterfaceOrientations_iPhone = "UIInterfaceOrientationPortrait UIInterfaceOrientationLandscapeLeft UIInterfaceOrientationLandscapeRight";
+				INFOPLIST_KEY_UIUserInterfaceStyle = Dark;
+				IPHONEOS_DEPLOYMENT_TARGET = 16.1;
 				LD_RUNPATH_SEARCH_PATHS = (
 					"$(inherited)",
 					"@executable_path/Frameworks",
 				);
 				MARKETING_VERSION = 1.0;
-				PRODUCT_BUNDLE_IDENTIFIER = "-43.TuneIn";
+				OTHER_LDFLAGS = "-ObjC";
+				PRODUCT_BUNDLE_IDENTIFIER = "-43-TuneIn";
 				PRODUCT_NAME = "$(TARGET_NAME)";
+				PROVISIONING_PROFILE_SPECIFIER = "";
 				SWIFT_EMIT_LOC_STRINGS = YES;
+				SWIFT_OBJC_BRIDGING_HEADER = "TuneIn-Bridging-Header.h";
 				SWIFT_VERSION = 5.0;
 				TARGETED_DEVICE_FAMILY = "1,2";
 			};
@@ -330,28 +799,43 @@
 		};
 		D34D47C328F9DB7000224758 /* Release */ = {
 			isa = XCBuildConfiguration;
+			baseConfigurationReference = D46AFB2E038D952AE10D4D4C /* Pods-TuneIn.release.xcconfig */;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				ASSETCATALOG_COMPILER_GLOBAL_ACCENT_COLOR_NAME = AccentColor;
+				CODE_SIGN_IDENTITY = "Apple Development";
 				CODE_SIGN_STYLE = Automatic;
 				CURRENT_PROJECT_VERSION = 1;
 				DEVELOPMENT_ASSET_PATHS = "\"TuneIn/Preview Content\"";
 				DEVELOPMENT_TEAM = XB2X2SZTFC;
 				ENABLE_PREVIEWS = YES;
+				EXCLUDED_ARCHS = "";
+				FRAMEWORK_SEARCH_PATHS = (
+					"$(inherited)",
+					"$(PROJECT_DIR)",
+					"$(PROJECT_DIR)/ios-sdk-1.2.2",
+				);
 				GENERATE_INFOPLIST_FILE = YES;
+				INFOPLIST_FILE = TuneIn/Info.plist;
 				INFOPLIST_KEY_UIApplicationSceneManifest_Generation = YES;
 				INFOPLIST_KEY_UIApplicationSupportsIndirectInputEvents = YES;
 				INFOPLIST_KEY_UILaunchScreen_Generation = YES;
 				INFOPLIST_KEY_UISupportedInterfaceOrientations_iPad = "UIInterfaceOrientationPortrait UIInterfaceOrientationPortraitUpsideDown UIInterfaceOrientationLandscapeLeft UIInterfaceOrientationLandscapeRight";
 				INFOPLIST_KEY_UISupportedInterfaceOrientations_iPhone = "UIInterfaceOrientationPortrait UIInterfaceOrientationLandscapeLeft UIInterfaceOrientationLandscapeRight";
+				INFOPLIST_KEY_UIUserInterfaceStyle = Dark;
+				IPHONEOS_DEPLOYMENT_TARGET = 16.1;
 				LD_RUNPATH_SEARCH_PATHS = (
 					"$(inherited)",
 					"@executable_path/Frameworks",
 				);
 				MARKETING_VERSION = 1.0;
-				PRODUCT_BUNDLE_IDENTIFIER = "-43.TuneIn";
+				ONLY_ACTIVE_ARCH = NO;
+				OTHER_LDFLAGS = "-ObjC";
+				PRODUCT_BUNDLE_IDENTIFIER = "TuneIn-sm";
 				PRODUCT_NAME = "$(TARGET_NAME)";
+				PROVISIONING_PROFILE_SPECIFIER = "";
 				SWIFT_EMIT_LOC_STRINGS = YES;
+				SWIFT_OBJC_BRIDGING_HEADER = "TuneIn-Bridging-Header.h";
 				SWIFT_VERSION = 5.0;
 				TARGETED_DEVICE_FAMILY = "1,2";
 			};
@@ -360,6 +844,15 @@
 /* End XCBuildConfiguration section */
 
 /* Begin XCConfigurationList section */
+		B149176B29418F1700BE3537 /* Build configuration list for PBXNativeTarget "TuneInTests" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				B149176C29418F1700BE3537 /* Debug */,
+				B149176D29418F1700BE3537 /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
+		};
 		D34D47AE28F9DB6E00224758 /* Build configuration list for PBXProject "TuneIn" */ = {
 			isa = XCConfigurationList;
 			buildConfigurations = (
@@ -379,6 +872,144 @@
 			defaultConfigurationName = Release;
 		};
 /* End XCConfigurationList section */
+
+/* Begin XCRemoteSwiftPackageReference section */
+		B176D29E29357DBE00FC6990 /* XCRemoteSwiftPackageReference "swiftui-wrapping-stack" */ = {
+			isa = XCRemoteSwiftPackageReference;
+			repositoryURL = "https://github.com/diniska/swiftui-wrapping-stack";
+			requirement = {
+				kind = upToNextMajorVersion;
+				minimumVersion = 1.0.0;
+			};
+		};
+		B1C0CA2D29142C6700445D87 /* XCRemoteSwiftPackageReference "firebase-ios-sdk" */ = {
+			isa = XCRemoteSwiftPackageReference;
+			repositoryURL = "https://github.com/firebase/firebase-ios-sdk.git";
+			requirement = {
+				kind = upToNextMajorVersion;
+				minimumVersion = 9.0.0;
+			};
+		};
+		FA9D0606293C03F500C50033 /* XCRemoteSwiftPackageReference "SpotifyAPI" */ = {
+			isa = XCRemoteSwiftPackageReference;
+			repositoryURL = "https://github.com/Peter-Schorn/SpotifyAPI";
+			requirement = {
+				kind = exactVersion;
+				version = 2.2.1;
+			};
+		};
+		FA9D0609293C047000C50033 /* XCRemoteSwiftPackageReference "KeychainAccess" */ = {
+			isa = XCRemoteSwiftPackageReference;
+			repositoryURL = "https://github.com/kishikawakatsumi/KeychainAccess";
+			requirement = {
+				kind = exactVersion;
+				version = 4.2.2;
+			};
+		};
+/* End XCRemoteSwiftPackageReference section */
+
+/* Begin XCSwiftPackageProductDependency section */
+		B149177629419C1E00BE3537 /* FirebaseAuth */ = {
+			isa = XCSwiftPackageProductDependency;
+			package = B1C0CA2D29142C6700445D87 /* XCRemoteSwiftPackageReference "firebase-ios-sdk" */;
+			productName = FirebaseAuth;
+		};
+		B176D29F29357DBE00FC6990 /* WrappingStack */ = {
+			isa = XCSwiftPackageProductDependency;
+			package = B176D29E29357DBE00FC6990 /* XCRemoteSwiftPackageReference "swiftui-wrapping-stack" */;
+			productName = WrappingStack;
+		};
+		B1C0CA2E29142C6700445D87 /* FirebaseAnalytics */ = {
+			isa = XCSwiftPackageProductDependency;
+			package = B1C0CA2D29142C6700445D87 /* XCRemoteSwiftPackageReference "firebase-ios-sdk" */;
+			productName = FirebaseAnalytics;
+		};
+		B1C0CA3029142C6700445D87 /* FirebaseAnalyticsOnDeviceConversion */ = {
+			isa = XCSwiftPackageProductDependency;
+			package = B1C0CA2D29142C6700445D87 /* XCRemoteSwiftPackageReference "firebase-ios-sdk" */;
+			productName = FirebaseAnalyticsOnDeviceConversion;
+		};
+		B1C0CA3229142C6700445D87 /* FirebaseAnalyticsSwift */ = {
+			isa = XCSwiftPackageProductDependency;
+			package = B1C0CA2D29142C6700445D87 /* XCRemoteSwiftPackageReference "firebase-ios-sdk" */;
+			productName = FirebaseAnalyticsSwift;
+		};
+		B1C0CA3429142C6700445D87 /* FirebaseAppCheck */ = {
+			isa = XCSwiftPackageProductDependency;
+			package = B1C0CA2D29142C6700445D87 /* XCRemoteSwiftPackageReference "firebase-ios-sdk" */;
+			productName = FirebaseAppCheck;
+		};
+		B1C0CA3629142C6700445D87 /* FirebaseAppDistribution-Beta */ = {
+			isa = XCSwiftPackageProductDependency;
+			package = B1C0CA2D29142C6700445D87 /* XCRemoteSwiftPackageReference "firebase-ios-sdk" */;
+			productName = "FirebaseAppDistribution-Beta";
+		};
+		B1C0CA3829142C6700445D87 /* FirebaseAuth */ = {
+			isa = XCSwiftPackageProductDependency;
+			package = B1C0CA2D29142C6700445D87 /* XCRemoteSwiftPackageReference "firebase-ios-sdk" */;
+			productName = FirebaseAuth;
+		};
+		B1C0CA3A29142C6700445D87 /* FirebaseCrashlytics */ = {
+			isa = XCSwiftPackageProductDependency;
+			package = B1C0CA2D29142C6700445D87 /* XCRemoteSwiftPackageReference "firebase-ios-sdk" */;
+			productName = FirebaseCrashlytics;
+		};
+		B1C0CA3C29142C6700445D87 /* FirebaseDatabase */ = {
+			isa = XCSwiftPackageProductDependency;
+			package = B1C0CA2D29142C6700445D87 /* XCRemoteSwiftPackageReference "firebase-ios-sdk" */;
+			productName = FirebaseDatabase;
+		};
+		B1C0CA3E29142C6700445D87 /* FirebaseDatabaseSwift */ = {
+			isa = XCSwiftPackageProductDependency;
+			package = B1C0CA2D29142C6700445D87 /* XCRemoteSwiftPackageReference "firebase-ios-sdk" */;
+			productName = FirebaseDatabaseSwift;
+		};
+		B1C0CA4029142C6700445D87 /* FirebaseDynamicLinks */ = {
+			isa = XCSwiftPackageProductDependency;
+			package = B1C0CA2D29142C6700445D87 /* XCRemoteSwiftPackageReference "firebase-ios-sdk" */;
+			productName = FirebaseDynamicLinks;
+		};
+		B1C0CA4229142C6700445D87 /* FirebaseFirestore */ = {
+			isa = XCSwiftPackageProductDependency;
+			package = B1C0CA2D29142C6700445D87 /* XCRemoteSwiftPackageReference "firebase-ios-sdk" */;
+			productName = FirebaseFirestore;
+		};
+		B1C0CA4429142C6700445D87 /* FirebaseFirestoreCombine-Community */ = {
+			isa = XCSwiftPackageProductDependency;
+			package = B1C0CA2D29142C6700445D87 /* XCRemoteSwiftPackageReference "firebase-ios-sdk" */;
+			productName = "FirebaseFirestoreCombine-Community";
+		};
+		B1C0CA4629142C6700445D87 /* FirebaseFirestoreSwift */ = {
+			isa = XCSwiftPackageProductDependency;
+			package = B1C0CA2D29142C6700445D87 /* XCRemoteSwiftPackageReference "firebase-ios-sdk" */;
+			productName = FirebaseFirestoreSwift;
+		};
+		B1C0CA4829142C6700445D87 /* FirebaseFunctions */ = {
+			isa = XCSwiftPackageProductDependency;
+			package = B1C0CA2D29142C6700445D87 /* XCRemoteSwiftPackageReference "firebase-ios-sdk" */;
+			productName = FirebaseFunctions;
+		};
+		B1C0CA4A29142C6700445D87 /* FirebaseStorage */ = {
+			isa = XCSwiftPackageProductDependency;
+			package = B1C0CA2D29142C6700445D87 /* XCRemoteSwiftPackageReference "firebase-ios-sdk" */;
+			productName = FirebaseStorage;
+		};
+		B1C0CA4C29142C6700445D87 /* FirebaseStorageCombine-Community */ = {
+			isa = XCSwiftPackageProductDependency;
+			package = B1C0CA2D29142C6700445D87 /* XCRemoteSwiftPackageReference "firebase-ios-sdk" */;
+			productName = "FirebaseStorageCombine-Community";
+		};
+		FA9D0607293C03F500C50033 /* SpotifyAPI */ = {
+			isa = XCSwiftPackageProductDependency;
+			package = FA9D0606293C03F500C50033 /* XCRemoteSwiftPackageReference "SpotifyAPI" */;
+			productName = SpotifyAPI;
+		};
+		FA9D060A293C047000C50033 /* KeychainAccess */ = {
+			isa = XCSwiftPackageProductDependency;
+			package = FA9D0609293C047000C50033 /* XCRemoteSwiftPackageReference "KeychainAccess" */;
+			productName = KeychainAccess;
+		};
+/* End XCSwiftPackageProductDependency section */
 	};
 	rootObject = D34D47AB28F9DB6E00224758 /* Project object */;
 }
