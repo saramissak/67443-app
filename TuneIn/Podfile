@@ -8,8 +8,6 @@ target 'TuneIn' do
   use_frameworks!
 
   pod 'Spartan'
-  pod 'Firebase/Storage'
-  inherit! :search_paths
 
   # Pods for TuneIn
   post_install do |installer|
