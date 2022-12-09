@@ -48,8 +48,10 @@
 		448381B472EE350C24D11CAA643794F7 /* TuneableTrackAttribute.swift in Sources */ = {isa = PBXBuildFile; fileRef = FB73F458FE4D347BA1041CFC67DA7BF1 /* TuneableTrackAttribute.swift */; };
 		463C5FEA59C6DD0167C332BC3D086F80 /* SpartanRequestRetrier.swift in Sources */ = {isa = PBXBuildFile; fileRef = 50160C218F3570F302440B641349EAEC /* SpartanRequestRetrier.swift */; };
 		46B46F6B97746B311002B7F0B32AFAAB /* DateTransform.swift in Sources */ = {isa = PBXBuildFile; fileRef = 59AD364566E005CA39BAF98463C65FE9 /* DateTransform.swift */; };
+		4D7B867BE57BAC5B7CDCAB68D5423264 /* Foundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 73010CC983E3809BECEE5348DA1BB8C6 /* Foundation.framework */; };
 		4EB07ECDA04F31A6093642A74218823D /* ErrorParser.swift in Sources */ = {isa = PBXBuildFile; fileRef = A1BEB6AB843F7F9F1654E33C3B5E6F52 /* ErrorParser.swift */; };
 		4EBA20BCDB39EF3DFCA0E64E95AADA27 /* ObjectMapper-dummy.m in Sources */ = {isa = PBXBuildFile; fileRef = 782F701551B622376BFA8023C7AAF49E /* ObjectMapper-dummy.m */; };
+		502F03E4F3A009212F53480407FD5E5E /* Pods-TuneInTests-dummy.m in Sources */ = {isa = PBXBuildFile; fileRef = 51848FF1B19A8DD16D35843F5D150352 /* Pods-TuneInTests-dummy.m */; };
 		539E18CB09C8E7CC13FF64786F7FD35D /* DictionaryTransform.swift in Sources */ = {isa = PBXBuildFile; fileRef = 76109ECCD2741C5C0C64AF65550B47ED /* DictionaryTransform.swift */; };
 		5BDB8BEB4F35D323B734C2B06E070BD8 /* AlamofireObjectMapper-umbrella.h in Headers */ = {isa = PBXBuildFile; fileRef = 54D47C79855EDFB50FAFC1775B908688 /* AlamofireObjectMapper-umbrella.h */; settings = {ATTRIBUTES = (Public, ); }; };
 		5D317807BB1C86D661F97533C9245227 /* AudioFeaturesObject.swift in Sources */ = {isa = PBXBuildFile; fileRef = C901399E05489EC6743AB61F3135CC71 /* AudioFeaturesObject.swift */; };
@@ -67,7 +69,7 @@
 		738A8CED6BE20F806CA4CD63E594D41E /* Alamofire-umbrella.h in Headers */ = {isa = PBXBuildFile; fileRef = 9A039F548B09DA8871DB433ACEF0ACFF /* Alamofire-umbrella.h */; settings = {ATTRIBUTES = (Public, ); }; };
 		7927F485FAAADE9D4E5980E0C6C95DD3 /* ImmutableMappable.swift in Sources */ = {isa = PBXBuildFile; fileRef = 756E51D611F66173CFFE397E4D1493F1 /* ImmutableMappable.swift */; };
 		7D9BE0B0BCBECCAD235E43DC4FBA6880 /* Alamofire.swift in Sources */ = {isa = PBXBuildFile; fileRef = FF7463221AC9DFECAF38C9D945A81B57 /* Alamofire.swift */; };
-		80D9A429C1B39341AE2767D97DBDC9E1 /* Pods-TuneIn-umbrella.h in Headers */ = {isa = PBXBuildFile; fileRef = DDDEDC5B2CD062D38C036E31626B1132 /* Pods-TuneIn-umbrella.h */; settings = {ATTRIBUTES = (Public, ); }; };
+		80D9A429C1B39341AE2767D97DBDC9E1 /* Pods-TuneIn-umbrella.h in Headers */ = {isa = PBXBuildFile; fileRef = 6F057B9F143B3A11946AD06C4FB7F1DE /* Pods-TuneIn-umbrella.h */; settings = {ATTRIBUTES = (Public, ); }; };
 		857A19EA431A46DBF2FCB5BB13F47A08 /* Foundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 73010CC983E3809BECEE5348DA1BB8C6 /* Foundation.framework */; };
 		88BD2A1B9F3FF05B2237F54D0AB4868F /* Alamofire-dummy.m in Sources */ = {isa = PBXBuildFile; fileRef = 51ADB9E08BA3F4699780BBC4D2B0C8F5 /* Alamofire-dummy.m */; };
 		8DD52321F6F6A3D634055A52BB288FB3 /* Track.swift in Sources */ = {isa = PBXBuildFile; fileRef = EF5542C1AE043B9D2AD921F03B09FE18 /* Track.swift */; };
@@ -91,7 +93,7 @@
 		ACC46E5ABE5FCD22813CE60941121FAA /* Map.swift in Sources */ = {isa = PBXBuildFile; fileRef = B1F4B5F1C53926DC802D3A035C06A68C /* Map.swift */; };
 		ADE0276AF8E47B5251217096B14011E8 /* AlamoRecordObject.swift in Sources */ = {isa = PBXBuildFile; fileRef = E880BC60AA7528BF0F594804B8960071 /* AlamoRecordObject.swift */; };
 		AFF21E69B44928E52B4DB3E64F9FA66D /* ServerTrustPolicy.swift in Sources */ = {isa = PBXBuildFile; fileRef = 795011CF0BA149938A31D219826282AF /* ServerTrustPolicy.swift */; };
-		B04FB214D548EEB0073EF22B37494F56 /* Pods-TuneIn-dummy.m in Sources */ = {isa = PBXBuildFile; fileRef = 3F7CB17EB660F06451EE5F5AB6F71A5F /* Pods-TuneIn-dummy.m */; };
+		B04FB214D548EEB0073EF22B37494F56 /* Pods-TuneIn-dummy.m in Sources */ = {isa = PBXBuildFile; fileRef = 346BEFAFE86F36B42910D72041FC4D12 /* Pods-TuneIn-dummy.m */; };
 		B1CFE0453D235B87281EF228AC98181F /* SimplifiedAlbum.swift in Sources */ = {isa = PBXBuildFile; fileRef = 935C1D290B847B063E8A739E3A977B4B /* SimplifiedAlbum.swift */; };
 		B38C3138DA31C0C8D49F697CA5C8036A /* LinkedTrackObject.swift in Sources */ = {isa = PBXBuildFile; fileRef = B161EDA5AACEAA175FF4295AA9548458 /* LinkedTrackObject.swift */; };
 		B71A23577BACF43AA5B70D55335204AE /* AlamofireObjectMapper-dummy.m in Sources */ = {isa = PBXBuildFile; fileRef = DD37BFC961F690210967165AE7BAAEDC /* AlamofireObjectMapper-dummy.m */; };
@@ -114,6 +116,7 @@
 		DE39B5ED3C4EF8EE0186321326521C25 /* RecommendationsObject.swift in Sources */ = {isa = PBXBuildFile; fileRef = 830F6A8E939E9D2AE3F01D1753E89D6A /* RecommendationsObject.swift */; };
 		DE9AB523E122BB16FD21221F5520FEC8 /* AudioAnalysisBar.swift in Sources */ = {isa = PBXBuildFile; fileRef = 33094FF04B3239804A0DAE9178C2A3CC /* AudioAnalysisBar.swift */; };
 		DF5D7C83BBB6D79599241E6CCDAB4433 /* TimeRange.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5992C14E4671330A3E51BFCDFA3707E4 /* TimeRange.swift */; };
+		E3CE590426E605492E6313CDCECF9368 /* Pods-TuneInTests-umbrella.h in Headers */ = {isa = PBXBuildFile; fileRef = DE1AA09EE19C2AEFEA7ED2B6CB477DB3 /* Pods-TuneInTests-umbrella.h */; settings = {ATTRIBUTES = (Public, ); }; };
 		E53E4A085E5514D4B9A5EE2D206CBBA0 /* Mappable.swift in Sources */ = {isa = PBXBuildFile; fileRef = E9B4CFCBB580E1FD489230FFE602D09B /* Mappable.swift */; };
 		E77479D26BC7A10EF4D94D9C586AE78D /* EnumTransform.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0FB7713D5514017542684AC47B272702 /* EnumTransform.swift */; };
 		E9101D1B6B846EE2B71600B7CB3341A3 /* Validation.swift in Sources */ = {isa = PBXBuildFile; fileRef = 560F22DB7D7CC09DA4DEEDAC586CC16F /* Validation.swift */; };
@@ -126,6 +129,13 @@
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
+		02564F92B84F144D75859F5F11067022 /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = BFDFE7DC352907FC980B868725387E98 /* Project object */;
+			proxyType = 1;
+			remoteGlobalIDString = F34CB0431C7543D19F878BDE9C654498;
+			remoteInfo = "Pods-TuneIn";
+		};
 		27A36216ACC512A21515CD74CFA48A1B /* PBXContainerItemProxy */ = {
 			isa = PBXContainerItemProxy;
 			containerPortal = BFDFE7DC352907FC980B868725387E98 /* Project object */;
@@ -208,18 +218,19 @@
 		17C58356873F20AF4C8155B0CEE55069 /* AlamoRecord-Info.plist */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.plist.xml; path = "AlamoRecord-Info.plist"; sourceTree = "<group>"; };
 		1C01CF3A4F3022F6AAA937DCAFA168BD /* ResponseSerialization.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; name = ResponseSerialization.swift; path = Source/ResponseSerialization.swift; sourceTree = "<group>"; };
 		1D3D25621D24B8383BCEBDBD1DD767EF /* PagingObject.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; name = PagingObject.swift; path = Spartan/Classes/PagingObject.swift; sourceTree = "<group>"; };
+		1D66ACF82F720EF45B641B56D0905EC0 /* Pods-TuneIn-acknowledgements.plist */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.plist.xml; path = "Pods-TuneIn-acknowledgements.plist"; sourceTree = "<group>"; };
+		1F59B33BF614DD547678915DA9981BBB /* Pods-TuneIn.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; path = "Pods-TuneIn.debug.xcconfig"; sourceTree = "<group>"; };
 		2A22DA412C71110A52151433B1E36928 /* IntegerOperators.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; name = IntegerOperators.swift; path = Sources/IntegerOperators.swift; sourceTree = "<group>"; };
 		2A5696712744F05489B4A898AD6478DF /* FromJSON.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; name = FromJSON.swift; path = Sources/FromJSON.swift; sourceTree = "<group>"; };
-		30D68DB0E00AB7B426B6613A380625B7 /* Pods-TuneIn-acknowledgements.plist */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.plist.xml; path = "Pods-TuneIn-acknowledgements.plist"; sourceTree = "<group>"; };
+		2F9B8DB172107CC6F04B0BB30A204064 /* Pods-TuneInTests.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; path = "Pods-TuneInTests.debug.xcconfig"; sourceTree = "<group>"; };
 		33094FF04B3239804A0DAE9178C2A3CC /* AudioAnalysisBar.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; name = AudioAnalysisBar.swift; path = Spartan/Classes/AudioAnalysisBar.swift; sourceTree = "<group>"; };
 		33A4705FFEEA3BBC5CD2048BCEF8C8DB /* SpartanRequestAdapter.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; name = SpartanRequestAdapter.swift; path = Spartan/Classes/SpartanRequestAdapter.swift; sourceTree = "<group>"; };
 		33CB9E9A783DAB712A67C9B2B30F7C51 /* Spartan-Info.plist */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.plist.xml; path = "Spartan-Info.plist"; sourceTree = "<group>"; };
+		346BEFAFE86F36B42910D72041FC4D12 /* Pods-TuneIn-dummy.m */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.objc; path = "Pods-TuneIn-dummy.m"; sourceTree = "<group>"; };
 		35F78430B0820899507EB5F40B1D46BA /* SpartanError.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; name = SpartanError.swift; path = Spartan/Classes/SpartanError.swift; sourceTree = "<group>"; };
 		36A9672573D2A19E6542D52F9A957179 /* PlaylistTrack.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; name = PlaylistTrack.swift; path = Spartan/Classes/PlaylistTrack.swift; sourceTree = "<group>"; };
 		381EF2B4C1A2741FAE28AB7AB146A489 /* AlamoRecord.modulemap */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.module; path = AlamoRecord.modulemap; sourceTree = "<group>"; };
-		3F7CB17EB660F06451EE5F5AB6F71A5F /* Pods-TuneIn-dummy.m */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.objc; path = "Pods-TuneIn-dummy.m"; sourceTree = "<group>"; };
 		3F9CBB9851F9CFFE025BAB6C09F6C57A /* AlamoRecord-dummy.m */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.objc; path = "AlamoRecord-dummy.m"; sourceTree = "<group>"; };
-		40C02B8DCA8AFAABA0D9102D42CB320E /* Pods-TuneIn.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; path = "Pods-TuneIn.release.xcconfig"; sourceTree = "<group>"; };
 		4147F65DD39498E8899BF220B3B309D0 /* AFError.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; name = AFError.swift; path = Source/AFError.swift; sourceTree = "<group>"; };
 		415B0D57BED925157945DA80AB30B680 /* AudioAnalysisSegment.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; name = AudioAnalysisSegment.swift; path = Spartan/Classes/AudioAnalysisSegment.swift; sourceTree = "<group>"; };
 		42139826010D962E92A2932B5BCEFDA8 /* AudioAnalysisTatum.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; name = AudioAnalysisTatum.swift; path = Spartan/Classes/AudioAnalysisTatum.swift; sourceTree = "<group>"; };
@@ -231,19 +242,20 @@
 		4DFB9E9B232CEFEE49A0592E26EAF350 /* MultipartFormData.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; name = MultipartFormData.swift; path = Source/MultipartFormData.swift; sourceTree = "<group>"; };
 		50160C218F3570F302440B641349EAEC /* SpartanRequestRetrier.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; name = SpartanRequestRetrier.swift; path = Spartan/Classes/SpartanRequestRetrier.swift; sourceTree = "<group>"; };
 		50616C1179DF9FA8DD722BCE818A4E18 /* AudioAnalysis.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; name = AudioAnalysis.swift; path = Spartan/Classes/AudioAnalysis.swift; sourceTree = "<group>"; };
+		51848FF1B19A8DD16D35843F5D150352 /* Pods-TuneInTests-dummy.m */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.objc; path = "Pods-TuneInTests-dummy.m"; sourceTree = "<group>"; };
 		51ADB9E08BA3F4699780BBC4D2B0C8F5 /* Alamofire-dummy.m */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.objc; path = "Alamofire-dummy.m"; sourceTree = "<group>"; };
 		524DB283E2ED8E3EF8D43BC45DAEAD74 /* TaskDelegate.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; name = TaskDelegate.swift; path = Source/TaskDelegate.swift; sourceTree = "<group>"; };
 		52AC5DC50F4E85ECAFA0ED44DF5D98E9 /* TracksObject.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; name = TracksObject.swift; path = Spartan/Classes/TracksObject.swift; sourceTree = "<group>"; };
 		54D47C79855EDFB50FAFC1775B908688 /* AlamofireObjectMapper-umbrella.h */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.h; path = "AlamofireObjectMapper-umbrella.h"; sourceTree = "<group>"; };
 		54F293C734E5FF3501D2F74C266E79B6 /* ItemSearchType.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; name = ItemSearchType.swift; path = Spartan/Classes/ItemSearchType.swift; sourceTree = "<group>"; };
-		5587399E78311D90812111BEB6F4C4E1 /* Pods-TuneIn-acknowledgements.markdown */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text; path = "Pods-TuneIn-acknowledgements.markdown"; sourceTree = "<group>"; };
-		558813385EA55D0117BBC49ED398B111 /* Pods-TuneIn-Info.plist */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.plist.xml; path = "Pods-TuneIn-Info.plist"; sourceTree = "<group>"; };
 		55F2B702DA4665684D9BB90814B44B06 /* ObjectMapper-umbrella.h */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.h; path = "ObjectMapper-umbrella.h"; sourceTree = "<group>"; };
 		560F22DB7D7CC09DA4DEEDAC586CC16F /* Validation.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; name = Validation.swift; path = Source/Validation.swift; sourceTree = "<group>"; };
 		58F3E13B4A6465D6CACF09F457EC1419 /* AlamofireObjectMapper-prefix.pch */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.h; path = "AlamofireObjectMapper-prefix.pch"; sourceTree = "<group>"; };
 		5992C14E4671330A3E51BFCDFA3707E4 /* TimeRange.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; name = TimeRange.swift; path = Spartan/Classes/TimeRange.swift; sourceTree = "<group>"; };
 		59AD364566E005CA39BAF98463C65FE9 /* DateTransform.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; name = DateTransform.swift; path = Sources/DateTransform.swift; sourceTree = "<group>"; };
+		5A3DE4484DD2FD4CB724139A49774E00 /* Pods-TuneIn-Info.plist */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.plist.xml; path = "Pods-TuneIn-Info.plist"; sourceTree = "<group>"; };
 		5D797E9A5C5782CE845840781FA1CC81 /* Alamofire */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; name = Alamofire; path = Alamofire.framework; sourceTree = BUILT_PRODUCTS_DIR; };
+		5DADB7A6A1F2C3E762A6CEE84395EFC6 /* Pods-TuneIn.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; path = "Pods-TuneIn.release.xcconfig"; sourceTree = "<group>"; };
 		601C70506336F31B0ED625E973F91F3C /* RequestManager.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; name = RequestManager.swift; path = AlamoRecord/Classes/RequestManager.swift; sourceTree = "<group>"; };
 		68D0AFCCDCCA8E6D9BDCEF63A739529D /* AudioAnalysisSection.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; name = AudioAnalysisSection.swift; path = Spartan/Classes/AudioAnalysisSection.swift; sourceTree = "<group>"; };
 		692FA72815A3AFE75F7AD5ED1B2D52FF /* Playlist.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; name = Playlist.swift; path = Spartan/Classes/Playlist.swift; sourceTree = "<group>"; };
@@ -251,6 +263,8 @@
 		6B80C5486EABFACFC181FE2CC43C6C35 /* ObjectMapper.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; path = ObjectMapper.release.xcconfig; sourceTree = "<group>"; };
 		6C077BDD68289E36B5D36A2F210F54B5 /* Pods-TuneIn */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; name = "Pods-TuneIn"; path = Pods_TuneIn.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		6DA65AF9FD719ACADAFDEBECC23A4FD4 /* Configuration.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; name = Configuration.swift; path = AlamoRecord/Classes/Configuration.swift; sourceTree = "<group>"; };
+		6F057B9F143B3A11946AD06C4FB7F1DE /* Pods-TuneIn-umbrella.h */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.h; path = "Pods-TuneIn-umbrella.h"; sourceTree = "<group>"; };
+		6F68497CD70518307D125CD42DAC9713 /* Pods-TuneInTests-Info.plist */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.plist.xml; path = "Pods-TuneInTests-Info.plist"; sourceTree = "<group>"; };
 		7051E71BE7A543597C35B1BE7E8FC04A /* AlamoRecord.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; path = AlamoRecord.debug.xcconfig; sourceTree = "<group>"; };
 		70A61AF9E3870A9DA9548564B24E6E25 /* CategoryObject.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; name = CategoryObject.swift; path = Spartan/Classes/CategoryObject.swift; sourceTree = "<group>"; };
 		70D830F62F289E50D2BC34ACFFE846AF /* ParameterEncoding.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; name = ParameterEncoding.swift; path = Source/ParameterEncoding.swift; sourceTree = "<group>"; };
@@ -275,9 +289,10 @@
 		85138A165062BA2F7E4189D031F4EC3D /* Request.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; name = Request.swift; path = Source/Request.swift; sourceTree = "<group>"; };
 		86822384CD379FCE373C2F755839B8DE /* AlamofireObjectMapper */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; name = AlamofireObjectMapper; path = AlamofireObjectMapper.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		89255A497F64FAC0604433FCBC9190BA /* FollowersObject.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; name = FollowersObject.swift; path = Spartan/Classes/FollowersObject.swift; sourceTree = "<group>"; };
-		8B6A587AEC411E6C37D8DA00AE31E0E6 /* Pods-TuneIn-frameworks.sh */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.script.sh; path = "Pods-TuneIn-frameworks.sh"; sourceTree = "<group>"; };
+		917452B54F4CCDFC2E9789141F8A762E /* Pods-TuneIn-acknowledgements.markdown */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text; path = "Pods-TuneIn-acknowledgements.markdown"; sourceTree = "<group>"; };
 		935C1D290B847B063E8A739E3A977B4B /* SimplifiedAlbum.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; name = SimplifiedAlbum.swift; path = Spartan/Classes/SimplifiedAlbum.swift; sourceTree = "<group>"; };
 		950CAC591AEAD17C3414A766BDCEE130 /* AlamoRecordError.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; name = AlamoRecordError.swift; path = AlamoRecord/Classes/AlamoRecordError.swift; sourceTree = "<group>"; };
+		9623ECC39AA5E62AD6D02D576D338387 /* Pods-TuneInTests-acknowledgements.plist */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.plist.xml; path = "Pods-TuneInTests-acknowledgements.plist"; sourceTree = "<group>"; };
 		9A039F548B09DA8871DB433ACEF0ACFF /* Alamofire-umbrella.h */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.h; path = "Alamofire-umbrella.h"; sourceTree = "<group>"; };
 		9D940727FF8FB9C785EB98E56350EF41 /* Podfile */ = {isa = PBXFileReference; explicitFileType = text.script.ruby; includeInIndex = 1; indentWidth = 2; lastKnownFileType = text; name = Podfile; path = ../Podfile; sourceTree = SOURCE_ROOT; tabWidth = 2; xcLanguageSpecificationIdentifier = xcode.lang.ruby; };
 		9DFA1155339388485C89F1B5F4061778 /* Result.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; name = Result.swift; path = Source/Result.swift; sourceTree = "<group>"; };
@@ -294,24 +309,27 @@
 		B161EDA5AACEAA175FF4295AA9548458 /* LinkedTrackObject.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; name = LinkedTrackObject.swift; path = Spartan/Classes/LinkedTrackObject.swift; sourceTree = "<group>"; };
 		B1F4B5F1C53926DC802D3A035C06A68C /* Map.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; name = Map.swift; path = Sources/Map.swift; sourceTree = "<group>"; };
 		B5C129AA2237653E14474726077B2B60 /* Mapper.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; name = Mapper.swift; path = Sources/Mapper.swift; sourceTree = "<group>"; };
+		B690395C37DB494B5FCE5A9E11CFAD0D /* Pods-TuneIn-frameworks.sh */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.script.sh; path = "Pods-TuneIn-frameworks.sh"; sourceTree = "<group>"; };
 		B718C88758A6213E77D9C51541D0CFBF /* TransformType.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; name = TransformType.swift; path = Sources/TransformType.swift; sourceTree = "<group>"; };
 		B720301F8B7757C03100A41F104B45F9 /* AlamofireObjectMapper.modulemap */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.module; path = AlamofireObjectMapper.modulemap; sourceTree = "<group>"; };
+		B72BE21A9F5AE869A4306919C5F451A9 /* Pods-TuneIn.modulemap */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.module; path = "Pods-TuneIn.modulemap"; sourceTree = "<group>"; };
 		B7A6F40FF4C1B90DED64D1141D86783D /* Album.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; name = Album.swift; path = Spartan/Classes/Album.swift; sourceTree = "<group>"; };
 		B9084FE779702931E8DF1D00A2D725FB /* ObjectMapper */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; name = ObjectMapper; path = ObjectMapper.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		BA39D7AD8794EB4D0E6DB5CCA474CEB5 /* AlamofireObjectMapper.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; path = AlamofireObjectMapper.debug.xcconfig; sourceTree = "<group>"; };
 		BCDE17B1858FD9DBA046F7080CF7C7D0 /* MapError.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; name = MapError.swift; path = Sources/MapError.swift; sourceTree = "<group>"; };
 		BF870DCEBF5F84E1FAE2748FBDAFA982 /* Spartan-prefix.pch */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.h; path = "Spartan-prefix.pch"; sourceTree = "<group>"; };
 		BFF3794F42C88A7D0E9E0C607D2689B7 /* NetworkReachabilityManager.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; name = NetworkReachabilityManager.swift; path = Source/NetworkReachabilityManager.swift; sourceTree = "<group>"; };
+		C12AD6C0F4D961B26CDC2105FE5827BC /* Pods-TuneInTests.modulemap */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.module; path = "Pods-TuneInTests.modulemap"; sourceTree = "<group>"; };
 		C1F6FAB38CC8968CA3B47F4956C661D4 /* FeaturedPlaylistsObject.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; name = FeaturedPlaylistsObject.swift; path = Spartan/Classes/FeaturedPlaylistsObject.swift; sourceTree = "<group>"; };
 		C265E55026C07684B31C07D90D5C4244 /* SpartanURL.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; name = SpartanURL.swift; path = Spartan/Classes/SpartanURL.swift; sourceTree = "<group>"; };
 		C3F7A8F015FC069EAB94E25CDDDB00C1 /* Alamofire.modulemap */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.module; path = Alamofire.modulemap; sourceTree = "<group>"; };
 		C473E1DFF4CBF78AD9722B2D17C6A721 /* CodableTransform.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; name = CodableTransform.swift; path = Sources/CodableTransform.swift; sourceTree = "<group>"; };
 		C68C4AE3EE5B8027EA2140D1F63EB8CA /* CopyrightObject.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; name = CopyrightObject.swift; path = Spartan/Classes/CopyrightObject.swift; sourceTree = "<group>"; };
+		C8FE72CA66F388498EF50A29D44004C5 /* Pods-TuneInTests.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; path = "Pods-TuneInTests.release.xcconfig"; sourceTree = "<group>"; };
 		C901399E05489EC6743AB61F3135CC71 /* AudioFeaturesObject.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; name = AudioFeaturesObject.swift; path = Spartan/Classes/AudioFeaturesObject.swift; sourceTree = "<group>"; };
 		C92FFBC80CB8DA23B64DD95AFAD9B71D /* Artist.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; name = Artist.swift; path = Spartan/Classes/Artist.swift; sourceTree = "<group>"; };
 		CA430BFEB630DC6F8450C4F974B44626 /* CountryCode.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; name = CountryCode.swift; path = Spartan/Classes/CountryCode.swift; sourceTree = "<group>"; };
 		CA44DE1F7A6C57EBF84A8661CC70494F /* Paginatable.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; name = Paginatable.swift; path = Spartan/Classes/Paginatable.swift; sourceTree = "<group>"; };
-		CB3A161259435780D3CD874F25CDA62C /* Pods-TuneIn.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; path = "Pods-TuneIn.debug.xcconfig"; sourceTree = "<group>"; };
 		CF49D10B39E25FFF4F0A44645E2349FD /* Spartan.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; path = Spartan.debug.xcconfig; sourceTree = "<group>"; };
 		D0C07170FE2A23D777E883262C7321F4 /* AlamofireObjectMapper.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; name = AlamofireObjectMapper.swift; path = AlamofireObjectMapper/AlamofireObjectMapper.swift; sourceTree = "<group>"; };
 		D5E0ACAB6F3C3B1FFB54C44B1C3B976F /* PrivateUser.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; name = PrivateUser.swift; path = Spartan/Classes/PrivateUser.swift; sourceTree = "<group>"; };
@@ -323,14 +341,14 @@
 		DBF21D25C2B92ED235DE3D473C5F9DA4 /* EnumOperators.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; name = EnumOperators.swift; path = Sources/EnumOperators.swift; sourceTree = "<group>"; };
 		DD37BFC961F690210967165AE7BAAEDC /* AlamofireObjectMapper-dummy.m */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.objc; path = "AlamofireObjectMapper-dummy.m"; sourceTree = "<group>"; };
 		DDBB8F704649266BADBE217A9BD07F94 /* Spartan.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; name = Spartan.swift; path = Spartan/Classes/Spartan.swift; sourceTree = "<group>"; };
-		DDDEDC5B2CD062D38C036E31626B1132 /* Pods-TuneIn-umbrella.h */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.h; path = "Pods-TuneIn-umbrella.h"; sourceTree = "<group>"; };
+		DE1AA09EE19C2AEFEA7ED2B6CB477DB3 /* Pods-TuneInTests-umbrella.h */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.h; path = "Pods-TuneInTests-umbrella.h"; sourceTree = "<group>"; };
 		DEF47B73822867054BA5F97A546AC98B /* Alamofire-Info.plist */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.plist.xml; path = "Alamofire-Info.plist"; sourceTree = "<group>"; };
 		DFA44F5219EF5239C1099800B5AE80C9 /* RecommendationsSeedObject.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; name = RecommendationsSeedObject.swift; path = Spartan/Classes/RecommendationsSeedObject.swift; sourceTree = "<group>"; };
 		E20822BF5E75D44C4F02FC4B952811FC /* AlamofireObjectMapper.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; path = AlamofireObjectMapper.release.xcconfig; sourceTree = "<group>"; };
 		E29BC4879A700993869E69503A783137 /* SpartanBaseObject.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; name = SpartanBaseObject.swift; path = Spartan/Classes/SpartanBaseObject.swift; sourceTree = "<group>"; };
+		E876080E81214BC09A27D24809AA23F7 /* Pods-TuneInTests-acknowledgements.markdown */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text; path = "Pods-TuneInTests-acknowledgements.markdown"; sourceTree = "<group>"; };
 		E880BC60AA7528BF0F594804B8960071 /* AlamoRecordObject.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; name = AlamoRecordObject.swift; path = AlamoRecord/Classes/AlamoRecordObject.swift; sourceTree = "<group>"; };
 		E929318FFDBE3F446FC467BED7929EC9 /* SavedTrack.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; name = SavedTrack.swift; path = Spartan/Classes/SavedTrack.swift; sourceTree = "<group>"; };
-		E943304870C0D4CF6C3F2086731C92C0 /* Pods-TuneIn.modulemap */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.module; path = "Pods-TuneIn.modulemap"; sourceTree = "<group>"; };
 		E9B4CFCBB580E1FD489230FFE602D09B /* Mappable.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; name = Mappable.swift; path = Sources/Mappable.swift; sourceTree = "<group>"; };
 		EBC77F81CD3F40FF904731B9848FE097 /* TransformOf.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; name = TransformOf.swift; path = Sources/TransformOf.swift; sourceTree = "<group>"; };
 		ED6058E729C1959A02168403C875AED1 /* Spartan */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; name = Spartan; path = Spartan.framework; sourceTree = BUILT_PRODUCTS_DIR; };
@@ -340,6 +358,7 @@
 		F592E08ACBA8A659D9BD2B80CD92DA88 /* AudioAnalysisTrack.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; name = AudioAnalysisTrack.swift; path = Spartan/Classes/AudioAnalysisTrack.swift; sourceTree = "<group>"; };
 		F9C0BC9013E831679135CC0B94DB1215 /* AlamoRecord-umbrella.h */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.h; path = "AlamoRecord-umbrella.h"; sourceTree = "<group>"; };
 		FB73F458FE4D347BA1041CFC67DA7BF1 /* TuneableTrackAttribute.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; name = TuneableTrackAttribute.swift; path = Spartan/Classes/TuneableTrackAttribute.swift; sourceTree = "<group>"; };
+		FD8AC4DC5F69668A682001F8E87A6172 /* Pods-TuneInTests */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; name = "Pods-TuneInTests"; path = Pods_TuneInTests.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		FF598B313A34D94FAFECE0EB0C3C9C56 /* ObjectMapper-prefix.pch */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.h; path = "ObjectMapper-prefix.pch"; sourceTree = "<group>"; };
 		FF7463221AC9DFECAF38C9D945A81B57 /* Alamofire.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; name = Alamofire.swift; path = Source/Alamofire.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
@@ -350,6 +369,14 @@
 			buildActionMask = 2147483647;
 			files = (
 				857A19EA431A46DBF2FCB5BB13F47A08 /* Foundation.framework in Frameworks */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		2CACD535B6918B56F39DF8A5CD5BF6D3 /* Frameworks */ = {
+			isa = PBXFrameworksBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				4D7B867BE57BAC5B7CDCAB68D5423264 /* Foundation.framework in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -442,19 +469,6 @@
 			);
 			name = "Support Files";
 			path = "../Target Support Files/Alamofire";
-			sourceTree = "<group>";
-		};
-		2C4CDA26A96914A2213D1D833D3DA9B1 /* Products */ = {
-			isa = PBXGroup;
-			children = (
-				5D797E9A5C5782CE845840781FA1CC81 /* Alamofire */,
-				86822384CD379FCE373C2F755839B8DE /* AlamofireObjectMapper */,
-				AF2681486DB9B38EFFDAC1097F2D1C16 /* AlamoRecord */,
-				B9084FE779702931E8DF1D00A2D725FB /* ObjectMapper */,
-				6C077BDD68289E36B5D36A2F210F54B5 /* Pods-TuneIn */,
-				ED6058E729C1959A02168403C875AED1 /* Spartan */,
-			);
-			name = Products;
 			sourceTree = "<group>";
 		};
 		350CC419CBD946AA841A6F832FDE5B11 /* ObjectMapper */ = {
@@ -564,6 +578,23 @@
 			path = AlamofireObjectMapper;
 			sourceTree = "<group>";
 		};
+		74D3E420C07EF9A7A6270648B5FF2F38 /* Pods-TuneIn */ = {
+			isa = PBXGroup;
+			children = (
+				B72BE21A9F5AE869A4306919C5F451A9 /* Pods-TuneIn.modulemap */,
+				917452B54F4CCDFC2E9789141F8A762E /* Pods-TuneIn-acknowledgements.markdown */,
+				1D66ACF82F720EF45B641B56D0905EC0 /* Pods-TuneIn-acknowledgements.plist */,
+				346BEFAFE86F36B42910D72041FC4D12 /* Pods-TuneIn-dummy.m */,
+				B690395C37DB494B5FCE5A9E11CFAD0D /* Pods-TuneIn-frameworks.sh */,
+				5A3DE4484DD2FD4CB724139A49774E00 /* Pods-TuneIn-Info.plist */,
+				6F057B9F143B3A11946AD06C4FB7F1DE /* Pods-TuneIn-umbrella.h */,
+				1F59B33BF614DD547678915DA9981BBB /* Pods-TuneIn.debug.xcconfig */,
+				5DADB7A6A1F2C3E762A6CEE84395EFC6 /* Pods-TuneIn.release.xcconfig */,
+			);
+			name = "Pods-TuneIn";
+			path = "Target Support Files/Pods-TuneIn";
+			sourceTree = "<group>";
+		};
 		7EE04E90CFBE90361DFDCB19263D5871 /* Support Files */ = {
 			isa = PBXGroup;
 			children = (
@@ -577,6 +608,29 @@
 			);
 			name = "Support Files";
 			path = "../Target Support Files/ObjectMapper";
+			sourceTree = "<group>";
+		};
+		81F975B9AC2C8C383482D294D5498876 /* Products */ = {
+			isa = PBXGroup;
+			children = (
+				5D797E9A5C5782CE845840781FA1CC81 /* Alamofire */,
+				86822384CD379FCE373C2F755839B8DE /* AlamofireObjectMapper */,
+				AF2681486DB9B38EFFDAC1097F2D1C16 /* AlamoRecord */,
+				B9084FE779702931E8DF1D00A2D725FB /* ObjectMapper */,
+				6C077BDD68289E36B5D36A2F210F54B5 /* Pods-TuneIn */,
+				FD8AC4DC5F69668A682001F8E87A6172 /* Pods-TuneInTests */,
+				ED6058E729C1959A02168403C875AED1 /* Spartan */,
+			);
+			name = Products;
+			sourceTree = "<group>";
+		};
+		A0D0FB2B93709D238272B8EB567EEDA6 /* Targets Support Files */ = {
+			isa = PBXGroup;
+			children = (
+				74D3E420C07EF9A7A6270648B5FF2F38 /* Pods-TuneIn */,
+				E06BD641C32348B2617226280EB0A192 /* Pods-TuneInTests */,
+			);
+			name = "Targets Support Files";
 			sourceTree = "<group>";
 		};
 		BCBFD7DE0A3E00A62EBD27156A5CF4DB /* Support Files */ = {
@@ -653,8 +707,8 @@
 				9D940727FF8FB9C785EB98E56350EF41 /* Podfile */,
 				D210D550F4EA176C3123ED886F8F87F5 /* Frameworks */,
 				C5C3880EDD8BBA8CA82795AE8DC3D9CA /* Pods */,
-				2C4CDA26A96914A2213D1D833D3DA9B1 /* Products */,
-				FBA21334B304351A0B440BC7D3403363 /* Targets Support Files */,
+				81F975B9AC2C8C383482D294D5498876 /* Products */,
+				A0D0FB2B93709D238272B8EB567EEDA6 /* Targets Support Files */,
 			);
 			sourceTree = "<group>";
 		};
@@ -666,29 +720,20 @@
 			name = Frameworks;
 			sourceTree = "<group>";
 		};
-		D92C7E0F00ED3670F564891B0FB62126 /* Pods-TuneIn */ = {
+		E06BD641C32348B2617226280EB0A192 /* Pods-TuneInTests */ = {
 			isa = PBXGroup;
 			children = (
-				E943304870C0D4CF6C3F2086731C92C0 /* Pods-TuneIn.modulemap */,
-				5587399E78311D90812111BEB6F4C4E1 /* Pods-TuneIn-acknowledgements.markdown */,
-				30D68DB0E00AB7B426B6613A380625B7 /* Pods-TuneIn-acknowledgements.plist */,
-				3F7CB17EB660F06451EE5F5AB6F71A5F /* Pods-TuneIn-dummy.m */,
-				8B6A587AEC411E6C37D8DA00AE31E0E6 /* Pods-TuneIn-frameworks.sh */,
-				558813385EA55D0117BBC49ED398B111 /* Pods-TuneIn-Info.plist */,
-				DDDEDC5B2CD062D38C036E31626B1132 /* Pods-TuneIn-umbrella.h */,
-				CB3A161259435780D3CD874F25CDA62C /* Pods-TuneIn.debug.xcconfig */,
-				40C02B8DCA8AFAABA0D9102D42CB320E /* Pods-TuneIn.release.xcconfig */,
+				C12AD6C0F4D961B26CDC2105FE5827BC /* Pods-TuneInTests.modulemap */,
+				E876080E81214BC09A27D24809AA23F7 /* Pods-TuneInTests-acknowledgements.markdown */,
+				9623ECC39AA5E62AD6D02D576D338387 /* Pods-TuneInTests-acknowledgements.plist */,
+				51848FF1B19A8DD16D35843F5D150352 /* Pods-TuneInTests-dummy.m */,
+				6F68497CD70518307D125CD42DAC9713 /* Pods-TuneInTests-Info.plist */,
+				DE1AA09EE19C2AEFEA7ED2B6CB477DB3 /* Pods-TuneInTests-umbrella.h */,
+				2F9B8DB172107CC6F04B0BB30A204064 /* Pods-TuneInTests.debug.xcconfig */,
+				C8FE72CA66F388498EF50A29D44004C5 /* Pods-TuneInTests.release.xcconfig */,
 			);
-			name = "Pods-TuneIn";
-			path = "Target Support Files/Pods-TuneIn";
-			sourceTree = "<group>";
-		};
-		FBA21334B304351A0B440BC7D3403363 /* Targets Support Files */ = {
-			isa = PBXGroup;
-			children = (
-				D92C7E0F00ED3670F564891B0FB62126 /* Pods-TuneIn */,
-			);
-			name = "Targets Support Files";
+			name = "Pods-TuneInTests";
+			path = "Target Support Files/Pods-TuneInTests";
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -731,6 +776,14 @@
 			buildActionMask = 2147483647;
 			files = (
 				5BDB8BEB4F35D323B734C2B06E070BD8 /* AlamofireObjectMapper-umbrella.h in Headers */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		BDE30F6983C2C76DA990F6967AF96425 /* Headers */ = {
+			isa = PBXHeadersBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				E3CE590426E605492E6313CDCECF9368 /* Pods-TuneInTests-umbrella.h in Headers */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -780,6 +833,25 @@
 			name = Spartan;
 			productName = Spartan;
 			productReference = ED6058E729C1959A02168403C875AED1 /* Spartan */;
+			productType = "com.apple.product-type.framework";
+		};
+		1D3598409AA64EB88B73E056F3E85416 /* Pods-TuneInTests */ = {
+			isa = PBXNativeTarget;
+			buildConfigurationList = 6D6194CE97739849F882F87499704176 /* Build configuration list for PBXNativeTarget "Pods-TuneInTests" */;
+			buildPhases = (
+				BDE30F6983C2C76DA990F6967AF96425 /* Headers */,
+				B126E501EB350418A9168F090B9F8C78 /* Sources */,
+				2CACD535B6918B56F39DF8A5CD5BF6D3 /* Frameworks */,
+				66E9AF3ED8AB7AD4641467D10D6D83BF /* Resources */,
+			);
+			buildRules = (
+			);
+			dependencies = (
+				B8FB2991E9DB169281E7E3D29FBD85A2 /* PBXTargetDependency */,
+			);
+			name = "Pods-TuneInTests";
+			productName = Pods_TuneInTests;
+			productReference = FD8AC4DC5F69668A682001F8E87A6172 /* Pods-TuneInTests */;
 			productType = "com.apple.product-type.framework";
 		};
 		3F64080413BB03C0B16BFEB621E6E0F2 /* AlamofireObjectMapper */ = {
@@ -880,7 +952,7 @@
 				en,
 			);
 			mainGroup = CF1408CF629C7361332E53B88F7BD30C;
-			productRefGroup = 2C4CDA26A96914A2213D1D833D3DA9B1 /* Products */;
+			productRefGroup = 81F975B9AC2C8C383482D294D5498876 /* Products */;
 			projectDirPath = "";
 			projectRoot = "";
 			targets = (
@@ -889,6 +961,7 @@
 				948E27544E35A7D6A14956CF09A731C4 /* AlamoRecord */,
 				162E649F50FEC62B61BDD87D1BD422B4 /* ObjectMapper */,
 				F34CB0431C7543D19F878BDE9C654498 /* Pods-TuneIn */,
+				1D3598409AA64EB88B73E056F3E85416 /* Pods-TuneInTests */,
 				1657548CAE4235EA0F61BA2501397979 /* Spartan */,
 			);
 		};
@@ -896,6 +969,13 @@
 
 /* Begin PBXResourcesBuildPhase section */
 		30CA6C55F8D75772E9CC1FA22232FCE0 /* Resources */ = {
+			isa = PBXResourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		66E9AF3ED8AB7AD4641467D10D6D83BF /* Resources */ = {
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
@@ -1003,6 +1083,14 @@
 			files = (
 				708AC3C382CACB46A5E52E19EB6F4A90 /* AlamofireObjectMapper.swift in Sources */,
 				B71A23577BACF43AA5B70D55335204AE /* AlamofireObjectMapper-dummy.m in Sources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		B126E501EB350418A9168F090B9F8C78 /* Sources */ = {
+			isa = PBXSourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				502F03E4F3A009212F53480407FD5E5E /* Pods-TuneInTests-dummy.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -1118,6 +1206,12 @@
 			name = ObjectMapper;
 			target = 162E649F50FEC62B61BDD87D1BD422B4 /* ObjectMapper */;
 			targetProxy = C48E8674A965C07FE8352DD75A2D026D /* PBXContainerItemProxy */;
+		};
+		B8FB2991E9DB169281E7E3D29FBD85A2 /* PBXTargetDependency */ = {
+			isa = PBXTargetDependency;
+			name = "Pods-TuneIn";
+			target = F34CB0431C7543D19F878BDE9C654498 /* Pods-TuneIn */;
+			targetProxy = 02564F92B84F144D75859F5F11067022 /* PBXContainerItemProxy */;
 		};
 		BB396AAF2BF63ED16B69A694786805EF /* PBXTargetDependency */ = {
 			isa = PBXTargetDependency;
@@ -1353,7 +1447,7 @@
 		};
 		3D3D8FD5ACB23017EBC60648F235F569 /* Release */ = {
 			isa = XCBuildConfiguration;
-			baseConfigurationReference = 40C02B8DCA8AFAABA0D9102D42CB320E /* Pods-TuneIn.release.xcconfig */;
+			baseConfigurationReference = 5DADB7A6A1F2C3E762A6CEE84395EFC6 /* Pods-TuneIn.release.xcconfig */;
 			buildSettings = {
 				ALWAYS_EMBED_SWIFT_STANDARD_LIBRARIES = NO;
 				"CODE_SIGN_IDENTITY[sdk=appletvos*]" = "";
@@ -1656,9 +1750,82 @@
 			};
 			name = Release;
 		};
+		EA94B19CD936A6EA675EB57CDD083B21 /* Debug */ = {
+			isa = XCBuildConfiguration;
+			baseConfigurationReference = 2F9B8DB172107CC6F04B0BB30A204064 /* Pods-TuneInTests.debug.xcconfig */;
+			buildSettings = {
+				ALWAYS_EMBED_SWIFT_STANDARD_LIBRARIES = NO;
+				"CODE_SIGN_IDENTITY[sdk=appletvos*]" = "";
+				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "";
+				"CODE_SIGN_IDENTITY[sdk=watchos*]" = "";
+				CURRENT_PROJECT_VERSION = 1;
+				DEFINES_MODULE = YES;
+				DYLIB_COMPATIBILITY_VERSION = 1;
+				DYLIB_CURRENT_VERSION = 1;
+				DYLIB_INSTALL_NAME_BASE = "@rpath";
+				INFOPLIST_FILE = "Target Support Files/Pods-TuneInTests/Pods-TuneInTests-Info.plist";
+				INSTALL_PATH = "$(LOCAL_LIBRARY_DIR)/Frameworks";
+				IPHONEOS_DEPLOYMENT_TARGET = 12.0;
+				LD_RUNPATH_SEARCH_PATHS = (
+					"$(inherited)",
+					"@executable_path/Frameworks",
+					"@loader_path/Frameworks",
+				);
+				MACH_O_TYPE = staticlib;
+				MODULEMAP_FILE = "Target Support Files/Pods-TuneInTests/Pods-TuneInTests.modulemap";
+				OTHER_LDFLAGS = "";
+				OTHER_LIBTOOLFLAGS = "";
+				PODS_ROOT = "$(SRCROOT)";
+				PRODUCT_BUNDLE_IDENTIFIER = "org.cocoapods.${PRODUCT_NAME:rfc1034identifier}";
+				PRODUCT_NAME = "$(TARGET_NAME:c99extidentifier)";
+				SDKROOT = iphoneos;
+				SKIP_INSTALL = YES;
+				TARGETED_DEVICE_FAMILY = "1,2";
+				VERSIONING_SYSTEM = "apple-generic";
+				VERSION_INFO_PREFIX = "";
+			};
+			name = Debug;
+		};
+		EE3E145035C5AFB9D298CB2391B31043 /* Release */ = {
+			isa = XCBuildConfiguration;
+			baseConfigurationReference = C8FE72CA66F388498EF50A29D44004C5 /* Pods-TuneInTests.release.xcconfig */;
+			buildSettings = {
+				ALWAYS_EMBED_SWIFT_STANDARD_LIBRARIES = NO;
+				"CODE_SIGN_IDENTITY[sdk=appletvos*]" = "";
+				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "";
+				"CODE_SIGN_IDENTITY[sdk=watchos*]" = "";
+				CURRENT_PROJECT_VERSION = 1;
+				DEFINES_MODULE = YES;
+				DYLIB_COMPATIBILITY_VERSION = 1;
+				DYLIB_CURRENT_VERSION = 1;
+				DYLIB_INSTALL_NAME_BASE = "@rpath";
+				INFOPLIST_FILE = "Target Support Files/Pods-TuneInTests/Pods-TuneInTests-Info.plist";
+				INSTALL_PATH = "$(LOCAL_LIBRARY_DIR)/Frameworks";
+				IPHONEOS_DEPLOYMENT_TARGET = 12.0;
+				LD_RUNPATH_SEARCH_PATHS = (
+					"$(inherited)",
+					"@executable_path/Frameworks",
+					"@loader_path/Frameworks",
+				);
+				MACH_O_TYPE = staticlib;
+				MODULEMAP_FILE = "Target Support Files/Pods-TuneInTests/Pods-TuneInTests.modulemap";
+				OTHER_LDFLAGS = "";
+				OTHER_LIBTOOLFLAGS = "";
+				PODS_ROOT = "$(SRCROOT)";
+				PRODUCT_BUNDLE_IDENTIFIER = "org.cocoapods.${PRODUCT_NAME:rfc1034identifier}";
+				PRODUCT_NAME = "$(TARGET_NAME:c99extidentifier)";
+				SDKROOT = iphoneos;
+				SKIP_INSTALL = YES;
+				TARGETED_DEVICE_FAMILY = "1,2";
+				VALIDATE_PRODUCT = YES;
+				VERSIONING_SYSTEM = "apple-generic";
+				VERSION_INFO_PREFIX = "";
+			};
+			name = Release;
+		};
 		FB2E9236C4415CDE43455BB583FC4D28 /* Debug */ = {
 			isa = XCBuildConfiguration;
-			baseConfigurationReference = CB3A161259435780D3CD874F25CDA62C /* Pods-TuneIn.debug.xcconfig */;
+			baseConfigurationReference = 1F59B33BF614DD547678915DA9981BBB /* Pods-TuneIn.debug.xcconfig */;
 			buildSettings = {
 				ALWAYS_EMBED_SWIFT_STANDARD_LIBRARIES = NO;
 				"CODE_SIGN_IDENTITY[sdk=appletvos*]" = "";
@@ -1709,6 +1876,15 @@
 			buildConfigurations = (
 				FB2E9236C4415CDE43455BB583FC4D28 /* Debug */,
 				3D3D8FD5ACB23017EBC60648F235F569 /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
+		};
+		6D6194CE97739849F882F87499704176 /* Build configuration list for PBXNativeTarget "Pods-TuneInTests" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				EA94B19CD936A6EA675EB57CDD083B21 /* Debug */,
+				EE3E145035C5AFB9D298CB2391B31043 /* Release */,
 			);
 			defaultConfigurationIsVisible = 0;
 			defaultConfigurationName = Release;
