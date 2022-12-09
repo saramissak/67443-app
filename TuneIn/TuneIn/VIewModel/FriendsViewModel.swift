@@ -23,7 +23,7 @@ class FriendsViewModel: ObservableObject{
   @Published var sentFriendRequest: [String:String] = [:]
   var myUserId : String = ""
 
-  func getUsers(_ searchString: String) {
+  func getUsers(_ searchString: String, completionHandler:@escaping (String)->()) {
     if searchString == "" || searchString.count < 1 {
       print("not doing request since search string is just \(searchString)")
       return
@@ -45,27 +45,30 @@ class FriendsViewModel: ObservableObject{
                     
           if self.searchedUsers[user.id] == nil {
             self.searchedUsers[user.id] = user
+            DispatchQueue.main.async(){
+              completionHandler(user.id)
+            }
           }
         }
       }
     }
   } // END OF getUsers
   
-  func addFriend(_ userID: String) {
+  func addFriend(_ userID: String, completionHandler:@escaping (Bool)->()) {
     if self.myUserId == ""{
       let _ = Spartan.getMe(success: { (user) in
         self.myUserId = user.id as? String ?? ""
-        self.addFriendInFirestore(userID)
+        self.addFriendInFirestore(userID, completionHandler: completionHandler)
       }, failure: { (err) in
         print("err instead: ", err)
       })
     } else {
-      self.addFriendInFirestore(userID)
+      self.addFriendInFirestore(userID, completionHandler: completionHandler)
     }
-    self.getFriendRequestFromFireStore()
+    self.getFriendRequestFromFireStore(completionHandler: {eventListener in })
   }  // END OF addFriend
   
-  func addFriendInFirestore(_ userID:String) {
+  func addFriendInFirestore(_ userID:String, completionHandler:@escaping (Bool)->()) {
     let senderUserId = self.myUserId
     let receiverUserId = userID
     
@@ -86,26 +89,29 @@ class FriendsViewModel: ObservableObject{
           "notifications": FieldValue.arrayUnion([dict])
         ])
         self.sentFriendRequest[receiverUserId] = doc.documentID
+        DispatchQueue.main.async(){
+          completionHandler(true)
+        }
       }
     } catch {
       fatalError("Unable to add friend request: \(error.localizedDescription).")
     }
   } // END OF addFriendInFirestore
   
-  func acceptFriend(_ userID: String) {
+  func acceptFriend(_ userID: String, completionHandler:@escaping (String)->()) {
     if self.myUserId == "" {
       let _ = Spartan.getMe(success: { (user) in
         self.myUserId = user.id as? String ?? ""
-        self.acceptFriendInFireStore(userID)
+        self.acceptFriendInFireStore(userID, completionHandler: completionHandler)
       }, failure: { (err) in
         print("err instead: ", err)
       })
     } else {
-      self.acceptFriendInFireStore(userID)
+      self.acceptFriendInFireStore(userID, completionHandler: completionHandler)
     }
   } // END OF acceptFriend
   
-  func acceptFriendInFireStore(_ userID:String) {
+  func acceptFriendInFireStore(_ userID:String, completionHandler:@escaping (String)->()) {
     let friend1 = self.myUserId
     let friend2 = userID
     
@@ -114,7 +120,7 @@ class FriendsViewModel: ObservableObject{
         let friends = Friends(friend1: friend1, friend2: friend2)
         _ = try self.store.collection("Friends").addDocument(from: friends)
         self.friends[friend2] = ""
-        self.removeFriendRequest(userID)
+        self.removeFriendRequest(userID, completionHandler: {eventList in })
         
         let dict: [String:Any] = [
           "otherUser": friend2,
@@ -135,52 +141,59 @@ class FriendsViewModel: ObservableObject{
         userRef2.updateData([
           "notifications": FieldValue.arrayUnion([dict2])
         ])
+        
+        DispatchQueue.main.async(){
+          completionHandler(friend2)
+        }
       } catch {
         print("Unable to accept a friend \(error.localizedDescription)")
       }
     }
-//    self.removeFriendRequest(username)
   } // END OF acceptFriendInFireStore
   
-  func removeFriendRequest(_ userID:String) {
+  func removeFriendRequest(_ userID:String, completionHandler:@escaping (Bool)->()) {
     let user = userID
-    
-    if user != "" {
+    if user != "" && self.receivedFriendRequest[user] != nil {
       let friendRequestDocId = self.receivedFriendRequest[user]!
       if friendRequestDocId != "" {
         store.collection("FriendRequest").document(friendRequestDocId).delete { error in
-          if let error = error {
-            print("Unable to remove friendRequets: \(error.localizedDescription)")
+          if var hasError = error {
+            DispatchQueue.main.async(){
+              completionHandler(false)
+            }
           }
         }
       }
+      self.receivedFriendRequest.removeValue(forKey: user)
+      let dict: [String:Any] = [
+        "otherUser": user,
+        "userID": self.myUserId,
+        "type": "friend request",
+      ]
+      let userRef = store.collection("UserInfo").document(self.myUserId)
+      userRef.updateData([
+        "notifications": FieldValue.arrayRemove([dict])
+      ])
     }
-    self.receivedFriendRequest.removeValue(forKey: user)
-    let dict: [String:Any] = [
-      "otherUser": user,
-      "userID": self.myUserId,
-      "type": "friend request",
-    ]
-    let userRef = store.collection("UserInfo").document(self.myUserId)
-    userRef.updateData([
-      "notifications": FieldValue.arrayRemove([dict])
-    ])
+    DispatchQueue.main.async(){
+      completionHandler(true)
+    }
   } // END OF removeFriendRequest
   
-  func getFriendRequests() {
+  func getFriendRequests(completionHandler:@escaping (String)->()) {
     if self.myUserId == "" {
       let _ = Spartan.getMe(success: { (user) in
         self.myUserId = user.id as? String ?? ""
-        self.getFriendRequestFromFireStore()
+        self.getFriendRequestFromFireStore(completionHandler: completionHandler)
       }, failure: { (err) in
         print("err instead: ", err)
       })
     } else {
-      self.getFriendRequestFromFireStore()
+      self.getFriendRequestFromFireStore(completionHandler: completionHandler)
     }
   } // END OF getFriendRequests
   
-  func getFriendRequestFromFireStore() {
+  func getFriendRequestFromFireStore(completionHandler:@escaping (String)->()) {
     let _ = self.store.collection("FriendRequest")
       .whereField("requestReceiver", isEqualTo: self.myUserId)
       .getDocuments() { (querySnapshot, err) in
@@ -192,6 +205,9 @@ class FriendsViewModel: ObservableObject{
             let sender = data["requestSender"] as? String ?? ""
             
             self.receivedFriendRequest[sender] = document.documentID
+            DispatchQueue.main.async(){
+              completionHandler(sender)
+            }
           }
         }
       }
@@ -206,6 +222,9 @@ class FriendsViewModel: ObservableObject{
             let receiver = data["requestReceiver"] as? String ?? ""
 
             self.sentFriendRequest[receiver] = document.documentID
+            DispatchQueue.main.async(){
+              completionHandler(receiver)
+            }
           }
         }
       }
@@ -255,13 +274,16 @@ class FriendsViewModel: ObservableObject{
     }
   } // END OF getFriendsFireStoreCall
   
-  func removeFriend(_ userID:String) {
+  func removeFriend(_ userID:String, completionHandler:@escaping (Bool)->()) {
     let friend = userID
     
-    if self.friends[friend] != "" {
+    if self.friends[friend] != nil && self.friends[friend] != "" {
       store.collection("Friends").document(self.friends[friend]!).delete { error in
         if let error = error {
           print("Unable to remove friendRequets: \(error.localizedDescription)")
+          DispatchQueue.main.async(){
+            completionHandler(false)
+          }
         }
       }
     } else {
@@ -270,6 +292,9 @@ class FriendsViewModel: ObservableObject{
         .getDocuments() { (querySnapshot, err) in
         if let err = err {
           print("Error getting documents: \(err)")
+          DispatchQueue.main.async(){
+            completionHandler(false)
+          }
         } else {
           for document in querySnapshot!.documents {
             let data = document.data()
@@ -279,6 +304,9 @@ class FriendsViewModel: ObservableObject{
               self.store.collection("Friends").document(document.documentID).delete { error in
                 if let error = error {
                   print("Unable to remove friend: \(error.localizedDescription)")
+                  DispatchQueue.main.async(){
+                    completionHandler(false)
+                  }
                 }
               }
             }
@@ -287,26 +315,31 @@ class FriendsViewModel: ObservableObject{
       }
     }
     self.friends.removeValue(forKey: friend)
-    
-    let dict: [String:Any] = [
-      "otherUser": self.myUserId,
-      "userID": friend,
-      "type": "friend added",
-    ]
-    let dict2: [String:Any] = [
-      "userID": self.myUserId,
-      "otherUser": friend,
-      "type": "friend added",
-    ]
-    
-    let userRef = store.collection("UserInfo").document(self.myUserId)
-    userRef.updateData([
-      "notifications": FieldValue.arrayRemove([dict])
-    ])
-    let userRef2 = store.collection("UserInfo").document(friend)
-    userRef2.updateData([
-      "notifications": FieldValue.arrayRemove([dict2])
-    ])
+    if self.myUserId != "" && friend != "" {
+      
+      let dict: [String:Any] = [
+        "otherUser": self.myUserId,
+        "userID": friend,
+        "type": "friend added",
+      ]
+      let dict2: [String:Any] = [
+        "userID": self.myUserId,
+        "otherUser": friend,
+        "type": "friend added",
+      ]
+      
+      let userRef = store.collection("UserInfo").document(self.myUserId)
+      userRef.updateData([
+        "notifications": FieldValue.arrayRemove([dict])
+      ])
+      let userRef2 = store.collection("UserInfo").document(friend)
+      userRef2.updateData([
+        "notifications": FieldValue.arrayRemove([dict2])
+      ])
+      DispatchQueue.main.async(){
+        completionHandler(true)
+      }
+    }
   } // END OF removeFriend
 }
 

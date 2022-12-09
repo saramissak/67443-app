@@ -29,13 +29,13 @@ struct FriendsView: View {
       Spacer()
       if self.friendsTab {
         Button("find", action:{
-          friendsViewModel.getFriendRequests()
-          friendsViewModel.getFriends(completionHandler: { (eventList) in print(eventList)})
+          friendsViewModel.getFriendRequests(completionHandler: { (eventList) in })
+          friendsViewModel.getFriends(completionHandler: { (eventList) in })
           self.friendsTab = false
         }).foregroundColor(viewModel.hexStringToUIColor(hex: "#FFFFFF"))
       } else {
         Button("find", action:{
-          friendsViewModel.getFriendRequests()
+          friendsViewModel.getFriendRequests(completionHandler: { (eventList) in })
           friendsViewModel.getFriends(completionHandler: { (eventList) in print(eventList)})
           self.friendsTab = false
         })
@@ -67,11 +67,4 @@ struct FriendsView: View {
       Spacer()
     }
   }
-  
 }
-
-//struct FriendsView_Previews: PreviewProvider {
-//    static var previews: some View {
-//      FriendsView(viewModel: ViewModel())
-//    }
-//}

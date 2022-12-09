@@ -19,7 +19,7 @@ struct FindTab: View {
       let binding = Binding<String>(get: {self.searchField},
         set: {
         self.searchField = $0
-        self.friendsViewModel.getUsers(self.searchField)
+        self.friendsViewModel.getUsers(self.searchField, completionHandler: { eventListener in })
         self.displayUsers()
         print("self.searchField \(self.searchField)")
       })
@@ -88,15 +88,15 @@ struct roundedRectangleButton : View {
     Button(ButtonText, action:{
       switch ButtonText {
       case "add":
-        friendsViewModel.addFriend(UserID)
+        friendsViewModel.addFriend(UserID, completionHandler:{ (eventList) in })
       case "accept":
-        friendsViewModel.acceptFriend(UserID)
+        friendsViewModel.acceptFriend(UserID, completionHandler:{ (eventList) in })
       case "decline":
-        friendsViewModel.removeFriendRequest(UserID)
+        friendsViewModel.removeFriendRequest(UserID, completionHandler: {eventList in })
       case "requested":
         print("already sent a friend requst")
       case "remove":
-        friendsViewModel.removeFriend(UserID)
+        friendsViewModel.removeFriend(UserID, completionHandler: {eventList in })
       default:
         print("\(ButtonText) is not a valid Buttontext")
       }
