@@ -135,11 +135,11 @@ class FriendsViewModel: ObservableObject{
         
         let userRef = store.collection("UserInfo").document(friend2)
         userRef.updateData([
-          "notifications": FieldValue.arrayUnion([dict])
+          "notifications": FieldValue.arrayUnion([dict2])
         ])
         let userRef2 = store.collection("UserInfo").document(friend1)
         userRef2.updateData([
-          "notifications": FieldValue.arrayUnion([dict2])
+          "notifications": FieldValue.arrayUnion([dict])
         ])
         
         DispatchQueue.main.async(){
@@ -330,11 +330,11 @@ class FriendsViewModel: ObservableObject{
       
       let userRef = store.collection("UserInfo").document(self.myUserId)
       userRef.updateData([
-        "notifications": FieldValue.arrayRemove([dict])
+        "notifications": FieldValue.arrayRemove([dict2])
       ])
       let userRef2 = store.collection("UserInfo").document(friend)
       userRef2.updateData([
-        "notifications": FieldValue.arrayRemove([dict2])
+        "notifications": FieldValue.arrayRemove([dict])
       ])
       DispatchQueue.main.async(){
         completionHandler(true)
