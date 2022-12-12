@@ -15,7 +15,6 @@
 		B10E3CB2291976FC0090F9C7 /* NotificationsView.swift in Sources */ = {isa = PBXBuildFile; fileRef = B10E3CAE291976FC0090F9C7 /* NotificationsView.swift */; };
 		B10E3CB3291976FC0090F9C7 /* ProfileView.swift in Sources */ = {isa = PBXBuildFile; fileRef = B10E3CAF291976FC0090F9C7 /* ProfileView.swift */; };
 		B1432028291DEADC0011FF22 /* createUserView.swift in Sources */ = {isa = PBXBuildFile; fileRef = B1432027291DEADC0011FF22 /* createUserView.swift */; };
-		B14917732941919600BE3537 /* HomeFeedTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = B14917722941919600BE3537 /* HomeFeedTests.swift */; };
 		B14917752941936200BE3537 /* LoginTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = B14917742941936200BE3537 /* LoginTests.swift */; };
 		B149177729419C1E00BE3537 /* FirebaseAuth in Frameworks */ = {isa = PBXBuildFile; productRef = B149177629419C1E00BE3537 /* FirebaseAuth */; };
 		B149177B2941BAAA00BE3537 /* MoodButtons.swift in Sources */ = {isa = PBXBuildFile; fileRef = B149177A2941BAAA00BE3537 /* MoodButtons.swift */; };
@@ -28,6 +27,7 @@
 		B1AC67B6291C33F500477A0D /* SearchSong.swift in Sources */ = {isa = PBXBuildFile; fileRef = B1AC67B5291C33F500477A0D /* SearchSong.swift */; };
 		B1AC67BA291C42A300477A0D /* PostSongView.swift in Sources */ = {isa = PBXBuildFile; fileRef = B1AC67B9291C42A300477A0D /* PostSongView.swift */; };
 		B1AC67BC291C5B1300477A0D /* SongRow.swift in Sources */ = {isa = PBXBuildFile; fileRef = B1AC67BB291C5B1300477A0D /* SongRow.swift */; };
+		B1B8DCB12947A94000810E60 /* HomeFeedTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = B1B8DCB02947A94000810E60 /* HomeFeedTests.swift */; };
 		B1C0CA2F29142C6700445D87 /* FirebaseAnalytics in Frameworks */ = {isa = PBXBuildFile; productRef = B1C0CA2E29142C6700445D87 /* FirebaseAnalytics */; };
 		B1C0CA3129142C6700445D87 /* FirebaseAnalyticsOnDeviceConversion in Frameworks */ = {isa = PBXBuildFile; productRef = B1C0CA3029142C6700445D87 /* FirebaseAnalyticsOnDeviceConversion */; };
 		B1C0CA3329142C6700445D87 /* FirebaseAnalyticsSwift in Frameworks */ = {isa = PBXBuildFile; productRef = B1C0CA3229142C6700445D87 /* FirebaseAnalyticsSwift */; };
@@ -46,7 +46,7 @@
 		B1C0CA4D29142C6700445D87 /* FirebaseStorageCombine-Community in Frameworks */ = {isa = PBXBuildFile; productRef = B1C0CA4C29142C6700445D87 /* FirebaseStorageCombine-Community */; };
 		B1C0CA532914AD3500445D87 /* HomeFeed.swift in Sources */ = {isa = PBXBuildFile; fileRef = B1C0CA522914AD3500445D87 /* HomeFeed.swift */; };
 		B1C0CA552914AE9700445D87 /* ViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = B1C0CA542914AE9700445D87 /* ViewModel.swift */; };
-		B1DE6C18293D455200949744 /* GoogleService-Info.plist in Resources */ = {isa = PBXBuildFile; fileRef = B1DE6C17293D455200949744 /* GoogleService-Info.plist */; };
+		B1C1D60829478C9D007C3B69 /* GoogleService-Info.plist in Resources */ = {isa = PBXBuildFile; fileRef = B1C1D60729478C9D007C3B69 /* GoogleService-Info.plist */; };
 		D34D47B728F9DB6E00224758 /* TuneInApp.swift in Sources */ = {isa = PBXBuildFile; fileRef = D34D47B628F9DB6E00224758 /* TuneInApp.swift */; };
 		D34D47B928F9DB6E00224758 /* ContentView.swift in Sources */ = {isa = PBXBuildFile; fileRef = D34D47B828F9DB6E00224758 /* ContentView.swift */; };
 		D34D47BB28F9DB7000224758 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = D34D47BA28F9DB7000224758 /* Assets.xcassets */; };
@@ -97,7 +97,6 @@
 		B10E3CAF291976FC0090F9C7 /* ProfileView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ProfileView.swift; sourceTree = "<group>"; };
 		B1432027291DEADC0011FF22 /* createUserView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = createUserView.swift; sourceTree = "<group>"; };
 		B149176529418F1600BE3537 /* TuneInTests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = TuneInTests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
-		B14917722941919600BE3537 /* HomeFeedTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HomeFeedTests.swift; sourceTree = "<group>"; };
 		B14917742941936200BE3537 /* LoginTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LoginTests.swift; sourceTree = "<group>"; };
 		B149177A2941BAAA00BE3537 /* MoodButtons.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MoodButtons.swift; sourceTree = "<group>"; };
 		B149177C2941BAE500BE3537 /* GeneralButtons.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GeneralButtons.swift; sourceTree = "<group>"; };
@@ -109,9 +108,10 @@
 		B1AC67B5291C33F500477A0D /* SearchSong.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SearchSong.swift; sourceTree = "<group>"; };
 		B1AC67B9291C42A300477A0D /* PostSongView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PostSongView.swift; sourceTree = "<group>"; };
 		B1AC67BB291C5B1300477A0D /* SongRow.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SongRow.swift; sourceTree = "<group>"; };
+		B1B8DCB02947A94000810E60 /* HomeFeedTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HomeFeedTests.swift; sourceTree = "<group>"; };
 		B1C0CA522914AD3500445D87 /* HomeFeed.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; name = HomeFeed.swift; path = "TuneIn/Views/Posts Views/HomeFeed.swift"; sourceTree = SOURCE_ROOT; };
 		B1C0CA542914AE9700445D87 /* ViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ViewModel.swift; sourceTree = SOURCE_ROOT; };
-		B1DE6C17293D455200949744 /* GoogleService-Info.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; name = "GoogleService-Info.plist"; path = "../../../GoogleService-Info.plist"; sourceTree = "<group>"; };
+		B1C1D60729478C9D007C3B69 /* GoogleService-Info.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; name = "GoogleService-Info.plist"; path = "../../../../../Downloads/GoogleService-Info.plist"; sourceTree = "<group>"; };
 		B1EA827B29135D2200FAF2C2 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		D34D47B328F9DB6E00224758 /* TuneIn.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = TuneIn.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		D34D47B628F9DB6E00224758 /* TuneInApp.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TuneInApp.swift; sourceTree = "<group>"; };
@@ -253,9 +253,9 @@
 		B1A9BBD52941850C004A46AB /* TuneInTests */ = {
 			isa = PBXGroup;
 			children = (
-				B14917722941919600BE3537 /* HomeFeedTests.swift */,
 				B14917742941936200BE3537 /* LoginTests.swift */,
 				D3C60A642942E7F40007B4D2 /* FriendsViewModeTests.swift */,
+				B1B8DCB02947A94000810E60 /* HomeFeedTests.swift */,
 			);
 			path = TuneInTests;
 			sourceTree = "<group>";
@@ -296,7 +296,7 @@
 				D34D47BC28F9DB7000224758 /* Preview Content */,
 				B149D11429134C2A0056509D /* SpotifyiOS.framework */,
 				B1EA827B29135D2200FAF2C2 /* Info.plist */,
-				B1DE6C17293D455200949744 /* GoogleService-Info.plist */,
+				B1C1D60729478C9D007C3B69 /* GoogleService-Info.plist */,
 			);
 			path = TuneIn;
 			sourceTree = "<group>";
@@ -489,8 +489,8 @@
 			buildActionMask = 2147483647;
 			files = (
 				D34D47BE28F9DB7000224758 /* Preview Assets.xcassets in Resources */,
+				B1C1D60829478C9D007C3B69 /* GoogleService-Info.plist in Resources */,
 				D34D47BB28F9DB7000224758 /* Assets.xcassets in Resources */,
-				B1DE6C18293D455200949744 /* GoogleService-Info.plist in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -566,8 +566,8 @@
 			buildActionMask = 2147483647;
 			files = (
 				B14917752941936200BE3537 /* LoginTests.swift in Sources */,
-				B14917732941919600BE3537 /* HomeFeedTests.swift in Sources */,
 				D3C60A652942E7F40007B4D2 /* FriendsViewModeTests.swift in Sources */,
+				B1B8DCB12947A94000810E60 /* HomeFeedTests.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -639,7 +639,7 @@
 				BUNDLE_LOADER = "$(TEST_HOST)";
 				CODE_SIGN_STYLE = Automatic;
 				CURRENT_PROJECT_VERSION = 1;
-				DEVELOPMENT_TEAM = XB2X2SZTFC;
+				DEVELOPMENT_TEAM = 2VHAH62T69;
 				GENERATE_INFOPLIST_FILE = YES;
 				HEADER_SEARCH_PATHS = (
 					"$(inherited)",
@@ -650,7 +650,7 @@
 				IPHONEOS_DEPLOYMENT_TARGET = 16.1;
 				MACOSX_DEPLOYMENT_TARGET = 12.5;
 				MARKETING_VERSION = 1.0;
-				PRODUCT_BUNDLE_IDENTIFIER = "TuneIn-sm";
+				PRODUCT_BUNDLE_IDENTIFIER = "-43-TuneIn";
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SDKROOT = auto;
 				SUPPORTED_PLATFORMS = "iphoneos iphonesimulator macosx";
@@ -668,7 +668,7 @@
 				BUNDLE_LOADER = "$(TEST_HOST)";
 				CODE_SIGN_STYLE = Automatic;
 				CURRENT_PROJECT_VERSION = 1;
-				DEVELOPMENT_TEAM = XB2X2SZTFC;
+				DEVELOPMENT_TEAM = 2VHAH62T69;
 				GENERATE_INFOPLIST_FILE = YES;
 				HEADER_SEARCH_PATHS = (
 					"$(inherited)",
@@ -679,7 +679,7 @@
 				IPHONEOS_DEPLOYMENT_TARGET = 16.1;
 				MACOSX_DEPLOYMENT_TARGET = 12.5;
 				MARKETING_VERSION = 1.0;
-				PRODUCT_BUNDLE_IDENTIFIER = "TuneIn-sm";
+				PRODUCT_BUNDLE_IDENTIFIER = "-43-TuneIn";
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SDKROOT = auto;
 				SUPPORTED_PLATFORMS = "iphoneos iphonesimulator macosx";
@@ -814,7 +814,7 @@
 				CODE_SIGN_STYLE = Automatic;
 				CURRENT_PROJECT_VERSION = 1;
 				DEVELOPMENT_ASSET_PATHS = "\"TuneIn/Preview Content\"";
-				DEVELOPMENT_TEAM = XB2X2SZTFC;
+				DEVELOPMENT_TEAM = 2VHAH62T69;
 				ENABLE_PREVIEWS = YES;
 				EXCLUDED_ARCHS = "";
 				"EXCLUDED_ARCHS[sdk=iphonesimulator*]" = arm64;
@@ -838,7 +838,7 @@
 				);
 				MARKETING_VERSION = 1.0;
 				OTHER_LDFLAGS = "-ObjC";
-				PRODUCT_BUNDLE_IDENTIFIER = "TuneIn-sm";
+				PRODUCT_BUNDLE_IDENTIFIER = "-43-TuneIn";
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				PROVISIONING_PROFILE_SPECIFIER = "";
 				SWIFT_EMIT_LOC_STRINGS = YES;
@@ -858,7 +858,7 @@
 				CODE_SIGN_STYLE = Automatic;
 				CURRENT_PROJECT_VERSION = 1;
 				DEVELOPMENT_ASSET_PATHS = "\"TuneIn/Preview Content\"";
-				DEVELOPMENT_TEAM = XB2X2SZTFC;
+				DEVELOPMENT_TEAM = 2VHAH62T69;
 				ENABLE_PREVIEWS = YES;
 				EXCLUDED_ARCHS = "";
 				FRAMEWORK_SEARCH_PATHS = (
@@ -882,7 +882,7 @@
 				MARKETING_VERSION = 1.0;
 				ONLY_ACTIVE_ARCH = NO;
 				OTHER_LDFLAGS = "-ObjC";
-				PRODUCT_BUNDLE_IDENTIFIER = "TuneIn-sm";
+				PRODUCT_BUNDLE_IDENTIFIER = "-43-TuneIn";
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				PROVISIONING_PROFILE_SPECIFIER = "";
 				SWIFT_EMIT_LOC_STRINGS = YES;

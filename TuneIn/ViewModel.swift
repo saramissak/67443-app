@@ -33,7 +33,7 @@ class ViewModel: ObservableObject{
   @Published var spotifyID: String = ""
   @Published var loggedIn: Bool = false
   @Published var notifications: [[String:Any]] = []
-
+  
   func getSelf(completionHandler:@escaping (String)->()) {
     let getMe = Spartan.getMe(success: { (user) in
       // Do something with the user object
@@ -62,9 +62,9 @@ class ViewModel: ObservableObject{
       if let imageData = data {
         self.pfp = UIImage(data: imageData)!
       }
-      }, failure: { (error) in
-          print(error)
-      })
+    }, failure: { (error) in
+      print(error)
+    })
   }
   
   func login(){
@@ -73,6 +73,20 @@ class ViewModel: ObservableObject{
     })
     self.loggedIn = true
     print("USER NOWW:", self.user)
+
+  }
+  
+  func login(authToken:String, completionHandler:@escaping (String)->()){
+    Spartan.authorizationToken = authToken
+    getSelf(completionHandler: { (eventList) in
+      self.getPosts()
+      self.loggedIn = true
+    })
+    DispatchQueue.main.async(){
+      completionHandler(self.user.id as String)
+    }
+    print("USER NOWW:", self.user)
+    
   }
   
   func getPosts() {
