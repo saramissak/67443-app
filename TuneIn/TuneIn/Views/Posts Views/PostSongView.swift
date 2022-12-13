@@ -113,6 +113,7 @@ struct PostSongView: View {
           .contentShape(Rectangle())
           .task {
             do{
+              print("SONG HERE", song)
               let response = try await viewModel.getAlbumURLById(for: song.id)
               let url = URL(string: response)
               let data = try? Data(contentsOf:url ?? URL(fileURLWithPath: ""))
@@ -130,6 +131,7 @@ struct PostSongView: View {
                   .background(Color.black.opacity(0.5))
                   .clipShape(Circle())
                   .frame(width: 100, height: 100)
+                  .foregroundColor(.white)
           })
       }
   }

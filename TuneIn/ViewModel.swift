@@ -69,7 +69,7 @@ class ViewModel: ObservableObject{
   
   func login(){
     getSelf(completionHandler: { (eventList) in
-      self.getPosts()
+      self.getPosts(completionHandler: {_ in })
     })
     self.loggedIn = true
     print("USER NOWW:", self.user)
@@ -79,7 +79,7 @@ class ViewModel: ObservableObject{
   func login(authToken:String, completionHandler:@escaping (String)->()){
     Spartan.authorizationToken = authToken
     getSelf(completionHandler: { (eventList) in
-      self.getPosts()
+      self.getPosts(completionHandler: {_ in })
       self.loggedIn = true
     })
     DispatchQueue.main.async(){
@@ -89,7 +89,7 @@ class ViewModel: ObservableObject{
     
   }
   
-  func getPosts() {
+  func getPosts(completionHandler:@escaping ([String:Post])->()) {
     // get my friends posts
     friendsViewModel.getFriends(completionHandler: { (eventList) in
       self.store.collection("Posts")
@@ -127,6 +127,9 @@ class ViewModel: ObservableObject{
       } ?? [:] as! [String : Post]
       
       self.posts.merge(friendsPosts) {(_, new)  in new}
+      DispatchQueue.main.async(){
+        completionHandler(self.posts as [String:Post])
+      }
     }
   }
   
@@ -391,11 +394,14 @@ class ViewModel: ObservableObject{
       
       do {
         _ = try newPostRef.setData(from: post)
+        
       } catch let error {
           print("Error writing city to Firestore: \(error)")
       }
     }
-    
+//    DispatchQueue.main.async(){
+//      completionHandler(post as! Post)
+//    }
     getTrackTask.resume()
   }
   
@@ -620,8 +626,8 @@ class ViewModel: ObservableObject{
     postRef.updateData([
       "likes": FieldValue.arrayRemove([user.id])
     ])
-    getPosts()
-    
+    self.getPosts(completionHandler: {_ in })
+
     // remove like from notification
     let dict: [String:Any] = [
       "userID":  post.userID,
@@ -651,7 +657,7 @@ class ViewModel: ObservableObject{
     userRef.updateData([
       "notifications": FieldValue.arrayUnion([dict])
     ])
-    getPosts()
+    self.getPosts(completionHandler: {_ in })
   }
   
   func makeCommentNotification(_ comment:Comment? = nil) {
