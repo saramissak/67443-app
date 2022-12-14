@@ -71,8 +71,3 @@ extension View {
 }
 #endif
 
-//struct SetBioView_Previews: PreviewProvider {
-//    static var previews: some View {
-//        SetBioView()
-//    }
-//}
