@@ -24,6 +24,7 @@ class ViewModel: ObservableObject{
   @Published var friends: [String:UserInfo] = [:]
   @Published var username: String = ""
   @Published var pfp: UIImage = UIImage(imageLiteralResourceName: "John_Smith")
+  @Published var postButton: UIImage = UIImage(imageLiteralResourceName: "Post_button")
   @Published var songIDsForPosts:[String] = []
   @Published var user: UserInfo = UserInfo()
   @Published var comments: [Comment] = []

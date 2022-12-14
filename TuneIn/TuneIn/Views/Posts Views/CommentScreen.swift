@@ -29,7 +29,7 @@ struct CommentScreen: View {
     })
     
     VStack{
-      PostCard(post: post, docID: docID, displayCommentButton: false).environmentObject(viewModel)//      FullPostView(post:post, docID:docID)
+      PostCard(post: post, docID: docID, displayCommentButton: false).environmentObject(viewModel)
       Spacer()
       ScrollView{
         ForEach(viewModel.comments) { comment in
