@@ -61,14 +61,8 @@ struct HomeFeed: View {
             }
           }
         }
-//        .navigationBarTitle("")
-//        .navigationBarHidden(true)
-        
-        
-      }
+      }.accentColor(.white)
     }
-    
-    
-      }
+}
   
   
