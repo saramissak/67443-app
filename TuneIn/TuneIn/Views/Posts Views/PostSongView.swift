@@ -79,14 +79,12 @@ struct PostSongView: View {
       // entering moods
       
       NavigationLink(destination: HomeFeed().environmentObject(viewModel), isActive: $madePost, label: {
-        Text("Post")
-          .fontWeight(.bold)
-          .font(.title).contentShape(Rectangle())
-          .background(viewModel.hexStringToUIColor(hex: "#FFED95"))
-          .foregroundColor(viewModel.hexStringToUIColor(hex: "#000000"))
-          .cornerRadius(8)
-          .padding(40)
-//          .frame(width: 30, height: 30)
+        Image(uiImage: viewModel.postButton)
+          .resizable()
+          .aspectRatio(contentMode: .fill)
+          .frame(width: 100)
+          .clipped()
+          .padding()
       })
       .onChange(of: madePost) { (newValue) in
         viewModel.makePost(song:song, caption:caption, moods: self.moodList)

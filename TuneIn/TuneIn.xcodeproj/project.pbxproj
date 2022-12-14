@@ -46,7 +46,6 @@
 		B1C0CA4D29142C6700445D87 /* FirebaseStorageCombine-Community in Frameworks */ = {isa = PBXBuildFile; productRef = B1C0CA4C29142C6700445D87 /* FirebaseStorageCombine-Community */; };
 		B1C0CA532914AD3500445D87 /* HomeFeed.swift in Sources */ = {isa = PBXBuildFile; fileRef = B1C0CA522914AD3500445D87 /* HomeFeed.swift */; };
 		B1C0CA552914AE9700445D87 /* ViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = B1C0CA542914AE9700445D87 /* ViewModel.swift */; };
-		B1C1D60829478C9D007C3B69 /* GoogleService-Info.plist in Resources */ = {isa = PBXBuildFile; fileRef = B1C1D60729478C9D007C3B69 /* GoogleService-Info.plist */; };
 		D34D47B728F9DB6E00224758 /* TuneInApp.swift in Sources */ = {isa = PBXBuildFile; fileRef = D34D47B628F9DB6E00224758 /* TuneInApp.swift */; };
 		D34D47B928F9DB6E00224758 /* ContentView.swift in Sources */ = {isa = PBXBuildFile; fileRef = D34D47B828F9DB6E00224758 /* ContentView.swift */; };
 		D34D47BB28F9DB7000224758 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = D34D47BA28F9DB7000224758 /* Assets.xcassets */; };
@@ -56,6 +55,7 @@
 		D34D47D028F9E8BF00224758 /* UserInfo.swift in Sources */ = {isa = PBXBuildFile; fileRef = D34D47CF28F9E8BF00224758 /* UserInfo.swift */; };
 		D34D47D228F9E8FA00224758 /* Notification.swift in Sources */ = {isa = PBXBuildFile; fileRef = D34D47D128F9E8FA00224758 /* Notification.swift */; };
 		D39673F929159B090073716E /* PostCard.swift in Sources */ = {isa = PBXBuildFile; fileRef = D39673F829159B090073716E /* PostCard.swift */; };
+		D3969DE0294A629400C493C5 /* GoogleService-Info.plist in Resources */ = {isa = PBXBuildFile; fileRef = D3969DDF294A629400C493C5 /* GoogleService-Info.plist */; };
 		D39B8BF529365BEE006C62A4 /* FindTab.swift in Sources */ = {isa = PBXBuildFile; fileRef = D39B8BF429365BEE006C62A4 /* FindTab.swift */; };
 		D39B8BF729365C14006C62A4 /* FriendsTab.swift in Sources */ = {isa = PBXBuildFile; fileRef = D39B8BF629365C14006C62A4 /* FriendsTab.swift */; };
 		D39B8BFD29395CB0006C62A4 /* ShareSheet.swift in Sources */ = {isa = PBXBuildFile; fileRef = D39B8BFC29395CB0006C62A4 /* ShareSheet.swift */; };
@@ -111,7 +111,6 @@
 		B1B8DCB02947A94000810E60 /* HomeFeedTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HomeFeedTests.swift; sourceTree = "<group>"; };
 		B1C0CA522914AD3500445D87 /* HomeFeed.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; name = HomeFeed.swift; path = "TuneIn/Views/Posts Views/HomeFeed.swift"; sourceTree = SOURCE_ROOT; };
 		B1C0CA542914AE9700445D87 /* ViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ViewModel.swift; sourceTree = SOURCE_ROOT; };
-		B1C1D60729478C9D007C3B69 /* GoogleService-Info.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; name = "GoogleService-Info.plist"; path = "../../../../../Downloads/GoogleService-Info.plist"; sourceTree = "<group>"; };
 		B1EA827B29135D2200FAF2C2 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		D34D47B328F9DB6E00224758 /* TuneIn.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = TuneIn.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		D34D47B628F9DB6E00224758 /* TuneInApp.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TuneInApp.swift; sourceTree = "<group>"; };
@@ -123,6 +122,7 @@
 		D34D47CF28F9E8BF00224758 /* UserInfo.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UserInfo.swift; sourceTree = "<group>"; };
 		D34D47D128F9E8FA00224758 /* Notification.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Notification.swift; sourceTree = "<group>"; };
 		D39673F829159B090073716E /* PostCard.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PostCard.swift; sourceTree = "<group>"; };
+		D3969DDF294A629400C493C5 /* GoogleService-Info.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; name = "GoogleService-Info.plist"; path = "../../../GoogleService-Info.plist"; sourceTree = "<group>"; };
 		D39B8BF429365BEE006C62A4 /* FindTab.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FindTab.swift; sourceTree = "<group>"; };
 		D39B8BF629365C14006C62A4 /* FriendsTab.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FriendsTab.swift; sourceTree = "<group>"; };
 		D39B8BFC29395CB0006C62A4 /* ShareSheet.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ShareSheet.swift; sourceTree = "<group>"; };
@@ -296,7 +296,7 @@
 				D34D47BC28F9DB7000224758 /* Preview Content */,
 				B149D11429134C2A0056509D /* SpotifyiOS.framework */,
 				B1EA827B29135D2200FAF2C2 /* Info.plist */,
-				B1C1D60729478C9D007C3B69 /* GoogleService-Info.plist */,
+				D3969DDF294A629400C493C5 /* GoogleService-Info.plist */,
 			);
 			path = TuneIn;
 			sourceTree = "<group>";
@@ -489,7 +489,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				D34D47BE28F9DB7000224758 /* Preview Assets.xcassets in Resources */,
-				B1C1D60829478C9D007C3B69 /* GoogleService-Info.plist in Resources */,
+				D3969DE0294A629400C493C5 /* GoogleService-Info.plist in Resources */,
 				D34D47BB28F9DB7000224758 /* Assets.xcassets in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -814,7 +814,7 @@
 				CODE_SIGN_STYLE = Automatic;
 				CURRENT_PROJECT_VERSION = 1;
 				DEVELOPMENT_ASSET_PATHS = "\"TuneIn/Preview Content\"";
-				DEVELOPMENT_TEAM = 2VHAH62T69;
+				DEVELOPMENT_TEAM = XB2X2SZTFC;
 				ENABLE_PREVIEWS = YES;
 				EXCLUDED_ARCHS = "";
 				"EXCLUDED_ARCHS[sdk=iphonesimulator*]" = arm64;
@@ -838,7 +838,7 @@
 				);
 				MARKETING_VERSION = 1.0;
 				OTHER_LDFLAGS = "-ObjC";
-				PRODUCT_BUNDLE_IDENTIFIER = "-43-TuneIn";
+				PRODUCT_BUNDLE_IDENTIFIER = "TuneIn-sm2";
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				PROVISIONING_PROFILE_SPECIFIER = "";
 				SWIFT_EMIT_LOC_STRINGS = YES;
@@ -855,10 +855,10 @@
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				ASSETCATALOG_COMPILER_GLOBAL_ACCENT_COLOR_NAME = AccentColor;
 				CODE_SIGN_IDENTITY = "Apple Development";
-				CODE_SIGN_STYLE = Automatic;
+				CODE_SIGN_STYLE = Manual;
 				CURRENT_PROJECT_VERSION = 1;
 				DEVELOPMENT_ASSET_PATHS = "\"TuneIn/Preview Content\"";
-				DEVELOPMENT_TEAM = 2VHAH62T69;
+				DEVELOPMENT_TEAM = "";
 				ENABLE_PREVIEWS = YES;
 				EXCLUDED_ARCHS = "";
 				FRAMEWORK_SEARCH_PATHS = (
@@ -882,7 +882,7 @@
 				MARKETING_VERSION = 1.0;
 				ONLY_ACTIVE_ARCH = NO;
 				OTHER_LDFLAGS = "-ObjC";
-				PRODUCT_BUNDLE_IDENTIFIER = "-43-TuneIn";
+				PRODUCT_BUNDLE_IDENTIFIER = "-4TuneIn";
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				PROVISIONING_PROFILE_SPECIFIER = "";
 				SWIFT_EMIT_LOC_STRINGS = YES;

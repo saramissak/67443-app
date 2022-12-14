@@ -17,16 +17,13 @@ struct SearchSong: View {
       self.searchField
     }, set: {
       self.searchField = $0
-      self.viewModel.searchSong( self.searchField)
-      //         viewModel.displayDefaultSongs()
+      self.viewModel.searchSong(self.searchField)
     })
     
     VStack{
       Text("select a song")
       SearchField(innerText: "search a song", binding: binding)
-    
-//      TextField("Search", text:binding)
-      
+          
       List(viewModel.searchedSongs){ song in
         NavigationLink(destination: PostSongView(song:song)){
           SongRow(song:song)
