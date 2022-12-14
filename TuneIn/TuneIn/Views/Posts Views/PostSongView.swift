@@ -44,7 +44,7 @@ struct PostSongView: View {
         }.padding([.top,.bottom],10)
       }
       
-      TextField("caption...", text:$caption)
+      TextField("caption...", text:$caption, axis: .vertical)
         .frame( height: 50)
         .padding(EdgeInsets(top: 0, leading: 6, bottom: 30, trailing: 6))
         .border(.white, width: 0.5)
