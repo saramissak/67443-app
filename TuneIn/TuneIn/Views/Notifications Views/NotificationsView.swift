@@ -16,8 +16,6 @@ struct NotificationsView: View {
       ForEach(viewModel.user.notifications,  id: \.self) { notif in
         NotificationCard(notification: notif)
       }
-    
-      
     }.task{
       viewModel.getNotifications()
     }
@@ -25,8 +23,3 @@ struct NotificationsView: View {
   }
 }
 
-//struct NotificationsView_Previews: PreviewProvider {
-//    static var previews: some View {
-//        NotificationsView()
-//    }
-//}

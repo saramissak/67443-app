@@ -77,7 +77,6 @@ struct PostSongView: View {
 
       
       // entering moods
-      
       NavigationLink(destination: HomeFeed().environmentObject(viewModel), isActive: $madePost, label: {
         Image(uiImage: viewModel.postButton)
           .resizable()
@@ -89,7 +88,6 @@ struct PostSongView: View {
       .onChange(of: madePost) { (newValue) in
         viewModel.makePost(song:song, caption:caption, moods: self.moodList)
         HomeFeed().environmentObject(viewModel)
-
       }
     }
      .navigationBarBackButtonHidden(false)
@@ -111,7 +109,6 @@ struct PostSongView: View {
           .contentShape(Rectangle())
           .task {
             do{
-              print("SONG HERE", song)
               let response = try await viewModel.getAlbumURLById(for: song.id)
               let url = URL(string: response)
               let data = try? Data(contentsOf:url ?? URL(fileURLWithPath: ""))
@@ -135,7 +132,6 @@ struct PostSongView: View {
   }
   
   func playTrack() {
-    //viewModel.updateSongPost(currPost: self.post)
     let track = song
     let alertTitle = "Couldn't play \(track.songName)"
 
@@ -165,11 +161,7 @@ struct PostSongView: View {
                     title: alertTitle,
                     message: error.localizedDescription
                 )
-                print("\(alertTitle): \(error)")
             }
         })
-    
+  }
 }
-}
-
-

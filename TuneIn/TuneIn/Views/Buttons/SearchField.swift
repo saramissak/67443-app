@@ -13,7 +13,6 @@ struct SearchField: View {
   var binding: Binding<String>
   
     var body: some View {
-
       HStack {
         Image(systemName: "magnifyingglass")
             .font(.system(size: 14.0, weight: .bold))

@@ -39,15 +39,12 @@ struct TuneInAppView: View {
     // **Always** validate URLs; they offer a potential attack vector into
     // your app.
     guard url.scheme == self.spotify.loginCallbackURL.scheme else {
-      print("not handling URL: unexpected scheme: '\(url)'")
       self.alert = AlertItem(
         title: "Cannot Handle Redirect",
         message: "Unexpected URL"
       )
       return
     }
-    
-    print("received redirect from Spotify: '\(url)'")
     
     // This property is used to display an activity indicator in `LoginView`
     // indicating that the access and refresh tokens are being retrieved.
@@ -79,7 +76,6 @@ struct TuneInAppView: View {
        to the user if one was received.
        */
       if case .failure(let error) = completion {
-        print("couldn't retrieve access and refresh tokens:\n\(error)")
         let alertTitle: String
         let alertMessage: String
         if let authError = error as? SpotifyAuthorizationError,

@@ -25,8 +25,6 @@ struct EditableMoodButton: View {
         .background(viewModel.hexStringToUIColor(hex: BackgroundHex))
         .cornerRadius(8)
         .padding(2)
-
-      
     }
 }
 

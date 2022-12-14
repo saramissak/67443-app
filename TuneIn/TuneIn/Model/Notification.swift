@@ -16,7 +16,6 @@ enum NotificationTypes: String, Codable {
 struct Notification: Codable, Hashable {
   var userID:    String
   var otherUser: String // who liked, commented, or sent the request
-//  var type:      NotificationTypes
   var type:      String
 
   var postID: String // used for a like
@@ -25,40 +24,8 @@ struct Notification: Codable, Hashable {
   init() {
     userID = ""
     otherUser = ""
-//    type = NotificationTypes.like
     type = ""
     commentID = ""
     postID = ""
   }
 }
-
-//protocol LikeNotificationProtocol: NotificationProtocol, Codable {
-//  var postID: UUID { get set }
-//}
-
-//protocol CommentNotificationProtocol: NotificationProtocol, Codable {
-//  var commentID: UUID { get set }
-//}
-//
-//struct LikeNotification: LikeNotificationProtocol, Codable {
-//  var postID: UUID
-//  var id: UUID
-//  var userID: UUID
-//  var otherUser: UUID
-//  var type: NotificationTypes = NotificationTypes.like
-//}
-//
-//struct CommentNotification: CommentNotificationProtocol, Codable {
-//  var id: UUID
-//  var userID: UUID
-//  var otherUser: UUID
-//  var commentID: UUID
-//  var type: NotificationTypes = NotificationTypes.comment
-//}
-//
-//struct FriendRequestNotification: NotificationProtocol, Codable {
-//  var id: UUID
-//  var userID: UUID
-//  var otherUser: UUID
-//  var type: NotificationTypes = NotificationTypes.friendRequest
-//}

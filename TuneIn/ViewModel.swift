@@ -12,7 +12,6 @@ import FirebaseDatabase
 import FirebaseFirestoreSwift
 import Spartan
 import SwiftUI
-//import XCTest
 
 class ViewModel: ObservableObject{
   var songMap: [String:Song] = [String:Song]() // map of song objects
@@ -36,26 +35,23 @@ class ViewModel: ObservableObject{
   @Published var notifications: [[String:Any]] = []
   
   func getSelf(completionHandler:@escaping (String)->()) {
-    let getMe = Spartan.getMe(success: { (user) in
+    Spartan.getMe(success: { (user) in
       // Do something with the user object
       self.spotifyID = user.id as! String
       self.getUser(searchString: self.spotifyID)
       self.allUsersToDict()
-      print(self.users)
       DispatchQueue.main.async(){
         completionHandler(user.id as! String)
       }
     }, failure: { (err) in
       print("cant find spotify ID in spartn", err)
-      
     })
   }
   
   func getProfilePic() {
-    let getMe = Spartan.getMe(success: { (user) in
+    Spartan.getMe(success: { (user) in
       // Do something with the user object
       self.username = user.id as! String
-      print("user!!!!! \(user)")
       let pfp = user.images![0].url!
       
       let url = URL(string: pfp)
@@ -73,8 +69,6 @@ class ViewModel: ObservableObject{
       self.getPosts(completionHandler: {_ in })
     })
     self.loggedIn = true
-    print("USER NOWW:", self.user)
-
   }
   
   func login(authToken:String, completionHandler:@escaping (String)->()){
@@ -86,8 +80,6 @@ class ViewModel: ObservableObject{
     DispatchQueue.main.async(){
       completionHandler(self.user.id as String)
     }
-    print("USER NOWW:", self.user)
-    
   }
   
   func getPosts(completionHandler:@escaping ([String:Post])->()) {
@@ -97,7 +89,6 @@ class ViewModel: ObservableObject{
         .whereField("userID", isEqualTo: eventList)
         .addSnapshotListener { querySnapshot, error in
           if let error = error {
-            print("Error getting posts: \(error.localizedDescription)")
             return
           }
           
@@ -112,7 +103,6 @@ class ViewModel: ObservableObject{
     })
     
     // get my own posts
-    print("my spotify id is:", self.spotifyID)
     self.store.collection("Posts")
     .whereField("userID", isEqualTo: self.spotifyID)
     .addSnapshotListener { querySnapshot, error in
@@ -140,17 +130,14 @@ class ViewModel: ObservableObject{
      
     dateFormatter.dateFormat = "dd.MM.yyyy"
     let currDate = dateFormatter.string(from: date)
-    print(currDate)
     
-    var filtered = posts
-      .filter{ (key, value) -> Bool in
+    var filtered = posts.filter{ (key, value) -> Bool in
         value.userID == self.user.id
-      }
+    }
     
     filtered = filtered.filter{ (key, value) -> Bool in
         dateFormatter.string(from: value.createdAt) == currDate
     }
-    print("filtered: \(filtered)")
     
     return filtered.count > 0
 
@@ -163,7 +150,7 @@ class ViewModel: ObservableObject{
       }
       .sorted(by: { $0.value.createdAt < $1.value.createdAt })
       .map { (key, value) -> String in key}
-    print("keys: \(keys)")
+
     if (keys.count > 0) {
       return keys.last!
     } else {
@@ -183,13 +170,10 @@ class ViewModel: ObservableObject{
         self.comments = querySnapshot?.documents.compactMap { document in
           let comment = try? document.data(as: Comment.self)
           if self.users[comment!.userID] == nil {
-            self.getUserById(comment!.userID, completionHandler: { (eventList) in
-              print("completion handler is done")
-            })
+            self.getUserById(comment!.userID, completionHandler: { (eventList) in })
           }
           return comment
         } ?? []
-        print("here are some commetns", self.comments)
       }
   }
   
@@ -204,11 +188,10 @@ class ViewModel: ObservableObject{
             completionHandler(data["text"] as? String ?? "")
           }
         }
-
       }
-      
     }
   }
+  
   func getUserById(_ id:String, completionHandler:@escaping (UserInfo)->()) {
     let _ = store.collection("UserInfo")
       .whereField("id", isEqualTo: id)
@@ -227,7 +210,6 @@ class ViewModel: ObservableObject{
           user.spotifyID = data["spotifyID"] as? String ?? ""
           
           self.users[user.id] = user
-          print("in view model on line 113 the user id is: ", user.id)
           DispatchQueue.main.async(){
             completionHandler(user)
           }
@@ -255,7 +237,6 @@ class ViewModel: ObservableObject{
           }
           songs.append(currSong)
         }
-        
         self.searchedSongs = songs
       }, failure: { (error) in
         print(error)
@@ -267,7 +248,6 @@ class ViewModel: ObservableObject{
     var newPost = Post()
     let newPostRef = self.store.collection("Posts").document()
     newPost.userID = self.user.id
-    print("here is the username ", self.user.username)
     newPost.song = song
     newPost.caption = caption
     newPost.createdAt = NSDate() as Date
@@ -275,17 +255,14 @@ class ViewModel: ObservableObject{
     newPost.moods = moods
     newPost.id = newPostRef.documentID
     
-    print("calling getsong by id")
     self.getSongById(song.id, newPost, newPostRef)
-    print("finished calling getsong by id")
   }
   
   // documentation on get track API endpoint: https://developer.spotify.com/documentation/web-api/reference/#/operations/get-track
-  
   func getAlbumURLById(for id: String) async throws-> String{
     var albumURL = ""
       
-    var sessionConfiguration = URLSessionConfiguration.default
+    let sessionConfiguration = URLSessionConfiguration.default
     sessionConfiguration.httpAdditionalHeaders = [
       "Authorization": "Bearer \(Spartan.authorizationToken!)"
     ]
@@ -293,10 +270,8 @@ class ViewModel: ObservableObject{
     let session = URLSession(configuration: sessionConfiguration)
     let SpotifyGetTrackURL = URL(string: "https://api.spotify.com/v1/tracks/\(id)")
       
-    let (data, response) = try await session.data(for: URLRequest(url: SpotifyGetTrackURL!))
+    let (data, _) = try await session.data(for: URLRequest(url: SpotifyGetTrackURL!))
     let json = try? (JSONSerialization.jsonObject(with: data as Data, options: .allowFragments) as? [String:AnyObject])
-    print("data: ", data)
-    print("json: ", json)
     if let album = json?["album"] as? NSDictionary {
       if let images = album["images"] as? [NSDictionary] {
         if let firstImage = images[0] as? NSDictionary {
@@ -304,60 +279,12 @@ class ViewModel: ObservableObject{
         }
       }
     }
-    
-      print("album url now ", albumURL)
-      return albumURL
-    
+    return albumURL
   }
-  
-//  func updateSongPost(currPost: Post) {
-//    var samePost = currPost
-//    print("CurrSONG!!!!: \(samePost.song)")
-//    var sessionConfiguration = URLSessionConfiguration.default
-//    sessionConfiguration.httpAdditionalHeaders = [
-//      "Authorization": "Bearer \(Spartan.authorizationToken!)"
-//    ]
-//
-//    let session = URLSession(configuration: sessionConfiguration)
-//    let SpotifyGetTrackURL = "https://api.spotify.com/v1/tracks/\(samePost.id)"
-//
-//    let getTrackTask = session.dataTask(with: URL(string: SpotifyGetTrackURL)!) { (data, response, error) in
-//      guard let data = data else {
-//        print("Error: No data to decode")
-//        return
-//      }
-//
-//      guard let json = try? JSONSerialization.jsonObject(with: data as Data, options: .allowFragments) as! [String:AnyObject] else {
-//        print("Error: Couldn't decode data into a result")
-//        return
-//      }
-//
-//      if let album = json["album"] as? NSDictionary {
-//        if let albumURI = album["uri"] as? String {
-//          samePost.song.albumURI = albumURI
-//        }
-//      }
-//      if let uri = json["uri"] as? String {
-//        samePost.song.previewURL = uri
-//      }
-//      print("CurrSONG!!!!: \(samePost.song)")
-//      
-//      do {
-//        let postRef = self.store.collection("Posts").document(currPost.id)
-//        _ = try postRef.setData(from: samePost)
-//      } catch let error {
-//          print("Error writing city to Firestore: \(error)")
-//      }
-//
-//    }
-//
-//    getTrackTask.resume()
-//
-//  }
-  
+
   func getSongById(_ id: String, _ newPost: Post, _ newPostRef: DocumentReference) {
     var post = newPost
-    var sessionConfiguration = URLSessionConfiguration.default
+    let sessionConfiguration = URLSessionConfiguration.default
     sessionConfiguration.httpAdditionalHeaders = [
       "Authorization": "Bearer \(Spartan.authorizationToken!)"
     ]
@@ -390,59 +317,15 @@ class ViewModel: ObservableObject{
         post.song.previewURL = uri
       }
       
-      // Output if everything is working right
-      print("previewURL:!!!! \(post.song.previewURL)")
-      
       do {
-        _ = try newPostRef.setData(from: post)
-        
+        try newPostRef.setData(from: post)
       } catch let error {
           print("Error writing city to Firestore: \(error)")
       }
     }
-//    DispatchQueue.main.async(){
-//      completionHandler(post as! Post)
-//    }
     getTrackTask.resume()
   }
   
-  
-  // creates a song object from a songID
-//  func getSong(_ songID: String, completionHandler:@escaping (Song)->()) {
-//    var songObj: Song = Song()
-//    _ = Spartan.getTrack(id: songID, market: .us, success: { (track) in
-//      songObj.id = songID
-//      songObj.songName = track.name
-//      songObj.spotifyLink = track.href ?? ""
-//      songObj.artist = track.artists[0].name
-//      if track.album == nil {
-//        songObj.albumURL = ""
-//      } else{
-//        songObj.albumURL = track.album.images[0].url ?? ""
-//      }
-//      songObj.previewURL = track.previewUrl ?? ""
-//
-//      print("song obj", songObj)
-//      DispatchQueue.main.async(){
-//        completionHandler(songObj)
-//      }
-//    }, failure: { (error) in
-//      print("couldn't get song: ", error)
-//    })
-//  }
-  
-//  func createUser(_ id:String) -> UserInfo{
-//    var user = makeDefaultUser(id)
-//    let newUserRef = self.store.collection("UserInfo").document()
-//
-//    do {
-//      _ = try newUserRef.setData(from: user)
-//    } catch let error {
-//        print("Error writing user to Firestore: \(error)")
-//    }
-//    return user
-//  }
-//
   func createDefaultUser(_ spotifyID: String){
     // creates a fake user with stella's spotify ID
     self.user = UserInfo()
@@ -465,17 +348,11 @@ class ViewModel: ObservableObject{
         }
       }, failure: { (err) in
         print("err instead of getting user: ", err)
-        
       })
-}
+  }
   
   
   func getUser(searchString: String){
-    print("Search String: \(searchString)")
-    if searchString == "" {
-      print("[ALERT] not doing request since search string is just \(searchString)")
-//      createUser(searchString)
-    }
     let _ = store.collection("UserInfo")
       .whereField("spotifyID", isEqualTo: searchString)
       .getDocuments() { (querySnapshot, err) in
@@ -483,7 +360,6 @@ class ViewModel: ObservableObject{
         print("Error getting documents: \(err)")
       } else {
         if querySnapshot!.documents.count == 0{
-          print("CREATING NEW USER")
           self.createDefaultUser(searchString)
         }
         else{
@@ -496,19 +372,14 @@ class ViewModel: ObservableObject{
             self.user.spotifyID = data["spotifyID"] as? String ?? ""
             self.user.bio = data["bio"] as? String ?? ""
             self.user.favoriteGenre = data["favoriteGenre"] as? String ?? ""
-
-            print("user.username from db request: \(self.user.username)")
           }
-
         }
-
       }
     }
   }
   
   func getUsers(_ searchString: String) {
     if searchString == "" || searchString.count < 1 {
-      print("[ALERT] not doing request since search string is just \(searchString)")
       return
     }
     let _ = store.collection("UserInfo")
@@ -527,12 +398,10 @@ class ViewModel: ObservableObject{
           user.username = data["username"] as? String ?? ""
           user.spotifyID = data["spotifyID"] as? String ?? ""
           
-          print("user.username from db request: \(user.username)")
           self.users[user.id] = user
           if self.searchedUsers[user.username] == nil {
             self.searchedUsers[user.username] = user
           }
-         
         }
       }
     }
@@ -555,7 +424,6 @@ class ViewModel: ObservableObject{
           user.spotifyID = data["spotifyID"] as? String ?? ""
 
           self.users[user.id] = user
-          print("just put in user", self.users[user.id])
         }
       }
     }
@@ -563,7 +431,6 @@ class ViewModel: ObservableObject{
   
   func getNotifications(){
     self.user.notifications = []
-    print("CALLED GETNOTIFICAITONS", self.spotifyID)
     let _ = store.collection("UserInfo")
       .whereField("spotifyID", isEqualTo: self.spotifyID)
       .getDocuments() { (querySnapshot, err) in
@@ -572,7 +439,6 @@ class ViewModel: ObservableObject{
         } else {
           for document in querySnapshot!.documents {
             let data = document.data()
-            print("NOTIFICAITON DATA", data)
             for notif in data["notifications"] as? [[String:Any]] ?? []{
               var newNotif = Notification()
               newNotif.userID = notif["userID"] as? String ?? ""
@@ -582,7 +448,6 @@ class ViewModel: ObservableObject{
               newNotif.otherUser = notif["otherUser"] as? String ?? ""
               newNotif.type = notif["type"] as? String ?? ""
               self.user.notifications.append(newNotif)
-              print("this is notification object ", newNotif)
             }
           }
         }
@@ -593,7 +458,6 @@ class ViewModel: ObservableObject{
                    name: String? = nil,
                    username: String? = nil,
                    genre: String? = nil) {
-    print("HERE:!!!  \(bio), \(name), \(username)")
     if bio != nil && bio!.isEmpty != true{
       store.collection("UserInfo").document(user.id).updateData(["bio": bio!])
     }
@@ -612,14 +476,10 @@ class ViewModel: ObservableObject{
         } else {
           if querySnapshot!.documents.isEmpty{
             self.store.collection("UserInfo").document(self.user.id).updateData(["username": username!])
-          } else {
-            print("You cannot use the username ")
-            
           }
         }
       }
     }
-     
   }
   
   func unlikePost(post: Post){
@@ -662,11 +522,8 @@ class ViewModel: ObservableObject{
   }
   
   func makeCommentNotification(_ comment:Comment? = nil) {
-    print("comment is nil")
     if comment != nil{
       let comment = comment!
-      print("comment is ", comment)
-      print("post for the comment is ", self.posts[comment.postID])
       let notifiedUser = self.posts[comment.postID]?.userID ?? ""
       let dict: [String:Any] = [
         "userID":  notifiedUser,
@@ -674,7 +531,6 @@ class ViewModel: ObservableObject{
         "type": "comment",
         "commentID": comment.id
       ]
-      print("notified User: ", notifiedUser)
       let userRef = store.collection("UserInfo").document(notifiedUser)
       userRef.updateData([
         "notifications": FieldValue.arrayUnion([dict])
@@ -698,7 +554,6 @@ class ViewModel: ObservableObject{
     
     do {
       _ = try store.collection("Comments").document(newComment.id).setData(from: newComment)
-      print("updated document \(docID)")
       self.comments.append(newComment)
     } catch let error {
         print("Error writing city to Firestore: \(error)")
@@ -728,10 +583,5 @@ class ViewModel: ObservableObject{
           blue: CGFloat(rgbValue & 0x0000FF) / 255.0
       )
   }
-  
-//  func updateUserName(withUid: String, toNewName: String) {
-//      self.db.collection("users").document(withUid).setData( ["name": toNewName], merge: true)
-//  }
-  
 }
 

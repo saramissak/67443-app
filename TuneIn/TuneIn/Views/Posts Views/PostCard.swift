@@ -162,7 +162,6 @@ struct PostCard: View {
                     title: alertTitle,
                     message: error.localizedDescription
                 )
-                print("\(alertTitle): \(error)")
             }
         })
     

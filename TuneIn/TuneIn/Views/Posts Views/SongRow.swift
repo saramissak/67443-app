@@ -19,9 +19,3 @@ struct SongRow: View {
       }
     }
 }
-
-//struct SongRow_Previews: PreviewProvider {
-//    static var previews: some View {
-//        SongRow()
-//    }
-//}

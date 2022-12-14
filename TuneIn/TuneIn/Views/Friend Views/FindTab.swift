@@ -73,7 +73,6 @@ struct FindTab: View {
   }
 }
 
-
 struct roundedRectangleButton : View {
   @EnvironmentObject var friendsViewModel: FriendsViewModel
   @EnvironmentObject var viewModel: ViewModel

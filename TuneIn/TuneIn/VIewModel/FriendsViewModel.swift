@@ -25,7 +25,6 @@ class FriendsViewModel: ObservableObject{
 
   func getUsers(_ searchString: String, completionHandler:@escaping (String)->()) {
     if searchString == "" || searchString.count < 1 {
-      print("not doing request since search string is just \(searchString)")
       return
     }
     let _ = store.collection("UserInfo")
@@ -269,7 +268,6 @@ class FriendsViewModel: ObservableObject{
             }
           }
         }
-        print("your friends are: ", self.friends)
       }
     }
   } // END OF getFriendsFireStoreCall
@@ -280,7 +278,6 @@ class FriendsViewModel: ObservableObject{
     if self.friends[friend] != nil && self.friends[friend] != "" {
       store.collection("Friends").document(self.friends[friend]!).delete { error in
         if let error = error {
-          print("Unable to remove friendRequets: \(error.localizedDescription)")
           DispatchQueue.main.async(){
             completionHandler(false)
           }

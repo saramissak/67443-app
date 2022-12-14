@@ -28,13 +28,6 @@ struct SetBioView: View {
   
   var body: some View {
     NavigationView {
-//    let binding = Binding<String>(get: {
-//      self.searchField
-//    }, set: {
-//      self.searchField = $0
-//    })
-    
-    //TextField("Search", text: binding)
       Form {
         Section(header: Text("Personal")){
           TextField("Name", text: $name)
@@ -71,8 +64,3 @@ extension View {
 }
 #endif
 
-//struct SetBioView_Previews: PreviewProvider {
-//    static var previews: some View {
-//        SetBioView()
-//    }
-//}

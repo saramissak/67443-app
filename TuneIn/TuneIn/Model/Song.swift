@@ -25,14 +25,6 @@ struct Song: Codable, Identifiable {
     artist = ""
     albumURL = ""
   }
-//  enum CodingKeys : String, CodingKey {
-//    case songID      = "id"
-//    case albumURL    = "album"
-//    case songName    = "name"
-//    case spotifyLink = "external_urls"
-//    case artists
-//    case previewUrl  = "preview_url"
-//  }
 }
 
 struct AlbumImage: Codable {

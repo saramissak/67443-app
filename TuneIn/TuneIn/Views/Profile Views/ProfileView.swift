@@ -30,9 +30,6 @@ struct ProfileView: View {
         } .navigationBarTitle("")
           .navigationBarHidden(true)
       }
-
-      
-      
     }
 }
 
@@ -142,18 +139,3 @@ struct ProfileSongOfDay : View {
     }
   }
 }
-
-//struct PastSongsOfTheDay : View {
-//  var body: some View {
-//
-//  }
-//
-//}
-
-
-
-//struct ProfileView_Previews: PreviewProvider {
-//    static var previews: some View {
-//        ProfileView()
-//    }
-//}
