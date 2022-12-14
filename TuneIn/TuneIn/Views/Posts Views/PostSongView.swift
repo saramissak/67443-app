@@ -94,7 +94,11 @@ struct PostSongView: View {
      .padding([.trailing, .leading], 10)
 
     }
+    .onTapGesture {
+      hideKeyboardPostSongView()
+    }
   }
+    
   func removeMoodFromList( _ mood: String) -> Void{
     let newList = self.moodList.filter{$0 != mood}
     self.moodList = newList
@@ -165,3 +169,13 @@ struct PostSongView: View {
         })
   }
 }
+
+#if canImport(UIKit)
+extension View {
+    func hideKeyboardPostSongView() {
+        UIApplication.shared.sendAction(#selector(UIResponder.resignFirstResponder), to: nil, from: nil, for: nil)
+    }
+}
+#endif
+
+
