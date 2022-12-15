@@ -43,22 +43,67 @@ final class LoginTests: XCTestCase {
         print("cant find spotify ID in spartn", err)
 
       })
-      
-
-      
-      
-        // This is an example of a functional test case.
-        // Use XCTAssert and related functions to verify your tests produce the correct results.
-        // Any test you write for XCTest can be annotated as throws and async.
-        // Mark your test throws to produce an unexpected failure when your test encounters an uncaught error.
-        // Mark your test async to allow awaiting for asynchronous code to complete. Check the results with assertions afterwards.
+    
     }
+  func testGetUsers() throws {
+    viewModel.getUserById("testUser", completionHandler: { (user) in
+      XCTAssertEqual(user.spotifyID, "testUser")
+    })
+    
+    viewModel.getUserById("non existent user", completionHandler: { (user) in
+      XCTAssertEqual(user.spotifyID, "")
+    })
+  }
+  
+  func testEditBio() throws {
+    let newBio = " test test bio"
+    let newName = "test test"
+    let newUsername = "testUserName"
+    let newGenre = "testing"
+    let oldBio = ""
+    let oldName = "test"
+    let oldUsername = "testUser"
+    let oldGenre = ""
+    let testUserSpotifyID = "testUser"
+    viewModel.getUserById("testUser", completionHandler: { (user) in
+      self.viewModel.editAccount(bio:newBio)
+      XCTAssertEqual(user.spotifyID, testUserSpotifyID)
+      XCTAssertEqual(user.bio, newBio)
+      XCTAssertEqual(user.name, oldName)
+      XCTAssertEqual(user.username, oldUsername)
+      XCTAssertEqual(user.favoriteGenre, oldGenre)
+      
+      self.viewModel.editAccount(name: newName)
+      XCTAssertEqual(user.spotifyID, testUserSpotifyID)
+      XCTAssertEqual(user.bio, newBio)
+      XCTAssertEqual(user.name, newName)
+      XCTAssertEqual(user.username, oldUsername)
+      XCTAssertEqual(user.favoriteGenre, oldGenre)
+      
+      self.viewModel.editAccount(username: newUsername)
+      XCTAssertEqual(user.spotifyID, testUserSpotifyID)
+      XCTAssertEqual(user.bio, newBio)
+      XCTAssertEqual(user.name, newName)
+      XCTAssertEqual(user.username, newUsername)
+      XCTAssertEqual(user.favoriteGenre, oldGenre)
+      
+      self.viewModel.editAccount(genre: newGenre)
+      XCTAssertEqual(user.spotifyID, testUserSpotifyID)
+      XCTAssertEqual(user.bio, newBio)
+      XCTAssertEqual(user.name, newName)
+      XCTAssertEqual(user.username, newUsername)
+      XCTAssertEqual(user.favoriteGenre, newGenre)
+      
+      self.viewModel.editAccount(bio:oldBio, name: oldName, username: oldUsername, genre: oldGenre)
+      XCTAssertEqual(user.spotifyID, testUserSpotifyID)
+      XCTAssertEqual(user.bio, oldBio)
+      XCTAssertEqual(user.name, oldName)
+      XCTAssertEqual(user.username, oldUsername)
+      XCTAssertEqual(user.favoriteGenre, oldGenre)
+      
+    })
+    
+  }
 
-//    func testPerformanceExample() throws {
-//        // This is an example of a performance test case.
-//        self.measure {
-//            // Put the code you want to measure the time of here.
-//        }
-//    }
 
 }
