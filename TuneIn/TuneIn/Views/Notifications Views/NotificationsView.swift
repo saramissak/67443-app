@@ -17,7 +17,7 @@ struct NotificationsView: View {
         NotificationCard(notification: notif)
       }
     }.task{
-      viewModel.getNotifications()
+      viewModel.getNotifications(completionHandler: {_ in})
     }
 
   }

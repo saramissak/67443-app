@@ -68,6 +68,7 @@ final class HomeFeedTests: XCTestCase {
             post.song.id == newSong.id
           }
           XCTAssertFalse(filteredPosts.isEmpty)
+          XCTAssertTrue(self.viewModel.hasPostedSongOfDay())
         
         })
       })
@@ -92,10 +93,16 @@ final class HomeFeedTests: XCTestCase {
       
     })
   }
-  
-  func testLikingPosts() throws{
-    
+  func testNotifications() throws{
+    let testToken = "BQC5gIjLy-PNwVzdNzGUTKlOEjriwutW-DEnmv-aA2MwFDASkW39AwB8f29ttWbjlDIQprh-Jo7UPJVt0pmTf_F5xmdFpScEG2VWgjKMuBqaYncF7l3x2_a0BbgOxQPwlHHmhaTnSRxQYVhdYTz6A-E6YH_VNFC3eKbljr7xb7jqNXvNKzFJo6-FHEA3w-lVgNQc83DO2d0"
+    self.viewModel.login(authToken: testToken, completionHandler: {(eventList) in
+      self.viewModel.getNotifications(completionHandler: {(notifications) in
+        XCTAssertTrue(notifications.count != 0)
+        self.viewModel.makeCommentNotification(Comment())
+        XCTAssertTrue(notifications.count > 0)
+      })
+
+    })
   }
-  
 
 }

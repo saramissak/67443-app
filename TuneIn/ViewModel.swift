@@ -437,7 +437,7 @@ class ViewModel: ObservableObject{
     }
   }
   
-  func getNotifications(){
+  func getNotifications(completionHandler:@escaping ([Notification])->()){
     self.user.notifications = []
     let _ = store.collection("UserInfo")
       .whereField("spotifyID", isEqualTo: self.spotifyID)
@@ -458,7 +458,11 @@ class ViewModel: ObservableObject{
               self.user.notifications.append(newNotif)
             }
           }
+          DispatchQueue.main.async(){
+            completionHandler(self.user.notifications as [Notification])
+          }
         }
+        
       }
   }
   
@@ -492,41 +496,46 @@ class ViewModel: ObservableObject{
   
   func unlikePost(post: Post){
     let postRef = store.collection("Posts").document(post.id)
-    postRef.updateData([
-      "likes": FieldValue.arrayRemove([user.id])
-    ])
-    self.getPosts(completionHandler: {_ in })
+    if postRef != nil{
+      postRef.updateData([
+        "likes": FieldValue.arrayRemove([user.id])
+      ])
+      self.getPosts(completionHandler: {_ in})
 
-    // remove like from notification
-    let dict: [String:Any] = [
-      "userID":  post.userID,
-      "otherUser": user.id,
-      "type": "like",
-      "postID": post.id
-    ]
-    let userRef = store.collection("UserInfo").document(post.userID)
-    userRef.updateData([
-      "notifications": FieldValue.arrayRemove([dict])
-    ])
+      // remove like from notification
+      let dict: [String:Any] = [
+        "userID":  post.userID,
+        "otherUser": user.id,
+        "type": "like",
+        "postID": post.id
+      ]
+      let userRef = store.collection("UserInfo").document(post.userID)
+      userRef.updateData([
+        "notifications": FieldValue.arrayRemove([dict])
+      ])
+    }
+
   }
   
   func likePost(_ post:Post) {
     let postRef = store.collection("Posts").document(post.id)
-    postRef.updateData([
-      "likes": FieldValue.arrayUnion([user.id])
-    ])
+    
+      postRef.updateData([
+        "likes": FieldValue.arrayUnion([user.id])
+      ])
 
-    let dict: [String:Any] = [
-      "userID":  post.userID,
-      "otherUser": user.id,
-      "type": "like",
-      "postID": post.id
-    ]
-    let userRef = store.collection("UserInfo").document(post.userID)
-    userRef.updateData([
-      "notifications": FieldValue.arrayUnion([dict])
-    ])
-    self.getPosts(completionHandler: {_ in })
+      let dict: [String:Any] = [
+        "userID":  post.userID,
+        "otherUser": user.id,
+        "type": "like",
+        "postID": post.id
+      ]
+      let userRef = store.collection("UserInfo").document(post.userID)
+      userRef.updateData([
+        "notifications": FieldValue.arrayUnion([dict])
+      ])
+      self.getPosts(completionHandler: {_ in })
+
   }
   
   func makeCommentNotification(_ comment:Comment? = nil) {
