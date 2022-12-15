@@ -18,10 +18,14 @@ Spartan is inaccessible when testing so the functions using Spartan were not tes
 
 # Running the Application
 1. Once you have met the stated requirements, open the application using “TuneIn.xcworkspace” file RATHER THAN “TuneIn.xcodeproj” file.
-2. run “pod install” in your cmd line within the directory /67443-app-main/TuneIn
+2. run “pod install” in your cmd line within the directory **/67443-app-main/TuneIn**
 3. Run the application by hitting the play button or CMD “R” 
 4. You will knowingly encounter two issues– visit “Bundle Identifier Error” in the “Possible Errors” section to resolve those issues
+    a. To fix the error for the bundle Identifier, choose a team your mac has and then use TuneIn-<initials> for the bundle identifier
+      - For example, TuneIn-la
+    b. If you receive the error message, "TuneIn" requires a provisioning profile. Select a provisioning profile in the Signing & Capabilities editor, you can run the program with no used 
 5. The application should build successfully on your computer and it will download on your personal device 
+6. Refer to the Possible Errors section if you run into any difficulties
 
 # Possible Errors 
 ## ”*/67443-app/TuneIn/Pods/Target Support Files/Alamofire/Alamofire-Info.plist'
