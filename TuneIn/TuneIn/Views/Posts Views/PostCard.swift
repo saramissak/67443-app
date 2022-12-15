@@ -47,7 +47,7 @@ struct PostCard: View {
                   Image(systemName: "captions.bubble.fill").font(.system(size: iconSize))
                 })
                 .onChange(of: viewComment) { (newValue) in
-                  viewModel.getComments(post:post)
+                  viewModel.getComments(post:post, completionHandler: {_ in })
                 }
                 .navigationBarBackButtonHidden(true)
               }

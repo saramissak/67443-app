@@ -42,29 +42,10 @@ final class HomeFeedTests: XCTestCase {
 //        }
 //    }
     func testSearchSong() throws {
-      var songs:[Song] = []
-      _ = Spartan.search(query: "Picture in my mind", type: .track, success: { (pagingObject: PagingObject<SimplifiedTrack>) in
-        for obj in pagingObject.items{
-          var currSong = Song()
-          currSong.id = obj.id as! String
-          currSong.songName = obj.name
-          currSong.artist = obj.artists[0].name
-
-          if obj.externalUrls != nil {
-            currSong.spotifyLink = obj.externalUrls!["spotify"] ?? ""
-          }
-          
-          if obj.uri != nil {
-            currSong.previewURL = obj.uri
-          }
-          songs.append(currSong)
-        }
-        
-        print("SEARCHED SONGS \(songs)")
+      self.viewModel.searchSong("Picture in my mind", completionHandler: {(songs) in
         XCTAssertGreaterThan(songs.count, 0)
         XCTAssertEqual(songs[0].artist,"PinkPanthress")
-      }, failure: { (error) in
-        print(error)
+                                                                           
       })
 
     }
@@ -72,9 +53,6 @@ final class HomeFeedTests: XCTestCase {
   func testMakePosts() throws{
     // test
     let testToken = "BQC5gIjLy-PNwVzdNzGUTKlOEjriwutW-DEnmv-aA2MwFDASkW39AwB8f29ttWbjlDIQprh-Jo7UPJVt0pmTf_F5xmdFpScEG2VWgjKMuBqaYncF7l3x2_a0BbgOxQPwlHHmhaTnSRxQYVhdYTz6A-E6YH_VNFC3eKbljr7xb7jqNXvNKzFJo6-FHEA3w-lVgNQc83DO2d0"
-
-
-    print("TASK RUNNING")
       self.viewModel.login(authToken: testToken, completionHandler: {(eventList) in
         
         var newSong = Song()
@@ -93,9 +71,29 @@ final class HomeFeedTests: XCTestCase {
         
         })
       })
-
-
     
+  }
+  func testMakeComment() throws{
+    let testToken = "BQC5gIjLy-PNwVzdNzGUTKlOEjriwutW-DEnmv-aA2MwFDASkW39AwB8f29ttWbjlDIQprh-Jo7UPJVt0pmTf_F5xmdFpScEG2VWgjKMuBqaYncF7l3x2_a0BbgOxQPwlHHmhaTnSRxQYVhdYTz6A-E6YH_VNFC3eKbljr7xb7jqNXvNKzFJo6-FHEA3w-lVgNQc83DO2d0"
+    self.viewModel.login(authToken: testToken, completionHandler: {(eventList) in
+      var fakePost = Post()
+      fakePost.id = "1"
+      
+      self.viewModel.postComment(docID: "testID", comment:  "test comment", post: fakePost, completionHandler:{ comment in
+        XCTAssertTrue(comment.postID == "1")
+        self.viewModel.getCommentByCommentID(comment.id, completionHandler:{(text) in
+          XCTAssertTrue(text == "text comment")
+        })
+        self.viewModel.getComments(post: fakePost, completionHandler:{(comments) in
+          XCTAssertTrue(comments.count == 0)
+        })
+      })
+      
+      
+    })
+  }
+  
+  func testLikingPosts() throws{
     
   }
   

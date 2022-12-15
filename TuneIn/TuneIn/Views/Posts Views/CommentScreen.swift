@@ -42,9 +42,11 @@ struct CommentScreen: View {
       HStack{
         TextField("Comment here", text:binding)
         Button("Post", action: {
-          let newComment = viewModel.postComment(docID: docID, comment: self.commentString, post: post)
-          viewModel.makeCommentNotification(newComment)
-          self.commentString = ""
+          viewModel.postComment(docID: docID, comment: self.commentString, post: post, completionHandler: {(newComment) in
+            viewModel.makeCommentNotification(newComment)
+            self.commentString = ""
+          })
+
          })
       }.padding([.top,.bottom],10)
         .padding([.trailing,.leading],10)

@@ -17,7 +17,8 @@ struct SearchSong: View {
       self.searchField
     }, set: {
       self.searchField = $0
-      self.viewModel.searchSong(self.searchField)
+      self.viewModel.searchSong( self.searchField, completionHandler: { _ in})
+      //         viewModel.displayDefaultSongs()
     })
     
     VStack{

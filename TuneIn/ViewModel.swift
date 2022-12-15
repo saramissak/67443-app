@@ -158,7 +158,7 @@ class ViewModel: ObservableObject{
     }
   }
   
-  func getComments(post: Post) {
+  func getComments(post: Post, completionHandler:@escaping([Comment])->()) {
     self.comments = []
     store.collection("Comments").whereField("postID", isEqualTo: post.id)
       .order(by: "date")
@@ -174,6 +174,9 @@ class ViewModel: ObservableObject{
           }
           return comment
         } ?? []
+        DispatchQueue.main.async(){
+          completionHandler(self.comments as [Comment])
+        }
       }
   }
   
@@ -218,7 +221,7 @@ class ViewModel: ObservableObject{
     }
   }
   
-  func searchSong(_ songName: String) {
+  func searchSong(_ songName: String, completionHandler:@escaping ([Song])->() ) {
     var songs:[Song] = []
     if songName != "" {
       _ = Spartan.search(query: songName, type: .track, success: { (pagingObject: PagingObject<SimplifiedTrack>) in
@@ -238,9 +241,14 @@ class ViewModel: ObservableObject{
           songs.append(currSong)
         }
         self.searchedSongs = songs
+        DispatchQueue.main.async(){
+          completionHandler(songs as [Song])
+        }
       }, failure: { (error) in
         print(error)
       })
+
+      
     }
   }
   
@@ -540,7 +548,7 @@ class ViewModel: ObservableObject{
   }
   
   
-  func postComment(docID: String, comment: String, post: Post) -> Comment? {
+  func postComment(docID: String, comment: String, post: Post, completionHandler:@escaping (Comment)->() ) -> Comment? {
     if comment == "" {
       return nil
     }
@@ -557,6 +565,9 @@ class ViewModel: ObservableObject{
       self.comments.append(newComment)
     } catch let error {
         print("Error writing city to Firestore: \(error)")
+    }
+    DispatchQueue.main.async(){
+      completionHandler(newComment as Comment)
     }
     return newComment
   }
