@@ -60,3 +60,20 @@ Often when pulling, you will get an error with the Bundle Identifier saying that
 5) In the grey box below, there should be a “Try again” button if it did not “try again” on its own that you should click and it should work after clicking that button. 
 
 6) Re-run the app
+    
+# A and B level Use Cases
+    
+| As a       | I would like to...  | In order to | Priority (A, B, C) | 
+| ----------- | ----------- |  ----------- | ----------- |
+| user      | post a song-of-the-day | Let my friends view my post | A |
+| user      | “like” a friend’s post  | Let my friends know I enjoyed their song-of-the-day | A |
+| user      | comment on a friend’s post | Let my friends know what I think about their song | A |
+| user      | add friends to my friends list | See their profile and see their posts on my feed | A |
+| user      | Remove a friend from my friend's list | Remove them from my feed | A |
+| user      | Accept requests from people trying to add me | Add a friend to my feed | A |
+| user      | Create a profile for myself that includes basic bio information | Store my basic information attached to my username | A |
+| user      | Preview a song when choosing my song-of-the-day  | Make sure it is the song I am looking for | B |
+| user      | Preview songs that my friends post for their song-of-the-day | See if their song is interesting to me | B |
+| user      | Look up and append mood tags for a song | Connect song posts with a mood a user is feeling | B |
+| user      | See notifications | Modified way to see notifications from user activity | B |
+
